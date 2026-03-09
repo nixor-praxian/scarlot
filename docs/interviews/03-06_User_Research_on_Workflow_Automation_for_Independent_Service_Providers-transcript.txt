@@ -1,0 +1,203 @@
+
+00:00:00 Interviewer
+The thing I wanted to validate is like, okay, there's different things. I can show you a discovery report.
+00:00:10 Interviewer
+This is a visual easy.
+00:00:14 Interviewer
+Six recorded conversations with the co-founder, mapping the operational reality of independent Sex workers and so on, and the product opportunity and all that. Priority stack. Safety and filtering.
+00:00:27 Interviewer
+Blacklist. Number one. This person are they safe am i protected before i engage second client information management who Have i did i meet this person before what happened what do i need to remember messaging Consideration everything uh booking and availability so the idea so this is just.
+00:00:58 Interviewer
+Recap the the problematic is like clients have unrestricted access they just write to you, And then they write to you anything does that resonate with you the question clients have, Unrestricted access they just write to you anything are you asking to me that yeah if they just.
+00:01:29 Interviewer
+And then what happens? Sometimes it's painful, sometimes it's okay, sometimes it's not okay.
+00:01:38 Speaker 2
+This is not as easy to answer. I mean, it used to be okay. It depends a lot of the platform you are using. For example, Be My Girl is more restricted. And for example, they, since a year ago, they started with this new... Un sistema para ver el número Sí, necesitas una asociación para ver todas las funciones Para que no todos cambien.
+00:02:09 Speaker 2
+Cómo se dice?
+00:02:13 Interviewer
+Puedes decirlo en español.
+00:02:15 Speaker 2
+Sí, pero como estoy hablando en inglés No, quiero decir, cambió la dinámica La dinámica es diferente Puedo hablar de esto en español? Sí, sí.
+00:02:26 Interviewer
+Qué cambió en la dinámica?
+00:02:29 Speaker 2
+Pues por ejemplo, que cuando te hablan desde Be My Girl, Ahora muchas veces te piden fotos. Yo hace un tiempo que solo trabajo con clientes regulares, Y sí abro mis anuncios con Be My Girl a veces, Muy de vez en cuando con Face Girl. Qué sucede? Face Girl, Tanto en Face Girl como en Be My Girl, Hay muchísima gente que te escribe. Que te escribes solo para tantear, para curiosear. A ti te están escribiendo muchos a la vez.
+00:02:59 Speaker 2
+Sí. O sea, te están escribiendo muchos a la vez. No, te están escribiendo a ti y a muchas a la vez.
+00:03:04 Interviewer
+Sí, sí. Y cómo lo gestionas? Cómo lo utilizas?
+00:03:09 Speaker 2
+Sí, sí. Cómo lo gestiono. Contestando de manera normal.
+00:03:13 Interviewer
+You reply. Claro.
+00:03:16 Speaker 2
+Manually. Claro, es por WhatsApp todo. Sí, sí. Todo por WhatsApp. Como la primera vez contigo, como todo. Sí, sí.
+00:03:22 Interviewer
+Para que te quieran dónde eres, cosas haces...
+00:03:29 Speaker 2
+Sí, normalmente quieren saber qué servicios incluye, o sea, el precio y qué servicios incluye. Y depende del tipo de persona, quieren entender mejor si eres una persona más discreta, Con un perfil que a ellos les encaja. Eso para la gente, que es el tipo de cliente que suelo buscar yo, que es un poco más parecido a mí. Que quieren quedar con alguien que sea más tranquilo, que sea más real, que sea un poco más cercano.
+00:04:00 Interviewer
+La selección la haces tú después de haber visto a la persona?
+00:04:05 Speaker 2
+No, a mí me sirve cualquier persona. Mi trabajo es hacer que se sientan como... Puedes? Sabes? Así que no me importa, no me importa.
+00:04:19 Interviewer
+So, so the idea here is basically to, well, the conversation we had with the co-founder, and I think you have a lot to say in that, is to say, okay, what are all the pain points?
+00:04:35 Interviewer
+What are all the problems? Are there things that you want to know or you want to solve? And then...
+00:04:49 Interviewer
+Par exemple Message arrive c'est whatsapp, Same inquiry enfin telegram machin Manually check number if it's known Search telegram for who for flags Check bmg machin et fait subgram.
+00:05:08 Speaker 2
+Yes and also you have with my girl You have a shared chat And you always ask for a number that you don't know, If they are, My girl and you ask in the group. Hey girls.
+00:05:26 Speaker 2
+Yes, he was kind no, he's a train waster try to meet me, He said to to meet a lot of times and he never appears finally or hey, Careful because this guy once did, There is a blacklist, Apparently when you have a bad really bad thing, No or for example when you block a number you report it to that I mean when The reasons are enough to block that number or to say this is not a real.
+00:05:57 Speaker 2
+Client or a good client yeah you put it in that blacklist and you put a reason yeah But so you have like different reasons yeah like he hit me or he tried, To blah blah or he give me fake money you tell the whole, Story not only aligned sometimes it's shorter sometimes it's more um generous.
+00:06:23 Interviewer
+So i'm trying to frame the problem and the idea well this is touchy shell blacklist network, Legally i wonder if there's not a proof of concept to be made, For an agent, an AI agent, not automatic, semi-automatic.
+00:06:50 Speaker 2
+Can you tell me that I repeat because I don't understand?
+00:06:53 Interviewer
+So my intuition is to say maybe we can solve a lot of the time That you waste on writing, machin, planning, machin, By having an AI agent. So... No solo como un negocio de Whatsapp que te dice que tienes un template predeterminado de mensajes. Un agente que te hace una impresionación de ti, que habla como tú hablas.
+00:07:35 Interviewer
+No por sus sitios. De sustituir, Pero para hacer todo el trabajo antes.
+00:07:58 Speaker 2
+Para mí eso debe estar ahí. Siempre he pensado cómo mejor sería eso para mí Si Be My Girl, por ejemplo, Que es la plataforma a la que más me confío. Because there is only two that I really use is not because it's best but it is a Good idea and is they they are doing it well is how I wish that I could have a Calendar inside and it can take the appointment through it and with a secure.
+00:08:32 Speaker 2
+Like 10% of security date that will be for me there so so.
+00:08:39 Interviewer
+Para ti, tienes un tipo de clientes que son clientes que te gustan, es importante tomar el 10% de bookings.
+00:09:08 Speaker 2
+Es importante muchísimo que o sea con la gente normal no pero si tú vas a ver Ahora mismo en fin tú tienes que ir más hablando con la persona y en función de, Cómo esa persona se está expresando contigo de lo que te dice no ya hay Ciertas señales que yo como, O sea, una persona que lleva 12 años dentro de este, sabes, sabes traducir, entonces ya entiendes que la persona, hay ciertas red flags pequeñas, pero tú ya dices, esta persona puede que no venga, entonces si tienes a alguien, si alguien más te pregunta, para la misma hora, tú ahí ya priorizas y ves si el otro tiene más tal, pero si no tienes a nadie.
+00:10:02 Interviewer
+La problemática mayor. No sé si puedo reforzar, reformular, es que el tiempo es mío y tu tiempo es muy importante Y que las horas que tú, that you set, you don't want them to waste, ¿sabes? Claro. Entonces, el costo, el saber, pero, pero, todo.
+00:10:35 Interviewer
+Have you ever been in a situation where someone would say, yes, I will pay 10%?
+00:10:42 Speaker 2
+Because I never asked.
+00:10:43 Interviewer
+No, because you never asked.
+00:10:44 Speaker 2
+I never asked for it. Yeah. I will never like, I mean, I don't need, it is a big amount. It's just like a 10%, maybe, yes, a 10%. It's a five.
+00:10:57 Interviewer
+But it depends. Of course, if you say I'm going with you for a week, it's 10,000.
+00:11:04 Speaker 2
+Yes no but the point is if you are going if you need An appointment that you can do it by as you do it with another kind of Service you know you can do it by a calendar you can take, The appointment yeah and that's all that would be amazing.
+00:11:22 Interviewer
+But but not everyone should be able to book.
+00:11:25 Speaker 2
+You no but you can for example for the People that you know already you have them you you have them unblocked, And they can do it.
+00:11:34 Interviewer
+That's the thing so I think I think it's very very good for I think there's There's an immense potential to to the conversation we had which was the thing, Which is you need to have this like for example today how do you manage your Your customers in your what phone you know what.
+00:12:03 Interviewer
+Wait, what? Show me your phones. Why are you asking? No, it's part of the product interview. Okay. So, this is the work one. This is mine. So, this is a...
+00:12:33 Interviewer
+Nokia, ah it's a Nokia, Android Nokia, okay and this one, this your iPhone, this your personal one, this one you have in Spain when you live your life, so you have two phones, and this one, the Nokia is the work phone, it's the Swiss phone, and so which app do you use?
+00:13:01 Interviewer
+WhatsApp, only WhatsApp, and then you have contacts. That's it. And so how, so for example, Interviewer, it's just a record in the contacts?
+00:13:10 Speaker 2
+Just a record in the contacts.
+00:13:11 Interviewer
+Okay. Let's see, say... And do you add other information in the contact card? No. It's all in your head.
+00:13:24 Speaker 2
+What do you mean? What kind of information?
+00:13:25 Interviewer
+No, but you remember when we saw each other on the boat, You told me, I'm very happy to see you because... Someone wanted me to do something special, do a special request you write them down somewhere or it's.
+00:13:41 Speaker 2
+Just in your head? No, it's not in my head.
+00:13:45 Interviewer
+It works, it works. So the idea, the idea, well that's that's all the research I'm doing and I Think there is something to do. Where but I don't know if it's like I have no idea of the features and everything but I would Love to test an agent so for example contribute to client data where I don't forget this is.
+00:14:19 Interviewer
+Product management work but it's like client intelligence.
+00:14:28 Interviewer
+Would you like to have a brief summary of your past interactions?
+00:14:32 Speaker 2
+Would you like to... what?
+00:14:34 Interviewer
+When a returning client contacts me, would you like to have a brief summary?
+00:14:45 Speaker 2
+How would it be that?
+00:14:47 Interviewer
+Well, it depends. Like, for example... It could be... It could be... how? Philip contacted you last time you saw him was this days yeah and if you added a note to this Date well you have the note and you say oh well it was nice it was on the boat for example yeah.
+00:15:08 Speaker 2
+That's nice okay so register i think that's very useful overall for the people that is.
+00:15:24 Speaker 2
+Frequently working that because you know I can I come here once per month or Maybe less sometimes for people that is doing it up yes like yeah I think they Have a lot much more information in their heads so they can everything.
+00:15:53 Interviewer
+Qu'est-ce que tu veux mon boubou ? Tu veux juste de l'amour ? Non, s'il te plaît, ne me lâche pas, s'il te plaît. Non, non, c'est vrai, c'est vrai, tu es dans une catégorie un peu différente parce que tu es occasionnel.
+00:16:11 Speaker 2
+Même, je veux dire, tout le monde est occasionnel.
+00:16:15 Interviewer
+Ça dépend, si tu le fais tous les jours, 7 jours par semaine.
+00:16:18 Speaker 2
+Oui, mais personne ne peut faire ça. I mean you can do that for a few months for example a tiny period and it's not tiny.
+00:16:30 Speaker 2
+But no girl do that because when i come here i only do this i have no life yeah of course you're Like this the work this this the mission actually i when i go out with my friends or, Something, I don't like it because I feel I lose the focus and I lose my yeah, you're here for a reason.
+00:16:54 Interviewer
+That's the reason I have to dissociate.
+00:16:58 Speaker 2
+It's impossible if I go again to myself is to dissociate again is.
+00:17:07 Speaker 2
+Yes, and you know why this is, Because one of the reasons that happens to me is because I have to be to pay a lot of attention, To that kind of work, the dealing with the people and to take appointments and everything. That's why I think that will be much easier and game-changer to have some kind of platform.
+00:17:30 Interviewer
+Booking, I'm coming here, take my booking.
+00:17:33 Speaker 2
+And it takes me a lot of mental...
+00:17:37 Interviewer
+Mental bandwidth. Yes.
+00:17:40 Speaker 2
+It doesn't allow me to live the rest of the day focused on my day.
+00:17:45 Interviewer
+Yeah, of course. And do your things, and design, and just... So that's what I'm trying to help the co-founder with. And I think there's something. The idea is to say... I'm not saying it's the vision, the product, or whatever. It's to say, okay, imagine a world... Okay, tell me what I'm saying.
+00:18:12 Interviewer
+Stupid imagine a world where within where you do the conversations within So the application that what's up inside there you have something that helps you Out with answering scheduling sending.
+00:18:39 Speaker 2
+The information or requesting information you are asking to me if was it has any tool that is helping to me to know.
+00:18:47 Interviewer
+I'm just imagine a world in which you don't have to have a nap. There's no app. It's with it, You don't have to change anything, Of your way of working, but within your messaging system, You have something that helps you.
+00:19:05 Interviewer
+Communicate with the new, The, The good ones the bad ones and that just does the filtering but you can always See what happens it gives you always context you see what I mean yeah and Then says okay well because there's so many times say okay are we are we doing Your confirmation are we good for tomorrow too are you sure okay can we.
+00:19:38 Interviewer
+Schedule it, And then potentially adding what you said, like surcharge the booking fee, just to make Sure that the booking is actually for real.
+00:19:52 Speaker 2
+No, the point is not the booking fee, the booking fee is enough to just... Because I don't think one thing can exist with the secure fee. But what I mean is overall... They are a way to take the appointment automatically through the client, go to a page, they can Take, I say, I put the available moments, they ask to me, I accept or not, that's it.
+00:20:26 Interviewer
+And they ask very immediately. So this would be open to the clients you like or all your clients or all the potential clients.
+00:20:36 Speaker 2
+All the clients that they want to make anyone Airbnb we okay you want to okay.
+00:20:44 Interviewer
+Between the two and the four I need a room for two that's it and they ask less.
+00:20:50 Speaker 2
+That there are partners with automatic acceptance okay but not that once they The ones that you they have to validate ah yes okay I can or I yes I can and Also I like this kind of person seems like to be nice.
+00:21:06 Interviewer
+It's an interesting take, it's an interesting take, you say, okay, I'm offering a service, I open my booking, but I choose the booking that I will honor, it's an interesting part.
+00:21:21 Speaker 2
+Yes, of course, you have to accept or not, because you know him, you accept, or because You feel him like they had to write something, you know, in Airbnb, you also have to leave A message. Yeah. And if I know it is you, I don't need that message. But if it's someone that I don't know, That I didn't met before, You should put a great message in order to be with me And let me know what you like or whatever. And if you, for example,
+00:21:51 Speaker 2
+They leave this kind of a squetto, They say a short message, But they make the appointment And pay the secure fee, Halloween.
+00:22:03 Speaker 2
+Reservation yes so okay I say I have not worked at this day at this time and it's Okay for me to work so I'm going to accept even the description is too short And I don't know much of that person so what I will do but for me like this cut I will I will do like okay I will upset accept and after I will talk to the, Person hate, You just have a reservation you just look at it with me let's talk and then i will be just to be.
+00:22:39 Interviewer
+Sure that it's a regular person yeah so you still need that interaction to i'm just.
+00:22:50 Speaker 2
+Telling no i'm just explaining that if i if that is the case and if i'm not sure because it's very, Es muy corto, es muy... como si dice, poca, tengo poca información del cliente que me va a dar. En ese caso tampoco me importa porque puedo hablarle yo a él si quiero aceptar la tabla. Pero sobre todo es, si la gente pone, si la gente puede reservar y para reservar tiene que poner un mínimo fee,
+00:23:22 Speaker 2
+Los time wasters...
+00:23:24 Interviewer
+Sí, porque los time wasters son una cosa enorme.
+00:23:27 Speaker 2
+Una cosa enorme. Sí, claro, tú estás media hora para decidir, que hay gente que es indecisa, que no se da Cuenta de que está tratando a una persona, claro, y gente que... Of course they are just horny and they want to horny yes yeah.
+00:23:57 Speaker 2
+They want to play a little bit and there is a lot of people also that it's very heavy like That guy that i talked to you like yes it needs to be like that and it's like man look at me Okay you have to pay like three times what you're paying to me to do all of this because it's just Too much spend so much time to reading your message and to.
+00:24:21 Interviewer
+So it's a different type. So there's two breeds of time wasters. There's the time waster that leads to nothing and then there's a time waster That leads to something but that something costs you in terms of time, of, Consuming energy and also commitment. Because potentially there are requests They are okay, Es súper adverso.
+00:24:52 Interviewer
+Así que tienes que viajar Y para este tipo de personas Deberías tener, por ejemplo, El automático y decir, oh sí, por supuesto Si quieres hacer esto.
+00:25:03 Speaker 2
+Tienes que viajar. A veces no es así, pero si Si es una realidad Como si se consigue Que se asiente Un sistema De reserva dentro de este Trabajo. Como el que estamos hablando, como algo regular, esas personas lo aceptarían y entenderían Que si quieren pedir algo, el contacto no puede ser tan, tan fluido, tiene que ser más directo.
+00:25:34 Speaker 2
+Ok, quiero esto, esto y esto, ¿tienes o no? Pero en una pequeña conversación, ¿sabes? No como si fueran, ¿sabes? Muy, muy pesados, no sé. No sé qué decir, porque cualquier novio o amante mío fue así nervioso. No sé cómo puedo compararlo con ellos. Pero sí, personas muy insistentes. Sí.
+00:26:05 Speaker 2
+Entendrán que es una cosa común, que ellos tienen que coger cita de esta manera Y que ya no es posible contactar de forma tal.
+00:26:19 Interviewer
+Entendido? Sí. Súper claro. Perfecto. Entonces vamos a desbloquear esto? Disculpe, ¿desbloquear? Vamos. Qué? Perdón, dos más raíces. Tres idiomas juntos.

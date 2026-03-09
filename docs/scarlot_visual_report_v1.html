@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scarlot — Discovery Report 02·2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=JetBrains+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c10;
+  --bg2: #111318;
+  --bg3: #181b22;
+  --line: rgba(255,255,255,0.07);
+  --amber: #f0a500;
+  --amber2: #ffc84a;
+  --coral: #e85555;
+  --green: #4ecb8d;
+  --blue: #5b9cf6;
+  --purple: #a78bfa;
+  --text: #e8e4dc;
+  --muted: #6b7280;
+  --muted2: #9ca3af;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Instrument Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10,12,16,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 0 32px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--amber); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 64px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(240,165,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,165,0,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(240,165,0,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.1s;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  max-width: 800px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.2s;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--muted2);
+  max-width: 560px;
+  margin-top: 28px;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.35s;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 40px;
+  margin-top: 52px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.5s;
+}
+
+.meta-item { display: flex; flex-direction: column; gap: 4px; }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.meta-value {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px; left: 64px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.7s;
+}
+.hero-scroll::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--muted);
+  animation: lineGrow 1s ease forwards 0.9s;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+@keyframes lineGrow { to { transform: scaleX(1); } }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTION WRAPPER ── */
+section {
+  padding: 96px 64px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 48px;
+}
+
+/* ── PRIORITY STACK ── */
+.priority-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 760px;
+}
+
+.priority-row {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: default;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.priority-row.visible {
+  animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.priority-row:hover { background: var(--bg3); }
+.priority-row.p1 { border-left-color: var(--coral); }
+.priority-row.p2 { border-left-color: var(--amber); }
+.priority-row.p3 { border-left-color: var(--blue); }
+.priority-row.p4 { border-left-color: var(--muted); }
+
+.prank {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.pname {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.pdesc {
+  font-size: 12px;
+  color: var(--muted2);
+  margin-top: 2px;
+}
+
+.pbadge {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  letter-spacing: 0.06em;
+}
+
+.pbadge.critical { background: rgba(232,85,85,0.15); color: var(--coral); border: 1px solid rgba(232,85,85,0.3); }
+.pbadge.high { background: rgba(240,165,0,0.15); color: var(--amber2); border: 1px solid rgba(240,165,0,0.3); }
+.pbadge.medium { background: rgba(91,156,246,0.15); color: var(--blue); border: 1px solid rgba(91,156,246,0.3); }
+
+/* ── PROBLEM MATRIX ── */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.problem-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.problem-card:hover {
+  border-color: rgba(240,165,0,0.3);
+  transform: translateY(-2px);
+}
+
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+.problem-card.critical::before { background: var(--coral); }
+.problem-card.high::before { background: var(--amber); }
+.problem-card.medium::before { background: var(--blue); }
+.problem-card.low::before { background: var(--muted); }
+
+.pc-id {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+}
+
+.pc-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.pc-desc {
+  font-size: 12px;
+  color: var(--muted2);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.pc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pc-mentions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.mention-dots {
+  display: flex;
+  gap: 3px;
+}
+
+.mention-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.mention-dot.active { background: var(--amber); }
+
+.pc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 2px 7px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+}
+
+/* ── USER JOURNEY ── */
+.journey-wrapper {
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.journey {
+  display: flex;
+  gap: 0;
+  min-width: 1100px;
+  position: relative;
+}
+
+.journey::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), var(--coral), var(--blue), var(--muted), transparent);
+  opacity: 0.3;
+}
+
+.phase {
+  flex: 1;
+  padding: 0 12px;
+  position: relative;
+}
+
+.phase-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.phase-dot {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  background: var(--bg);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  transition: background 0.2s;
+}
+
+.phase:hover .phase-dot { background: var(--amber); }
+
+.phase-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  text-align: center;
+}
+
+.phase-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.step {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.step:hover { border-color: rgba(240,165,0,0.3); }
+
+.step.pain {
+  border-left: 2px solid var(--coral);
+}
+.step.neutral {
+  border-left: 2px solid var(--muted);
+}
+.step.friction {
+  border-left: 2px solid var(--amber);
+}
+
+.step-pain-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--coral);
+  letter-spacing: 0.06em;
+  margin-bottom: 3px;
+}
+
+/* ── CONCEPTS ── */
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.concept-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 28px;
+  transition: border-color 0.2s;
+}
+.concept-card:hover { border-color: rgba(240,165,0,0.4); }
+
+.concept-id {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--amber);
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+
+.concept-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.concept-desc {
+  font-size: 13px;
+  color: var(--muted2);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.concept-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.concept-link {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.concept-link.active { color: var(--amber2); border-color: rgba(240,165,0,0.3); background: rgba(240,165,0,0.06); }
+
+.concept-tension {
+  font-size: 12px;
+  color: var(--muted2);
+  border-left: 2px solid var(--coral);
+  padding-left: 12px;
+  font-style: italic;
+}
+
+/* ── USER STORIES ── */
+.epics {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.epic-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.epic-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.stories-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px 100px;
+  align-items: start;
+  gap: 20px;
+  padding: 18px 24px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+.story:hover { border-color: rgba(240,165,0,0.3); }
+
+.story-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  padding-top: 2px;
+}
+
+.story-text {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.story-text strong { color: var(--text); font-weight: 600; }
+.story-text span { color: var(--muted2); }
+
+.story-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 2px;
+}
+
+.story-confidence {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 2px;
+}
+
+.conf-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.conf-badge.gold { background: rgba(240,165,0,0.15); color: var(--amber2); border: 1px solid rgba(240,165,0,0.3); }
+.conf-badge.silver { background: rgba(156,163,175,0.15); color: var(--muted2); border: 1px solid rgba(156,163,175,0.3); }
+.conf-badge.bronze { background: rgba(91,156,246,0.08); color: var(--blue); border: 1px solid rgba(91,156,246,0.2); }
+
+/* ── ASSUMPTION LOG ── */
+.assumption-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assumption-table th {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.assumption-table td {
+  padding: 14px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.assumption-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.assumption-table td:first-child {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+.a-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  display: inline-block;
+}
+.a-status.none { background: rgba(232,85,85,0.12); color: var(--coral); border: 1px solid rgba(232,85,85,0.25); }
+.a-status.partial { background: rgba(240,165,0,0.12); color: var(--amber2); border: 1px solid rgba(240,165,0,0.25); }
+.a-status.ok { background: rgba(78,203,141,0.12); color: var(--green); border: 1px solid rgba(78,203,141,0.25); }
+.a-status.risk { background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.25); }
+
+.a-break {
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+/* ── FOLLOW-UP ── */
+.followup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.followup-col h3 {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.followup-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.fi-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--amber);
+  min-width: 24px;
+  padding-top: 2px;
+}
+
+.fi-content { flex: 1; }
+.fi-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.fi-desc { font-size: 12px; color: var(--muted2); line-height: 1.5; }
+
+/* ── POC BOX ── */
+.poc-box {
+  background: var(--bg2);
+  border: 1px solid rgba(240,165,0,0.3);
+  padding: 40px;
+  margin-top: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.poc-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--coral));
+}
+
+.poc-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.poc-sub {
+  font-size: 13px;
+  color: var(--muted2);
+  margin-bottom: 28px;
+}
+
+.poc-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.poc-item {
+  padding: 16px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+.poc-item-num {
+  font-family: var(--mono);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.poc-item-desc {
+  font-size: 12px;
+  color: var(--muted2);
+  line-height: 1.5;
+}
+
+/* ── COMPETITIVE ── */
+.comp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.comp-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 20px;
+  position: relative;
+}
+
+.comp-name {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.comp-cost {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+}
+
+.comp-pros, .comp-cons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comp-item {
+  font-size: 11px;
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.comp-item.pro { color: var(--green); }
+.comp-item.con { color: var(--coral); }
+
+.comp-item .icon { flex-shrink: 0; margin-top: 1px; }
+
+.comp-card.scarlot {
+  border-color: rgba(240,165,0,0.5);
+  background: rgba(240,165,0,0.04);
+}
+
+.comp-card.scarlot::before {
+  content: 'TARGET';
+  position: absolute;
+  top: 14px; right: 14px;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--amber);
+  letter-spacing: 0.1em;
+}
+
+/* ── EVIDENCE PYRAMID ── */
+.evidence-wrapper {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.pyramid {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pyr-level {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 10px;
+  text-align: center;
+}
+
+.pyr-level.gold { width: 200px; background: rgba(240,165,0,0.2); color: var(--amber2); border: 1px solid rgba(240,165,0,0.4); }
+.pyr-level.silver { width: 260px; background: rgba(156,163,175,0.12); color: var(--muted2); border: 1px solid rgba(156,163,175,0.25); }
+.pyr-level.bronze { width: 320px; background: rgba(91,156,246,0.08); color: var(--blue); border: 1px solid rgba(91,156,246,0.2); }
+.pyr-level.watch { width: 380px; background: rgba(107,114,128,0.08); color: var(--muted); border: 1px solid var(--line); }
+
+.evidence-legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ev-tier { padding: 20px; background: var(--bg2); border: 1px solid var(--line); }
+.ev-tier-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.ev-tier-name.gold { color: var(--amber); }
+.ev-tier-name.silver { color: var(--muted2); }
+.ev-tier-name.bronze { color: var(--blue); }
+.ev-tier-name.watch { color: var(--muted); }
+.ev-tier-desc { font-size: 12px; color: var(--muted2); line-height: 1.6; }
+.ev-problems { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+.ev-p { font-family: var(--mono); font-size: 10px; color: var(--muted); border: 1px solid var(--line); padding: 2px 7px; border-radius: 3px; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 48px 64px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.8;
+}
+
+/* ── UTILITIES ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.divider {
+  width: 40px;
+  height: 3px;
+  background: var(--amber);
+  margin-bottom: 40px;
+}
+
+/* Bar chart */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 700px;
+  margin-bottom: 48px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 40px;
+  gap: 12px;
+  align-items: center;
+}
+
+.bar-label {
+  font-size: 12px;
+  color: var(--muted2);
+  text-align: right;
+}
+
+.bar-track {
+  height: 24px;
+  background: var(--bg3);
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s ease;
+}
+
+.bar-fill.critical { background: linear-gradient(90deg, var(--coral), rgba(232,85,85,0.5)); }
+.bar-fill.high { background: linear-gradient(90deg, var(--amber), rgba(240,165,0,0.5)); }
+.bar-fill.medium { background: linear-gradient(90deg, var(--blue), rgba(91,156,246,0.5)); }
+.bar-fill.low { background: linear-gradient(90deg, var(--muted), rgba(107,114,128,0.5)); }
+
+.bar-count {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.bar-row.visible .bar-fill { transform: scaleX(1); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Scarlot</div>
+  <ul class="nav-links">
+    <li><a href="#problems">Problems</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#concepts">Concepts</a></li>
+    <li><a href="#stories">Stories</a></li>
+    <li><a href="#assumptions">Assumptions</a></li>
+    <li><a href="#competitive">Competitive</a></li>
+    <li><a href="#followup">Next Steps</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-tag">Discovery Report · 02 · 2025 · Geneva, Switzerland</div>
+  <h1>Tools built for<br><em>someone else.</em></h1>
+  <p class="hero-sub">Six recorded conversations with the co-founder of Scarlot — mapping the operational reality of independent sex workers in Switzerland, and the product opportunity at the intersection of safety, privacy, and autonomous work.</p>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Sessions</span>
+      <span class="meta-value">6</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Problems Identified</span>
+      <span class="meta-value">16</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">User Stories</span>
+      <span class="meta-value">13</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Beta Users</span>
+      <span class="meta-value">~10</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Open Assumptions</span>
+      <span class="meta-value">10</span>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- PRIORITY STACK -->
+<section>
+  <div class="section-eyebrow">00 · Strategic Foundation</div>
+  <h2 class="section-title">The Priority Stack</h2>
+  <div class="divider"></div>
+  <p style="color:var(--muted2);font-size:14px;max-width:600px;margin-bottom:40px;line-height:1.7;">The co-founder was explicit about the order of importance. This is not a roadmap — it's the validated hierarchy of pain severity as felt by independent TDS today.</p>
+
+  <div class="priority-stack">
+    <div class="priority-row p1" style="animation-delay:0.1s">
+      <span class="prank">01</span>
+      <div>
+        <div class="pname">Safety &amp; Filtering — Blacklist</div>
+        <div class="pdesc">Who is this person? Are they safe? Am I protected before I engage?</div>
+      </div>
+      <span class="pbadge critical">Critical</span>
+    </div>
+    <div class="priority-row p1" style="animation-delay:0.2s">
+      <span class="prank">02</span>
+      <div>
+        <div class="pname">Client Information Management — CRM</div>
+        <div class="pdesc">Who have I met before? What happened? What do I need to remember?</div>
+      </div>
+      <span class="pbadge critical">Critical</span>
+    </div>
+    <div class="priority-row p2" style="animation-delay:0.3s">
+      <span class="prank">03</span>
+      <div>
+        <div class="pname">Messaging Consolidation</div>
+        <div class="pdesc">Everything across WhatsApp, Telegram, Signal — in one place, in one context.</div>
+      </div>
+      <span class="pbadge high">High</span>
+    </div>
+    <div class="priority-row p3" style="animation-delay:0.4s">
+      <span class="prank">04</span>
+      <div>
+        <div class="pname">Booking &amp; Availability</div>
+        <div class="pdesc">Declare availability in natural language. No calendar grid. No double entry.</div>
+      </div>
+      <span class="pbadge medium">Medium</span>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;padding:20px 24px;background:rgba(240,165,0,0.06);border:1px solid rgba(240,165,0,0.2);border-left:3px solid var(--amber);max-width:760px;">
+    <div style="font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:8px;letter-spacing:0.08em;">KEY FINDING</div>
+    <div style="font-size:14px;line-height:1.7;color:var(--muted2);">Blacklist and CRM are <strong style="color:var(--text)">not two features — they are one data model</strong>. The phone number is the unique key. A contact record begins the moment a message arrives. Safety and memory are inseparable.</div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section id="problems">
+  <div class="section-eyebrow">01 · Problem Inventory</div>
+  <h2 class="section-title">16 Problems,<br>Documented &amp; Counted</h2>
+  <div class="divider"></div>
+
+  <p style="color:var(--muted2);font-size:14px;max-width:600px;margin-bottom:40px;line-height:1.7;">Mention count = distinct references across all 6 sessions. Severity = assessed from emotional intensity, frequency, and behavioral evidence.</p>
+
+  <div class="bar-chart" id="barChart">
+    <div class="bar-row" data-width="100">
+      <span class="bar-label">Messaging fragmentation</span>
+      <div class="bar-track"><div class="bar-fill critical" style="width:100%"></div></div>
+      <span class="bar-count">7</span>
+    </div>
+    <div class="bar-row" data-width="86">
+      <span class="bar-label">No client memory</span>
+      <div class="bar-track"><div class="bar-fill critical" style="width:86%"></div></div>
+      <span class="bar-count">6</span>
+    </div>
+    <div class="bar-row" data-width="86">
+      <span class="bar-label">No inbound filtering</span>
+      <div class="bar-track"><div class="bar-fill critical" style="width:86%"></div></div>
+      <span class="bar-count">6</span>
+    </div>
+    <div class="bar-row" data-width="86">
+      <span class="bar-label">Mental load / overload</span>
+      <div class="bar-track"><div class="bar-fill critical" style="width:86%"></div></div>
+      <span class="bar-count">6</span>
+    </div>
+    <div class="bar-row" data-width="71">
+      <span class="bar-label">No centralised blacklist</span>
+      <div class="bar-track"><div class="bar-fill high" style="width:71%"></div></div>
+      <span class="bar-count">5</span>
+    </div>
+    <div class="bar-row" data-width="57">
+      <span class="bar-label">No-shows &amp; time-wasters</span>
+      <div class="bar-track"><div class="bar-fill high" style="width:57%"></div></div>
+      <span class="bar-count">4</span>
+    </div>
+    <div class="bar-row" data-width="57">
+      <span class="bar-label">Blacklist paywalled (BMG)</span>
+      <div class="bar-track"><div class="bar-fill high" style="width:57%"></div></div>
+      <span class="bar-count">4</span>
+    </div>
+    <div class="bar-row" data-width="57">
+      <span class="bar-label">Manual repetition</span>
+      <div class="bar-track"><div class="bar-fill high" style="width:57%"></div></div>
+      <span class="bar-count">4</span>
+    </div>
+    <div class="bar-row" data-width="43">
+      <span class="bar-label">No client KYC / verification</span>
+      <div class="bar-track"><div class="bar-fill medium" style="width:43%"></div></div>
+      <span class="bar-count">3</span>
+    </div>
+    <div class="bar-row" data-width="43">
+      <span class="bar-label">Fake listings / AI photos</span>
+      <div class="bar-track"><div class="bar-fill medium" style="width:43%"></div></div>
+      <span class="bar-count">3</span>
+    </div>
+    <div class="bar-row" data-width="43">
+      <span class="bar-label">Manual calendar / booking</span>
+      <div class="bar-track"><div class="bar-fill medium" style="width:43%"></div></div>
+      <span class="bar-count">3</span>
+    </div>
+    <div class="bar-row" data-width="43">
+      <span class="bar-label">Agency dependency</span>
+      <div class="bar-track"><div class="bar-fill medium" style="width:43%"></div></div>
+      <span class="bar-count">3</span>
+    </div>
+    <div class="bar-row" data-width="29">
+      <span class="bar-label">Inappropriate msg management</span>
+      <div class="bar-track"><div class="bar-fill medium" style="width:29%"></div></div>
+      <span class="bar-count">2</span>
+    </div>
+    <div class="bar-row" data-width="29">
+      <span class="bar-label">Housing / workspace cost</span>
+      <div class="bar-track"><div class="bar-fill low" style="width:29%"></div></div>
+      <span class="bar-count">2</span>
+    </div>
+    <div class="bar-row" data-width="29">
+      <span class="bar-label">Data siloing across platforms</span>
+      <div class="bar-track"><div class="bar-fill low" style="width:29%"></div></div>
+      <span class="bar-count">2</span>
+    </div>
+    <div class="bar-row" data-width="14">
+      <span class="bar-label">No income tracking</span>
+      <div class="bar-track"><div class="bar-fill low" style="width:14%"></div></div>
+      <span class="bar-count">1</span>
+    </div>
+  </div>
+
+  <div class="problem-grid reveal" id="problemCards">
+
+    <div class="problem-card critical">
+      <div class="pc-id">P3 · CRITICAL</div>
+      <div class="pc-title">No Inbound Filtering</div>
+      <div class="pc-desc">Clients have unrestricted access. TDS cannot pre-screen before any interaction begins, forcing manual processing of every inappropriate message.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div>
+          </div>
+          6 mentions
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#safety</span><span class="tag">#blacklist</span><span class="tag">#asymmetry</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card critical">
+      <div class="pc-id">P4 · CRITICAL</div>
+      <div class="pc-title">Mental Load &amp; Cognitive Overload</div>
+      <div class="pc-desc">Chronically switching between 3–5 apps, re-entering the same data, no tool was built for this context. The overload is what drives some toward agency dependency.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div>
+          </div>
+          6 mentions
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#chronophage</span><span class="tag">#ux</span><span class="tag">#burnout</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card critical">
+      <div class="pc-id">P5 · CRITICAL</div>
+      <div class="pc-title">No Centralised Blacklist</div>
+      <div class="pc-desc">Safety intelligence exists in Telegram groups, BMG, and F-Girl — but it's unstructured, non-searchable, not discoverable. The data exists. The system doesn't.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div>
+          </div>
+          5 mentions
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#safety</span><span class="tag">#fragmentation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card high">
+      <div class="pc-id">P1 · HIGH</div>
+      <div class="pc-title">Messaging Fragmentation</div>
+      <div class="pc-desc">WhatsApp + Telegram + Signal + site messaging + email. Some use channels strategically to track which platform generates bookings. All are forced to juggle.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div>
+          </div>
+          7 mentions
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#ux</span><span class="tag">#fragmentation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card high">
+      <div class="pc-id">P2 · HIGH</div>
+      <div class="pc-title">No Client Memory</div>
+      <div class="pc-desc">No persistent record of who a client is. Data lives in renamed contacts ("Bruno 24.03 14h"), WhatsApp scroll, Telegram threads. A tiny educated minority uses Excel.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div>
+          </div>
+          6 mentions
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#crm</span><span class="tag">#memory</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card high">
+      <div class="pc-id">P6 · HIGH</div>
+      <div class="pc-title">Time-Wasters &amp; No-Shows</div>
+      <div class="pc-desc">Client negotiates, requests info and selfies, confirms — then ghosts. This costs time AND exposes private information for zero return. The pattern repeats.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
+          </div>
+          4 mentions
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#safety</span><span class="tag">#trust</span><span class="tag">#no-show</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card high">
+      <div class="pc-id">P7 · HIGH</div>
+      <div class="pc-title">Blacklist is Paywalled</div>
+      <div class="pc-desc">BMG charges ~450 CHF/month. Blacklist access is restricted to subscribers. Safety intelligence — which should be a community commons — is a luxury feature.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
+          </div>
+          4 mentions
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#safety</span><span class="tag">#access</span><span class="tag">#cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card medium">
+      <div class="pc-id">P9 · MEDIUM</div>
+      <div class="pc-title">No Client KYC</div>
+      <div class="pc-desc">Clients are anonymous on arrival. Some TDS call to hear a voice. Some request a selfie. Some do nothing. There is no standard, no tooling, no signal.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
+          </div>
+          3 mentions
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#trust</span><span class="tag">#identity</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- USER JOURNEY -->
+<section id="journey">
+  <div class="section-eyebrow">02 · Current State</div>
+  <h2 class="section-title">The Broken Journey</h2>
+  <div class="divider"></div>
+  <p style="color:var(--muted2);font-size:14px;max-width:700px;margin-bottom:40px;line-height:1.7;">Every step of the client interaction lifecycle, as it happens today. Red = active pain point. Amber = friction. Grey = neutral.</p>
+
+  <div class="journey-wrapper">
+    <div class="journey reveal">
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot"></div>
+          <div class="phase-name">Inbound</div>
+        </div>
+        <div class="phase-steps">
+          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Message arrives on WhatsApp</div>
+          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Same inquiry on Telegram</div>
+          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Manually check if number is known</div>
+          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Search Telegram groups for flags</div>
+          <div class="step friction">Check BMG blacklist (if subscribed)</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot"></div>
+          <div class="phase-name">Screening</div>
+        </div>
+        <div class="phase-steps">
+          <div class="step neutral">Reply to service / rate inquiry</div>
+          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Handle inappropriate message manually</div>
+          <div class="step friction">Request voice call / selfie verification</div>
+          <div class="step friction">Negotiate location, time, services</div>
+          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Repeat same info already answered 5× today</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot"></div>
+          <div class="phase-name">Pre-Booking</div>
+        </div>
+        <div class="phase-steps">
+          <div class="step neutral">Appointment confirmed</div>
+          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Rename contact: "Bruno 24.03 14h"</div>
+          <div class="step friction">Manually add to calendar or paper notes</div>
+          <div class="step neutral">Share location / access code</div>
+          <div class="step friction">Check in with trusted contact (if any)</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot"></div>
+          <div class="phase-name">Appointment</div>
+        </div>
+        <div class="phase-steps">
+          <div class="step pain"><div class="step-pain-label">RISK</div>Client arrives — or doesn't (no-show)</div>
+          <div class="step neutral">Payment collected (cash)</div>
+          <div class="step neutral">Service delivered</div>
+          <div class="step friction">Upsell negotiated ad hoc</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot"></div>
+          <div class="phase-name">Post-Appointment</div>
+        </div>
+        <div class="phase-steps">
+          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Mental notes — nothing is recorded</div>
+          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Flag to community (manually, in Telegram)</div>
+          <div class="step pain"><div class="step-pain-label">LOST</div>No follow-up. Context evaporates.</div>
+          <div class="step pain"><div class="step-pain-label">LOST</div>No income record. Cash disappears.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted2);">
+      <div style="width:16px;height:3px;background:var(--coral);border-radius:2px;"></div> Active pain point
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted2);">
+      <div style="width:16px;height:3px;background:var(--amber);border-radius:2px;"></div> Friction / workaround
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted2);">
+      <div style="width:16px;height:3px;background:var(--muted);border-radius:2px;"></div> Neutral step
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPTS -->
+<section id="concepts">
+  <div class="section-eyebrow">03 · Concept Catalogue</div>
+  <h2 class="section-title">7 Concepts,<br>Derived from Evidence</h2>
+  <div class="divider"></div>
+
+  <div class="concepts-grid reveal">
+    <div class="concept-card">
+      <div class="concept-id">C-01 · Priority: Immediate</div>
+      <div class="concept-title">Shared Blacklist Network</div>
+      <div class="concept-desc">A structured, searchable database of flagged client numbers — personal or collective. The data already exists in Telegram groups. It's just not organised or discoverable. Centralising it creates value from day one.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P3</span>
+        <span class="concept-link active">P5</span>
+        <span class="concept-link active">P6</span>
+        <span class="concept-link active">P7</span>
+        <span class="concept-link">#safety</span>
+        <span class="concept-link">#collective-intelligence</span>
+      </div>
+      <div class="concept-tension">Tension: personal privacy vs. collective value. Users must choose their sharing level.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-id">C-02 · Priority: Immediate</div>
+      <div class="concept-title">Conversational Interface</div>
+      <div class="concept-desc">No new app. No new UI. All functionality delivered through natural language in WhatsApp or Telegram. A voice note cancels your day. A text checks a blacklist. The agent assists — it never impersonates.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P1</span>
+        <span class="concept-link active">P4</span>
+        <span class="concept-link active">P8</span>
+        <span class="concept-link">#agent</span>
+        <span class="concept-link">#no-interface</span>
+      </div>
+      <div class="concept-tension">Constraint: community resistance to AI replacing human interaction. Semi-auto is required, not full-auto.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-id">C-03 · Priority: Immediate</div>
+      <div class="concept-title">Client Intelligence Profile</div>
+      <div class="concept-desc">A lightweight, auto-populated client record triggered by first contact. Phone number = unique key. No manual entry required. Captures history, flags, and notes without ever opening a form.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P2</span>
+        <span class="concept-link active">P6</span>
+        <span class="concept-link active">P9</span>
+        <span class="concept-link">#crm</span>
+        <span class="concept-link">#auto-capture</span>
+      </div>
+      <div class="concept-tension">Minimum V0 fields: number, first contact date, source channel, risk flag, free-text note.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-id">C-04 · Priority: Short-term</div>
+      <div class="concept-title">Inbound Message Triage</div>
+      <div class="concept-desc">Automatic classification before the TDS has to read anything. Flags blacklisted numbers, harassment patterns, and first-contact from unknowns. Three control modes: manual, semi-auto, auto.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P3</span>
+        <span class="concept-link active">P4</span>
+        <span class="concept-link active">P13</span>
+        <span class="concept-link">#automation</span>
+        <span class="concept-link">#filter</span>
+      </div>
+      <div class="concept-tension">the co-founder: different users will want different levels of control — this must be configurable.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-id">C-05 · Priority: Short-term</div>
+      <div class="concept-title">Pre-Booking Verification Flow</div>
+      <div class="concept-desc">A structured check at the start of each new client interaction. Blacklist lookup + optional identity signal. Results in a green/amber/red before the TDS invests time in negotiation.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P6</span>
+        <span class="concept-link active">P9</span>
+        <span class="concept-link active">P10</span>
+        <span class="concept-link">#trust</span>
+        <span class="concept-link">#kyc</span>
+      </div>
+      <div class="concept-tension">Verification expectations vary by user. System surfaces intelligence — it doesn't prescribe protocol.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-id">C-06 · Priority: V2</div>
+      <div class="concept-title">Availability Broadcasting</div>
+      <div class="concept-desc">Declare availability in natural language. It propagates. No calendar UI. No grid. No slots to fill in manually on each platform. A simple on/off + shareable link covers 80% of the need.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P11</span>
+        <span class="concept-link active">P4</span>
+        <span class="concept-link">#scheduling</span>
+        <span class="concept-link">#no-interface</span>
+      </div>
+      <div class="concept-tension">Full booking optimization (graph theory) is out of scope. V0: declare → share → confirm.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-id">C-07 · Priority: V2</div>
+      <div class="concept-title">Revenue &amp; Income Tracker</div>
+      <div class="concept-desc">A lightweight session log for earnings — critical in a cash-dominant business. Inspired by The Dancer Resource (US, $6/mo). Natural fit for a second phase once operational trust is established.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P16</span>
+        <span class="concept-link">#financial</span>
+        <span class="concept-link">#tracking</span>
+      </div>
+      <div class="concept-tension">Mentioned once. Low priority for V0 but a natural V2 addition with high perceived value.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE TIERS -->
+<section>
+  <div class="section-eyebrow">04 · Evidence Quality</div>
+  <h2 class="section-title">Not All Evidence<br>Is Equal</h2>
+  <div class="divider"></div>
+
+  <div class="evidence-wrapper reveal">
+    <div class="pyramid">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:12px;letter-spacing:0.08em;">BUILD WITH CONFIDENCE ↑</div>
+      <div class="pyr-level gold">🥇 GOLD</div>
+      <div class="pyr-level silver">🥈 SILVER</div>
+      <div class="pyr-level bronze">🥉 BRONZE</div>
+      <div class="pyr-level watch">⚪ WATCHLIST</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:12px;letter-spacing:0.08em;">VALIDATE FIRST ↓</div>
+    </div>
+
+    <div class="evidence-legend">
+      <div class="ev-tier">
+        <div class="ev-tier-name gold">🥇 Gold — Build Now</div>
+        <div class="ev-tier-desc">Unprompted, specific, behavior-based, with emotional intensity. Consistent across multiple referenced users. the co-founder volunteered these without being led.</div>
+        <div class="ev-problems">
+          <span class="ev-p">P3 · No inbound filtering</span>
+          <span class="ev-p">P4 · Mental load</span>
+          <span class="ev-p">P5 · No blacklist</span>
+        </div>
+      </div>
+      <div class="ev-tier">
+        <div class="ev-tier-name silver">🥈 Silver — Validate Before Spec</div>
+        <div class="ev-tier-desc">Specific and past-tense but narrated through the co-founder, not direct user quotes. Direction is reliable. Evidence is secondhand.</div>
+        <div class="ev-problems">
+          <span class="ev-p">P1 · Fragmentation</span>
+          <span class="ev-p">P2 · No client memory</span>
+          <span class="ev-p">P6 · No-shows</span>
+          <span class="ev-p">P7 · Paywall</span>
+          <span class="ev-p">P8 · Repetition</span>
+        </div>
+      </div>
+      <div class="ev-tier">
+        <div class="ev-tier-name bronze">🥉 Bronze — Directionally Valid</div>
+        <div class="ev-tier-desc">Direction plausible. Evidence thin, forward-looking, or inferred. Don't build without a direct user conversation first.</div>
+        <div class="ev-problems">
+          <span class="ev-p">P9 · No KYC</span>
+          <span class="ev-p">P10 · Fake listings</span>
+          <span class="ev-p">P11 · Calendar</span>
+          <span class="ev-p">P13 · Inappropriate msgs</span>
+        </div>
+      </div>
+      <div class="ev-tier">
+        <div class="ev-tier-name watch">⚪ Watchlist</div>
+        <div class="ev-tier-desc">Mentioned, real, but not yet product-scope. Park for later strategic review.</div>
+        <div class="ev-problems">
+          <span class="ev-p">P12 · Agency dependency</span>
+          <span class="ev-p">P14 · Housing costs</span>
+          <span class="ev-p">P16 · Income tracking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USER STORIES -->
+<section id="stories">
+  <div class="section-eyebrow">05 · User Stories</div>
+  <h2 class="section-title">13 Stories.<br>Inferred, not invented.</h2>
+  <div class="divider"></div>
+  <p style="color:var(--muted2);font-size:14px;max-width:680px;margin-bottom:48px;line-height:1.7;">All evidence is mediated through the co-founder. These stories are directionally valid but must be treated as <strong style="color:var(--text)">hypotheses to validate with direct users</strong> before any spec is written. Confidence rating reflects evidence quality.</p>
+
+  <div class="epics reveal">
+
+    <div>
+      <div class="epic-title">Epic 1 · Safety &amp; Filtering</div>
+      <div class="stories-row">
+        <div class="story">
+          <div class="story-id">US-01</div>
+          <div class="story-text">
+            <strong>When a first message arrives from an unknown number,</strong><br>
+            <span>I want to instantly see whether they've been flagged by other TDS, so I can decide whether to engage before investing any time.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#safety</span><span class="tag">#blacklist</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">🥇 GOLD</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-02</div>
+          <div class="story-text">
+            <strong>After a negative experience,</strong><br>
+            <span>I want to flag a client's number with a category (no-show, harassment, non-payment) so that other TDS are protected without me warning every Telegram group manually.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#safety</span><span class="tag">#collective</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">🥇 GOLD</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-03</div>
+          <div class="story-text">
+            <strong>As someone with specific personal limits,</strong><br>
+            <span>I want a private blacklist only I can see, so I can remember past negative interactions without being forced to share data I want to keep confidential.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#safety</span><span class="tag">#privacy</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-04</div>
+          <div class="story-text">
+            <strong>When I receive an inappropriate message,</strong><br>
+            <span>I want to archive and categorise it without fully blocking the sender, so I have a pattern record I can act on or share as evidence later.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#messaging</span><span class="tag">#evidence</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="epic-title">Epic 2 · Client Intelligence (CRM)</div>
+      <div class="stories-row">
+        <div class="story">
+          <div class="story-id">US-05</div>
+          <div class="story-text">
+            <strong>When a returning client contacts me,</strong><br>
+            <span>I want a brief summary of our previous interactions — what was agreed, what happened, any notes — so I don't scroll through WhatsApp history or rely on memory.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#crm</span><span class="tag">#memory</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-06</div>
+          <div class="story-text">
+            <strong>When someone first messages me,</strong><br>
+            <span>I want their record created automatically so I never have to manually create a contact or rename a contact with a timestamp.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#crm</span><span class="tag">#auto-capture</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-07</div>
+          <div class="story-text">
+            <strong>After an appointment,</strong><br>
+            <span>I want to quickly add a voice or text note to a client's profile so I remember what matters — without filling in a form.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#crm</span><span class="tag">#notes</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="epic-title">Epic 3 · Messaging &amp; Interface</div>
+      <div class="stories-row">
+        <div class="story">
+          <div class="story-id">US-08</div>
+          <div class="story-text">
+            <strong>Since I already live in WhatsApp and Telegram,</strong><br>
+            <span>I want to manage availability, client records, and safety checks from within those apps — not learn a new tool or switch between applications.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#no-interface</span><span class="tag">#agent</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-09</div>
+          <div class="story-text">
+            <strong>Since I answer the same questions every day,</strong><br>
+            <span>I want saved standard responses I can trigger instantly, so I stop typing rates, services, and location from scratch each time.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#automation</span><span class="tag">#templates</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-10</div>
+          <div class="story-text">
+            <strong>As someone who values control,</strong><br>
+            <span>I want to set my own automation level — fully manual to semi-assisted — so that no system ever speaks on my behalf without my knowledge.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#control</span><span class="tag">#trust</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="epic-title">Epic 4 · Booking &amp; Scheduling</div>
+      <div class="stories-row">
+        <div class="story">
+          <div class="story-id">US-11</div>
+          <div class="story-text">
+            <strong>When I want to share my availability,</strong><br>
+            <span>I want to say "I'm free Thursday afternoon" and have it propagate — without manually updating a calendar interface on each platform.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#scheduling</span><span class="tag">#natural-language</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-12</div>
+          <div class="story-text">
+            <strong>After a no-show,</strong><br>
+            <span>I want to log it against a number with one tap so the pattern is recorded — and I'm warned if they contact me again.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#no-show</span><span class="tag">#pattern</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="epic-title">Epic 5 · Trust &amp; Verification</div>
+      <div class="stories-row">
+        <div class="story">
+          <div class="story-id">US-13</div>
+          <div class="story-text">
+            <strong>Before confirming an appointment with a new client,</strong><br>
+            <span>I want a lightweight signal that this person is who they say they are — so I can decide whether to share my address or access code.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#trust</span><span class="tag">#kyc</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPETITIVE -->
+<section id="competitive">
+  <div class="section-eyebrow">06 · Competitive Landscape</div>
+  <h2 class="section-title">Existing Solutions<br>&amp; Their Gaps</h2>
+  <div class="divider"></div>
+
+  <div class="comp-grid reveal">
+    <div class="comp-card">
+      <div class="comp-name">BMG</div>
+      <div class="comp-cost">~450 CHF / MONTH</div>
+      <div class="comp-pros">
+        <div class="comp-item pro"><span class="icon">✓</span>Blacklist feature</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Listings + photos</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Client memberships</div>
+      </div>
+      <div style="margin:8px 0;height:1px;background:var(--line);"></div>
+      <div class="comp-cons">
+        <div class="comp-item con"><span class="icon">✗</span>Escort-only scope</div>
+        <div class="comp-item con"><span class="icon">✗</span>Prohibitively expensive</div>
+        <div class="comp-item con"><span class="icon">✗</span>Blacklist is paywalled</div>
+        <div class="comp-item con"><span class="icon">✗</span>Completely siloed</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-name">F-Girl</div>
+      <div class="comp-cost">LOWER COST</div>
+      <div class="comp-pros">
+        <div class="comp-item pro"><span class="icon">✓</span>Identity verification</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Listing platform</div>
+      </div>
+      <div style="margin:8px 0;height:1px;background:var(--line);"></div>
+      <div class="comp-cons">
+        <div class="comp-item con"><span class="icon">✗</span>DE-CH dominant only</div>
+        <div class="comp-item con"><span class="icon">✗</span>Partial blacklist</div>
+        <div class="comp-item con"><span class="icon">✗</span>Not a management tool</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-name">Telegram Groups</div>
+      <div class="comp-cost">FREE</div>
+      <div class="comp-pros">
+        <div class="comp-item pro"><span class="icon">✓</span>Community blacklist data</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Real-time peer exchange</div>
+      </div>
+      <div style="margin:8px 0;height:1px;background:var(--line);"></div>
+      <div class="comp-cons">
+        <div class="comp-item con"><span class="icon">✗</span>Completely unstructured</div>
+        <div class="comp-item con"><span class="icon">✗</span>Not searchable</div>
+        <div class="comp-item con"><span class="icon">✗</span>Not discoverable</div>
+        <div class="comp-item con"><span class="icon">✗</span>No persistent memory</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-name">The Dancer Resource</div>
+      <div class="comp-cost">~$6 / MONTH · US ONLY</div>
+      <div class="comp-pros">
+        <div class="comp-item pro"><span class="icon">✓</span>Income tracker</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Venue reviews</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Peer community</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Right pricing model</div>
+      </div>
+      <div style="margin:8px 0;height:1px;background:var(--line);"></div>
+      <div class="comp-cons">
+        <div class="comp-item con"><span class="icon">✗</span>US / strippers only</div>
+        <div class="comp-item con"><span class="icon">✗</span>No safety features</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-name">DIY (Excel / Monday)</div>
+      <div class="comp-cost">TIME COST</div>
+      <div class="comp-pros">
+        <div class="comp-item pro"><span class="icon">✓</span>Flexible</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Free or low cost</div>
+      </div>
+      <div style="margin:8px 0;height:1px;background:var(--line);"></div>
+      <div class="comp-cons">
+        <div class="comp-item con"><span class="icon">✗</span>Double-entry hell</div>
+        <div class="comp-item con"><span class="icon">✗</span>Not mobile-first</div>
+        <div class="comp-item con"><span class="icon">✗</span>No safety features</div>
+        <div class="comp-item con"><span class="icon">✗</span>Infime minority uses it</div>
+      </div>
+    </div>
+
+    <div class="comp-card scarlot">
+      <div class="comp-name">Scarlot</div>
+      <div class="comp-cost">TO BE DEFINED</div>
+      <div class="comp-pros">
+        <div class="comp-item pro"><span class="icon">✓</span>Safety-first design</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Conversational-native</div>
+        <div class="comp-item pro"><span class="icon">✓</span>No new interface</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Personal + collective</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Swiss-contextual</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Insider trust (the co-founder)</div>
+        <div class="comp-item pro"><span class="icon">✓</span>Affordable</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSUMPTIONS -->
+<section id="assumptions">
+  <div class="section-eyebrow">07 · Assumption Log</div>
+  <h2 class="section-title">10 Assumptions.<br>Most Unvalidated.</h2>
+  <div class="divider"></div>
+
+  <div class="reveal">
+    <table class="assumption-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Assumption</th>
+          <th>What breaks if wrong</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A1</td>
+          <td>TDS will contribute client data to a collective blacklist</td>
+          <td class="a-break">Core network value prop collapses. Product becomes a solo notepad.</td>
+          <td><span class="a-status none">Unvalidated</span></td>
+        </tr>
+        <tr>
+          <td>A2</td>
+          <td>Phone number is a stable, sufficient unique client identifier</td>
+          <td class="a-break">CRM and blacklist become unreliable. Number spoofing is a real attack vector.</td>
+          <td><span class="a-status partial">Partial</span></td>
+        </tr>
+        <tr>
+          <td>A3</td>
+          <td>the co-founder's insider trust transfers to the Scarlot platform</td>
+          <td class="a-break">Adoption fails in a community that fears exploitation above all else.</td>
+          <td><span class="a-status partial">Partial</span></td>
+        </tr>
+        <tr>
+          <td>A4</td>
+          <td>Conversational / no-UI is preferred over a dedicated app</td>
+          <td class="a-break">Build complexity without UX advantage. the advisor's hypothesis — not user-sourced.</td>
+          <td><span class="a-status none">Unvalidated</span></td>
+        </tr>
+        <tr>
+          <td>A5</td>
+          <td>10 beta users represent the broader independent TDS population in CH</td>
+          <td class="a-break">Learning is biased. Product misses the actual market.</td>
+          <td><span class="a-status none">Unvalidated</span></td>
+        </tr>
+        <tr>
+          <td>A6</td>
+          <td>TDS are willing to KYC themselves on a new platform</td>
+          <td class="a-break">Verification features fail at onboarding. Zero trust from day one.</td>
+          <td><span class="a-status partial">Partial</span></td>
+        </tr>
+        <tr>
+          <td>A7</td>
+          <td>AI-assisted triage is acceptable if TDS retain control</td>
+          <td class="a-break">Community actively rejects it. Confirmed: semi-auto required, never full-auto.</td>
+          <td><span class="a-status partial">Partial</span></td>
+        </tr>
+        <tr>
+          <td>A8</td>
+          <td>WTP exists at meaningful levels (~10% of revenue cited)</td>
+          <td class="a-break">Business model is non-viable. Forward-looking statement, no commitment signal.</td>
+          <td><span class="a-status none">Unvalidated</span></td>
+        </tr>
+        <tr>
+          <td>A9</td>
+          <td>Collective blacklist data can be shared without legal / defamation exposure</td>
+          <td class="a-break">Legal liability kills the feature before it launches.</td>
+          <td><span class="a-status risk">⚠ Legal Risk</span></td>
+        </tr>
+        <tr>
+          <td>A10</td>
+          <td>Swiss regulatory context supports this product without special licensing</td>
+          <td class="a-break">Regulatory surprise post-launch. nFADP compliance required.</td>
+          <td><span class="a-status risk">⚠ Legal Risk</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOLLOW-UP -->
+<section id="followup">
+  <div class="section-eyebrow">08 · Next Steps</div>
+  <h2 class="section-title">What Must Happen<br>Before a Single Line of Code</h2>
+  <div class="divider"></div>
+
+  <div class="followup-grid reveal">
+    <div class="followup-col">
+      <h3>User Research</h3>
+      <div class="followup-item">
+        <div class="fi-num">01</div>
+        <div class="fi-content">
+          <div class="fi-title">3 Direct Mom-Test Interviews</div>
+          <div class="fi-desc">Without the co-founder present. Past-behaviour questions only. "Tell me about the last time you received a message that made you uncomfortable. What did you do, step by step?"</div>
+        </div>
+      </div>
+      <div class="followup-item">
+        <div class="fi-num">02</div>
+        <div class="fi-content">
+          <div class="fi-title">Tool Stack Inventory (all 10 beta users)</div>
+          <div class="fi-desc">Which messaging apps, phone OS, scheduling method, client notes system, platform subscriptions (BMG, F-Girl). Maps the real current state before designing the future state.</div>
+        </div>
+      </div>
+      <div class="followup-item">
+        <div class="fi-num">03</div>
+        <div class="fi-content">
+          <div class="fi-title">Blacklist Smoke Test</div>
+          <div class="fi-desc">A shared private Google Sheet. 5 beta users. 2 weeks. Measure: how many numbers added? Do they check it proactively? This validates A1 before building anything.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="followup-col">
+      <h3>Clarifications Needed</h3>
+      <div class="followup-item">
+        <div class="fi-num">Q1</div>
+        <div class="fi-content">
+          <div class="fi-title">What exactly is BMG?</div>
+          <div class="fi-desc">Platform name, scope, ownership. the co-founder knows a BMG contact — potential partner or competitor to profile carefully.</div>
+        </div>
+      </div>
+      <div class="followup-item">
+        <div class="fi-num">Q2</div>
+        <div class="fi-content">
+          <div class="fi-title">What is Aspasie's formal relationship with Scarlot?</div>
+          <div class="fi-desc">NGO trust transfer + potential distribution channel. Already mentioned as an active demand signal.</div>
+        </div>
+      </div>
+      <div class="followup-item">
+        <div class="fi-num">Q3</div>
+        <div class="fi-content">
+          <div class="fi-title">Can the advisor interview the beta user directly?</div>
+          <div class="fi-desc">The bizdev-oriented beta user is the richest anecdotal source in all 6 sessions. Primary interview candidate. She used Monday.com and called it impossible. That's gold-tier data.</div>
+        </div>
+      </div>
+      <div class="followup-item">
+        <div class="fi-num">Q4</div>
+        <div class="fi-content">
+          <div class="fi-title">What happened to the Israeli Telegram bot?</div>
+          <div class="fi-desc">Closest existing model to the conversational-native vision. Shutdown reason matters for risk assessment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="poc-box reveal">
+    <div class="poc-title">The POC Proposal</div>
+    <div class="poc-sub">the advisor's suggested next move: build a limited proof-of-concept independently, using AI-assisted coding tools, to test functional direction and user interaction without committing to full architecture.</div>
+    <div class="poc-items">
+      <div class="poc-item">
+        <div class="poc-item-num">01</div>
+        <div class="poc-item-desc">WhatsApp or Telegram bot: receive a phone number, return blacklist status from a manually maintained list</div>
+      </div>
+      <div class="poc-item">
+        <div class="poc-item-num">02</div>
+        <div class="poc-item-desc">Voice note or text → client record creation flow. No UI. No form. Natural language only.</div>
+      </div>
+      <div class="poc-item">
+        <div class="poc-item-num">03</div>
+        <div class="poc-item-desc">Personal blacklist only in V0. No shared data. Avoids legal and trust complexity at this stage.</div>
+      </div>
+    </div>
+    <div style="margin-top:28px;padding:20px;background:var(--bg);border:1px solid var(--line);">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:12px;letter-spacing:0.08em;">SUCCESS CRITERIA</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <div style="font-size:13px;color:var(--muted2);line-height:1.6;">At least <strong style="color:var(--text)">3 beta users</strong> try it organically — not just because the co-founder asked</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.6;">At least <strong style="color:var(--text)">1 user contributes</strong> a blacklist entry unprompted</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.6;">At least <strong style="color:var(--text)">1 user checks</strong> the blacklist before responding to a new contact</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Scarlot</div>
+  <div class="footer-meta">
+    Discovery Report · February 2025 · Geneva<br>
+    6 sessions · Co-founder × Advisor<br>
+    All evidence mediated through the co-founder. Direct user interviews are the critical next step.
+  </div>
+</footer>
+
+<script>
+// Intersection observer for reveal animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Bar chart animation
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.bar-row').forEach((row, i) => {
+        setTimeout(() => {
+          row.classList.add('visible');
+        }, i * 60);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+
+const barChart = document.getElementById('barChart');
+if (barChart) barObserver.observe(barChart);
+
+// Priority row animation
+const prioObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.priority-row').forEach((row, i) => {
+        setTimeout(() => {
+          row.style.opacity = '1';
+          row.style.transform = 'translateX(0)';
+          row.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        }, i * 100);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.priority-stack').forEach(el => prioObserver.observe(el));
+</script>
+</body>
+</html>

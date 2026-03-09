@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scarlot – Ecosystem Map</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0c0c10;
+    --surface: #13131a;
+    --border: #1f1f2e;
+    --accent: #e0415a;
+    --accent2: #7b61ff;
+    --text: #d8d8e8;
+    --muted: #5a5a78;
+    --label: #9898b8;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 24px 64px;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  header h1 span {
+    color: var(--accent);
+  }
+
+  header p {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(224,65,90,0.12);
+    border: 1px solid rgba(224,65,90,0.3);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .graph-container {
+    width: 100%;
+    max-width: 1100px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    overflow: auto;
+    box-shadow: 0 0 60px rgba(123,97,255,0.06), 0 0 0 1px rgba(255,255,255,0.03) inset;
+  }
+
+  .mermaid {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Mermaid overrides */
+  .mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Ecosystem Map</div>
+  <h1>Independent TDS <span>→</span> Scarlot</h1>
+  <p>Current fragmentation vs. proposed platform</p>
+</header>
+
+<div class="graph-container">
+  <div class="mermaid">
+graph TD
+    TDS["🙍 Independent TDS"]
+    subgraph COMMS["Communication Channels (Fragmented)"]
+        WA[WhatsApp]
+        TG[Telegram]
+        SG[Signal]
+        EM[Email]
+        SITE[Site Internal Messaging]
+    end
+    subgraph LISTING["Listing Platforms"]
+        BMG["BMG\n450 CHF/mo\nBlacklist included"]
+        FG["F-Girl\nVerification + listing\nDE-CH dominant"]
+        OTHER[Other ad sites]
+    end
+    subgraph SAFETY["Safety Networks (Fragmented)"]
+        TGBL["Telegram Community Groups\nBlacklist sharing"]
+        BMGBL["BMG Blacklist\nPaid, siloed"]
+        FGBL["F-Girl Verification\nRegional"]
+    end
+    subgraph MGMT["Self-Management Tools (DIY)"]
+        XLS["Excel / Google Sheets\nInfime minority"]
+        NOTES[Phone Notes App]
+        CONTACTS["Renamed Contacts\ne.g. 'Bruno 24.03 14h'"]
+        GCal[Google Calendar / iPhone Cal]
+        PAPER[Paper Agenda]
+    end
+    subgraph ORG["Support Organisations"]
+        ASPASIE["Aspasie\nGeneva NGO"]
+        FILENIS["Fondation Filenis\nHousing + workspace"]
+        ESWA[European Sex Workers Assembly]
+    end
+    subgraph AGENCY["Agency Model (Alternative)"]
+        AGN["Agency / Standardiste\n~40% cut"]
+        ELEGANCE[Elegance]
+    end
+    TDS -->|books via| COMMS
+    TDS -->|lists on| LISTING
+    TDS -->|checks| SAFETY
+    TDS -->|manages with| MGMT
+    TDS -->|supported by| ORG
+    TDS -->|alternative to| AGENCY
+    SCARLOT["🔴 Scarlot\n(to be built)"]
+    SCARLOT -.->|replaces/integrates| COMMS
+    SCARLOT -.->|replaces| SAFETY
+    SCARLOT -.->|replaces| MGMT
+  </div>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#1a1a2e',
+      primaryTextColor: '#d8d8e8',
+      primaryBorderColor: '#2d2d4e',
+      lineColor: '#5a5a88',
+      secondaryColor: '#16162a',
+      tertiaryColor: '#0f0f1e',
+      background: '#13131a',
+      mainBkg: '#1a1a2e',
+      nodeBorder: '#2d2d4e',
+      clusterBkg: '#12121f',
+      clusterBorder: '#252540',
+      titleColor: '#9898c8',
+      edgeLabelBackground: '#0c0c10',
+      nodeTextColor: '#d8d8e8',
+      fontFamily: 'DM Mono, monospace',
+      fontSize: '13px'
+    },
+    flowchart: {
+      curve: 'basis',
+      padding: 20,
+      htmlLabels: false
+    }
+  });
+</script>
+</body>
+</html>

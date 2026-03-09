@@ -23,6 +23,7 @@ SETUP.md                                # How to run the bot (local or VPS)
 scarlot-interview.skill                 # Interview analysis skill (ZIP archive)
 claw/
 └── CLAUDE.md                           # NanoClaw group prompt — project co-pilot bot
+engine/                                 # NanoClaw submodule — the WhatsApp bot engine
 docs/
 ├── scarlot_discovery_report_v1.md      # Primary discovery report (canonical reference)
 ├── scarlot_visual_report_v1.html       # Interactive visual report
@@ -59,8 +60,8 @@ docs/
 
 ## Technical Direction
 
-**Base**: Fork/adapt NanoClaw (`/Users/node/GitHub/nanoclaw`) — lightweight WhatsApp bot on Claude Agent SDK.
-**Patterns to borrow**: Memory extraction and contact schema from Aura (`/Users/node/GitHub/aura`).
+**Base**: NanoClaw (git submodule in `engine/`) — lightweight WhatsApp bot on Claude Agent SDK.
+**Patterns to borrow**: Memory extraction and contact schema from Aura.
 **Not using**: Twenty CRM — too heavy for this use case.
 
 **Key architecture decision**: TDS uses their own WhatsApp number. Bot connects as a linked device. TDS manages the bot through a private admin chat within WhatsApp. See `docs/poc-architecture.md` for full detail.

@@ -9,25 +9,19 @@ How to get the Scarlot bot running on your machine or a VPS.
 - [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) with an active subscription or API key
 - A WhatsApp account you can link a device to
 
-## 1. Clone both repos
+## 1. Clone
 
 ```bash
-git clone https://github.com/nixor-praxian/scarlot.git
-git clone https://github.com/nichochar/nanoclaw.git
+git clone --recursive https://github.com/nixor-praxian/scarlot.git
+cd scarlot
 ```
 
-They should be side by side:
+The `engine/` directory contains NanoClaw (the WhatsApp bot engine) as a git submodule.
 
-```
-~/projects/           # or wherever
-├── scarlot/          # this repo — project docs, bot personality, config
-└── nanoclaw/         # the engine — WhatsApp connection, message routing, containers
-```
-
-## 2. Set up NanoClaw
+## 2. Set up the engine
 
 ```bash
-cd nanoclaw
+cd engine
 claude
 ```
 
@@ -40,9 +34,9 @@ Then run `/setup` inside Claude Code. It walks you through:
 
 ## 3. Register the Scarlot group
 
-Once NanoClaw is running, register a group for Scarlot. In the NanoClaw admin chat (your self-chat on WhatsApp), ask the bot to add a group with the scarlot repo mounted.
+Once NanoClaw is running, register a group for Scarlot. In the admin chat (your self-chat on WhatsApp), ask the bot to add a group with the project mounted.
 
-Or manually edit `data/registered_groups.json`:
+Or manually edit `engine/data/registered_groups.json`:
 
 ```json
 {
@@ -55,7 +49,7 @@ Or manually edit `data/registered_groups.json`:
     "containerConfig": {
       "additionalMounts": [
         {
-          "hostPath": "~/projects/scarlot",
+          "hostPath": "ABSOLUTE_PATH_TO/scarlot",
           "containerPath": "scarlot",
           "readonly": false
         }
@@ -65,26 +59,20 @@ Or manually edit `data/registered_groups.json`:
 }
 ```
 
-Then copy the bot personality into the NanoClaw group folder:
+Then symlink the bot personality into the engine's group folder:
 
 ```bash
-cp scarlot/claw/CLAUDE.md nanoclaw/groups/scarlot-hq/CLAUDE.md
-```
-
-Or symlink it so changes stay in sync:
-
-```bash
-ln -s ~/projects/scarlot/claw/CLAUDE.md nanoclaw/groups/scarlot-hq/CLAUDE.md
+ln -s "$(pwd)/claw/CLAUDE.md" engine/groups/scarlot-hq/CLAUDE.md
 ```
 
 ## 4. Start
 
 ```bash
-cd nanoclaw
+cd engine
 npm run dev
 ```
 
-The bot is live. Messages to your WhatsApp number are handled by the agent using the personality defined in `scarlot/claw/CLAUDE.md`.
+The bot is live. Messages to your WhatsApp number are handled by the agent using the personality defined in `claw/CLAUDE.md`.
 
 ## VPS deployment
 
@@ -100,12 +88,9 @@ sudo usermod -aG docker $USER
 # Install Claude Code
 npm install -g @anthropic-ai/claude-code
 
-# Clone repos
-git clone https://github.com/nixor-praxian/scarlot.git
-git clone https://github.com/nichochar/nanoclaw.git
-
-# Set up NanoClaw
-cd nanoclaw
+# Clone and set up
+git clone --recursive https://github.com/nixor-praxian/scarlot.git
+cd scarlot/engine
 claude    # then run /setup
 ```
 
@@ -128,4 +113,4 @@ NanoClaw needs either:
 - `CLAUDE_CODE_OAUTH_TOKEN` — from a Claude Code subscription, or
 - `ANTHROPIC_API_KEY` — direct API access
 
-Set these in your shell profile or a `.env` file in the nanoclaw directory.
+Set these in your shell profile or a `.env` file in the `engine/` directory.

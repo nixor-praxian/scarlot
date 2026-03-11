@@ -17,7 +17,7 @@ Tu es un co-equipier, pas un assistant generique. Tu connais le projet en profon
 
 ## Ce que tu sais
 
-Le projet est documente dans `/workspace/extra/scarlot-poc/`. Lis ces fichiers avant de repondre a une question de fond:
+Le projet est documente dans `/workspace/extra/scarlot/`. Lis ces fichiers avant de repondre a une question de fond:
 
 | Fichier | Contenu |
 |---|---|

@@ -32,7 +32,10 @@ docs/
 ├── priority-evolution.md               # Priority evolution ledger (append-only)
 └── interviews/
     ├── SCARLOT_INT_*.md                # Structured interview records
-    └── *-transcript.txt                # Raw transcripts
+    └── transcripts/                    # Raw source material (docx, txt)
+        ├── *-source.docx              # Interview source documents
+        ├── *-transcript.txt           # Raw transcripts
+        └── questionnaire-template.docx
 ```
 
 ## Key Discovery Findings

@@ -98,7 +98,7 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
                 money", "you tell the whole story."
   Frequency:    Regular — "you always ask"
   Intensity:    Matter-of-fact — this is a settled routine.
-  Connects to:  P5 (no centralised blacklist), A1 (collective contribution)
+  Connects to:  P5 (no centralised blacklist), A1 (collective blacklist contribution)
   Implication:  Confirms willingness to both consume AND contribute blacklist
                 data. The behaviour already exists — Scarlot doesn't need to
                 create it, just improve the infrastructure. But note: this is
@@ -134,7 +134,7 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
   Frequency:    N/A — forward-looking desire, not past behaviour.
   Intensity:    Enthusiastic — she elaborated extensively and unprompted
                 on the booking model after the initial prompt.
-  Connects to:  P11 (manual calendar/booking), P6 (time-wasters)
+  Connects to:  P11 (manual calendar/booking), P6 (no-shows & time-wasters)
   Implication:  She has a sophisticated mental model of what booking should
                 look like. This is more than "a calendar" — it's an
                 approval workflow with trust tiers. The Airbnb analogy
@@ -169,7 +169,7 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
                 prioritize between competing booking requests.
   Frequency:    Every new client interaction.
   Intensity:    Confident — she trusts her intuition.
-  Connects to:  P3 (inbound filtering), P9 (no client KYC)
+  Connects to:  P3 (no inbound filtering), P9 (no client KYC)
   Implication:  Experienced workers have a sophisticated internal filtering
                 system. Any AI triage must complement, not replace, this
                 intuition. Risk: less experienced workers lack this filter
@@ -180,13 +180,13 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
 ────────────────────────────────────────────────────────────────────
 
   Workaround:           BMG shared WhatsApp group — "Hey girls, do you know this number?"
-  Problem it solves:    Unknown client verification (P3, P5)
+  Problem it solves:    P3 (no inbound filtering), P5 (no centralised blacklist)
   Why it's inadequate:  Unstructured, unsearchable, depends on who's online,
                         limited to BMG community members
   Maps to concept:      C-01 (Shared Blacklist Network)
 
   Workaround:           Memory-only client management — everything in her head
-  Problem it solves:    Client history / preferences (P2)
+  Problem it solves:    P2 (no client memory)
   Why it's inadequate:  Doesn't scale, fails with time gaps between visits,
                         no backup, no shareability
   Maps to concept:      C-03 (Client Intelligence Profile)
@@ -199,13 +199,13 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
                         management is a real need
 
   Workaround:           Manual WhatsApp reply to every inquiry
-  Problem it solves:    Client communication (P1, P8)
+  Problem it solves:    P1 (messaging fragmentation), P8 (manual repetition)
   Why it's inadequate:  Time-consuming, no filtering, same questions repeated,
                         curiosity browsers get same effort as serious clients
   Maps to concept:      C-04 (Inbound Message Triage)
 
   Workaround:           Intuition-based screening (12 years of pattern recognition)
-  Problem it solves:    Inbound filtering (P3), client verification (P9)
+  Problem it solves:    P3 (no inbound filtering), P9 (no client KYC)
   Why it's inadequate:  Not transferable, not available to newer workers,
                         subjective, no data trail
   Maps to concept:      C-04 (Inbound Message Triage), C-05 (Pre-Booking Verification)
@@ -354,7 +354,7 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
                 immerses during work periods, has a smaller client base.
                 Her pain profile differs: P4 (cognitive overload) is
                 AMPLIFIED because she compresses work into short periods.
-                P2 (client memory) is REDUCED because smaller base.
+                P2 (no client memory) is REDUCED because smaller base.
                 If this persona is common, the product must account for
                 intermittent usage patterns and intense-burst workflows.
 
@@ -407,11 +407,11 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
 ────────────────────────────────────────────────────────────────────
 
   What was expected:
-    That the interviewee would describe client memory (P2) as a
+    That the interviewee would describe P2 (no client memory) as a
     significant pain point, given the priority stack ranks it CRITICAL.
 
   What was found:
-    CAROLL does not feel P2 as pain. She stores nothing, keeps
+    CAROLL does not feel P2 (no client memory) as pain. She stores nothing, keeps
     everything in her head, and says "it works." She did not volunteer
     any frustration about forgetting client details.
 
@@ -452,17 +452,17 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
 08. WHAT WAS NOT SAID
 ────────────────────────────────────────────────────────────────────
 
-  Silence on INCOME TRACKING (P16) is notable because:
+  Silence on P16 (no income tracking) is notable because:
     Financial management was not raised despite discussing time, value,
     and pricing. She may not see this as a problem, or it may be handled
     through other means not discussed.
 
-  Silence on FAKE LISTINGS / AI PHOTOS (P10) is notable because:
+  Silence on P10 (fake listings) is notable because:
     She uses BMG and Face Girl but did not mention concerns about
     fake profiles. Either she hasn't encountered this, or it's not
     top-of-mind for someone who works with regulars.
 
-  Silence on MESSAGING FRAGMENTATION (P1) is notable because:
+  Silence on P1 (messaging fragmentation) is notable because:
     She uses ONLY WhatsApp. She does not have a multi-channel problem.
     For periodic workers with a single platform, P1 may not exist.
     This is important: if a significant segment uses only one channel,
@@ -474,7 +474,7 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
     or she didn't feel comfortable sharing (despite comfort level
     appearing high). The topic was not explored deeply in this session.
 
-  Silence on HOUSING / WORKSPACE (P14) is notable because:
+  Silence on P14 (housing costs) is notable because:
     As a periodic cross-border worker, she presumably needs accommodation
     during Swiss work periods. This was not explored.
 
@@ -557,33 +557,33 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
   re-entering the work mental state is too costly.
 
   "Una cosa enorme." [about time wasters]
-  Tier: 🥈  |  Connects to: P6 (time-wasters)
+  Tier: 🥈  |  Connects to: P6 (no-shows & time-wasters)
   Context: Confirming the interviewer's statement about time wasters. Led,
   but the subsequent elaboration was specific and detailed.
 
   "You have a shared chat and you always ask for a number that you
   don't know... Hey girls."
-  Tier: 🥈  |  Connects to: P5, A1
+  Tier: 🥈  |  Connects to: P5 (no centralised blacklist), A1 (collective blacklist contribution)
   Context: Describing the BMG community blacklist checking behaviour.
 
   "You put it in that blacklist and you put a reason... he hit me or he
   tried to blah blah or he give me fake money you tell the whole story
   not only a line sometimes it's shorter sometimes it's more generous."
-  Tier: 🥈  |  Connects to: P5, A1
+  Tier: 🥈  |  Connects to: P5 (no centralised blacklist), A1 (collective blacklist contribution)
   Context: Describing how she contributes to the BMG blacklist.
 
   "Hay muchísima gente que te escribe. Que te escribes solo para
   tantear, para curiosear."
-  Tier: 🥈  |  Connects to: P3 (inbound filtering)
+  Tier: 🥈  |  Connects to: P3 (no inbound filtering)
   Context: Describing what happens when ads are active on BMG/Face Girl.
 
   "How I wish that I could have a calendar inside and it can take the
   appointment through it and with a secure like 10% of security."
-  Tier: 🥈  |  Connects to: P11, P6, A4 (contradicts)
+  Tier: 🥈  |  Connects to: P11 (manual calendar/booking), P6 (no-shows & time-wasters), A4 (no-UI / conversational preferred) — contradicts
   Context: Describing her ideal solution — an in-platform booking system.
 
   "Tout le monde est occasionnel."
-  Tier: 🥈  |  Connects to: A5 (partially contradicts)
+  Tier: 🥈  |  Connects to: A5 (beta users represent broader CH population) — partially contradicts
   Context: Responding to the interviewer's suggestion that she's in a different
   category because she works periodically.
 
@@ -604,7 +604,7 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
   - Investigate the periodic worker persona: is CAROLL an outlier or
     a significant segment? Ask the co-founder how many of the ~10 beta
     users work periodically vs. full-time.
-  - The A4 signal is worth watching: CAROLL's spontaneous solution was
+  - The A4 (no-UI / conversational preferred) signal is worth watching: CAROLL's spontaneous solution was
     a UI, not conversational. Worth testing unpitched in the next session.
 
   For the co-founder:
@@ -618,7 +618,7 @@ Notable context:    Cross-border periodic worker. Comes to Switzerland ~monthly
   For next interview:
   - Target a full-time, locally-based TDS to contrast with CAROLL.
   - Let the conversation start open-ended, then follow the friction.
-  - Probe P2 (client memory) deeply: "Tell me about a time a client
+  - Probe P2 (no client memory) deeply: "Tell me about a time a client
     you'd seen before contacted you and you couldn't remember them."
   - Probe booking without framing: "Walk me through how you and a
     client agree on when to meet."

@@ -21,6 +21,7 @@ Scarlot is a conversational-native platform for independent sex workers (TDS) in
 CLAUDE.md                               # This file — project guidance for Claude Code
 SETUP.md                                # How to run the bot (local or VPS)
 scarlot-interview.skill                 # Interview analysis skill (ZIP archive)
+scarlot-sync.skill                      # Internal sync record skill (ZIP archive)
 claw/
 └── CLAUDE.md                           # NanoClaw group prompt — project co-pilot bot
 engine/                                 # NanoClaw submodule — the WhatsApp bot engine
@@ -30,6 +31,8 @@ docs/
 ├── scarlot-graph.html                  # Ecosystem map visualization
 ├── poc-architecture.md                 # POC architecture, onboarding, contacts/calendar sync
 ├── priority-evolution.md               # Priority evolution ledger (append-only)
+├── syncs/
+│   └── SCARLOT_SYNC_*.md              # Internal sync/strategy session records
 └── interviews/
     ├── SCARLOT_INT_*.md                # Structured interview records
     └── transcripts/                    # Raw source material (docx, txt)
@@ -84,3 +87,7 @@ docs/
 ## Interview Skill
 
 The `scarlot-interview` skill (installed at `~/.claude/skills/scarlot-interview/`) governs all user research analysis. Reference files live in the skill, not in this repo. See `references/context.md` within the skill for the source of truth on the priority stack, 16 known problems, and 10 open assumptions.
+
+## Sync Skill
+
+The `scarlot-sync` skill (installed at `~/.claude/skills/scarlot-sync/`) processes internal conversations (co-founder/advisor syncs, strategy sessions, planning calls) into structured records. Two modes: Full Record (8-section, for strategy sessions and major decisions) and Summary (6-section, for routine syncs). Records go in `docs/syncs/`. Cross-references the interview skill's `context.md` for product context — no duplicate source of truth.

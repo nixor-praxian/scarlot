@@ -1,4 +1,10 @@
-# Scarlot — Discovery Report
+# Scarlot - Discovery Report
+
+> **Historical document (February 2026).** This report was the initial synthesis from 6 co-founder conversation transcripts. Since then, 8 direct user interviews have been conducted, substantially updating the priority stack and assumption statuses. For current state, see:
+> - **Priority stack & assumptions:** `priority-evolution.md` (append-only ledger, 8 entries)
+> - **Product direction:** `scarlot-product-spec.md` (unified spec integrating co-founder brief + interviews)
+> - **Platform vision:** `claw-platform-vision.md` (coverages, verticals, flywheel)
+> - **Market research:** `scarlot-market-research-report.md` (22+ sources, risk analysis, proprietary data)
 
 ## Table of Contents
 1. [Executive Summary](#1-executive-summary)
@@ -16,9 +22,9 @@
 
 ## 1. Executive Summary
 
-The co-founder is building **Scarlot** — a platform designed to reduce operational friction and improve safety for independent sex workers (TDS — *Travailleurs du Sexe*) in Switzerland. She has deep insider credibility within this community and an existing beta network of ~10 users.
+The co-founder is building **Scarlot** - a platform designed to reduce operational friction and improve safety for independent sex workers (TDS - *Travailleurs du Sexe*) in Switzerland. She has deep insider credibility within this community and an existing beta network of ~10 users.
 
-The conversations reveal a market with **genuine, severe, unmet operational needs** — not a solution looking for a problem. The core tension is that TDS operate as solo freelancers managing multi-channel inbound demand with zero tooling built for their context. Every tool they use today was designed for someone else.
+The conversations reveal a market with **genuine, severe, unmet operational needs** - not a solution looking for a problem. The core tension is that TDS operate as solo freelancers managing multi-channel inbound demand with zero tooling built for their context. Every tool they use today was designed for someone else.
 
 
 **The priority stack, as validated by the co-founder:**
@@ -30,7 +36,7 @@ The conversations reveal a market with **genuine, severe, unmet operational need
 4. Booking / calendar ← Friction exists, not yet prioritized
 ```
 
-**The vision the advisor introduced** — and the co-founder validated — is a **conversational-native product**: all functionality accessible through existing messaging apps (WhatsApp, Telegram), with no new interface to learn.
+**The vision the advisor introduced** - and the co-founder validated - is a **conversational-native product**: all functionality accessible through existing messaging apps (WhatsApp, Telegram), with no new interface to learn.
 
 ---
 
@@ -102,22 +108,22 @@ graph TD
 
 | # | Problem | Mentions | Severity | Tags |
 |---|---------|----------|----------|------|
-| P1 | **Messaging fragmentation** — juggling WhatsApp, Telegram, Signal, site messaging simultaneously | **7** | High | `#ux` `#fragmentation` `#chronophage` |
-| P2 | **No client memory** — no persistent record of who a client is, what happened, preferences | **6** | High | `#crm` `#memory` `#context-loss` |
-| P3 | **No inbound filtering** — clients have unrestricted access; TDS cannot pre-screen | **6** | Critical | `#safety` `#blacklist` `#asymmetry` |
-| P4 | **Mental load / cognitive overload** — constantly switching tools, re-entering data, repeating the same information | **6** | Critical | `#chronophage` `#ux` `#burnout` |
-| P5 | **No centralised blacklist** — safety data is scattered across Telegram groups, BMG, F-Girl; not discoverable | **5** | Critical | `#safety` `#blacklist` `#fragmentation` |
-| P6 | **Time-wasters & no-shows** — clients negotiate, request info/selfies, confirm, then ghost | **4** | High | `#safety` `#trust` `#no-show` |
-| P7 | **Blacklist data is expensive / inaccessible** — BMG charges ~450 CHF/mo; blacklist is paywalled | **4** | High | `#safety` `#access` `#cost` |
-| P8 | **Manual repetition** — same information (rates, services, location) typed out for every new client | **4** | High | `#chronophage` `#ux` `#automation` |
-| P9 | **No client KYC** — clients are anonymous on arrival; TDS cannot verify identity pre-appointment | **3** | High | `#safety` `#trust` `#identity` |
-| P10 | **Bait-and-switch / fake listings** — AI-generated photos making verification increasingly difficult | **3** | Medium | `#trust` `#identity` `#fraud` |
-| P11 | **Calendar/booking is entirely manual** — contacts renamed with timestamps, paper agendas, or no system | **3** | Medium | `#booking` `#scheduling` `#ux` |
-| P12 | **Agency dependency** — agencies extract 40% and often withhold client identity info | **3** | Medium | `#agency` `#dependency` `#autonomy` |
-| P13 | **Inappropriate message management** — no way to archive/flag/dismiss without full block | **3** | Medium | `#safety` `#ux` `#messaging` |
-| P14 | **Housing/workspace costs** — dedicated apartments priced to create financial pressure | **2** | Medium | `#financial` `#structural` |
-| P15 | **Data siloing between platforms** — activity on BMG invisible to F-Girl and vice versa | **2** | Medium | `#fragmentation` `#interop` |
-| P16 | **No income tracking** — cash-based income is hard to record; mentioned via The Dancer Resource comparison | **1** | Low | `#financial` `#tracking` |
+| P1 | **Messaging fragmentation** - juggling WhatsApp, Telegram, Signal, site messaging simultaneously | **7** | High | `#ux` `#fragmentation` `#chronophage` |
+| P2 | **No client memory** - no persistent record of who a client is, what happened, preferences | **6** | High | `#crm` `#memory` `#context-loss` |
+| P3 | **No inbound filtering** - clients have unrestricted access; TDS cannot pre-screen | **6** | Critical | `#safety` `#blacklist` `#asymmetry` |
+| P4 | **Mental load / cognitive overload** - constantly switching tools, re-entering data, repeating the same information | **6** | Critical | `#chronophage` `#ux` `#burnout` |
+| P5 | **No centralised blacklist** - safety data is scattered across Telegram groups, BMG, F-Girl; not discoverable | **5** | Critical | `#safety` `#blacklist` `#fragmentation` |
+| P6 | **Time-wasters & no-shows** - clients negotiate, request info/selfies, confirm, then ghost | **4** | High | `#safety` `#trust` `#no-show` |
+| P7 | **Blacklist data is expensive / inaccessible** - BMG charges ~450 CHF/mo; blacklist is paywalled | **4** | High | `#safety` `#access` `#cost` |
+| P8 | **Manual repetition** - same information (rates, services, location) typed out for every new client | **4** | High | `#chronophage` `#ux` `#automation` |
+| P9 | **No client KYC** - clients are anonymous on arrival; TDS cannot verify identity pre-appointment | **3** | High | `#safety` `#trust` `#identity` |
+| P10 | **Bait-and-switch / fake listings** - AI-generated photos making verification increasingly difficult | **3** | Medium | `#trust` `#identity` `#fraud` |
+| P11 | **Calendar/booking is entirely manual** - contacts renamed with timestamps, paper agendas, or no system | **3** | Medium | `#booking` `#scheduling` `#ux` |
+| P12 | **Agency dependency** - agencies extract 40% and often withhold client identity info | **3** | Medium | `#agency` `#dependency` `#autonomy` |
+| P13 | **Inappropriate message management** - no way to archive/flag/dismiss without full block | **3** | Medium | `#safety` `#ux` `#messaging` |
+| P14 | **Housing/workspace costs** - dedicated apartments priced to create financial pressure | **2** | Medium | `#financial` `#structural` |
+| P15 | **Data siloing between platforms** - activity on BMG invisible to F-Girl and vice versa | **2** | Medium | `#fragmentation` `#interop` |
+| P16 | **No income tracking** - cash-based income is hard to record; mentioned via The Dancer Resource comparison | **1** | Low | `#financial` `#tracking` |
 
 ---
 
@@ -145,13 +151,13 @@ graph LR
 ### 3.3 Problem Statements (Canonical Format)
 
 **PS-01 · Safety / Filtering**
-> Independent TDS struggle to filter inbound client contacts before any interaction begins, because all messaging platforms give clients unrestricted access. This forces them to manually process every inappropriate message — block, archive, or respond — resulting in compounding psychological harm and wasted time. Today they solve this by manually blocking contacts after the fact, which is inadequate because it requires prior interaction and offers no collective intelligence about known bad actors.
+> Independent TDS struggle to filter inbound client contacts before any interaction begins, because all messaging platforms give clients unrestricted access. This forces them to manually process every inappropriate message - block, archive, or respond - resulting in compounding psychological harm and wasted time. Today they solve this by manually blocking contacts after the fact, which is inadequate because it requires prior interaction and offers no collective intelligence about known bad actors.
 
 **PS-02 · Client Memory**
-> Independent TDS struggle to maintain a persistent, accessible record of client information across interactions, because data lives in fragmented silos (renamed contacts, WhatsApp history, Telegram threads, notes apps). This results in repeated information requests, lost context, and an inability to personalize or protect themselves based on past behaviour. Today they solve this with renamed phone contacts and occasional Excel sheets — workarounds used by a tiny, educated minority.
+> Independent TDS struggle to maintain a persistent, accessible record of client information across interactions, because data lives in fragmented silos (renamed contacts, WhatsApp history, Telegram threads, notes apps). This results in repeated information requests, lost context, and an inability to personalize or protect themselves based on past behaviour. Today they solve this with renamed phone contacts and occasional Excel sheets - workarounds used by a tiny, educated minority.
 
 **PS-03 · Cognitive Load**
-> Independent TDS operating across 3–5 communication channels simultaneously experience chronic cognitive overload, because no tool aggregates communication, scheduling, and client management in one place. This results in time loss, errors, and mental exhaustion that pushes some toward agency dependency (trading 40% revenue for operational simplicity). Today there is no adequate solution — the workarounds are all partial.
+> Independent TDS operating across 3–5 communication channels simultaneously experience chronic cognitive overload, because no tool aggregates communication, scheduling, and client management in one place. This results in time loss, errors, and mental exhaustion that pushes some toward agency dependency (trading 40% revenue for operational simplicity). Today there is no adequate solution - the workarounds are all partial.
 
 ---
 
@@ -166,10 +172,10 @@ Each concept is tagged and linked to the problems it addresses.
 
 **What it is**: A shared, searchable database of flagged client phone numbers, contributed by TDS in the community. Each entry carries a risk level, a category (no-show, harassment, non-payment, violence), and a timestamp.
 
-**Why it matters**: The data already exists in Telegram group chats — it's just not structured, not searchable, and not discoverable. Centralising it creates immediate value from day one of adoption.
+**Why it matters**: The data already exists in Telegram group chats - it's just not structured, not searchable, and not discoverable. Centralising it creates immediate value from day one of adoption.
 
 **Design tensions**:
-- Personal blacklist (private) vs. collective (shared) — users should choose
+- Personal blacklist (private) vs. collective (shared) - users should choose
 - Anonymity of contributor vs. accountability for false flags
 - Access control: who can see, who can contribute
 
@@ -180,12 +186,12 @@ Each concept is tagged and linked to the problems it addresses.
 ### C-02 · Conversational Interface (No-UI Paradigm)
 `#ux` `#agent` `#whatsapp` `#telegram` `#no-interface`
 
-**What it is**: All product functionality delivered through natural language via existing messaging apps (WhatsApp, Telegram). No new app to install, no new interface to learn. A user sends a voice note or text — the system acts.
+**What it is**: All product functionality delivered through natural language via existing messaging apps (WhatsApp, Telegram). No new app to install, no new interface to learn. A user sends a voice note or text - the system acts.
 
 **Example interactions**:
 - *"I'm off today, cancel everything"* → system marks availability as closed across platforms
 - *"Who's this number?"* → system returns blacklist status + prior interaction history
-- *"Add this guy to my blacklist — no-show, didn't respond after confirming"* → logged and optionally shared
+- *"Add this guy to my blacklist - no-show, didn't respond after confirming"* → logged and optionally shared
 
 **Why it matters**: The population already lives in messaging. Learning a new UI is a barrier; a conversational agent removes it entirely.
 
@@ -207,7 +213,7 @@ Each concept is tagged and linked to the problems it addresses.
 - Free-text note (voice or text)
 - Blacklist status (personal / collective)
 
-**Why it matters**: The unique identifier — the phone number — is already available at first message. Everything can be built from that anchor without asking TDS to type anything.
+**Why it matters**: The unique identifier - the phone number - is already available at first message. Everything can be built from that anchor without asking TDS to type anything.
 
 **Linked problems**: P2, P6, P9
 
@@ -243,7 +249,7 @@ The co-founder explicitly noted: different users will want different control lev
 ### C-06 · Availability Broadcasting
 `#scheduling` `#booking` `#calendar` `#no-interface`
 
-**What it is**: A simple way to declare availability — via text or voice — that propagates to relevant channels without manual updates on each platform. No calendar UI, no grid, no slots to fill in.
+**What it is**: A simple way to declare availability - via text or voice - that propagates to relevant channels without manual updates on each platform. No calendar UI, no grid, no slots to fill in.
 
 **V0 scope**: On/off toggle for availability, shareable link showing current open slots, natural language update ("I'm free Thursday 2pm to 6pm this week").
 
@@ -256,7 +262,7 @@ The co-founder explicitly noted: different users will want different control lev
 ### C-07 · Revenue & Income Tracker
 `#financial` `#tracking` `#cash`
 
-**What it is**: A lightweight session log that records earnings per appointment — particularly important in a cash-dominant business where income is invisible to tracking systems.
+**What it is**: A lightweight session log that records earnings per appointment - particularly important in a cash-dominant business where income is invisible to tracking systems.
 
 **Inspired by**: The Dancer Resource (US, ~$6/month for strippers) which includes an income tracker.
 
@@ -296,9 +302,9 @@ quadrantChart
 
 | Tier | Problems | What it means |
 |------|----------|---------------|
-| 🥇 **Gold** — Build with confidence | P3, P4, P5 | Unprompted, behavioral, emotionally charged, consistent across referenced users |
-| 🥈 **Silver** — Build with validation | P1, P2, P6, P7, P8 | Specific and past-tense but via the co-founder's narration, not direct user quotes |
-| 🥉 **Bronze** — Hypothesis | P9, P10, P11, P13 | Direction plausible, evidence thin or future-tense |
+| 🥇 **Gold** - Build with confidence | P3, P4, P5 | Unprompted, behavioral, emotionally charged, consistent across referenced users |
+| 🥈 **Silver** - Build with validation | P1, P2, P6, P7, P8 | Specific and past-tense but via the co-founder's narration, not direct user quotes |
+| 🥉 **Bronze** - Hypothesis | P9, P10, P11, P13 | Direction plausible, evidence thin or future-tense |
 | ⚪ **Watch list** | P12, P14, P15, P16 | Mentioned, real, but not yet product-scope |
 
 ---
@@ -331,7 +337,7 @@ graph TD
 
 ## 7. User Journey Map
 
-> Current state — Independent TDS managing a new client interaction end-to-end.
+> Current state - Independent TDS managing a new client interaction end-to-end.
 
 ```mermaid
 journey
@@ -369,11 +375,11 @@ journey
 
 > **To the question: can we infer user stories at this point?**
 >
-> **Yes — with an important caveat.** All evidence is mediated through the co-founder. These stories are *directionally valid* but should be treated as **hypotheses to validate with direct users** before any spec is written. They are written in the voice of the user, not the co-founder.
+> **Yes - with an important caveat.** All evidence is mediated through the co-founder. These stories are *directionally valid* but should be treated as **hypotheses to validate with direct users** before any spec is written. They are written in the voice of the user, not the co-founder.
 
 ---
 
-### Epic 1 — Safety & Filtering
+### Epic 1 - Safety & Filtering
 
 **US-01** `#safety` `#blacklist` `#P3` `#P5` 🥇
 > As an independent TDS receiving a first message from an unknown number,
@@ -397,11 +403,11 @@ journey
 
 ---
 
-### Epic 2 — Client Intelligence (CRM)
+### Epic 2 - Client Intelligence (CRM)
 
 **US-05** `#crm` `#client-memory` `#P2` 🥈
 > As an independent TDS interacting with a returning client,
-> I want to see a brief summary of our previous interactions — what was agreed, what happened, any notes I left —
+> I want to see a brief summary of our previous interactions - what was agreed, what happened, any notes I left -
 > so that I don't have to scroll through WhatsApp history or rely on memory.
 
 **US-06** `#crm` `#auto-capture` `#P2` `#P4` 🥈
@@ -416,7 +422,7 @@ journey
 
 ---
 
-### Epic 3 — Messaging & Interface
+### Epic 3 - Messaging & Interface
 
 **US-08** `#ux` `#no-interface` `#P1` `#P4` 🥈
 > As an independent TDS who already lives in WhatsApp and Telegram,
@@ -430,12 +436,12 @@ journey
 
 **US-10** `#messaging` `#control` `#P3` 🥉
 > As an independent TDS who values control over my communication,
-> I want to define what level of automation I'm comfortable with — from fully manual to semi-assisted —
+> I want to define what level of automation I'm comfortable with - from fully manual to semi-assisted -
 > so that I never feel like a system is speaking on my behalf without my knowledge.
 
 ---
 
-### Epic 4 — Booking & Scheduling
+### Epic 4 - Booking & Scheduling
 
 **US-11** `#scheduling` `#availability` `#P11` 🥉
 > As an independent TDS,
@@ -449,7 +455,7 @@ journey
 
 ---
 
-### Epic 5 — Trust & Verification
+### Epic 5 - Trust & Verification
 
 **US-13** `#trust` `#kyc` `#P9` 🥉
 > As an independent TDS about to confirm an appointment with a new client,
@@ -462,18 +468,18 @@ journey
 
 ```mermaid
 graph LR
-    subgraph GOLD["🥇 High Confidence — Validate & Spec"]
+    subgraph GOLD["🥇 High Confidence - Validate & Spec"]
         US01["US-01 · Check blacklist on first contact"]
         US02["US-02 · Contribute a flag after bad experience"]
     end
-    subgraph SILVER["🥈 Medium Confidence — Validate before spec"]
+    subgraph SILVER["🥈 Medium Confidence - Validate before spec"]
         US03["US-03 · Personal blacklist"]
         US05["US-05 · View client history"]
         US06["US-06 · Auto-capture client record"]
         US08["US-08 · Manage from WhatsApp/Telegram"]
         US12["US-12 · Log a no-show"]
     end
-    subgraph BRONZE["🥉 Direction Valid — Hypothesis"]
+    subgraph BRONZE["🥉 Direction Valid - Hypothesis"]
         US04["US-04 · Archive inappropriate messages"]
         US07["US-07 · Add voice note to client profile"]
         US09["US-09 · Trigger standard responses"]
@@ -490,7 +496,7 @@ graph LR
 | ID | Assumption | What breaks if wrong | Status | Cheapest test |
 |----|------------|----------------------|--------|---------------|
 | A1 | TDS will contribute client data to a collective blacklist | Core network value prop collapses | ❓ Unvalidated | Propose a shared Google Sheet to 5 beta users; measure contribution rate in 2 weeks |
-| A2 | The phone number is a stable, sufficient unique client identifier | CRM and blacklist become unreliable | ⚠️ Partially validated | Clients already identified by number in community groups — but number spoofing is a risk |
+| A2 | The phone number is a stable, sufficient unique client identifier | CRM and blacklist become unreliable | ⚠️ Partially validated | Clients already identified by number in community groups - but number spoofing is a risk |
 | A3 | The co-founder's insider trust transfers to the Scarlot platform | Adoption fails in a community that fears exploitation | ⚠️ Partially validated | Aspasie relationship + ESWA contact provides signal; needs direct user confirmation |
 | A4 | A conversational/no-UI product is preferred over a dedicated app | Build complexity with no UX advantage | ❓ Unvalidated | Advisor's hypothesis; co-founder resonated but no direct user evidence |
 | A5 | The 10 beta users represent the broader independent TDS population in CH | Learning is biased; product misses the real market | ❓ Unvalidated | Map beta user profiles: experience, channels used, income range, nationality |
@@ -508,13 +514,13 @@ graph LR
 
 | # | Question | Why it matters |
 |---|----------|----------------|
-| Q1 | What exactly is BMG? (platform name, scope, owner) | Competitive understanding; the co-founder mentioned knowing a contact at BMG — potential partner or competitor to profile |
+| Q1 | What exactly is BMG? (platform name, scope, owner) | Competitive understanding; the co-founder mentioned knowing a contact at BMG - potential partner or competitor to profile |
 | Q2 | What is Aspasie's formal relationship with Scarlot? | Trust transfer + distribution channel |
 | Q3 | What is Fondation Filenis? Does it give Scarlot a physical community touchpoint? | Potential beta user recruitment channel |
 | Q4 | What is F-Girl exactly and why does it work in DE-CH but not FR-CH? | Informs why fragmentation exists and what Scarlot's geographic rollout strategy should be |
 | Q5 | Has The Dancer Resource been audited as a product benchmark? | Closest existing comparable; $6/mo pricing anchor |
 | Q6 | What happened to the Israeli Telegram bot? (shutdown reason, legal issue?) | Closest existing model to the conversational-native vision |
-| Q7 | Who is the bizdev-oriented beta user? Can the advisor interview her directly? | Richest anecdotal source in the transcripts — primary interview candidate |
+| Q7 | Who is the bizdev-oriented beta user? Can the advisor interview her directly? | Richest anecdotal source in the transcripts - primary interview candidate |
 
 ---
 
@@ -522,7 +528,7 @@ graph LR
 
 > These are the actions that must happen before any spec or code is written.
 
-**Priority 1 — Direct user interviews (Mom Test protocol)**
+**Priority 1 - Direct user interviews (Mom Test protocol)**
 
 Target: 3 direct 1:1 conversations with beta users, without the co-founder present.
 
@@ -532,16 +538,16 @@ Sample questions (past-behaviour only):
 - *"Show me how you keep track of clients right now. Can you walk me through it on your phone?"*
 - *"How much time did you spend last week on messaging and admin? Can we estimate it together?"*
 
-**Priority 2 — Tool inventory per beta user**
+**Priority 2 - Tool inventory per beta user**
 
 For each of the ~10 beta users, map:
 - Which messaging apps, and which is primary
-- Phone OS (iOS vs Android) — affects Telegram mini-app feasibility
+- Phone OS (iOS vs Android) - affects Telegram mini-app feasibility
 - What (if anything) they use for scheduling
 - What (if anything) they use for client notes
 - Whether they are on BMG, F-Girl, or other platforms
 
-**Priority 3 — Collective blacklist smoke test**
+**Priority 3 - Collective blacklist smoke test**
 
 Before building: create a shared, private Google Sheet. Invite 5 beta users. Ask them to add flagged numbers over 2 weeks. Measure:
 - How many numbers were added
@@ -571,7 +577,7 @@ The advisor proposed building a limited POC independently using AI-assisted codi
 **Suggested POC scope:**
 1. A WhatsApp or Telegram bot that receives a phone number and returns a blacklist status (from a manually maintained list)
 2. A simple form or voice note → client record creation flow
-3. No shared data in V0 — personal only, to avoid legal and trust complexity
+3. No shared data in V0 - personal only, to avoid legal and trust complexity
 
 **Success criteria for POC:**
 - At least 3 beta users try it organically (not just because the co-founder asked them)

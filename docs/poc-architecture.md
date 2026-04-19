@@ -1,8 +1,15 @@
-# Scarlot POC — Architecture & Onboarding
+# Scarlot POC - Architecture & Onboarding
+
+> **Status note (April 2026):** This document describes the original WhatsApp-linked-device architecture. The unified product spec (`scarlot-product-spec.md`) now governs product direction with two key changes:
+>
+> 1. **Semi-automatic principle** - the agent responds when asked. It does not read messages passively or reply to clients autonomously. This reflects the co-founder's non-intrusion principle ("Scarlot ne voit pas les conversations") and the A7 finding from 8 interviews (passive checks = yes, active conversation = no).
+> 2. **Channel resilience** - WhatsApp dependency is the #1 risk (Meta is a US company, ToS prohibits adult services, baileys causes bans). The architecture must survive channel eviction. No single messaging platform is existential.
+>
+> Core concepts in this document - admin chat, onboarding flow, client interaction model, takeover detection - remain valid inputs. The delivery mechanism will be validated through beta. See `scarlot-product-spec.md` for the current product direction.
 
 ## Decision: TDS uses their own WhatsApp number
 
-The TDS keeps their existing phone number — the one already published on ad platforms. Scarlot connects to it as a **linked device** (like WhatsApp Web), running alongside the TDS's normal phone usage.
+The TDS keeps their existing phone number - the one already published on ad platforms. Scarlot connects to it as a **linked device** (like WhatsApp Web), running alongside the TDS's normal phone usage.
 
 The TDS never installs a new app. They manage their assistant through a **private admin chat** within WhatsApp itself.
 
@@ -31,7 +38,7 @@ TDS's WhatsApp number
 
 Default rule: **if the number is not in the TDS's phone contacts, it's a client.** The bot responds.
 
-If the number IS a saved contact, the bot stays silent — it's a personal conversation.
+If the number IS a saved contact, the bot stays silent - it's a personal conversation.
 
 The TDS can override this in the admin chat:
 - "Handle this number too" (a regular who should still go through the bot)
@@ -43,11 +50,11 @@ The TDS can jump into any client conversation at any time by simply typing on th
 
 ## Onboarding flow
 
-### Step 1 — Connect (2 min)
+### Step 1 - Connect (2 min)
 
-Scarlot runs on a server (or the advisor's laptop for the POC). The TDS opens a link that shows a QR code. They scan it from WhatsApp > Linked Devices. Done — the bot is connected to their number.
+Scarlot runs on a server (or the advisor's laptop for the POC). The TDS opens a link that shows a QR code. They scan it from WhatsApp > Linked Devices. Done - the bot is connected to their number.
 
-### Step 2 — Admin chat appears
+### Step 2 - Admin chat appears
 
 The bot sends a first message to the TDS's self-chat (the "Note to self" chat in WhatsApp, or a dedicated group created for this purpose):
 
@@ -55,7 +62,7 @@ The bot sends a first message to the TDS's self-chat (the "Note to self" chat in
 >
 > Je vais te poser quelques questions pour savoir comment me comporter. Tu peux changer tout ca a tout moment en me parlant ici.
 
-### Step 3 — Guided configuration (10-15 min, conversational)
+### Step 3 - Guided configuration (10-15 min, conversational)
 
 The bot asks questions one at a time. Each answer updates the agent's configuration (stored as a `CLAUDE.md` file on the server).
 
@@ -86,20 +93,20 @@ The bot asks questions one at a time. Each answer updates the agent's configurat
 **Booking:**
 > Comment tu veux confirmer un rendez-vous? Je te previens ici et tu confirmes, ou je confirme directement si tout est ok?
 
-### Step 4 — Test (5 min)
+### Step 4 - Test (5 min)
 
 > C'est bon! Essaie de m'envoyer un message depuis un autre telephone pour voir comment je reponds. Si tu veux changer quelque chose, dis-le moi ici.
 
-### Step 5 — Go live
+### Step 5 - Go live
 
 > Tout est pret. Je gere tes messages entrants. Tu recevras un resume chaque soir ici.
 >
 > Tu peux me dire a tout moment:
-> - "change mes dispos" — mettre a jour tes horaires
-> - "bloque ce numero" — ajouter a la liste noire
-> - "montre mes conversations" — voir les clients du jour
-> - "pause" — j'arrete de repondre
-> - "reprends" — je recommence
+> - "change mes dispos" - mettre a jour tes horaires
+> - "bloque ce numero" - ajouter a la liste noire
+> - "montre mes conversations" - voir les clients du jour
+> - "pause" - j'arrete de repondre
+> - "reprends" - je recommence
 
 ## Admin chat commands (natural language)
 
@@ -168,24 +175,24 @@ Repository: `/Users/node/GitHub/nanoclaw`
 
 ### What to add for Scarlot
 
-1. **Contact classification** — personal contact vs. client (check against phone contacts list or a whitelist)
-2. **Takeover detection** — when TDS replies directly, bot steps back
-3. **Blacklist table** — phone number lookup in SQLite, shared across all client conversations
-4. **Client notes extraction** — after each conversation, extract: intent level, preferences, red flags (pattern from Aura's memory system)
-5. **Onboarding conversation** — guided Q&A in admin chat that builds the `CLAUDE.md`
-6. **Daily summary** — scheduled task that sends the TDS a recap in the admin chat
-7. **Admin command routing** — messages in admin chat go to config mode, not client-response mode
+1. **Contact classification** - personal contact vs. client (check against phone contacts list or a whitelist)
+2. **Takeover detection** - when TDS replies directly, bot steps back
+3. **Blacklist table** - phone number lookup in SQLite, shared across all client conversations
+4. **Client notes extraction** - after each conversation, extract: intent level, preferences, red flags (pattern from Aura's memory system)
+5. **Onboarding conversation** - guided Q&A in admin chat that builds the `CLAUDE.md`
+6. **Daily summary** - scheduled task that sends the TDS a recap in the admin chat
+7. **Admin command routing** - messages in admin chat go to config mode, not client-response mode
 
 ### Contacts & calendar sync
 
 Goal: OS and device agnostic. A TDS on iPhone with Google Calendar should work the same as one on Android with Apple Calendar.
 
 **Standards used:**
-- **CardDAV** — open standard for contact sync (Google, Apple, Nextcloud all support it)
-- **CalDAV** — open standard for calendar sync (same providers)
-- **Library**: `tsdav` (npm) — handles both CardDAV and CalDAV, works in Node.js
+- **CardDAV** - open standard for contact sync (Google, Apple, Nextcloud all support it)
+- **CalDAV** - open standard for calendar sync (same providers)
+- **Library**: `tsdav` (npm) - handles both CardDAV and CalDAV, works in Node.js
 
-**Contacts — phased approach:**
+**Contacts - phased approach:**
 
 | Phase | Method | How it works |
 |---|---|---|
@@ -193,7 +200,7 @@ Goal: OS and device agnostic. A TDS on iPhone with Google Calendar should work t
 | Beta | baileys `getContacts()` | Bot reads the WhatsApp contact list directly via the linked device connection. If a number is a saved contact, it's personal. No extra auth needed. |
 | V1 | CardDAV via tsdav | Full sync with Google Contacts / iCloud / any CardDAV provider. TDS authorizes once. Bot sees all contacts including notes and labels. |
 
-**Calendar — phased approach:**
+**Calendar - phased approach:**
 
 | Phase | Method | How it works |
 |---|---|---|
@@ -203,7 +210,7 @@ Goal: OS and device agnostic. A TDS on iPhone with Google Calendar should work t
 
 **Why CalDAV/CardDAV and not provider-specific APIs:**
 - Works with any provider: Google, Apple, Microsoft (via connector), Nextcloud, Radicale, Baikal
-- TDS doesn't need to know or care what protocol is used — they authorize their account once
+- TDS doesn't need to know or care what protocol is used - they authorize their account once
 - If a TDS wants full data sovereignty, they can self-host a Radicale server (Python, flat-file storage)
 - One library (`tsdav`) handles all providers
 

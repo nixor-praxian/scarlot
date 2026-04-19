@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scarlot - Market Research & Industry Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+  --bg: #080c14;
+  --bg2: #0c1220;
+  --surface: #111827;
+  --surface2: #1a2332;
+  --surface3: #1f2b3d;
+  --border: rgba(255,255,255,0.06);
+  --border-bright: rgba(255,255,255,0.12);
+  --text: #e8ecf4;
+  --text-dim: #7b8ba3;
+  --text-muted: #4a5568;
+  --accent: #60a5fa;
+  --accent-dim: rgba(96,165,250,0.12);
+  --gold: #f59e0b;
+  --gold-dim: rgba(245,158,11,0.12);
+  --green: #34d399;
+  --green-dim: rgba(52,211,153,0.10);
+  --red: #f87171;
+  --red-dim: rgba(248,113,113,0.10);
+  --purple: #a78bfa;
+  --purple-dim: rgba(167,139,250,0.10);
+  --cyan: #22d3ee;
+  --cyan-dim: rgba(34,211,238,0.10);
+  --orange: #fb923c;
+  --orange-dim: rgba(251,146,60,0.10);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f1f5f9;
+    --bg2: #e8edf4;
+    --surface: #ffffff;
+    --surface2: #f8fafc;
+    --surface3: #f0f4f8;
+    --border: rgba(0,0,0,0.07);
+    --border-bright: rgba(0,0,0,0.14);
+    --text: #0f172a;
+    --text-dim: #64748b;
+    --text-muted: #94a3b8;
+    --accent: #2563eb;
+    --accent-dim: rgba(37,99,235,0.08);
+    --gold: #d97706;
+    --gold-dim: rgba(217,119,6,0.08);
+    --green: #059669;
+    --green-dim: rgba(5,150,105,0.08);
+    --red: #dc2626;
+    --red-dim: rgba(220,38,38,0.08);
+    --purple: #7c3aed;
+    --purple-dim: rgba(124,58,237,0.08);
+    --cyan: #0891b2;
+    --cyan-dim: rgba(8,145,178,0.08);
+    --orange: #ea580c;
+    --orange-dim: rgba(234,88,12,0.08);
+  }
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, var(--accent-dim) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, var(--purple-dim) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 90%, var(--gold-dim) 0%, transparent 40%);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:14px;
+  line-height:1.6;
+  overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:180px 1fr;gap:0 40px;padding:32px 40px}
+.main{min-width:0}
+
+/* TOC */
+.toc{position:sticky;top:24px;align-self:start;padding:14px 0;grid-row:1/-1;max-height:calc(100dvh - 48px);overflow-y:auto}
+.toc::-webkit-scrollbar{width:3px}
+.toc::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:2px}
+.toc-title{font-family:var(--font-mono);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);padding:0 0 10px;margin-bottom:8px;border-bottom:1px solid var(--border)}
+.toc a{display:block;font-size:11px;color:var(--text-dim);text-decoration:none;padding:4px 8px;border-left:2px solid transparent;transition:all .15s;line-height:1.4;margin-bottom:1px;border-radius:0 4px 4px 0}
+.toc a:hover{color:var(--text);background:var(--surface2)}
+.toc a.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-dim)}
+
+@media(max-width:1000px){
+  .wrap{grid-template-columns:1fr;padding:16px 20px;padding-top:0}
+  .toc{position:sticky;top:0;z-index:200;max-height:none;display:flex;gap:4px;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--bg);border-bottom:1px solid var(--border);padding:10px 0;margin:0 -20px;padding-left:20px;padding-right:20px;grid-row:auto}
+  .toc::-webkit-scrollbar{display:none}
+  .toc-title{display:none}
+  .toc a{white-space:nowrap;flex-shrink:0;border-left:none;border-bottom:2px solid transparent;border-radius:4px 4px 0 0;padding:6px 10px;font-size:10px}
+  .toc a.active{border-left:none;border-bottom-color:var(--accent);background:var(--surface)}
+  .main{padding-top:20px}
+  .sec-head{scroll-margin-top:52px}
+}
+
+/* HEADER */
+.header{margin-bottom:48px}
+.header .tag{font-family:var(--font-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.header h1{font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;margin-bottom:12px}
+.header .sub{font-size:16px;color:var(--text-dim);max-width:700px;line-height:1.5}
+.header .date{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:8px}
+
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:40px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent)}
+.kpi.gold::before{background:var(--gold)}
+.kpi.green::before{background:var(--green)}
+.kpi.purple::before{background:var(--purple)}
+.kpi.cyan::before{background:var(--cyan)}
+.kpi.orange::before{background:var(--orange)}
+.kpi .kpi-label{font-family:var(--font-mono);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);margin-bottom:8px}
+.kpi .kpi-value{font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.1}
+.kpi .kpi-sub{font-size:11px;color:var(--text-dim);margin-top:6px}
+
+/* SECTIONS */
+.sec-head{font-family:var(--font-mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--accent);padding:12px 0 6px;margin-top:48px;margin-bottom:20px;border-bottom:1px solid var(--border);scroll-margin-top:24px}
+
+h2{font-size:22px;font-weight:700;margin-bottom:16px;letter-spacing:-0.01em}
+h3{font-size:16px;font-weight:600;margin-top:24px;margin-bottom:10px;color:var(--text)}
+p{margin-bottom:12px;color:var(--text-dim);max-width:780px}
+p.note{font-size:12px;color:var(--text-muted);font-style:italic;padding:12px 16px;background:var(--surface);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;margin:16px 0}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:16px}
+.card.elevated{box-shadow:0 2px 12px rgba(0,0,0,0.15);border-color:var(--border-bright)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:20px}
+.card-grid .card{margin-bottom:0}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;margin-bottom:20px;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead{background:var(--surface2)}
+th{font-family:var(--font-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border-bright);white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--surface2)}
+td.num{text-align:right;font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:13px;font-weight:500}
+
+/* BADGES */
+.badge{display:inline-block;font-family:var(--font-mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px}
+.badge.legal{color:var(--green);background:var(--green-dim)}
+.badge.decrim{color:var(--cyan);background:var(--cyan-dim)}
+.badge.nordic{color:var(--orange);background:var(--orange-dim)}
+.badge.criminal{color:var(--red);background:var(--red-dim)}
+.badge.high{color:var(--green);background:var(--green-dim)}
+.badge.medium{color:var(--gold);background:var(--gold-dim)}
+.badge.low{color:var(--red);background:var(--red-dim)}
+.badge.defunct{color:var(--red);background:var(--red-dim)}
+.badge.active{color:var(--green);background:var(--green-dim)}
+
+/* FUNNEL */
+.funnel{display:flex;flex-direction:column;gap:0;margin:20px 0}
+.funnel-step{padding:24px 32px;border:1px solid var(--border);position:relative;text-align:center}
+.funnel-step:first-child{border-radius:10px 10px 0 0}
+.funnel-step:last-child{border-radius:0 0 10px 10px}
+.funnel-step .f-label{font-family:var(--font-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.funnel-step .f-value{font-size:24px;font-weight:700;letter-spacing:-0.02em}
+.funnel-step .f-desc{font-size:12px;color:var(--text-dim);margin-top:4px}
+.funnel-step.tam{background:linear-gradient(135deg,var(--accent-dim),var(--purple-dim));border-color:rgba(96,165,250,0.2)}
+.funnel-step.tam .f-label{color:var(--accent)}
+.funnel-step.sam{background:linear-gradient(135deg,var(--cyan-dim),var(--green-dim));border-color:rgba(34,211,238,0.2)}
+.funnel-step.sam .f-label{color:var(--cyan)}
+.funnel-step.som{background:linear-gradient(135deg,var(--gold-dim),var(--orange-dim));border-color:rgba(245,158,11,0.2)}
+.funnel-step.som .f-label{color:var(--gold)}
+
+/* KILLERS */
+.killer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0}
+.killer{background:var(--red-dim);border:1px solid rgba(248,113,113,0.15);border-radius:10px;padding:20px;text-align:center}
+.killer .k-icon{font-size:32px;margin-bottom:8px;color:var(--red);font-weight:700}
+.killer .k-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.killer .k-desc{font-size:12px;color:var(--text-dim)}
+
+.shield{background:var(--green-dim);border:1px solid rgba(52,211,153,0.15);border-radius:10px;padding:24px;text-align:center;margin:16px 0}
+.shield .s-title{font-size:16px;font-weight:700;color:var(--green);margin-bottom:8px}
+.shield .s-desc{font-size:13px;color:var(--text-dim)}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:24px;margin:20px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border-bright)}
+.tl-item{position:relative;margin-bottom:20px;padding-left:20px}
+.tl-item::before{content:'';position:absolute;left:-20px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl-item.highlight::before{background:var(--gold);box-shadow:0 0 8px var(--gold-dim)}
+.tl-item .tl-year{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--accent);margin-bottom:2px}
+.tl-item .tl-text{font-size:13px;color:var(--text-dim)}
+
+/* CREDIBILITY */
+.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:16px 0}
+.tier-card{border-radius:8px;padding:16px;border:1px solid var(--border)}
+.tier-card.t1{background:var(--green-dim);border-color:rgba(52,211,153,0.2)}
+.tier-card.t2{background:var(--cyan-dim);border-color:rgba(34,211,238,0.2)}
+.tier-card.t3{background:var(--gold-dim);border-color:rgba(245,158,11,0.2)}
+.tier-card.t4{background:var(--red-dim);border-color:rgba(248,113,113,0.2)}
+.tier-card .tc-label{font-family:var(--font-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.tier-card.t1 .tc-label{color:var(--green)}
+.tier-card.t2 .tc-label{color:var(--cyan)}
+.tier-card.t3 .tc-label{color:var(--gold)}
+.tier-card.t4 .tc-label{color:var(--red)}
+.tier-card .tc-text{font-size:12px;color:var(--text-dim)}
+
+/* MOAT */
+.moat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0}
+.moat{border-radius:10px;padding:20px;border:1px solid var(--border);background:var(--surface);text-align:center}
+.moat .m-icon{font-size:14px;font-weight:700;width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:10px}
+.moat .m-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.moat .m-desc{font-size:12px;color:var(--text-dim)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade{opacity:0;animation:fadeUp .5s ease forwards;animation-delay:calc(var(--i,0) * 80ms)}
+@media(prefers-reduced-motion:reduce){.fade{animation:none;opacity:1}}
+
+/* Legal grid */
+.legal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin:16px 0}
+.legal-box{border-radius:10px;padding:16px 20px;border:1px solid var(--border)}
+.legal-box .lb-title{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.legal-box .lb-title .badge{font-size:9px}
+.legal-box .lb-countries{font-size:12px;color:var(--text-dim);line-height:1.6}
+.legal-box.lgl{background:var(--green-dim);border-color:rgba(52,211,153,0.15)}
+.legal-box.dcr{background:var(--cyan-dim);border-color:rgba(34,211,238,0.15)}
+.legal-box.nrd{background:var(--orange-dim);border-color:rgba(251,146,60,0.15)}
+.legal-box.crm{background:var(--red-dim);border-color:rgba(248,113,113,0.15)}
+
+/* Swiss viz */
+.swiss-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.swiss-stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.swiss-stat .ss-val{font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.swiss-stat .ss-label{font-size:11px;color:var(--text-dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="toc" id="toc">
+  <div class="toc-title">Sections</div>
+  <a href="#s1">1. Dashboard</a>
+  <a href="#s2">2. Global Market</a>
+  <a href="#s3">3. European Market</a>
+  <a href="#s4">4. Legal Landscape</a>
+  <a href="#s5">5. Switzerland</a>
+  <a href="#s6">6. Tech Ecosystem</a>
+  <a href="#s7">7. Platform Killers</a>
+  <a href="#s8">8. TAM / SAM / SOM</a>
+  <a href="#s9">9. Operable Markets</a>
+  <a href="#s10">10. Risk Analysis</a>
+  <a href="#s11">11. Key Trends</a>
+  <a href="#s12">12. Data Credibility</a>
+  <a href="#s13">13. Scarlot Position</a>
+</nav>
+
+<div class="main">
+
+<!-- HEADER -->
+<div class="header fade" style="--i:0">
+  <div class="tag">Market Research &mdash; Business Plan Foundation</div>
+  <h1>Sex Work Industry:<br>Size, Structure & Opportunity</h1>
+  <div class="sub">Comprehensive market analysis for Scarlot &mdash; a conversational-native safety and CRM platform for independent sex workers, starting in Switzerland.</div>
+  <div class="date">Research date: 2 April 2026 &middot; 22 sources &middot; Deep mode</div>
+</div>
+
+<!-- S1: DASHBOARD -->
+<div id="s1" class="sec-head fade" style="--i:1">1 &mdash; Key Metrics</div>
+
+<div class="kpi-row">
+  <div class="kpi fade" style="--i:2">
+    <div class="kpi-label">Global Market</div>
+    <div class="kpi-value">$100&ndash;200B</div>
+    <div class="kpi-sub">Estimated consensual sex work revenue</div>
+  </div>
+  <div class="kpi gold fade" style="--i:3">
+    <div class="kpi-label">Switzerland (Census)</div>
+    <div class="kpi-value">5,229</div>
+    <div class="kpi-sub">Unique workers identified across 7 platforms</div>
+  </div>
+  <div class="kpi purple fade" style="--i:4">
+    <div class="kpi-label">TAM</div>
+    <div class="kpi-value">&euro;100&ndash;250M</div>
+    <div class="kpi-sub">Safety + CRM tools, legal markets</div>
+  </div>
+  <div class="kpi cyan fade" style="--i:5">
+    <div class="kpi-label">SAM</div>
+    <div class="kpi-value">&euro;10&ndash;30M</div>
+    <div class="kpi-sub">Western Europe regulated</div>
+  </div>
+  <div class="kpi orange fade" style="--i:6">
+    <div class="kpi-label">FR-CH Launch Market</div>
+    <div class="kpi-value">1,238</div>
+    <div class="kpi-sub">Workers identified in Geneva + Vaud + Neuch&acirc;tel + Fribourg</div>
+  </div>
+  <div class="kpi green fade" style="--i:7">
+    <div class="kpi-label">Adjacent Market</div>
+    <div class="kpi-value">$1.2&ndash;1.8B</div>
+    <div class="kpi-sub">Lone worker safety solutions (2024)</div>
+  </div>
+</div>
+
+<div class="card elevated fade" style="--i:8;border-left:3px solid var(--gold)">
+  <h3 style="color:var(--gold);margin-top:0">Proprietary Swiss Market Census</h3>
+  <p style="max-width:none;color:var(--text);font-size:13px;margin-bottom:14px">Continuous scraping of 7 Swiss platforms since March 16, 2026. 150 completed runs. 21,364 snapshots. Phone-based identity resolution (E.164). <strong>This is not an estimate &mdash; it is a census of the digitally-visible market.</strong></p>
+  <div class="kpi-row" style="margin-bottom:0">
+    <div class="kpi" style="border:none;padding:12px 0">
+      <div class="kpi-label">Unique Workers</div>
+      <div class="kpi-value" style="font-size:22px">5,229</div>
+      <div class="kpi-sub">Phone-deduplicated across 7 platforms</div>
+    </div>
+    <div class="kpi" style="border:none;padding:12px 0">
+      <div class="kpi-label">Geneva</div>
+      <div class="kpi-value" style="font-size:22px">547</div>
+      <div class="kpi-sub">Launch city &mdash; #1 in Switzerland</div>
+    </div>
+    <div class="kpi" style="border:none;padding:12px 0">
+      <div class="kpi-label">Platforms</div>
+      <div class="kpi-value" style="font-size:22px">7</div>
+      <div class="kpi-sub">Monitored continuously since March 16</div>
+    </div>
+    <div class="kpi" style="border:none;padding:12px 0">
+      <div class="kpi-label">Multi-Platform</div>
+      <div class="kpi-value" style="font-size:22px">17.6%</div>
+      <div class="kpi-sub">On 2+ platforms &mdash; power users</div>
+    </div>
+  </div>
+</div>
+
+<div class="card elevated fade" style="--i:9">
+  <h3>OnlyFans: The Digital Market Signal</h3>
+  <div class="kpi-row" style="margin-bottom:0">
+    <div class="kpi" style="border:none;padding:12px 0">
+      <div class="kpi-label">Gross Revenue FY2024</div>
+      <div class="kpi-value" style="font-size:22px">$7.22B</div>
+    </div>
+    <div class="kpi" style="border:none;padding:12px 0">
+      <div class="kpi-label">Creator Payouts</div>
+      <div class="kpi-value" style="font-size:22px">$5.80B</div>
+    </div>
+    <div class="kpi" style="border:none;padding:12px 0">
+      <div class="kpi-label">Creators</div>
+      <div class="kpi-value" style="font-size:22px">4.63M</div>
+    </div>
+    <div class="kpi" style="border:none;padding:12px 0">
+      <div class="kpi-label">Fan Accounts</div>
+      <div class="kpi-value" style="font-size:22px">377.5M</div>
+    </div>
+  </div>
+</div>
+
+<!-- S2: GLOBAL MARKET -->
+<div id="s2" class="sec-head fade" style="--i:9">2 &mdash; Global Market Size</div>
+
+<h2 class="fade" style="--i:10">All figures carry significant uncertainty</h2>
+<p class="fade" style="--i:11">There is no authoritative consensus figure for the global sex work market. Every estimate must be understood in context of who produced it, when, and with what methodology. Sex work data is notoriously unreliable &mdash; estimates vary by 5&ndash;10x depending on source.</p>
+
+<div class="table-wrap fade" style="--i:12">
+<table>
+<thead><tr><th>Estimate</th><th>Source</th><th>Credibility</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="num">$186B</td><td>Havocscope</td><td><span class="badge low">Low&ndash;Med</span></td><td>Widely cited, methodology opaque</td></tr>
+<tr><td class="num">~$1T</td><td>Various media</td><td><span class="badge low">Low</span></td><td>Includes trafficking, pornography, adjacent</td></tr>
+<tr><td class="num">$173B</td><td>ILO (2024)</td><td><span class="badge high">High</span></td><td>Forced exploitation only &mdash; not consensual</td></tr>
+<tr><td class="num">40&ndash;42M workers</td><td>Fondation Scelles (2012)</td><td><span class="badge medium">Medium</span></td><td>Most-cited global headcount; dated</td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="note">Our assessment: A reasonable range for global consensual sex work is $100&ndash;200 billion in annual revenue. The ILO's $173B for forced exploitation alone suggests the total market is substantially larger.</p>
+
+<!-- S3: EUROPEAN MARKET -->
+<div id="s3" class="sec-head fade" style="--i:13">3 &mdash; European Market</div>
+
+<h2>Country-Level Breakdown</h2>
+<p>Since 2014, under ESA 2010, EU member states must include prostitution services in GDP calculations. Germany alone generates &euro;14.6B &mdash; roughly the size of its steel industry.</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Country</th><th>Est. Workers</th><th>Registered</th><th>Market Size</th><th>GDP %</th><th>Credibility</th></tr></thead>
+<tbody>
+<tr><td>Germany</td><td class="num">~400,000</td><td class="num">45,000</td><td class="num">&euro;14.6B/yr</td><td class="num">~0.4%</td><td><span class="badge medium">Medium</span></td></tr>
+<tr><td>Netherlands</td><td class="num">20&ndash;30,000</td><td class="num">&mdash;</td><td class="num">&euro;800M/yr</td><td class="num">&lt;0.1%</td><td><span class="badge medium">Medium</span></td></tr>
+<tr><td>Switzerland</td><td class="num">20&ndash;30,000</td><td class="num">&mdash;</td><td class="num">CHF 1&ndash;2.4B</td><td class="num">&mdash;</td><td><span class="badge medium">Medium</span></td></tr>
+<tr><td>France</td><td class="num">30&ndash;40,000</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td><span class="badge low">Low&ndash;Med</span></td></tr>
+<tr><td>Spain</td><td class="num">100&ndash;300,000</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td><span class="badge low">Low</span></td></tr>
+<tr style="background:var(--surface2)"><td><strong>EU Total</strong></td><td class="num"><strong>700K&ndash;1M</strong></td><td class="num">&mdash;</td><td class="num"><strong>Tens of B&euro;</strong></td><td class="num">&mdash;</td><td><span class="badge low">Low</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="note">Germany's registration gap (400K estimated vs 45K registered = 89% non-compliance) is the central lesson: legalization without low-friction implementation fails to reach the population.</p>
+
+<!-- S4: LEGAL LANDSCAPE -->
+<div id="s4" class="sec-head">4 &mdash; Legal Landscape</div>
+
+<h2>Four Regulatory Models</h2>
+
+<div class="legal-grid">
+  <div class="legal-box lgl">
+    <div class="lb-title"><span class="badge legal">Legal</span> Full Legalization</div>
+    <div class="lb-countries"><strong>Germany, Netherlands, Switzerland, Austria</strong>, parts of Australia, Nevada (US), Greece, Hungary, Latvia, Turkey<br><br><em>Platform implication:</em> Favorable &mdash; platforms can operate openly. Payment processing still challenging.</div>
+  </div>
+  <div class="legal-box dcr">
+    <div class="lb-title"><span class="badge decrim">Decrim</span> Decriminalization</div>
+    <div class="lb-countries"><strong>New Zealand</strong> (2003), NSW Australia (1995), <strong>Victoria</strong> (2023), <strong>Queensland</strong> (2024), Belgium<br><br><em>Platform implication:</em> Most favorable &mdash; least legal risk. NZ is the gold standard with 20+ years of data.</div>
+  </div>
+  <div class="legal-box nrd">
+    <div class="lb-title"><span class="badge nordic">Nordic</span> Nordic / Equality Model</div>
+    <div class="lb-countries"><strong>Sweden</strong> (1999), Norway, Iceland, <strong>Canada</strong> (2014), <strong>France</strong> (2016), <strong>Ireland</strong> (2017), Israel, N. Ireland<br><br><em>Platform implication:</em> Hostile &mdash; enabling buyer-seller connection risks facilitating a crime.</div>
+  </div>
+  <div class="legal-box crm">
+    <div class="lb-title"><span class="badge criminal">Criminal</span> Full Criminalization</div>
+    <div class="lb-countries">Most US states, most of Africa, most of Asia, Russia, most Middle East<br><br><em>Platform implication:</em> Not viable &mdash; operation is illegal.</div>
+  </div>
+</div>
+
+<p>The global trend is toward decriminalization. Australia (Victoria 2023, Queensland 2024) is the major recent mover. Amnesty International, WHO, UNAIDS, and Human Rights Watch all advocate for decriminalization.</p>
+
+<!-- S5: SWITZERLAND -->
+<div id="s5" class="sec-head">5 &mdash; Switzerland Deep Dive</div>
+
+<h2>The Home Market</h2>
+
+<div class="swiss-stats">
+  <div class="swiss-stat"><div class="ss-val">1942</div><div class="ss-label">Legal since</div></div>
+  <div class="swiss-stat"><div class="ss-val">26</div><div class="ss-label">Cantons</div></div>
+  <div class="swiss-stat"><div class="ss-val">10</div><div class="ss-label">With specific legislation</div></div>
+  <div class="swiss-stat"><div class="ss-val">90%</div><div class="ss-label">Indoor / online</div></div>
+  <div class="swiss-stat"><div class="ss-val">20&ndash;30K</div><div class="ss-label">Workers estimated</div></div>
+  <div class="swiss-stat"><div class="ss-val">90 days</div><div class="ss-label">EU/EFTA permit window</div></div>
+</div>
+
+<div class="card-grid">
+  <div class="card">
+    <h3>Legal Framework</h3>
+    <p style="max-width:none">Permitted gainful activity under economic freedom principles. Federal minimum: consensual exchange between adults, self-employed without coercion. Criminal offenses for encouraging prostitution of minors (Art. 195, up to 10 years), unauthorized practice (Art. 199), and human trafficking (Art. 182).</p>
+  </div>
+  <div class="card">
+    <h3>Cantonal Variation</h3>
+    <p style="max-width:none">Each of 26 cantons can regulate differently. Geneva, Vaud, Fribourg, Neuch&acirc;tel, Jura, Ticino have specific legislation. Requirements vary: registration, police checks, health monitoring, zoning restrictions. Red-light districts in Zurich (Langstrasse), Geneva (Les P&acirc;quis), Bern, Basel, Lausanne, Lugano.</p>
+  </div>
+  <div class="card">
+    <h3>Key Organizations</h3>
+    <p style="max-width:none"><strong>ProCoRe:</strong> National coalition, 27 member organizations. Research: 70% report stealthing.<br><strong>Aspasie:</strong> Geneva NGO, sex worker rights. Trust anchor for Scarlot.<br><strong>FIZ:</strong> Anti-trafficking + sex worker support, Zurich.</p>
+  </div>
+  <div class="card">
+    <h3>90-Day Permit Vulnerability</h3>
+    <p style="max-width:none">EU/EFTA nationals can work up to 90 days without residence permit. Creates a transient population with a vulnerability window. Confirmed by Scarlot research: clients exploit financial pressure of permit-limited workers.</p>
+  </div>
+</div>
+
+<!-- S6: TECH ECOSYSTEM -->
+<div id="s6" class="sec-head">6 &mdash; Technology Ecosystem</div>
+
+<h2>Fragmented, Underfunded, Constantly Threatened</h2>
+
+<h3>Listing / Advertising Platforms</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Platform</th><th>Geography</th><th>Pricing</th><th>Status</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>Tryst</strong></td><td>Global (AU/NZ/US/UK)</td><td class="num">$20&ndash;35/mo</td><td><span class="badge active">Active</span></td><td>Trans-positive. Good UX. Low CH traffic.</td></tr>
+<tr><td><strong>F-Girl</strong></td><td>CH (dominant DE-CH)</td><td class="num">Paid</td><td><span class="badge active">Active</span></td><td>Dominant in German-speaking CH. Identity issues for trans TDS.</td></tr>
+<tr><td><strong>And6</strong></td><td>CH / EU</td><td class="num">Paid</td><td><span class="badge active">Active</span></td><td>Used as blacklist data source by Scarlot interviewee.</td></tr>
+<tr><td><strong>xdate</strong></td><td>CH</td><td class="num">Paid</td><td><span class="badge active">Active</span></td><td>Poor UX. Difficult identity verification.</td></tr>
+<tr><td><strong>Backpage</strong></td><td>US / Global</td><td class="num">&mdash;</td><td><span class="badge defunct">Shut Down</span></td><td>Seized by FBI 2018. FOSTA-SESTA catalyst.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Safety / Blacklist Tools</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Platform</th><th>Geography</th><th>Model</th><th>Status</th><th>Key Metric</th></tr></thead>
+<tbody>
+<tr><td><strong>National Ugly Mugs</strong></td><td>UK / Ireland</td><td>Charity, free</td><td><span class="badge active">Active</span></td><td>~1M alerts/yr, 585 violence cases (2023), 50% avoidance rate</td></tr>
+<tr><td><strong>BMG</strong></td><td>CH / EU</td><td class="num">~&euro;450/mo</td><td><span class="badge active">Active</span></td><td>Premium escort blacklist. Expensive and siloed.</td></tr>
+<tr><td><strong>ClientEye</strong></td><td>UK / EU</td><td>Freemium</td><td><span class="badge defunct">Defunct?</span></td><td>Anonymous checking. Mixed reviews. Possibly dissolved Mar 2025.</td></tr>
+<tr><td><strong>CheckPunter</strong></td><td>Multi-country</td><td>Free</td><td><span class="badge active">Active</span></td><td>Basic client blacklist database.</td></tr>
+<tr><td><strong>Projet Jasmine</strong></td><td>France</td><td>Community</td><td><span class="badge active">Active</span></td><td>License plate database for street work.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card elevated" style="border-left:3px solid var(--gold);margin-top:20px">
+  <h3 style="color:var(--gold);margin-top:0">The Gap Scarlot Fills</h3>
+  <p style="max-width:none;color:var(--text)">No existing tool combines <strong>client blacklist</strong> (personal + collective) + <strong>CRM / client memory</strong> + <strong>inbound screening</strong> + <strong>conversational interface</strong> through existing messaging apps. National Ugly Mugs is closest in mission (safety) but is a reporting system, not a CRM. The Dancer Resource is closest in function (CRM + community) but serves a different population. BMG is closest in market but is expensive (&euro;450/mo) and siloed.</p>
+</div>
+
+<!-- S7: PLATFORM KILLERS -->
+<div id="s7" class="sec-head">7 &mdash; Why Platforms Fail in This Space</div>
+
+<h2>Three Killers</h2>
+<p>Every platform serving sex workers faces the same three existential threats. Switter (430,000+ users) died from all three.</p>
+
+<div class="killer-grid">
+  <div class="killer">
+    <div class="k-icon">&#x2715;</div>
+    <div class="k-title">Payment Processor Hostility</div>
+    <div class="k-desc">Visa, Mastercard, PayPal, and Stripe all have explicit policies against sex work-related services. Even where legal, processors refuse. OnlyFans nearly banned explicit content in 2021 under Mastercard pressure.</div>
+  </div>
+  <div class="killer">
+    <div class="k-icon">&#x2715;</div>
+    <div class="k-title">App Store Enforcement</div>
+    <div class="k-desc">Google Play and Apple App Store restrict sex work-related apps. National Ugly Mugs (a UK safety charity) faced Google policy changes threatening its core safety tool.</div>
+  </div>
+  <div class="killer">
+    <div class="k-icon">&#x2715;</div>
+    <div class="k-title">FOSTA-SESTA Legal Exposure</div>
+    <div class="k-desc">US 2018 law. Any platform that can be construed as "facilitating" sex work faces liability &mdash; even operating in legal jurisdictions. Killed Switter (430K+ users). Chilled investment globally.</div>
+  </div>
+</div>
+
+<div class="shield">
+  <div class="s-title">Scarlot's Architecture Avoids All Three</div>
+  <div class="s-desc"><strong>WhatsApp-native</strong> &mdash; no app store dependency. <strong>Switzerland-based</strong> &mdash; fully legal jurisdiction. <strong>No payment processing</strong> &mdash; the platform doesn't handle transactions between workers and clients. The bot runs on the TDS's own WhatsApp number as a linked device.</div>
+</div>
+
+<!-- S8: TAM/SAM/SOM -->
+<div id="s8" class="sec-head">8 &mdash; TAM / SAM / SOM</div>
+
+<h2>Bottom-Up Market Sizing</h2>
+<p>Built from worker counts and estimated willingness to pay, cross-referenced against the lone worker safety solutions market ($1.2&ndash;1.8B in 2024, growing to $4&ndash;6B by 2033) as an adjacent comparable.</p>
+
+<div class="funnel">
+  <div class="funnel-step tam">
+    <div class="f-label">TAM &mdash; Total Addressable Market</div>
+    <div class="f-value">&euro;100 &ndash; 250M</div>
+    <div class="f-desc">All independent sex workers in legal/decriminalized markets globally (~500K&ndash;700K workers &times; &euro;120&ndash;240/yr)</div>
+  </div>
+  <div class="funnel-step sam">
+    <div class="f-label">SAM &mdash; Serviceable Addressable Market</div>
+    <div class="f-value">&euro;10 &ndash; 30M</div>
+    <div class="f-desc">Western Europe regulated markets: Switzerland, Germany, Netherlands, Austria, Belgium, UK (~50K&ndash;85K reachable workers)</div>
+  </div>
+  <div class="funnel-step som">
+    <div class="f-label">SOM &mdash; Serviceable Obtainable Market (Year 3)</div>
+    <div class="f-value">CHF 200K &ndash; 1M</div>
+    <div class="f-desc">French-speaking Switzerland (Geneva + Vaud + Neuch&acirc;tel). 500&ndash;2,000 users at CHF 20&ndash;50/mo. Community-driven growth through Aspasie network.</div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <h3>Adjacent Market Signal: Lone Worker Safety</h3>
+  <p style="max-width:none">The lone worker safety solutions market &mdash; SaaS tools protecting people who work alone in high-risk environments &mdash; was valued at <strong>$1.2&ndash;1.8B in 2024</strong> and is projected to reach <strong>$4&ndash;6B by 2033</strong> (8&ndash;14% CAGR). Key players: StaySafe (100K+ users), GetHomeSafe ($3.85/user/mo). Sex workers are, by definition, lone workers in high-risk environments. The value proposition is identical.</p>
+</div>
+
+<!-- S9: OPERABLE MARKETS -->
+<div id="s9" class="sec-head">9 &mdash; Where Scarlot Could Operate</div>
+
+<h2>Market Viability by Legal Framework</h2>
+<p>Not every country where sex work is "legal" is a viable market. Viability depends on the specific legal framework, enforcement patterns, and risk to founders and platform.</p>
+
+<h3>Tier 1 &mdash; Favorable (legal + regulated, clear framework)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Country</th><th>Framework</th><th>Est. Workers</th><th>Scarlot Viability</th></tr></thead>
+<tbody>
+<tr><td><strong>Switzerland</strong></td><td>Legal since 1942, cantonal</td><td class="num">20&ndash;30K</td><td><span class="badge high">Home market</span></td></tr>
+<tr><td><strong>Germany</strong></td><td>Legalized 2002, Protection Act 2017</td><td class="num">~400K / 45K reg.</td><td><span class="badge high">Tier 1</span></td></tr>
+<tr><td><strong>Netherlands</strong></td><td>Legal since 2000, licensed</td><td class="num">20&ndash;30K</td><td><span class="badge high">Tier 1</span></td></tr>
+<tr><td><strong>Belgium</strong></td><td>Decrim June 2022 &mdash; full labor rights</td><td class="num">Unknown</td><td><span class="badge high">Tier 1</span></td></tr>
+<tr><td><strong>Austria</strong></td><td>Legal, provincial regulation</td><td class="num">~15K</td><td><span class="badge high">Tier 1</span></td></tr>
+<tr><td><strong>New Zealand</strong></td><td>Decriminalized 2003 (PRA)</td><td class="num">~3&ndash;5K</td><td><span class="badge high">Gold standard</span></td></tr>
+<tr><td><strong>Australia</strong></td><td>VIC 2023, QLD 2024, NSW decrim</td><td class="num">~20K+</td><td><span class="badge high">Momentum</span></td></tr>
+<tr><td><strong>Greece / Hungary / Latvia</strong></td><td>Legal, various regulation</td><td class="num">Various</td><td><span class="badge medium">Possible</span></td></tr>
+<tr><td><strong>Uruguay</strong></td><td>Legal since 2002</td><td class="num">Unknown</td><td><span class="badge medium">LatAm entry</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Tier 2 &mdash; Tolerated (legal gray area, caution needed)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Country</th><th>Status</th><th>Risk for Scarlot</th></tr></thead>
+<tbody>
+<tr><td><strong>UK</strong> (Eng/Wales/Scot)</td><td>Selling legal, facilitating illegal</td><td>Safety tools (NUM) operate freely. Strong precedent.</td></tr>
+<tr><td><strong>Spain</strong></td><td>Tolerated, no regulation</td><td>Large market but no legal clarity for platforms.</td></tr>
+<tr><td><strong>Italy</strong></td><td>Selling legal, aiding illegal</td><td>"Aiding" prohibition could apply. Caution.</td></tr>
+<tr><td><strong>Denmark / Czech Rep / Portugal</strong></td><td>Various tolerance models</td><td>Personal tool likely fine; "platform" framing risky.</td></tr>
+<tr><td><strong>Colombia / Argentina / Mexico</strong></td><td>Legal with local variation</td><td>LatAm expansion possible but complex.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Tier 3 &mdash; Hostile (do not operate)</h3>
+<div class="legal-grid">
+  <div class="legal-box nrd">
+    <div class="lb-title"><span class="badge nordic">Avoid</span> Nordic Model Countries</div>
+    <div class="lb-countries"><strong>France</strong> (2016), <strong>Sweden</strong> (1999), Norway, Iceland, <strong>Canada</strong> (2014), <strong>Ireland</strong> (2017), Israel<br><br>Buying is criminalized. Any tool enabling buyer-seller interaction risks "facilitating" charge. France is especially tempting (language proximity) but legally hostile.</div>
+  </div>
+  <div class="legal-box crm">
+    <div class="lb-title"><span class="badge criminal">Avoid</span> Criminalized / US</div>
+    <div class="lb-countries"><strong>United States</strong> (FOSTA-SESTA), Russia, most of Africa, most of Asia, Middle East<br><br>Existential legal risk. Even indirect US nexus (using US payment processors, US cloud, US AI providers) creates jurisdictional hooks.</div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:16px;border-left:3px solid var(--accent)">
+  <h3 style="margin-top:0">Expansion Roadmap</h3>
+  <p style="max-width:none;color:var(--text)"><strong>Year 1:</strong> Switzerland (FR-CH) &rarr; <strong>Year 2&ndash;3:</strong> Full Switzerland + Germany + Austria + Belgium &rarr; <strong>Year 3&ndash;5:</strong> Netherlands + UK + Australia/NZ &rarr; <strong>Never:</strong> France, US, Nordic countries, Canada</p>
+</div>
+
+<!-- S10: RISK ANALYSIS -->
+<div id="s10" class="sec-head">10 &mdash; Risk Analysis</div>
+
+<h2>Threat Assessment</h2>
+
+<h3>The WhatsApp / Meta Dependency</h3>
+<div class="killer-grid">
+  <div class="killer">
+    <div class="k-icon">!</div>
+    <div class="k-title">ToS Violation</div>
+    <div class="k-desc">WhatsApp Business Policy explicitly prohibits "facilitating the exchange of adult services." There is NO compliant way to use WhatsApp for this use case.</div>
+  </div>
+  <div class="killer">
+    <div class="k-icon">!</div>
+    <div class="k-title">Baileys Ban Risk</div>
+    <div class="k-desc">Unofficial API. WhatsApp actively detects and bans accounts. GitHub issue #1869: "high number of bans." Reconnect loops trigger detection.</div>
+  </div>
+  <div class="killer">
+    <div class="k-icon">!</div>
+    <div class="k-title">US Jurisdiction</div>
+    <div class="k-desc">Meta is a US company. Data flows through US infrastructure. Creates a potential FOSTA-SESTA jurisdictional hook even for a Swiss entity.</div>
+  </div>
+</div>
+
+<div class="shield">
+  <div class="s-title">Mitigation: Channel-Agnostic by Design</div>
+  <div class="s-desc">Maia meets users where they already communicate &mdash; but it must survive any single channel dying. Technology, channels, and interfaces are implementation details driven by market needs. The platform is architected to survive platform eviction, not to avoid platform risk. No dependency on any single messaging provider, AI vendor, or infrastructure layer.</div>
+</div>
+
+<h3>Is Maia "Facilitating"? &mdash; The Legal Defense</h3>
+
+<div class="card elevated" style="border-left:3px solid var(--green);margin-top:16px">
+  <h3 style="margin-top:0;color:var(--green)">The Strongest Argument in Scarlot's Defense</h3>
+  <p style="max-width:none;color:var(--text)">FOSTA-SESTA targets platforms that connect buyers and sellers. Maia does none of this. It is a <strong>personal AI agent</strong> that:</p>
+
+  <div class="card-grid" style="margin-top:12px">
+    <div class="card" style="background:var(--green-dim);border-color:rgba(52,211,153,0.15)">
+      <div style="font-size:13px;font-weight:600;color:var(--green);margin-bottom:6px">What Maia DOES</div>
+      <div style="font-size:12px;color:var(--text-dim)">
+        Screens incoming messages against a personal blacklist<br>
+        Stores client notes (CRM) on the TDS's own device<br>
+        Runs on the TDS's own WhatsApp number<br>
+        Operates AFTER the client has already made contact
+      </div>
+    </div>
+    <div class="card" style="background:var(--red-dim);border-color:rgba(248,113,113,0.15)">
+      <div style="font-size:13px;font-weight:600;color:var(--red);margin-bottom:6px">What Maia DOES NOT DO</div>
+      <div style="font-size:12px;color:var(--text-dim)">
+        Connect buyers and sellers<br>
+        Advertise sexual services<br>
+        Process payments<br>
+        Host user-generated content<br>
+        Enable discovery of sex workers
+      </div>
+    </div>
+  </div>
+
+  <p style="max-width:none;color:var(--text);margin-top:12px">The legal analogy is <strong>personal productivity tool</strong>, not platform. A CRM does not "facilitate" the underlying business any more than a spreadsheet, calendar app, or contact manager does. National Ugly Mugs operates a collective warning system legally in the UK &mdash; the precedent exists.</p>
+</div>
+
+<h3>Founder Personal Risk</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Risk</th><th>Jurisdiction</th><th>Severity</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Criminal prosecution (Art. 195)</td><td>Switzerland</td><td><span class="badge high">Low</span></td><td>Only if coercion/minors/exploitation. Safety tool for consenting adults is clearly not in scope.</td></tr>
+<tr><td>"Facilitating" prosecution</td><td>France / Nordic</td><td><span class="badge medium">Medium</span></td><td>Only if operating in these markets. Mitigation: stay out.</td></tr>
+<tr><td>FOSTA-SESTA personal liability</td><td>United States</td><td><span class="badge medium">Low&ndash;Med</span></td><td>Requires "intent to promote." Safety tool lacks this intent. But US enforcement is unpredictable.</td></tr>
+<tr><td>nFADP data protection</td><td>Switzerland</td><td><span class="badge medium">Medium</span></td><td>Sexual behavior = sensitive data. Personal liability for officers. DPIA required before launch.</td></tr>
+<tr><td>Defamation (blacklist)</td><td>Switzerland</td><td><span class="badge medium">Medium</span></td><td>Inaccurate client data = defamation risk. Needs dispute mechanism.</td></tr>
+<tr><td>Reputational risk</td><td>Global</td><td><span class="badge medium">Low&ndash;Med</span></td><td>Social stigma of sex work-adjacent companies. Factor into fundraising strategy.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Full Risk Matrix</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Risk</th><th>Severity</th><th>Likelihood</th><th>Impact</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>WhatsApp account suspension</td><td><span class="badge criminal">High</span></td><td><span class="badge criminal">High</span></td><td>Service disruption</td><td>Multi-channel needed</td></tr>
+<tr><td>WhatsApp ToS enforcement</td><td><span class="badge criminal">High</span></td><td><span class="badge medium">Medium</span></td><td>Forced migration</td><td>Channel abstraction</td></tr>
+<tr><td>Meta/US jurisdiction via WhatsApp</td><td><span class="badge medium">Medium</span></td><td><span class="badge medium">Medium</span></td><td>Legal exposure</td><td>Minimize US nexus</td></tr>
+<tr><td>AI provider (Anthropic) US nexus</td><td><span class="badge medium">Medium</span></td><td><span class="badge high">Low</span></td><td>Jurisdictional hook</td><td>Evaluate EU alternatives</td></tr>
+<tr><td>nFADP non-compliance</td><td><span class="badge criminal">High</span></td><td><span class="badge medium">Medium</span></td><td>Fines, injunction</td><td>DPIA required pre-launch</td></tr>
+<tr><td>FOSTA-SESTA (entity)</td><td><span class="badge medium">Medium</span></td><td><span class="badge high">Low</span></td><td>Legal proceedings</td><td>Swiss incorporation</td></tr>
+<tr><td>FOSTA-SESTA (founders)</td><td><span class="badge medium">Low&ndash;Med</span></td><td><span class="badge high">Very Low</span></td><td>Personal liability</td><td>Legal counsel, avoid US</td></tr>
+<tr><td>Defamation (blacklist data)</td><td><span class="badge medium">Medium</span></td><td><span class="badge medium">Medium</span></td><td>Lawsuits</td><td>Due process mechanism</td></tr>
+<tr><td>Reputational (founders)</td><td><span class="badge medium">Low&ndash;Med</span></td><td><span class="badge high">Low</span></td><td>Fundraising</td><td>Founder preparation</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- S11: KEY TRENDS (renumbered) -->
+<div id="s11" class="sec-head">11 &mdash; Key Trends</div>
+
+<h2>Five Structural Shifts</h2>
+
+<div class="timeline">
+  <div class="tl-item highlight">
+    <div class="tl-year">2018</div>
+    <div class="tl-text"><strong>FOSTA-SESTA + Backpage seizure.</strong> The defining event in sex work platform history. Destroyed dominant advertising platform. Created global chilling effect on investment.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">2019&ndash;2020</div>
+    <div class="tl-text"><strong>COVID accelerates digitization.</strong> OnlyFans grows from 7.5M to 120M users in 18 months. In-person workers migrate to digital. Independent work model grows vs. agency.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">2021&ndash;2022</div>
+    <div class="tl-text"><strong>Platform deplatforming wave.</strong> Switter shuts down (430K users). Social media systematically deplatforms sex workers. Payment processors tighten policies. Bank account closures common.</div>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-year">2023&ndash;2024</div>
+    <div class="tl-text"><strong>Decriminalization momentum.</strong> Victoria, Australia decriminalizes (Dec 2023). Queensland follows (Aug 2024). Growing global advocacy for decrim. Each new jurisdiction = new market.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">2025&ndash;2026</div>
+    <div class="tl-text"><strong>Data sovereignty + independence.</strong> Workers leaving platforms (Notion, F-Girl) over data control. Self-hosting. Demand for tools that respect data ownership. Growing preference for conversational-native tools via existing messaging apps.</div>
+  </div>
+</div>
+
+<!-- S12: DATA CREDIBILITY -->
+<div id="s12" class="sec-head">12 &mdash; Data Credibility</div>
+
+<h2>What You Can and Cannot Cite</h2>
+<p>Sex work statistics are structurally unreliable. This tiered system helps navigate which sources to use in investor materials.</p>
+
+<div class="tier-grid">
+  <div class="tier-card t1">
+    <div class="tc-label">Tier 1 &mdash; Cite Freely</div>
+    <div class="tc-text">ILO, WHO, UNAIDS, Eurostat/ESA, NZ government evaluations, OnlyFans financial disclosures, national statistical offices, German registration data</div>
+  </div>
+  <div class="tier-card t2">
+    <div class="tc-label">Tier 2 &mdash; Cite with Caveat</div>
+    <div class="tc-text">Fondation Scelles, peer-reviewed academic papers, ProCoRe research, National Ugly Mugs annual reports. Use "Research suggests..." framing.</div>
+  </div>
+  <div class="tier-card t3">
+    <div class="tc-label">Tier 3 &mdash; Estimate Only</div>
+    <div class="tc-text">Havocscope, media aggregation sites, market research firms. Use "Estimates range..." framing. Never cite as fact.</div>
+  </div>
+  <div class="tier-card t4">
+    <div class="tc-label">Tier 4 &mdash; Avoid</div>
+    <div class="tc-text">Advocacy organizations with explicit policy positions (Nordic Model Now!, decriminalizesex.work). Only cite for "X organization argues..." Never as data source.</div>
+  </div>
+</div>
+
+<!-- S13: PLATFORM VISION -->
+<div id="s13" class="sec-head">13 &mdash; Maia Platform</div>
+
+<h2>The Reframe</h2>
+<p>Scarlot is not the company &mdash; it is the first <strong>coverage pack</strong> on a generic AI agent platform for independent service providers. Maia is the engine. Coverages are modular capability bundles users pick based on their needs.</p>
+
+<div class="card elevated" style="border-left:3px solid var(--accent);margin-top:20px;margin-bottom:24px">
+  <h3 style="margin-top:0;color:var(--accent)">The Insight</h3>
+  <p style="max-width:none;color:var(--text)">Every independent service provider &mdash; sex worker, masseuse, therapist, tutor, nanny &mdash; faces identical operational friction: Who is this person? Have I seen them before? When am I available? Did they pay? Today each is solved by disconnected tools designed for someone else. <strong>Maia replaces the stitching.</strong></p>
+</div>
+
+<h3>Coverages &mdash; Modular Capabilities</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Coverage</th><th>Capability</th><th>Who Needs It</th></tr></thead>
+<tbody>
+<tr><td><strong>Safety</strong></td><td>Inbound screening, blacklist, risk flagging, collective warnings</td><td>Sex workers, home-visit therapists, nannies</td></tr>
+<tr><td><strong>Memory</strong></td><td>Client CRM &mdash; who, when, preferences, notes, grades</td><td>All verticals</td></tr>
+<tr><td><strong>Booking</strong></td><td>Availability, appointments, reminders, no-show tracking</td><td>All verticals</td></tr>
+<tr><td><strong>Payments</strong></td><td>Deposits, cancellation fees, escrow, receipts</td><td>All verticals</td></tr>
+<tr><td><strong>Switchboard</strong></td><td>Inbound routing, auto-reply, availability broadcast</td><td>High-volume providers</td></tr>
+<tr><td><strong>Reputation</strong></td><td>Collective client database, shared warnings</td><td>Sex workers, gig workers</td></tr>
+<tr><td><strong>Compliance</strong></td><td>Income logging, tax categories, expense tracking</td><td>Registered independents</td></tr>
+<tr><td><strong>Identity</strong></td><td>Self-controlled profile, broadcast, direct marketing</td><td>Anyone leaving listings</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Coverage Packs &mdash; Vertical Presets</h3>
+<div class="card-grid">
+  <div class="card" style="border-top:3px solid var(--red)">
+    <h3 style="margin-top:0;font-size:14px">Scarlot</h3>
+    <p style="max-width:none;font-size:12px;color:var(--text-dim)"><strong>Target:</strong> Independent sex workers (TDS)<br><strong>Coverages:</strong> Safety + Memory + Reputation + Booking<br><strong>Tuning:</strong> Blacklist focus, safety-first screening, community warnings</p>
+  </div>
+  <div class="card" style="border-top:3px solid var(--green)">
+    <h3 style="margin-top:0;font-size:14px">Soigneur</h3>
+    <p style="max-width:none;font-size:12px;color:var(--text-dim)"><strong>Target:</strong> Therapists / masseuses<br><strong>Coverages:</strong> Memory + Booking + Payments + Compliance<br><strong>Tuning:</strong> Health notes, appointment reminders, insurance hooks</p>
+  </div>
+  <div class="card" style="border-top:3px solid var(--accent)">
+    <h3 style="margin-top:0;font-size:14px">Mentor</h3>
+    <p style="max-width:none;font-size:12px;color:var(--text-dim)"><strong>Target:</strong> Tutors / coaches / consultants<br><strong>Coverages:</strong> Memory + Booking + Payments + Switchboard<br><strong>Tuning:</strong> Session notes, package tracking, availability broadcast</p>
+  </div>
+  <div class="card" style="border-top:3px solid var(--gold)">
+    <h3 style="margin-top:0;font-size:14px">Gardien</h3>
+    <p style="max-width:none;font-size:12px;color:var(--text-dim)"><strong>Target:</strong> Nannies / home-care / pet-sitters<br><strong>Coverages:</strong> Safety + Memory + Booking + Payments<br><strong>Tuning:</strong> Reference checking, family profiles, recurring schedules</p>
+  </div>
+</div>
+
+<h3>How This Changes the Risk Profile</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Risk</th><th>"Scarlot" (sex work co.)</th><th>"Claw Platform" (service tool)</th></tr></thead>
+<tbody>
+<tr><td>Payment processing</td><td><span class="badge criminal">Blocked</span></td><td><span class="badge high">Possible</span> &mdash; generic service marketplace</td></tr>
+<tr><td>App store approval</td><td><span class="badge criminal">Blocked</span></td><td><span class="badge high">Possible</span> &mdash; personal service assistant</td></tr>
+<tr><td>FOSTA-SESTA exposure</td><td><span class="badge medium">Medium</span></td><td><span class="badge high">Low</span> &mdash; vertical-agnostic tool</td></tr>
+<tr><td>Investor framing</td><td>Niche, stigma risk</td><td>"Doctolib for independents" &mdash; large TAM</td></tr>
+<tr><td>Founder reputation</td><td>Sex work company</td><td>Service platform founder</td></tr>
+<tr><td>Marketing channels</td><td><span class="badge criminal">Restricted</span></td><td><span class="badge high">Standard</span> B2B SaaS</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>The Fine-Tuning Flywheel</h3>
+<div class="moat-grid">
+  <div class="moat" style="border-top:3px solid var(--accent)">
+    <div class="m-icon" style="background:var(--accent-dim);color:var(--accent)">1</div>
+    <div class="m-title">Individual</div>
+    <div class="m-desc">Each Claw learns its owner's patterns through conversation. Screening rules, client vocabulary, response patterns, risk thresholds.</div>
+  </div>
+  <div class="moat" style="border-top:3px solid var(--cyan)">
+    <div class="m-icon" style="background:var(--cyan-dim);color:var(--cyan)">2</div>
+    <div class="m-title">Vertical</div>
+    <div class="m-desc">Aggregated anonymous patterns improve coverage packs. 50 TDS flag the same number = strong signal. No-show prediction by vertical.</div>
+  </div>
+  <div class="moat" style="border-top:3px solid var(--purple)">
+    <div class="m-icon" style="background:var(--purple-dim);color:var(--purple)">3</div>
+    <div class="m-title">Cross-Vertical</div>
+    <div class="m-desc">Patterns transfer: no-show behavior, payment friction, and screening heuristics are universal. The platform learns from all verticals.</div>
+  </div>
+</div>
+
+<h3>Four Moats</h3>
+<div class="moat-grid">
+  <div class="moat" style="border-top:3px solid var(--green)">
+    <div class="m-icon" style="background:var(--green-dim);color:var(--green)">R</div>
+    <div class="m-title">Regulatory</div>
+    <div class="m-desc">Switzerland legal since 1942. Generic platform entity &mdash; not a sex work company. Verticals live in configuration, not the legal structure.</div>
+  </div>
+  <div class="moat" style="border-top:3px solid var(--accent)">
+    <div class="m-icon" style="background:var(--accent-dim);color:var(--accent)">D</div>
+    <div class="m-title">Data / Intelligence</div>
+    <div class="m-desc">Accumulated behavioral intelligence across verticals, trained by real users. The code is open source. The data moat is not.</div>
+  </div>
+  <div class="moat" style="border-top:3px solid var(--purple)">
+    <div class="m-icon" style="background:var(--purple-dim);color:var(--purple)">C</div>
+    <div class="m-title">Community</div>
+    <div class="m-desc">Each vertical's coverage pack is shaped by insiders. Co-founder trust in TDS community. Aspasie network. Future vertical leads TBD.</div>
+  </div>
+  <div class="moat" style="border-top:3px solid var(--gold)">
+    <div class="m-icon" style="background:var(--gold-dim);color:var(--gold)">S</div>
+    <div class="m-title">Switching Cost</div>
+    <div class="m-desc">Once your Claw knows your clients, patterns, and preferences, switching means starting from zero. Client memory is the lock-in.</div>
+  </div>
+</div>
+
+<h3>Go-to-Market Phases</h3>
+<div class="timeline">
+  <div class="tl-item highlight">
+    <div class="tl-year">Phase 1 &mdash; Now to Month 6</div>
+    <div class="tl-text"><strong>Prove Maia.</strong> Scarlot pack (Safety + Memory). FR-CH. 10 beta &rarr; 50 active. WhatsApp + Telegram ready. No/nominal revenue.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Phase 2 &mdash; Month 6&ndash;18</div>
+    <div class="tl-text"><strong>First revenue + second vertical.</strong> CH-wide + Germany. Launch therapist/masseuse pack (Soigneur). Add Booking + Payments. 200&ndash;500 users. CHF 200K&ndash;500K ARR.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Phase 3 &mdash; Month 18&ndash;36</div>
+    <div class="tl-text"><strong>Platform.</strong> 3&ndash;5 verticals. CH + DE + AT + BE + NL + UK + AU/NZ. Full coverage suite. 2,000&ndash;5,000 users. CHF 1&ndash;3M ARR.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Phase 4 &mdash; Year 3+</div>
+    <div class="tl-text"><strong>Ecosystem.</strong> Coverage marketplace. Third-party developers. Cross-vertical data products. API platform.</div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:24px;text-align:center;padding:32px">
+  <p style="max-width:none;color:var(--text);font-size:14px;font-weight:600;margin-bottom:8px">"Build generic infrastructure. Let vertical specialization emerge from community need.<br>The hardest vertical first &mdash; if it works there, it works everywhere."</p>
+  <p style="max-width:none;color:var(--text-muted);font-size:11px;font-family:var(--font-mono);margin-bottom:0">30+ sources &middot; 8 user interviews &middot; 16 validated problems &middot; 10 tracked assumptions &middot; 84 countries mapped<br>Research produced April 2026</p>
+</div>
+
+</div><!-- /main -->
+</div><!-- /wrap -->
+
+<script>
+(function(){
+  const toc=document.getElementById('toc');
+  const links=toc.querySelectorAll('a');
+  const sections=[];
+  links.forEach(link=>{
+    const id=link.getAttribute('href').slice(1);
+    const el=document.getElementById(id);
+    if(el)sections.push({id,el,link});
+  });
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const match=sections.find(s=>s.el===entry.target);
+        if(match){
+          match.link.classList.add('active');
+          if(window.innerWidth<=1000){
+            match.link.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+          }
+        }
+      }
+    });
+  },{rootMargin:'-10% 0px -80% 0px'});
+  sections.forEach(s=>observer.observe(s.el));
+  links.forEach(link=>{
+    link.addEventListener('click',e=>{
+      e.preventDefault();
+      const id=link.getAttribute('href').slice(1);
+      const el=document.getElementById(id);
+      if(el){el.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'','#'+id)}
+    });
+  });
+})();
+</script>
+</body>
+</html>

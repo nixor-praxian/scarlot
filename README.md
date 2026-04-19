@@ -1,6 +1,6 @@
 # Scarlot
 
-A conversational assistant for independent sex workers (TDS) in Switzerland. Scarlot connects to a TDS's existing WhatsApp number and handles client screening, booking, and safety — all through the messaging app they already use.
+A conversational assistant for independent sex workers (TDS) in Switzerland. Scarlot connects to a TDS's existing WhatsApp number and handles client screening, booking, and safety - all through the messaging app they already use.
 
 No new app to install. No dashboard to learn. The TDS configures everything by chatting with the bot.
 
@@ -31,7 +31,7 @@ A normal WhatsApp conversation. They message the number from an ad, get a profes
 
 ### What the TDS controls
 
-Everything — through natural language in the admin chat:
+Everything - through natural language in the admin chat:
 
 | What they say | What happens |
 |---|---|
@@ -67,7 +67,7 @@ See [`docs/poc-architecture.md`](docs/poc-architecture.md) for the full architec
 ```
 scarlot/
 ├── claw/CLAUDE.md           # Bot personality for project co-pilot (WhatsApp group)
-├── engine/                  # NanoClaw — WhatsApp bot engine (git submodule)
+├── engine/                  # NanoClaw - WhatsApp bot engine (git submodule)
 ├── docs/
 │   ├── scarlot_discovery_report_v1.md   # Full discovery report
 │   ├── poc-architecture.md              # POC architecture & onboarding
@@ -100,12 +100,12 @@ See [`SETUP.md`](SETUP.md) for the full guide including VPS deployment.
 
 ## Tech Stack
 
-- **Engine**: [NanoClaw](https://github.com/nixor-praxian/nanoclaw) — lightweight WhatsApp bot on Claude Agent SDK
+- **Engine**: [NanoClaw](https://github.com/nixor-praxian/nanoclaw) - lightweight WhatsApp bot on Claude Agent SDK
 - **Runtime**: Node.js + TypeScript
 - **WhatsApp**: baileys (linked device protocol)
 - **AI**: Claude via Claude Agent SDK (runs in isolated containers)
 - **Database**: SQLite (messages, sessions, client notes)
-- **Contacts/Calendar** (planned): CalDAV/CardDAV via tsdav — works with Google, Apple, any provider
+- **Contacts/Calendar** (planned): CalDAV/CardDAV via tsdav - works with Google, Apple, any provider
 
 ## Privacy
 

@@ -24,5 +24,8 @@ yarn-error.log*
 # Binary exports (use markdown source of truth)
 *.docx
 
+# Financial model notes (xlsx is tracked, but keep markdown working notes local)
+docs/financial/*.md
+
 # Claude Code
 .claude/

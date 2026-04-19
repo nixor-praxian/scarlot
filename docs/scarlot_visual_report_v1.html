@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scarlot — Discovery Report 02·2025</title>
+<title>Scarlot -- Discovery Report v2 -- April 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=JetBrains+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -39,7 +39,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ── NAV ── */
+/* -- NAV -- */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -64,13 +64,13 @@ nav {
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  gap: 20px;
   list-style: none;
 }
 
 .nav-links a {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
   text-decoration: none;
   letter-spacing: 0.08em;
@@ -79,7 +79,7 @@ nav {
 }
 .nav-links a:hover { color: var(--amber); }
 
-/* ── HERO ── */
+/* -- HERO -- */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -138,7 +138,7 @@ nav {
 .hero-sub {
   font-size: 17px;
   color: var(--muted2);
-  max-width: 560px;
+  max-width: 620px;
   margin-top: 28px;
   line-height: 1.7;
   opacity: 0;
@@ -149,6 +149,7 @@ nav {
   display: flex;
   gap: 40px;
   margin-top: 52px;
+  flex-wrap: wrap;
   opacity: 0;
   animation: fadeUp 0.7s ease forwards 0.5s;
 }
@@ -199,7 +200,7 @@ nav {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── SECTION WRAPPER ── */
+/* -- SECTION WRAPPER -- */
 section {
   padding: 96px 64px;
   border-bottom: 1px solid var(--line);
@@ -224,20 +225,20 @@ section {
   margin-bottom: 48px;
 }
 
-/* ── PRIORITY STACK ── */
+/* -- PRIORITY STACK -- */
 .priority-stack {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  max-width: 760px;
+  max-width: 820px;
 }
 
 .priority-row {
   display: grid;
-  grid-template-columns: 28px 1fr auto;
+  grid-template-columns: 28px 1fr auto auto;
   align-items: center;
-  gap: 20px;
-  padding: 20px 24px;
+  gap: 16px;
+  padding: 18px 24px;
   background: var(--bg2);
   border: 1px solid var(--line);
   border-left: 3px solid transparent;
@@ -279,6 +280,16 @@ section {
   margin-top: 2px;
 }
 
+.ptrend {
+  font-family: var(--mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.ptrend.up { color: var(--coral); }
+.ptrend.stable { color: var(--muted); }
+.ptrend.down { color: var(--green); }
+.ptrend.new { color: var(--purple); }
+
 .pbadge {
   font-family: var(--mono);
   font-size: 10px;
@@ -291,8 +302,9 @@ section {
 .pbadge.critical { background: rgba(232,85,85,0.15); color: var(--coral); border: 1px solid rgba(232,85,85,0.3); }
 .pbadge.high { background: rgba(240,165,0,0.15); color: var(--amber2); border: 1px solid rgba(240,165,0,0.3); }
 .pbadge.medium { background: rgba(91,156,246,0.15); color: var(--blue); border: 1px solid rgba(91,156,246,0.3); }
+.pbadge.low { background: rgba(107,114,128,0.15); color: var(--muted); border: 1px solid rgba(107,114,128,0.3); }
 
-/* ── PROBLEM MATRIX ── */
+/* -- PROBLEM MATRIX -- */
 .problem-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -390,7 +402,54 @@ section {
   letter-spacing: 0.04em;
 }
 
-/* ── USER JOURNEY ── */
+/* -- PARTICIPANT GRID -- */
+.participant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.participant-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 24px;
+  transition: border-color 0.2s;
+}
+.participant-card:hover { border-color: rgba(240,165,0,0.3); }
+
+.participant-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 4px;
+}
+
+.participant-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.participant-detail {
+  font-size: 12px;
+  color: var(--muted2);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.participant-quote {
+  font-size: 12px;
+  color: var(--muted2);
+  border-left: 2px solid var(--amber);
+  padding-left: 12px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* -- USER JOURNEY -- */
 .journey-wrapper {
   overflow-x: auto;
   padding-bottom: 20px;
@@ -484,7 +543,7 @@ section {
   margin-bottom: 3px;
 }
 
-/* ── CONCEPTS ── */
+/* -- CONCEPTS -- */
 .concepts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -547,7 +606,407 @@ section {
   font-style: italic;
 }
 
-/* ── USER STORIES ── */
+/* -- ASSUMPTION LOG -- */
+.assumption-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assumption-table th {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.assumption-table td {
+  padding: 14px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.assumption-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.assumption-table td:first-child {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+.a-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  display: inline-block;
+}
+.a-status.none { background: rgba(232,85,85,0.12); color: var(--coral); border: 1px solid rgba(232,85,85,0.25); }
+.a-status.partial { background: rgba(240,165,0,0.12); color: var(--amber2); border: 1px solid rgba(240,165,0,0.25); }
+.a-status.ok { background: rgba(78,203,141,0.12); color: var(--green); border: 1px solid rgba(78,203,141,0.25); }
+.a-status.risk { background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.25); }
+
+.a-break {
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+/* -- COMPETITIVE -- */
+.comp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.comp-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 20px;
+  position: relative;
+}
+
+.comp-name {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.comp-cost {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+}
+
+.comp-pros, .comp-cons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comp-item {
+  font-size: 11px;
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.comp-item.pro { color: var(--green); }
+.comp-item.con { color: var(--coral); }
+
+.comp-item .icon { flex-shrink: 0; margin-top: 1px; }
+
+.comp-card.scarlot {
+  border-color: rgba(240,165,0,0.5);
+  background: rgba(240,165,0,0.04);
+}
+
+.comp-card.scarlot::before {
+  content: 'TARGET';
+  position: absolute;
+  top: 14px; right: 14px;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--amber);
+  letter-spacing: 0.1em;
+}
+
+/* -- EVIDENCE PYRAMID -- */
+.evidence-wrapper {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.pyramid {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pyr-level {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 10px;
+  text-align: center;
+}
+
+.pyr-level.gold { width: 200px; background: rgba(240,165,0,0.2); color: var(--amber2); border: 1px solid rgba(240,165,0,0.4); }
+.pyr-level.silver { width: 260px; background: rgba(156,163,175,0.12); color: var(--muted2); border: 1px solid rgba(156,163,175,0.25); }
+.pyr-level.bronze { width: 320px; background: rgba(91,156,246,0.08); color: var(--blue); border: 1px solid rgba(91,156,246,0.2); }
+.pyr-level.watch { width: 380px; background: rgba(107,114,128,0.08); color: var(--muted); border: 1px solid var(--line); }
+
+.evidence-legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ev-tier { padding: 20px; background: var(--bg2); border: 1px solid var(--line); }
+.ev-tier-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.ev-tier-name.gold { color: var(--amber); }
+.ev-tier-name.silver { color: var(--muted2); }
+.ev-tier-name.bronze { color: var(--blue); }
+.ev-tier-name.watch { color: var(--muted); }
+.ev-tier-desc { font-size: 12px; color: var(--muted2); line-height: 1.6; }
+.ev-problems { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+.ev-p { font-family: var(--mono); font-size: 10px; color: var(--muted); border: 1px solid var(--line); padding: 2px 7px; border-radius: 3px; }
+
+/* -- MARKET DATA -- */
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.market-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 24px;
+  text-align: center;
+}
+
+.market-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.market-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* -- FOLLOW-UP -- */
+.followup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.followup-col h3 {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.followup-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.fi-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--amber);
+  min-width: 24px;
+  padding-top: 2px;
+}
+
+.fi-content { flex: 1; }
+.fi-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.fi-desc { font-size: 12px; color: var(--muted2); line-height: 1.5; }
+
+/* -- POC BOX -- */
+.poc-box {
+  background: var(--bg2);
+  border: 1px solid rgba(240,165,0,0.3);
+  padding: 40px;
+  margin-top: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.poc-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--coral));
+}
+
+.poc-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.poc-sub {
+  font-size: 13px;
+  color: var(--muted2);
+  margin-bottom: 28px;
+}
+
+.poc-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.poc-item {
+  padding: 16px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+.poc-item-num {
+  font-family: var(--mono);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.poc-item-desc {
+  font-size: 12px;
+  color: var(--muted2);
+  line-height: 1.5;
+}
+
+/* -- FOOTER -- */
+footer {
+  padding: 48px 64px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.8;
+}
+
+/* -- UTILITIES -- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.divider {
+  width: 40px;
+  height: 3px;
+  background: var(--amber);
+  margin-bottom: 40px;
+}
+
+/* Bar chart */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 700px;
+  margin-bottom: 48px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 40px;
+  gap: 12px;
+  align-items: center;
+}
+
+.bar-label {
+  font-size: 12px;
+  color: var(--muted2);
+  text-align: right;
+}
+
+.bar-track {
+  height: 24px;
+  background: var(--bg3);
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s ease;
+}
+
+.bar-fill.critical { background: linear-gradient(90deg, var(--coral), rgba(232,85,85,0.5)); }
+.bar-fill.high { background: linear-gradient(90deg, var(--amber), rgba(240,165,0,0.5)); }
+.bar-fill.medium { background: linear-gradient(90deg, var(--blue), rgba(91,156,246,0.5)); }
+.bar-fill.low { background: linear-gradient(90deg, var(--muted), rgba(107,114,128,0.5)); }
+
+.bar-count {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.bar-row.visible .bar-fill { transform: scaleX(1); }
+
+/* -- CONF BADGES -- */
+.conf-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.conf-badge.gold { background: rgba(240,165,0,0.15); color: var(--amber2); border: 1px solid rgba(240,165,0,0.3); }
+.conf-badge.silver { background: rgba(156,163,175,0.15); color: var(--muted2); border: 1px solid rgba(156,163,175,0.3); }
+.conf-badge.bronze { background: rgba(91,156,246,0.08); color: var(--blue); border: 1px solid rgba(91,156,246,0.2); }
+
+/* -- STORIES -- */
 .epics {
   display: flex;
   flex-direction: column;
@@ -620,371 +1079,56 @@ section {
   padding-top: 2px;
 }
 
-.conf-badge {
-  font-family: var(--mono);
-  font-size: 10px;
-  padding: 3px 8px;
-  border-radius: 3px;
-}
-.conf-badge.gold { background: rgba(240,165,0,0.15); color: var(--amber2); border: 1px solid rgba(240,165,0,0.3); }
-.conf-badge.silver { background: rgba(156,163,175,0.15); color: var(--muted2); border: 1px solid rgba(156,163,175,0.3); }
-.conf-badge.bronze { background: rgba(91,156,246,0.08); color: var(--blue); border: 1px solid rgba(91,156,246,0.2); }
-
-/* ── ASSUMPTION LOG ── */
-.assumption-table {
-  width: 100%;
-  border-collapse: collapse;
+/* -- PRICING -- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 800px;
 }
 
-.assumption-table th {
+.pricing-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 24px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.pricing-card:hover { border-color: rgba(240,165,0,0.3); }
+.pricing-card.highlight {
+  border-color: var(--amber);
+  background: rgba(240,165,0,0.04);
+}
+
+.pricing-tier {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
-  text-align: left;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--line);
-}
-
-.assumption-table td {
-  padding: 14px 16px;
-  font-size: 13px;
-  border-bottom: 1px solid var(--line);
-  vertical-align: top;
-}
-
-.assumption-table tr:hover td { background: rgba(255,255,255,0.02); }
-
-.assumption-table td:first-child {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--amber);
-  white-space: nowrap;
-}
-
-.a-status {
-  font-family: var(--mono);
-  font-size: 10px;
-  padding: 3px 8px;
-  border-radius: 3px;
-  white-space: nowrap;
-  display: inline-block;
-}
-.a-status.none { background: rgba(232,85,85,0.12); color: var(--coral); border: 1px solid rgba(232,85,85,0.25); }
-.a-status.partial { background: rgba(240,165,0,0.12); color: var(--amber2); border: 1px solid rgba(240,165,0,0.25); }
-.a-status.ok { background: rgba(78,203,141,0.12); color: var(--green); border: 1px solid rgba(78,203,141,0.25); }
-.a-status.risk { background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.25); }
-
-.a-break {
-  font-size: 12px;
-  color: var(--muted2);
-}
-
-/* ── FOLLOW-UP ── */
-.followup-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.followup-col h3 {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  letter-spacing: -0.02em;
-}
-
-.followup-item {
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-  background: var(--bg2);
-  border: 1px solid var(--line);
   margin-bottom: 8px;
 }
 
-.fi-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--amber);
-  min-width: 24px;
-  padding-top: 2px;
-}
-
-.fi-content { flex: 1; }
-.fi-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-.fi-desc { font-size: 12px; color: var(--muted2); line-height: 1.5; }
-
-/* ── POC BOX ── */
-.poc-box {
-  background: var(--bg2);
-  border: 1px solid rgba(240,165,0,0.3);
-  padding: 40px;
-  margin-top: 48px;
-  position: relative;
-  overflow: hidden;
-}
-
-.poc-box::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--amber), var(--coral));
-}
-
-.poc-title {
+.pricing-price {
   font-family: var(--serif);
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
-}
-
-.poc-sub {
-  font-size: 13px;
-  color: var(--muted2);
-  margin-bottom: 28px;
-}
-
-.poc-items {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.poc-item {
-  padding: 16px;
-  background: var(--bg);
-  border: 1px solid var(--line);
-}
-
-.poc-item-num {
-  font-family: var(--mono);
   font-size: 28px;
   font-weight: 700;
   color: var(--amber);
-  line-height: 1;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
-.poc-item-desc {
-  font-size: 12px;
-  color: var(--muted2);
-  line-height: 1.5;
-}
-
-/* ── COMPETITIVE ── */
-.comp-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
-}
-
-.comp-card {
-  background: var(--bg2);
-  border: 1px solid var(--line);
-  padding: 20px;
-  position: relative;
-}
-
-.comp-name {
-  font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-
-.comp-cost {
+.pricing-period {
   font-family: var(--mono);
   font-size: 10px;
   color: var(--muted);
   margin-bottom: 12px;
-  letter-spacing: 0.06em;
 }
 
-.comp-pros, .comp-cons {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.comp-item {
-  font-size: 11px;
-  display: flex;
-  gap: 6px;
-  align-items: flex-start;
-}
-
-.comp-item.pro { color: var(--green); }
-.comp-item.con { color: var(--coral); }
-
-.comp-item .icon { flex-shrink: 0; margin-top: 1px; }
-
-.comp-card.scarlot {
-  border-color: rgba(240,165,0,0.5);
-  background: rgba(240,165,0,0.04);
-}
-
-.comp-card.scarlot::before {
-  content: 'TARGET';
-  position: absolute;
-  top: 14px; right: 14px;
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--amber);
-  letter-spacing: 0.1em;
-}
-
-/* ── EVIDENCE PYRAMID ── */
-.evidence-wrapper {
-  display: flex;
-  gap: 60px;
-  align-items: flex-start;
-}
-
-.pyramid {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.pyr-level {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 10px;
-  text-align: center;
-}
-
-.pyr-level.gold { width: 200px; background: rgba(240,165,0,0.2); color: var(--amber2); border: 1px solid rgba(240,165,0,0.4); }
-.pyr-level.silver { width: 260px; background: rgba(156,163,175,0.12); color: var(--muted2); border: 1px solid rgba(156,163,175,0.25); }
-.pyr-level.bronze { width: 320px; background: rgba(91,156,246,0.08); color: var(--blue); border: 1px solid rgba(91,156,246,0.2); }
-.pyr-level.watch { width: 380px; background: rgba(107,114,128,0.08); color: var(--muted); border: 1px solid var(--line); }
-
-.evidence-legend {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.ev-tier { padding: 20px; background: var(--bg2); border: 1px solid var(--line); }
-.ev-tier-name {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.ev-tier-name.gold { color: var(--amber); }
-.ev-tier-name.silver { color: var(--muted2); }
-.ev-tier-name.bronze { color: var(--blue); }
-.ev-tier-name.watch { color: var(--muted); }
-.ev-tier-desc { font-size: 12px; color: var(--muted2); line-height: 1.6; }
-.ev-problems { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
-.ev-p { font-family: var(--mono); font-size: 10px; color: var(--muted); border: 1px solid var(--line); padding: 2px 7px; border-radius: 3px; }
-
-/* ── FOOTER ── */
-footer {
-  padding: 48px 64px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-brand {
-  font-family: var(--serif);
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--amber);
-}
-
-.footer-meta {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  text-align: right;
-  line-height: 1.8;
-}
-
-/* ── UTILITIES ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.divider {
-  width: 40px;
-  height: 3px;
-  background: var(--amber);
-  margin-bottom: 40px;
-}
-
-/* Bar chart */
-.bar-chart {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-width: 700px;
-  margin-bottom: 48px;
-}
-
-.bar-row {
-  display: grid;
-  grid-template-columns: 200px 1fr 40px;
-  gap: 12px;
-  align-items: center;
-}
-
-.bar-label {
+.pricing-features {
   font-size: 12px;
   color: var(--muted2);
-  text-align: right;
+  line-height: 1.8;
 }
-
-.bar-track {
-  height: 24px;
-  background: var(--bg3);
-  border-radius: 2px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
-
-.bar-fill {
-  height: 100%;
-  border-radius: 2px;
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform 1s ease;
-}
-
-.bar-fill.critical { background: linear-gradient(90deg, var(--coral), rgba(232,85,85,0.5)); }
-.bar-fill.high { background: linear-gradient(90deg, var(--amber), rgba(240,165,0,0.5)); }
-.bar-fill.medium { background: linear-gradient(90deg, var(--blue), rgba(91,156,246,0.5)); }
-.bar-fill.low { background: linear-gradient(90deg, var(--muted), rgba(107,114,128,0.5)); }
-
-.bar-count {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--text);
-  font-weight: 700;
-}
-
-.bar-row.visible .bar-fill { transform: scaleX(1); }
 
 </style>
 </head>
@@ -993,13 +1137,15 @@ footer {
 <nav>
   <div class="nav-brand">Scarlot</div>
   <ul class="nav-links">
+    <li><a href="#participants">Interviews</a></li>
     <li><a href="#problems">Problems</a></li>
+    <li><a href="#market">Market</a></li>
     <li><a href="#journey">Journey</a></li>
-    <li><a href="#concepts">Concepts</a></li>
-    <li><a href="#stories">Stories</a></li>
-    <li><a href="#assumptions">Assumptions</a></li>
+    <li><a href="#concepts">Coverages</a></li>
     <li><a href="#competitive">Competitive</a></li>
-    <li><a href="#followup">Next Steps</a></li>
+    <li><a href="#assumptions">Assumptions</a></li>
+    <li><a href="#business">Business</a></li>
+    <li><a href="#followup">Next</a></li>
   </ul>
 </nav>
 
@@ -1007,29 +1153,33 @@ footer {
 <section class="hero" id="top">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-  <div class="hero-tag">Discovery Report · 02 · 2025 · Geneva, Switzerland</div>
-  <h1>Tools built for<br><em>someone else.</em></h1>
-  <p class="hero-sub">Six recorded conversations with the co-founder of Scarlot — mapping the operational reality of independent sex workers in Switzerland, and the product opportunity at the intersection of safety, privacy, and autonomous work.</p>
+  <div class="hero-tag">Discovery Report v2 -- April 2026 -- Geneva, Switzerland</div>
+  <h1>The system<br>that <em>doesn't exist.</em></h1>
+  <p class="hero-sub">8 interviews with 7 independent sex workers across Switzerland and France. Every participant built workarounds for problems no product solves. One of them built an entire scraper. The opportunity is validated, quantified, and ready to build.</p>
   <div class="hero-meta">
     <div class="meta-item">
-      <span class="meta-label">Sessions</span>
-      <span class="meta-value">6</span>
+      <span class="meta-label">Interviews</span>
+      <span class="meta-value">8</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Unique Participants</span>
+      <span class="meta-value">7</span>
     </div>
     <div class="meta-item">
       <span class="meta-label">Problems Identified</span>
-      <span class="meta-value">16</span>
+      <span class="meta-value">18</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">User Stories</span>
-      <span class="meta-value">13</span>
+      <span class="meta-label">Gold-Validated</span>
+      <span class="meta-value">12</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Beta Users</span>
-      <span class="meta-value">~10</span>
+      <span class="meta-label">Market Size (CH)</span>
+      <span class="meta-value">7,221</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Open Assumptions</span>
-      <span class="meta-value">10</span>
+      <span class="meta-label">Launch Market (FR-CH)</span>
+      <span class="meta-value">2,047</span>
     </div>
   </div>
   <div class="hero-scroll">Scroll to explore</div>
@@ -1037,277 +1187,385 @@ footer {
 
 <!-- PRIORITY STACK -->
 <section>
-  <div class="section-eyebrow">00 · Strategic Foundation</div>
-  <h2 class="section-title">The Priority Stack</h2>
+  <div class="section-eyebrow">00 -- Validated Priority Stack</div>
+  <h2 class="section-title">The Pain Hierarchy</h2>
   <div class="divider"></div>
-  <p style="color:var(--muted2);font-size:14px;max-width:600px;margin-bottom:40px;line-height:1.7;">The co-founder was explicit about the order of importance. This is not a roadmap — it's the validated hierarchy of pain severity as felt by independent TDS today.</p>
+  <p style="color:var(--muted2);font-size:14px;max-width:660px;margin-bottom:40px;line-height:1.7;">Ranked by evidence severity across 8 direct user interviews. This is not a roadmap -- it's the validated hierarchy of pain as felt by independent TDS. Arrows show trajectory since discovery began.</p>
 
   <div class="priority-stack">
     <div class="priority-row p1" style="animation-delay:0.1s">
       <span class="prank">01</span>
       <div>
-        <div class="pname">Safety &amp; Filtering — Blacklist</div>
-        <div class="pdesc">Who is this person? Are they safe? Am I protected before I engage?</div>
+        <div class="pname">P5 -- No Centralized Blacklist</div>
+        <div class="pdesc">Safety intelligence exists in WhatsApp groups, Telegram, BMG -- fragmented, non-searchable, not discoverable. GABRIELLE built a scraper to solve this independently.</div>
       </div>
+      <span class="ptrend up">^^^</span>
+      <span class="pbadge critical">Critical</span>
+    </div>
+    <div class="priority-row p1" style="animation-delay:0.15s">
+      <span class="prank">02</span>
+      <div>
+        <div class="pname">P3 -- No Inbound Filtering</div>
+        <div class="pdesc">Clients have unrestricted access. Even power users don't check systematically. AVRIL: "90% of my admin time is messaging."</div>
+      </div>
+      <span class="ptrend up">^^</span>
       <span class="pbadge critical">Critical</span>
     </div>
     <div class="priority-row p1" style="animation-delay:0.2s">
-      <span class="prank">02</span>
+      <span class="prank">03</span>
       <div>
-        <div class="pname">Client Information Management — CRM</div>
-        <div class="pdesc">Who have I met before? What happened? What do I need to remember?</div>
+        <div class="pname">P4 -- Cognitive Overload</div>
+        <div class="pdesc">Screening, scheduling, remembering, warning -- all manual. CAROLL: "It doesn't allow me to live the rest of the day focused on my day."</div>
       </div>
+      <span class="ptrend up">^</span>
+      <span class="pbadge critical">Critical</span>
+    </div>
+    <div class="priority-row p1" style="animation-delay:0.25s">
+      <span class="prank">04</span>
+      <div>
+        <div class="pname">P6 -- No-Shows &amp; Time-Wasters</div>
+        <div class="pdesc">Mood-dependent blacklisting = data loss. TARA: "50 to three-quarters of my clients" ghost. GABRIELLE: reporting depends on her mood.</div>
+      </div>
+      <span class="ptrend up">^</span>
       <span class="pbadge critical">Critical</span>
     </div>
     <div class="priority-row p2" style="animation-delay:0.3s">
-      <span class="prank">03</span>
+      <span class="prank">05</span>
       <div>
-        <div class="pname">Messaging Consolidation</div>
-        <div class="pdesc">Everything across WhatsApp, Telegram, Signal — in one place, in one context.</div>
+        <div class="pname">P2 -- No Client Memory</div>
+        <div class="pdesc">6/8 interviewees built workarounds. MARYLINE uses emoji-coded contacts. GABRIELLE built a Notion database. CAROLL after 12 years: "There is no system."</div>
       </div>
+      <span class="ptrend up">^</span>
       <span class="pbadge high">High</span>
     </div>
-    <div class="priority-row p3" style="animation-delay:0.4s">
-      <span class="prank">04</span>
+    <div class="priority-row p2" style="animation-delay:0.35s">
+      <span class="prank">06</span>
       <div>
-        <div class="pname">Booking &amp; Availability</div>
-        <div class="pdesc">Declare availability in natural language. No calendar grid. No double entry.</div>
+        <div class="pname">P9 -- No Client KYC / Verification</div>
+        <div class="pdesc">Universal screening behavior: Google lookups, voice calls, selfie requests. No standard, no tooling. MERON: 3-step verification protocol.</div>
       </div>
+      <span class="ptrend stable">--</span>
+      <span class="pbadge high">High</span>
+    </div>
+    <div class="priority-row p2" style="animation-delay:0.4s">
+      <span class="prank">07</span>
+      <div>
+        <div class="pname">P8 -- Manual Repetition</div>
+        <div class="pdesc">GABRIELLE uses pre-recorded messages and WhatsApp Business templates. Everyone else types the same rates, services, and location from scratch.</div>
+      </div>
+      <span class="ptrend up">^</span>
+      <span class="pbadge high">High</span>
+    </div>
+    <div class="priority-row p3" style="animation-delay:0.45s">
+      <span class="prank">08</span>
+      <div>
+        <div class="pname">P15 -- Data Siloing Across Platforms</div>
+        <div class="pdesc">First real signal from INT8: GABRIELLE's scraper explicitly about aggregating fragmented data sources. CAROLL: data split across old iPhone, SIM card, community group, memory.</div>
+      </div>
+      <span class="ptrend new">NEW</span>
       <span class="pbadge medium">Medium</span>
+    </div>
+    <div class="priority-row p3" style="animation-delay:0.5s">
+      <span class="prank">09</span>
+      <div>
+        <div class="pname">P16 -- No Income Tracking</div>
+        <div class="pdesc">GABRIELLE built a bank notification parser for income tracking. Tracks seasonality, revenue per customer, costs, taxes. Wants a Mint-like aggregator.</div>
+      </div>
+      <span class="ptrend new">NEW</span>
+      <span class="pbadge medium">Medium</span>
+    </div>
+    <div class="priority-row p4" style="animation-delay:0.55s">
+      <span class="prank">10</span>
+      <div>
+        <div class="pname">P1 -- Messaging Fragmentation</div>
+        <div class="pdesc">8 interviews, zero pain signal. WhatsApp dominates. Users manage channels strategically. Not a real problem for this population.</div>
+      </div>
+      <span class="ptrend down">v v</span>
+      <span class="pbadge low">Low</span>
     </div>
   </div>
 
-  <div style="margin-top:32px;padding:20px 24px;background:rgba(240,165,0,0.06);border:1px solid rgba(240,165,0,0.2);border-left:3px solid var(--amber);max-width:760px;">
-    <div style="font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:8px;letter-spacing:0.08em;">KEY FINDING</div>
-    <div style="font-size:14px;line-height:1.7;color:var(--muted2);">Blacklist and CRM are <strong style="color:var(--text)">not two features — they are one data model</strong>. The phone number is the unique key. A contact record begins the moment a message arrives. Safety and memory are inseparable.</div>
+  <div style="margin-top:32px;display:flex;gap:16px;max-width:820px;flex-wrap:wrap;">
+    <div style="padding:20px 24px;background:rgba(240,165,0,0.06);border:1px solid rgba(240,165,0,0.2);border-left:3px solid var(--amber);flex:1;min-width:300px;">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:8px;letter-spacing:0.08em;">KEY FINDING</div>
+      <div style="font-size:14px;line-height:1.7;color:var(--muted2);">P5 (blacklist) and P2 (client memory) are <strong style="color:var(--text)">one data model, not two features</strong>. Phone number = unique key. A contact record begins the moment a message arrives. Safety and memory are inseparable.</div>
+    </div>
+    <div style="padding:20px 24px;background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-left:3px solid var(--purple);flex:1;min-width:300px;">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--purple);margin-bottom:8px;letter-spacing:0.08em;">NEW PROBLEMS</div>
+      <div style="font-size:14px;line-height:1.7;color:var(--muted2);"><strong style="color:var(--text)">P17: Platform identity mismatch</strong> -- trans TDS forced into outdated categories. Gold evidence.<br><strong style="color:var(--text)">P18: Client reputation threats</strong> -- revenge and demolition threats. Silver evidence.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTICIPANTS -->
+<section id="participants">
+  <div class="section-eyebrow">01 -- Research Cohort</div>
+  <h2 class="section-title">8 Interviews,<br>7 Participants</h2>
+  <div class="divider"></div>
+  <p style="color:var(--muted2);font-size:14px;max-width:660px;margin-bottom:40px;line-height:1.7;">Direct user interviews conducted March 5-19, 2026. Experience ranges from 3 months to 13 years. Includes street workers, online-only, dual-mode, and GFE specialists. Two follow-up sessions with the strongest signal sources.</p>
+
+  <div class="participant-grid reveal">
+    <div class="participant-card">
+      <div class="participant-name">CAROLL</div>
+      <div class="participant-meta">INT1 + INT9 -- 12+ YEARS -- CROSS-BORDER PERIODIC</div>
+      <div class="participant-detail">WhatsApp only. Visits CH monthly. Pays ~450 CHF/mo for BMG but does NOT use the check feature. Strongest WTP signal in cohort.</div>
+      <div class="participant-quote">"Pero no hay un sistema."</div>
+    </div>
+
+    <div class="participant-card">
+      <div class="participant-name">MERON</div>
+      <div class="participant-meta">INT2 -- EXPERIENCED -- TELEGRAM + WHATSAPP</div>
+      <div class="participant-detail">Active in Telegram safety groups. 3-step verification protocol: age, Google lookup, voice call. Highest quantified time-loss: 40% on unwanted messages.</div>
+      <div class="participant-quote">"40% je dirais actuellement mais ca a deja ete plus eleve."</div>
+    </div>
+
+    <div class="participant-card">
+      <div class="participant-name">MARYLINE</div>
+      <div class="participant-meta">INT3 -- 13 YEARS -- PARIS, FRANCE</div>
+      <div class="participant-detail">Emoji-coded contact CRM (credit card = deposit next time, phone-off = no-show). Uses Projet Jasmine. Received death threat via masked number.</div>
+      <div class="participant-quote">"J'enregistre leur numero avec un emoji carte bleue."</div>
+    </div>
+
+    <div class="participant-card">
+      <div class="participant-name">PITI</div>
+      <div class="participant-meta">INT4 -- TRANS -- STREET + ONLINE DUAL-MODE</div>
+      <div class="participant-detail">Geneva. 3-category taxonomy: perdus / kiffeurs / gros cons. Boulevard oral blacklist works; digital blacklist doesn't exist. Financial precarity impacts screening rigor.</div>
+      <div class="participant-quote">"Sur le boulevard, oui. Sur le travail numerique jamais."</div>
+    </div>
+
+    <div class="participant-card">
+      <div class="participant-name">AVRIL</div>
+      <div class="participant-meta">INT5 -- 5+ YEARS -- FULL-TIME, SWITZERLAND</div>
+      <div class="participant-detail">Highest quantified pain: 90% of admin time on messaging. Multi-layered safety protocol: gut-check, hotel booking, partner notification, 5-min check-in.</div>
+      <div class="participant-quote">"90% de mon temps administratif par message."</div>
+    </div>
+
+    <div class="participant-card">
+      <div class="participant-name">GABRIELLE</div>
+      <div class="participant-meta">INT6 + INT8 -- TRANS -- MOST SYSTEMATIZED</div>
+      <div class="participant-detail">Built a blacklist scraper (And6 to Airtable via API). Notion DB for client CRM. Bank notification parser for income. Paid ~50 CHF/mo for tools. Left Notion over data sovereignty concerns. Rewriting scraper in Rust.</div>
+      <div class="participant-quote">"Je veux ma propre epicerie."</div>
+    </div>
+
+    <div class="participant-card">
+      <div class="participant-name">TARA</div>
+      <div class="participant-meta">INT7 -- 3 MONTHS -- GFE, PARIS</div>
+      <div class="participant-detail">Most junior in cohort. GFE vulnerability loop: emotional investment leads to ghost leads to shame. 50-75% client ghost rate. France's client criminalization fragments community.</div>
+      <div class="participant-quote">"Il n'y a aucun systeme."</div>
+    </div>
   </div>
 </section>
 
 <!-- PROBLEMS -->
 <section id="problems">
-  <div class="section-eyebrow">01 · Problem Inventory</div>
-  <h2 class="section-title">16 Problems,<br>Documented &amp; Counted</h2>
+  <div class="section-eyebrow">02 -- Problem Inventory</div>
+  <h2 class="section-title">18 Problems,<br>Validated by Users</h2>
   <div class="divider"></div>
 
-  <p style="color:var(--muted2);font-size:14px;max-width:600px;margin-bottom:40px;line-height:1.7;">Mention count = distinct references across all 6 sessions. Severity = assessed from emotional intensity, frequency, and behavioral evidence.</p>
+  <p style="color:var(--muted2);font-size:14px;max-width:660px;margin-bottom:40px;line-height:1.7;">Signal count = distinct interviews with evidence. Evidence quality: Gold = unprompted behavioral, Silver = specific past-tense, Bronze = directionally plausible. Bar width reflects signal strength across interviews.</p>
 
   <div class="bar-chart" id="barChart">
     <div class="bar-row" data-width="100">
-      <span class="bar-label">Messaging fragmentation</span>
+      <span class="bar-label">P5 -- No centralized blacklist</span>
       <div class="bar-track"><div class="bar-fill critical" style="width:100%"></div></div>
-      <span class="bar-count">7</span>
+      <span class="bar-count">8</span>
     </div>
-    <div class="bar-row" data-width="86">
-      <span class="bar-label">No client memory</span>
-      <div class="bar-track"><div class="bar-fill critical" style="width:86%"></div></div>
+    <div class="bar-row" data-width="100">
+      <span class="bar-label">P3 -- No inbound filtering</span>
+      <div class="bar-track"><div class="bar-fill critical" style="width:100%"></div></div>
+      <span class="bar-count">8</span>
+    </div>
+    <div class="bar-row" data-width="100">
+      <span class="bar-label">P6 -- No-shows &amp; time-wasters</span>
+      <div class="bar-track"><div class="bar-fill critical" style="width:100%"></div></div>
+      <span class="bar-count">8</span>
+    </div>
+    <div class="bar-row" data-width="75">
+      <span class="bar-label">P2 -- No client memory</span>
+      <div class="bar-track"><div class="bar-fill critical" style="width:75%"></div></div>
       <span class="bar-count">6</span>
     </div>
-    <div class="bar-row" data-width="86">
-      <span class="bar-label">No inbound filtering</span>
-      <div class="bar-track"><div class="bar-fill critical" style="width:86%"></div></div>
-      <span class="bar-count">6</span>
-    </div>
-    <div class="bar-row" data-width="86">
-      <span class="bar-label">Mental load / overload</span>
-      <div class="bar-track"><div class="bar-fill critical" style="width:86%"></div></div>
-      <span class="bar-count">6</span>
-    </div>
-    <div class="bar-row" data-width="71">
-      <span class="bar-label">No centralised blacklist</span>
-      <div class="bar-track"><div class="bar-fill high" style="width:71%"></div></div>
+    <div class="bar-row" data-width="63">
+      <span class="bar-label">P4 -- Cognitive overload</span>
+      <div class="bar-track"><div class="bar-fill critical" style="width:63%"></div></div>
       <span class="bar-count">5</span>
     </div>
-    <div class="bar-row" data-width="57">
-      <span class="bar-label">No-shows &amp; time-wasters</span>
-      <div class="bar-track"><div class="bar-fill high" style="width:57%"></div></div>
-      <span class="bar-count">4</span>
+    <div class="bar-row" data-width="63">
+      <span class="bar-label">P9 -- No client KYC</span>
+      <div class="bar-track"><div class="bar-fill high" style="width:63%"></div></div>
+      <span class="bar-count">5</span>
     </div>
-    <div class="bar-row" data-width="57">
-      <span class="bar-label">Blacklist paywalled (BMG)</span>
-      <div class="bar-track"><div class="bar-fill high" style="width:57%"></div></div>
-      <span class="bar-count">4</span>
-    </div>
-    <div class="bar-row" data-width="57">
-      <span class="bar-label">Manual repetition</span>
-      <div class="bar-track"><div class="bar-fill high" style="width:57%"></div></div>
-      <span class="bar-count">4</span>
-    </div>
-    <div class="bar-row" data-width="43">
-      <span class="bar-label">No client KYC / verification</span>
-      <div class="bar-track"><div class="bar-fill medium" style="width:43%"></div></div>
+    <div class="bar-row" data-width="38">
+      <span class="bar-label">P8 -- Manual repetition</span>
+      <div class="bar-track"><div class="bar-fill high" style="width:38%"></div></div>
       <span class="bar-count">3</span>
     </div>
-    <div class="bar-row" data-width="43">
-      <span class="bar-label">Fake listings / AI photos</span>
-      <div class="bar-track"><div class="bar-fill medium" style="width:43%"></div></div>
-      <span class="bar-count">3</span>
-    </div>
-    <div class="bar-row" data-width="43">
-      <span class="bar-label">Manual calendar / booking</span>
-      <div class="bar-track"><div class="bar-fill medium" style="width:43%"></div></div>
-      <span class="bar-count">3</span>
-    </div>
-    <div class="bar-row" data-width="43">
-      <span class="bar-label">Agency dependency</span>
-      <div class="bar-track"><div class="bar-fill medium" style="width:43%"></div></div>
-      <span class="bar-count">3</span>
-    </div>
-    <div class="bar-row" data-width="29">
-      <span class="bar-label">Inappropriate msg management</span>
-      <div class="bar-track"><div class="bar-fill medium" style="width:29%"></div></div>
+    <div class="bar-row" data-width="25">
+      <span class="bar-label">P7 -- Blacklist paywalled (BMG)</span>
+      <div class="bar-track"><div class="bar-fill high" style="width:25%"></div></div>
       <span class="bar-count">2</span>
     </div>
-    <div class="bar-row" data-width="29">
-      <span class="bar-label">Housing / workspace cost</span>
-      <div class="bar-track"><div class="bar-fill low" style="width:29%"></div></div>
+    <div class="bar-row" data-width="25">
+      <span class="bar-label">P15 -- Data siloing</span>
+      <div class="bar-track"><div class="bar-fill medium" style="width:25%"></div></div>
       <span class="bar-count">2</span>
     </div>
-    <div class="bar-row" data-width="29">
-      <span class="bar-label">Data siloing across platforms</span>
-      <div class="bar-track"><div class="bar-fill low" style="width:29%"></div></div>
-      <span class="bar-count">2</span>
-    </div>
-    <div class="bar-row" data-width="14">
-      <span class="bar-label">No income tracking</span>
-      <div class="bar-track"><div class="bar-fill low" style="width:14%"></div></div>
+    <div class="bar-row" data-width="13">
+      <span class="bar-label">P16 -- No income tracking</span>
+      <div class="bar-track"><div class="bar-fill medium" style="width:13%"></div></div>
       <span class="bar-count">1</span>
+    </div>
+    <div class="bar-row" data-width="13">
+      <span class="bar-label">P17 -- Platform identity mismatch</span>
+      <div class="bar-track"><div class="bar-fill medium" style="width:13%"></div></div>
+      <span class="bar-count">1</span>
+    </div>
+    <div class="bar-row" data-width="13">
+      <span class="bar-label">P18 -- Client reputation threats</span>
+      <div class="bar-track"><div class="bar-fill medium" style="width:13%"></div></div>
+      <span class="bar-count">1</span>
+    </div>
+    <div class="bar-row" data-width="0">
+      <span class="bar-label">P1 -- Messaging fragmentation</span>
+      <div class="bar-track"><div class="bar-fill low" style="width:5%"></div></div>
+      <span class="bar-count">0</span>
     </div>
   </div>
 
   <div class="problem-grid reveal" id="problemCards">
 
     <div class="problem-card critical">
-      <div class="pc-id">P3 · CRITICAL</div>
+      <div class="pc-id">P5 -- CRITICAL -- RANK #1</div>
+      <div class="pc-title">No Centralized Blacklist</div>
+      <div class="pc-desc">GABRIELLE built an entire scraper aggregating blacklist data from multiple platforms into Airtable via API. Abandoned due to scale, restarting in Rust. This is the strongest single-user behavioral validation in the entire cohort -- she TRIED to build what Scarlot proposes.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div>
+          </div>
+          8/8 interviews
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#safety</span><span class="tag">#blacklist</span><span class="tag">#scraper</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card critical">
+      <div class="pc-id">P3 -- CRITICAL -- RANK #2</div>
       <div class="pc-title">No Inbound Filtering</div>
-      <div class="pc-desc">Clients have unrestricted access. TDS cannot pre-screen before any interaction begins, forcing manual processing of every inappropriate message.</div>
+      <div class="pc-desc">AVRIL: 90% of admin time. MERON: 40% currently, has been higher. PITI: 2/3 of new contacts don't convert. Even the most technical user (GABRIELLE) doesn't check systematically. "It would be amazing if it was automatic."</div>
       <div class="pc-footer">
         <div class="pc-mentions">
           <div class="mention-dots">
-            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div>
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div>
           </div>
-          6 mentions
+          8/8 interviews
         </div>
         <div class="pc-tags">
-          <span class="tag">#safety</span><span class="tag">#blacklist</span><span class="tag">#asymmetry</span>
+          <span class="tag">#safety</span><span class="tag">#filtering</span><span class="tag">#automation</span>
         </div>
       </div>
     </div>
 
     <div class="problem-card critical">
-      <div class="pc-id">P4 · CRITICAL</div>
-      <div class="pc-title">Mental Load &amp; Cognitive Overload</div>
-      <div class="pc-desc">Chronically switching between 3–5 apps, re-entering the same data, no tool was built for this context. The overload is what drives some toward agency dependency.</div>
+      <div class="pc-id">P6 -- CRITICAL -- RANK #4</div>
+      <div class="pc-title">No-Shows &amp; Time-Wasters</div>
+      <div class="pc-desc">TARA: 50-75% client ghost rate. GABRIELLE: mood-dependent blacklisting means data loss. MARYLINE: deposit requirement as screening filter. Design insight: reporting friction must be near-zero or data never gets recorded.</div>
       <div class="pc-footer">
         <div class="pc-mentions">
           <div class="mention-dots">
-            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div>
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div>
           </div>
-          6 mentions
+          8/8 interviews
         </div>
         <div class="pc-tags">
-          <span class="tag">#chronophage</span><span class="tag">#ux</span><span class="tag">#burnout</span>
+          <span class="tag">#no-show</span><span class="tag">#trust</span><span class="tag">#data-loss</span>
         </div>
       </div>
     </div>
 
     <div class="problem-card critical">
-      <div class="pc-id">P5 · CRITICAL</div>
-      <div class="pc-title">No Centralised Blacklist</div>
-      <div class="pc-desc">Safety intelligence exists in Telegram groups, BMG, and F-Girl — but it's unstructured, non-searchable, not discoverable. The data exists. The system doesn't.</div>
+      <div class="pc-id">P4 -- CRITICAL -- RANK #3</div>
+      <div class="pc-title">Cognitive Overload</div>
+      <div class="pc-desc">CAROLL: "It doesn't allow me to live the rest of the day." AVRIL: 90% of admin time on messaging alone. Multi-step internet research, name checking, photo analysis -- all manual, all cognitively taxing.</div>
       <div class="pc-footer">
         <div class="pc-mentions">
           <div class="mention-dots">
-            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div>
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
           </div>
-          5 mentions
+          5/8 interviews
         </div>
         <div class="pc-tags">
-          <span class="tag">#safety</span><span class="tag">#fragmentation</span>
+          <span class="tag">#chronophage</span><span class="tag">#burnout</span><span class="tag">#manual</span>
         </div>
       </div>
     </div>
 
     <div class="problem-card high">
-      <div class="pc-id">P1 · HIGH</div>
-      <div class="pc-title">Messaging Fragmentation</div>
-      <div class="pc-desc">WhatsApp + Telegram + Signal + site messaging + email. Some use channels strategically to track which platform generates bookings. All are forced to juggle.</div>
-      <div class="pc-footer">
-        <div class="pc-mentions">
-          <div class="mention-dots">
-            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div>
-          </div>
-          7 mentions
-        </div>
-        <div class="pc-tags">
-          <span class="tag">#ux</span><span class="tag">#fragmentation</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="problem-card high">
-      <div class="pc-id">P2 · HIGH</div>
+      <div class="pc-id">P2 -- HIGH -- RANK #5</div>
       <div class="pc-title">No Client Memory</div>
-      <div class="pc-desc">No persistent record of who a client is. Data lives in renamed contacts ("Bruno 24.03 14h"), WhatsApp scroll, Telegram threads. A tiny educated minority uses Excel.</div>
+      <div class="pc-desc">MARYLINE: emoji-coded contacts as CRM. GABRIELLE: Notion DB with client records ("1/4 of my data are customer records"). CAROLL after 12 years: "Just a record in the contacts." 6/8 interviewees built workarounds, all inadequate.</div>
       <div class="pc-footer">
         <div class="pc-mentions">
           <div class="mention-dots">
-            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div>
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div>
           </div>
-          6 mentions
+          6/8 interviews
         </div>
         <div class="pc-tags">
-          <span class="tag">#crm</span><span class="tag">#memory</span>
+          <span class="tag">#crm</span><span class="tag">#memory</span><span class="tag">#workaround</span>
         </div>
       </div>
     </div>
 
     <div class="problem-card high">
-      <div class="pc-id">P6 · HIGH</div>
-      <div class="pc-title">Time-Wasters &amp; No-Shows</div>
-      <div class="pc-desc">Client negotiates, requests info and selfies, confirms — then ghosts. This costs time AND exposes private information for zero return. The pattern repeats.</div>
+      <div class="pc-id">P9 -- HIGH -- RANK #6</div>
+      <div class="pc-title">No Client KYC</div>
+      <div class="pc-desc">MERON: 3-step verification (age, Google, voice call). PITI: multi-step internet research. MARYLINE: deposit as filter. Universal screening behavior, no standard, no tooling.</div>
       <div class="pc-footer">
         <div class="pc-mentions">
           <div class="mention-dots">
-            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
+            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
           </div>
-          4 mentions
+          5/8 interviews
         </div>
         <div class="pc-tags">
-          <span class="tag">#safety</span><span class="tag">#trust</span><span class="tag">#no-show</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="problem-card high">
-      <div class="pc-id">P7 · HIGH</div>
-      <div class="pc-title">Blacklist is Paywalled</div>
-      <div class="pc-desc">BMG charges ~450 CHF/month. Blacklist access is restricted to subscribers. Safety intelligence — which should be a community commons — is a luxury feature.</div>
-      <div class="pc-footer">
-        <div class="pc-mentions">
-          <div class="mention-dots">
-            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
-          </div>
-          4 mentions
-        </div>
-        <div class="pc-tags">
-          <span class="tag">#safety</span><span class="tag">#access</span><span class="tag">#cost</span>
+          <span class="tag">#trust</span><span class="tag">#identity</span><span class="tag">#verification</span>
         </div>
       </div>
     </div>
 
     <div class="problem-card medium">
-      <div class="pc-id">P9 · MEDIUM</div>
-      <div class="pc-title">No Client KYC</div>
-      <div class="pc-desc">Clients are anonymous on arrival. Some TDS call to hear a voice. Some request a selfie. Some do nothing. There is no standard, no tooling, no signal.</div>
+      <div class="pc-id">P17 -- NEW -- GOLD</div>
+      <div class="pc-title">Platform Identity Mismatch</div>
+      <div class="pc-desc">Trans TDS forced into outdated categories on platforms. GABRIELLE: "Je veux ma propre epicerie." Actively leaving F-Girl to escape "the male gaze." Unprompted, behavioral -- she's acting on this right now.</div>
       <div class="pc-footer">
         <div class="pc-mentions">
           <div class="mention-dots">
-            <div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
+            <div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
           </div>
-          3 mentions
+          1/8 but Gold
         </div>
         <div class="pc-tags">
-          <span class="tag">#trust</span><span class="tag">#identity</span>
+          <span class="tag">#identity</span><span class="tag">#trans</span><span class="tag">#platform</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card medium">
+      <div class="pc-id">P18 -- NEW -- SILVER</div>
+      <div class="pc-title">Client Reputation Threats</div>
+      <div class="pc-desc">Threats to demolish reputation -- or do it after the facts as an act of revenge. Known pattern, needs second source. The fear of public exposure is a leverage tool used by abusive clients.</div>
+      <div class="pc-footer">
+        <div class="pc-mentions">
+          <div class="mention-dots">
+            <div class="mention-dot active"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div><div class="mention-dot"></div>
+          </div>
+          1/8, Silver
+        </div>
+        <div class="pc-tags">
+          <span class="tag">#safety</span><span class="tag">#reputation</span><span class="tag">#revenge</span>
         </div>
       </div>
     </div>
@@ -1315,12 +1573,68 @@ footer {
   </div>
 </section>
 
+<!-- MARKET DATA -->
+<section id="market">
+  <div class="section-eyebrow">03 -- Proprietary Market Intelligence</div>
+  <h2 class="section-title">5,229 Workers.<br>Counted, Not Estimated.</h2>
+  <div class="divider"></div>
+  <p style="color:var(--muted2);font-size:14px;max-width:660px;margin-bottom:40px;line-height:1.7;">Proprietary scraper running continuously across 8 Swiss platforms since March 2026. 351 completed runs, 68,960 snapshots. Workers deduplicated by phone number across platforms -- same person on 3 platforms = 1 identity.</p>
+
+  <div class="market-grid reveal">
+    <div class="market-card">
+      <div class="market-num">7,221</div>
+      <div class="market-label">Unique workers<br>identified (CH)</div>
+    </div>
+    <div class="market-card">
+      <div class="market-num">12,607</div>
+      <div class="market-label">Total active<br>listings</div>
+    </div>
+    <div class="market-card">
+      <div class="market-num">2,047</div>
+      <div class="market-label">FR-CH<br>launch market</div>
+    </div>
+    <div class="market-card">
+      <div class="market-num">750</div>
+      <div class="market-label">Geneva<br>metro area</div>
+    </div>
+    <div class="market-card">
+      <div class="market-num">1.5M</div>
+      <div class="market-label">Images<br>collected</div>
+    </div>
+    <div class="market-card">
+      <div class="market-num">8</div>
+      <div class="market-label">Platforms<br>scraped</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:700px;" class="reveal">
+    <div style="padding:20px 24px;background:var(--bg2);border:1px solid var(--line);">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:12px;letter-spacing:0.08em;">MULTI-PLATFORM BREAKDOWN</div>
+      <div style="font-size:13px;color:var(--muted2);line-height:1.8;">
+        On 2 platforms: <strong style="color:var(--text)">769</strong><br>
+        On 3 platforms: <strong style="color:var(--text)">86</strong><br>
+        On 4 platforms: <strong style="color:var(--text)">14</strong><br>
+        Total multi-platform: <strong style="color:var(--text)">869</strong>
+      </div>
+    </div>
+    <div style="padding:20px 24px;background:var(--bg2);border:1px solid var(--line);">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:12px;letter-spacing:0.08em;">DATA COLLECTION</div>
+      <div style="font-size:13px;color:var(--muted2);line-height:1.8;">
+        Period: <strong style="color:var(--text)">Mar 16 - Apr 15, 2026</strong><br>
+        Platforms: xdate, fgirl, and6, lolla, sex4u, catgirl, bemygirl, xdiva<br>
+        351 runs -- 68,960 snapshots<br>
+        Runs on: <strong style="color:var(--text)">DGX Spark</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- USER JOURNEY -->
 <section id="journey">
-  <div class="section-eyebrow">02 · Current State</div>
+  <div class="section-eyebrow">04 -- Current State</div>
   <h2 class="section-title">The Broken Journey</h2>
   <div class="divider"></div>
-  <p style="color:var(--muted2);font-size:14px;max-width:700px;margin-bottom:40px;line-height:1.7;">Every step of the client interaction lifecycle, as it happens today. Red = active pain point. Amber = friction. Grey = neutral.</p>
+  <p style="color:var(--muted2);font-size:14px;max-width:700px;margin-bottom:40px;line-height:1.7;">Every step of the client interaction lifecycle, as documented across 8 interviews. Red = active pain point validated by multiple users. Amber = friction with workarounds. Grey = neutral.</p>
 
   <div class="journey-wrapper">
     <div class="journey reveal">
@@ -1330,11 +1644,11 @@ footer {
           <div class="phase-name">Inbound</div>
         </div>
         <div class="phase-steps">
-          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Message arrives on WhatsApp</div>
-          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Same inquiry on Telegram</div>
-          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Manually check if number is known</div>
-          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Search Telegram groups for flags</div>
-          <div class="step friction">Check BMG blacklist (if subscribed)</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P3</div>Message arrives on WhatsApp (90% of traffic)</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P5</div>Manually check if number is known or flagged</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P3</div>Search community groups for warnings</div>
+          <div class="step friction">Check BMG / CheckClient (if subscribed)</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P4</div>AVRIL: 90% of admin time spent here</div>
         </div>
       </div>
 
@@ -1344,11 +1658,11 @@ footer {
           <div class="phase-name">Screening</div>
         </div>
         <div class="phase-steps">
-          <div class="step neutral">Reply to service / rate inquiry</div>
-          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Handle inappropriate message manually</div>
+          <div class="step neutral">Reply with rates / services (manually or via pre-recorded msg)</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P8</div>Type same info from scratch each time</div>
           <div class="step friction">Request voice call / selfie verification</div>
           <div class="step friction">Negotiate location, time, services</div>
-          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Repeat same info already answered 5× today</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P6</div>PITI: 2/3 never convert. TARA: 50-75% ghost.</div>
         </div>
       </div>
 
@@ -1359,10 +1673,10 @@ footer {
         </div>
         <div class="phase-steps">
           <div class="step neutral">Appointment confirmed</div>
-          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Rename contact: "Bruno 24.03 14h"</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P2</div>Rename contact: "Bruno 24.03 14h" or add emoji code</div>
           <div class="step friction">Manually add to calendar or paper notes</div>
-          <div class="step neutral">Share location / access code</div>
-          <div class="step friction">Check in with trusted contact (if any)</div>
+          <div class="step friction">AVRIL: hotel booking as "stake" verification</div>
+          <div class="step friction">Check in with trusted contact / 5-min timer</div>
         </div>
       </div>
 
@@ -1372,10 +1686,10 @@ footer {
           <div class="phase-name">Appointment</div>
         </div>
         <div class="phase-steps">
-          <div class="step pain"><div class="step-pain-label">RISK</div>Client arrives — or doesn't (no-show)</div>
-          <div class="step neutral">Payment collected (cash)</div>
+          <div class="step pain"><div class="step-pain-label">RISK</div>Client arrives -- or doesn't (no-show)</div>
+          <div class="step neutral">Payment collected (cash dominant)</div>
           <div class="step neutral">Service delivered</div>
-          <div class="step friction">Upsell negotiated ad hoc</div>
+          <div class="step pain"><div class="step-pain-label">RISK</div>Physical safety incidents (PITI: violence, stealthing)</div>
         </div>
       </div>
 
@@ -1385,10 +1699,10 @@ footer {
           <div class="phase-name">Post-Appointment</div>
         </div>
         <div class="phase-steps">
-          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Mental notes — nothing is recorded</div>
-          <div class="step pain"><div class="step-pain-label">PAIN ↑</div>Flag to community (manually, in Telegram)</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P2</div>Mental notes -- nothing is recorded</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P6</div>GABRIELLE: flag only when in bad mood = data loss</div>
+          <div class="step pain"><div class="step-pain-label">PAIN -- P16</div>No income record. GABRIELLE built bank parser.</div>
           <div class="step pain"><div class="step-pain-label">LOST</div>No follow-up. Context evaporates.</div>
-          <div class="step pain"><div class="step-pain-label">LOST</div>No income record. Cash disappears.</div>
         </div>
       </div>
     </div>
@@ -1396,7 +1710,7 @@ footer {
 
   <div style="display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;">
     <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted2);">
-      <div style="width:16px;height:3px;background:var(--coral);border-radius:2px;"></div> Active pain point
+      <div style="width:16px;height:3px;background:var(--coral);border-radius:2px;"></div> Active pain point (validated)
     </div>
     <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted2);">
       <div style="width:16px;height:3px;background:var(--amber);border-radius:2px;"></div> Friction / workaround
@@ -1407,454 +1721,310 @@ footer {
   </div>
 </section>
 
-<!-- CONCEPTS -->
+<!-- CONCEPTS / COVERAGES -->
 <section id="concepts">
-  <div class="section-eyebrow">03 · Concept Catalogue</div>
-  <h2 class="section-title">7 Concepts,<br>Derived from Evidence</h2>
+  <div class="section-eyebrow">05 -- Platform Architecture</div>
+  <h2 class="section-title">7 Coverages,<br>Validated by Evidence</h2>
   <div class="divider"></div>
+  <p style="color:var(--muted2);font-size:14px;max-width:660px;margin-bottom:40px;line-height:1.7;">The co-founder's 7 feature blocs map directly to platform coverages. Evidence quality now validated by direct user interviews, not just co-founder narration. Phasing reflects evidence strength and dependency chain.</p>
 
   <div class="concepts-grid reveal">
     <div class="concept-card">
-      <div class="concept-id">C-01 · Priority: Immediate</div>
-      <div class="concept-title">Shared Blacklist Network</div>
-      <div class="concept-desc">A structured, searchable database of flagged client numbers — personal or collective. The data already exists in Telegram groups. It's just not organised or discoverable. Centralising it creates value from day one.</div>
+      <div class="concept-id">MVP -- SAFETY + MEMORY</div>
+      <div class="concept-title">Safety Coverage</div>
+      <div class="concept-desc">Shared blacklist network + personal client intelligence. Phone number as unique key. Auto-populated contact records on first message. Passive background checks when a new number arrives. GABRIELLE's scraper proves the need. Near-zero reporting friction required.</div>
       <div class="concept-links">
-        <span class="concept-link active">P3</span>
         <span class="concept-link active">P5</span>
-        <span class="concept-link active">P6</span>
-        <span class="concept-link active">P7</span>
-        <span class="concept-link">#safety</span>
-        <span class="concept-link">#collective-intelligence</span>
-      </div>
-      <div class="concept-tension">Tension: personal privacy vs. collective value. Users must choose their sharing level.</div>
-    </div>
-
-    <div class="concept-card">
-      <div class="concept-id">C-02 · Priority: Immediate</div>
-      <div class="concept-title">Conversational Interface</div>
-      <div class="concept-desc">No new app. No new UI. All functionality delivered through natural language in WhatsApp or Telegram. A voice note cancels your day. A text checks a blacklist. The agent assists — it never impersonates.</div>
-      <div class="concept-links">
-        <span class="concept-link active">P1</span>
-        <span class="concept-link active">P4</span>
-        <span class="concept-link active">P8</span>
-        <span class="concept-link">#agent</span>
-        <span class="concept-link">#no-interface</span>
-      </div>
-      <div class="concept-tension">Constraint: community resistance to AI replacing human interaction. Semi-auto is required, not full-auto.</div>
-    </div>
-
-    <div class="concept-card">
-      <div class="concept-id">C-03 · Priority: Immediate</div>
-      <div class="concept-title">Client Intelligence Profile</div>
-      <div class="concept-desc">A lightweight, auto-populated client record triggered by first contact. Phone number = unique key. No manual entry required. Captures history, flags, and notes without ever opening a form.</div>
-      <div class="concept-links">
+        <span class="concept-link active">P3</span>
         <span class="concept-link active">P2</span>
         <span class="concept-link active">P6</span>
-        <span class="concept-link active">P9</span>
+        <span class="concept-link">#blacklist</span>
         <span class="concept-link">#crm</span>
-        <span class="concept-link">#auto-capture</span>
       </div>
-      <div class="concept-tension">Minimum V0 fields: number, first contact date, source channel, risk flag, free-text note.</div>
+      <div class="concept-tension">Evidence: Gold (all 8 interviews). Design constraint: reporting friction must be near-zero (mood-dependent behavior = data loss).</div>
     </div>
 
     <div class="concept-card">
-      <div class="concept-id">C-04 · Priority: Short-term</div>
-      <div class="concept-title">Inbound Message Triage</div>
-      <div class="concept-desc">Automatic classification before the TDS has to read anything. Flags blacklisted numbers, harassment patterns, and first-contact from unknowns. Three control modes: manual, semi-auto, auto.</div>
+      <div class="concept-id">PHASE 1 -- SWITCHBOARD</div>
+      <div class="concept-title">Framework &amp; Interactions</div>
+      <div class="concept-desc">Conversational interface in WhatsApp. Pre-recorded message triage (GABRIELLE's pattern). Template responses for rates, services, location. Semi-automatic, never full-auto. "C'est important d'etre la" -- the human must stay present.</div>
       <div class="concept-links">
-        <span class="concept-link active">P3</span>
+        <span class="concept-link active">P8</span>
         <span class="concept-link active">P4</span>
-        <span class="concept-link active">P13</span>
         <span class="concept-link">#automation</span>
-        <span class="concept-link">#filter</span>
+        <span class="concept-link">#templates</span>
       </div>
-      <div class="concept-tension">the co-founder: different users will want different levels of control — this must be configurable.</div>
+      <div class="concept-tension">A7 boundary clarified: passive checks YES, AI conversation NO. Users want automatic background checks, reject AI speaking for them.</div>
     </div>
 
     <div class="concept-card">
-      <div class="concept-id">C-05 · Priority: Short-term</div>
-      <div class="concept-title">Pre-Booking Verification Flow</div>
-      <div class="concept-desc">A structured check at the start of each new client interaction. Blacklist lookup + optional identity signal. Results in a green/amber/red before the TDS invests time in negotiation.</div>
+      <div class="concept-id">PHASE 1 -- MEMORY + BOOKING</div>
+      <div class="concept-title">Professional Organization</div>
+      <div class="concept-desc">Client intelligence profiles, booking management, availability broadcasting. MARYLINE's emoji system, GABRIELLE's Notion DB, CAROLL's contact renaming -- all replaced by auto-populated records. Natural language availability declaration.</div>
       <div class="concept-links">
-        <span class="concept-link active">P6</span>
-        <span class="concept-link active">P9</span>
-        <span class="concept-link active">P10</span>
-        <span class="concept-link">#trust</span>
-        <span class="concept-link">#kyc</span>
-      </div>
-      <div class="concept-tension">Verification expectations vary by user. System surfaces intelligence — it doesn't prescribe protocol.</div>
-    </div>
-
-    <div class="concept-card">
-      <div class="concept-id">C-06 · Priority: V2</div>
-      <div class="concept-title">Availability Broadcasting</div>
-      <div class="concept-desc">Declare availability in natural language. It propagates. No calendar UI. No grid. No slots to fill in manually on each platform. A simple on/off + shareable link covers 80% of the need.</div>
-      <div class="concept-links">
-        <span class="concept-link active">P11</span>
+        <span class="concept-link active">P2</span>
         <span class="concept-link active">P4</span>
+        <span class="concept-link">#crm</span>
         <span class="concept-link">#scheduling</span>
-        <span class="concept-link">#no-interface</span>
       </div>
-      <div class="concept-tension">Full booking optimization (graph theory) is out of scope. V0: declare → share → confirm.</div>
+      <div class="concept-tension">Evidence: Gold + Bronze (P2 Gold, booking Bronze). Minimum fields: number, first contact date, source channel, risk flag, free-text note.</div>
     </div>
 
     <div class="concept-card">
-      <div class="concept-id">C-07 · Priority: V2</div>
-      <div class="concept-title">Revenue &amp; Income Tracker</div>
-      <div class="concept-desc">A lightweight session log for earnings — critical in a cash-dominant business. Inspired by The Dancer Resource (US, $6/mo). Natural fit for a second phase once operational trust is established.</div>
+      <div class="concept-id">PHASE 2 -- PAYMENTS + COMPLIANCE</div>
+      <div class="concept-title">Transactions</div>
+      <div class="concept-desc">Income tracking, session logging. GABRIELLE built a bank notification parser. Tracks seasonality, revenue per customer, costs, taxes. Wants Mint-like aggregator. Cash-dominant business needs lightweight session logging.</div>
       <div class="concept-links">
         <span class="concept-link active">P16</span>
         <span class="concept-link">#financial</span>
         <span class="concept-link">#tracking</span>
       </div>
-      <div class="concept-tension">Mentioned once. Low priority for V0 but a natural V2 addition with high perceived value.</div>
+      <div class="concept-tension">First real signal from INT8 (Silver). GABRIELLE's bank parser is behavioral WTP evidence.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-id">PHASE 2-3 -- REPUTATION</div>
+      <div class="concept-title">Collective Blacklist</div>
+      <div class="concept-desc">Graduated reporting model: personal label for first offense, community report for repeated offenses. Credit bureau model + NUM precedent. Existing infrastructure: Telegram groups, WhatsApp communities, Projet Jasmine, CheckClient.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P5</span>
+        <span class="concept-link active">P7</span>
+        <span class="concept-link">#collective</span>
+        <span class="concept-link">#legal</span>
+      </div>
+      <div class="concept-tension">Legally unresolved. A1 supported behaviorally but design constraint: contribution AND consumption friction are both barriers.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-id">PHASE 1 -- IDENTITY</div>
+      <div class="concept-title">Resources &amp; Identity</div>
+      <div class="concept-desc">P17 (platform identity mismatch) is a Gold signal from trans TDS forced into outdated categories. "Je veux ma propre epicerie." Self-representation on own terms. Also: safety resources, community connections, know-your-rights information.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P17</span>
+        <span class="concept-link">#identity</span>
+        <span class="concept-link">#resources</span>
+      </div>
+      <div class="concept-tension">Co-founder insight, reinforced by GABRIELLE's Gold signal. Platform must allow identity self-definition.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-id">PHASE 3 -- COMPLIANCE</div>
+      <div class="concept-title">Analysis &amp; Insights</div>
+      <div class="concept-desc">GABRIELLE tracks seasonality, revenue per customer. Behavioral data from the platform enables business intelligence. Pattern detection, trend analysis, predictive insights. But only after trust is established through core value delivery.</div>
+      <div class="concept-links">
+        <span class="concept-link active">P16</span>
+        <span class="concept-link">#analytics</span>
+        <span class="concept-link">#intelligence</span>
+      </div>
+      <div class="concept-tension">Phase 3 only. Requires critical mass of usage data. GABRIELLE is the only user currently tracking at this level.</div>
     </div>
   </div>
 </section>
 
 <!-- EVIDENCE TIERS -->
 <section>
-  <div class="section-eyebrow">04 · Evidence Quality</div>
-  <h2 class="section-title">Not All Evidence<br>Is Equal</h2>
+  <div class="section-eyebrow">06 -- Evidence Quality</div>
+  <h2 class="section-title">Direct User Evidence,<br>Not Secondhand</h2>
   <div class="divider"></div>
+  <p style="color:var(--muted2);font-size:14px;max-width:660px;margin-bottom:40px;line-height:1.7;">V1 evidence was mediated through the co-founder. V2 evidence comes from 8 direct user interviews. Gold evidence now includes unprompted behavioral validation: users who built their own tools to solve problems Scarlot addresses.</p>
 
   <div class="evidence-wrapper reveal">
     <div class="pyramid">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:12px;letter-spacing:0.08em;">BUILD WITH CONFIDENCE ↑</div>
-      <div class="pyr-level gold">🥇 GOLD</div>
-      <div class="pyr-level silver">🥈 SILVER</div>
-      <div class="pyr-level bronze">🥉 BRONZE</div>
-      <div class="pyr-level watch">⚪ WATCHLIST</div>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:12px;letter-spacing:0.08em;">VALIDATE FIRST ↓</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:12px;letter-spacing:0.08em;">BUILD WITH CONFIDENCE</div>
+      <div class="pyr-level gold">GOLD</div>
+      <div class="pyr-level silver">SILVER</div>
+      <div class="pyr-level bronze">BRONZE</div>
+      <div class="pyr-level watch">WATCHLIST</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:12px;letter-spacing:0.08em;">VALIDATE FIRST</div>
     </div>
 
     <div class="evidence-legend">
       <div class="ev-tier">
-        <div class="ev-tier-name gold">🥇 Gold — Build Now</div>
-        <div class="ev-tier-desc">Unprompted, specific, behavior-based, with emotional intensity. Consistent across multiple referenced users. the co-founder volunteered these without being led.</div>
+        <div class="ev-tier-name gold">GOLD -- Build Now (Direct User, Behavioral)</div>
+        <div class="ev-tier-desc">Unprompted, specific, behavior-based. Users built their own tools or established elaborate workarounds. Confirmed across multiple interviews with emotional intensity.</div>
         <div class="ev-problems">
-          <span class="ev-p">P3 · No inbound filtering</span>
-          <span class="ev-p">P4 · Mental load</span>
-          <span class="ev-p">P5 · No blacklist</span>
+          <span class="ev-p">P3 -- Inbound filtering</span>
+          <span class="ev-p">P4 -- Cognitive overload</span>
+          <span class="ev-p">P5 -- No blacklist</span>
+          <span class="ev-p">P6 -- No-shows</span>
+          <span class="ev-p">P2 -- No client memory</span>
+          <span class="ev-p">P8 -- Manual repetition</span>
+          <span class="ev-p">P17 -- Identity mismatch</span>
         </div>
       </div>
       <div class="ev-tier">
-        <div class="ev-tier-name silver">🥈 Silver — Validate Before Spec</div>
-        <div class="ev-tier-desc">Specific and past-tense but narrated through the co-founder, not direct user quotes. Direction is reliable. Evidence is secondhand.</div>
+        <div class="ev-tier-name silver">SILVER -- Validate Before Heavy Spec</div>
+        <div class="ev-tier-desc">Specific and past-tense, confirmed by at least 2 users. Direction is reliable. May need deeper exploration for product design.</div>
         <div class="ev-problems">
-          <span class="ev-p">P1 · Fragmentation</span>
-          <span class="ev-p">P2 · No client memory</span>
-          <span class="ev-p">P6 · No-shows</span>
-          <span class="ev-p">P7 · Paywall</span>
-          <span class="ev-p">P8 · Repetition</span>
+          <span class="ev-p">P9 -- No KYC</span>
+          <span class="ev-p">P7 -- Paywall</span>
+          <span class="ev-p">P15 -- Data siloing</span>
+          <span class="ev-p">P16 -- Income tracking</span>
+          <span class="ev-p">P18 -- Reputation threats</span>
         </div>
       </div>
       <div class="ev-tier">
-        <div class="ev-tier-name bronze">🥉 Bronze — Directionally Valid</div>
-        <div class="ev-tier-desc">Direction plausible. Evidence thin, forward-looking, or inferred. Don't build without a direct user conversation first.</div>
+        <div class="ev-tier-name bronze">BRONZE -- Directionally Valid</div>
+        <div class="ev-tier-desc">Direction plausible. Evidence from 1-2 sources, often forward-looking or inferred. Don't invest heavily without further validation.</div>
         <div class="ev-problems">
-          <span class="ev-p">P9 · No KYC</span>
-          <span class="ev-p">P10 · Fake listings</span>
-          <span class="ev-p">P11 · Calendar</span>
-          <span class="ev-p">P13 · Inappropriate msgs</span>
+          <span class="ev-p">P10 -- Fake listings</span>
+          <span class="ev-p">P11 -- Calendar</span>
+          <span class="ev-p">P13 -- Inappropriate msgs</span>
         </div>
       </div>
       <div class="ev-tier">
-        <div class="ev-tier-name watch">⚪ Watchlist</div>
-        <div class="ev-tier-desc">Mentioned, real, but not yet product-scope. Park for later strategic review.</div>
+        <div class="ev-tier-name watch">WATCHLIST -- Deprioritized</div>
+        <div class="ev-tier-desc">Either disproven by interviews (P1), or real but not product-scope. P1 had 8 interviews and zero pain signal.</div>
         <div class="ev-problems">
-          <span class="ev-p">P12 · Agency dependency</span>
-          <span class="ev-p">P14 · Housing costs</span>
-          <span class="ev-p">P16 · Income tracking</span>
+          <span class="ev-p">P1 -- Messaging fragmentation (DEPRIORITIZED)</span>
+          <span class="ev-p">P12 -- Agency dependency</span>
+          <span class="ev-p">P14 -- Housing costs</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- USER STORIES -->
-<section id="stories">
-  <div class="section-eyebrow">05 · User Stories</div>
-  <h2 class="section-title">13 Stories.<br>Inferred, not invented.</h2>
-  <div class="divider"></div>
-  <p style="color:var(--muted2);font-size:14px;max-width:680px;margin-bottom:48px;line-height:1.7;">All evidence is mediated through the co-founder. These stories are directionally valid but must be treated as <strong style="color:var(--text)">hypotheses to validate with direct users</strong> before any spec is written. Confidence rating reflects evidence quality.</p>
-
-  <div class="epics reveal">
-
-    <div>
-      <div class="epic-title">Epic 1 · Safety &amp; Filtering</div>
-      <div class="stories-row">
-        <div class="story">
-          <div class="story-id">US-01</div>
-          <div class="story-text">
-            <strong>When a first message arrives from an unknown number,</strong><br>
-            <span>I want to instantly see whether they've been flagged by other TDS, so I can decide whether to engage before investing any time.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#safety</span><span class="tag">#blacklist</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge gold">🥇 GOLD</span></div>
-        </div>
-        <div class="story">
-          <div class="story-id">US-02</div>
-          <div class="story-text">
-            <strong>After a negative experience,</strong><br>
-            <span>I want to flag a client's number with a category (no-show, harassment, non-payment) so that other TDS are protected without me warning every Telegram group manually.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#safety</span><span class="tag">#collective</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge gold">🥇 GOLD</span></div>
-        </div>
-        <div class="story">
-          <div class="story-id">US-03</div>
-          <div class="story-text">
-            <strong>As someone with specific personal limits,</strong><br>
-            <span>I want a private blacklist only I can see, so I can remember past negative interactions without being forced to share data I want to keep confidential.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#safety</span><span class="tag">#privacy</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
-        </div>
-        <div class="story">
-          <div class="story-id">US-04</div>
-          <div class="story-text">
-            <strong>When I receive an inappropriate message,</strong><br>
-            <span>I want to archive and categorise it without fully blocking the sender, so I have a pattern record I can act on or share as evidence later.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#messaging</span><span class="tag">#evidence</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="epic-title">Epic 2 · Client Intelligence (CRM)</div>
-      <div class="stories-row">
-        <div class="story">
-          <div class="story-id">US-05</div>
-          <div class="story-text">
-            <strong>When a returning client contacts me,</strong><br>
-            <span>I want a brief summary of our previous interactions — what was agreed, what happened, any notes — so I don't scroll through WhatsApp history or rely on memory.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#crm</span><span class="tag">#memory</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
-        </div>
-        <div class="story">
-          <div class="story-id">US-06</div>
-          <div class="story-text">
-            <strong>When someone first messages me,</strong><br>
-            <span>I want their record created automatically so I never have to manually create a contact or rename a contact with a timestamp.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#crm</span><span class="tag">#auto-capture</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
-        </div>
-        <div class="story">
-          <div class="story-id">US-07</div>
-          <div class="story-text">
-            <strong>After an appointment,</strong><br>
-            <span>I want to quickly add a voice or text note to a client's profile so I remember what matters — without filling in a form.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#crm</span><span class="tag">#notes</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="epic-title">Epic 3 · Messaging &amp; Interface</div>
-      <div class="stories-row">
-        <div class="story">
-          <div class="story-id">US-08</div>
-          <div class="story-text">
-            <strong>Since I already live in WhatsApp and Telegram,</strong><br>
-            <span>I want to manage availability, client records, and safety checks from within those apps — not learn a new tool or switch between applications.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#no-interface</span><span class="tag">#agent</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
-        </div>
-        <div class="story">
-          <div class="story-id">US-09</div>
-          <div class="story-text">
-            <strong>Since I answer the same questions every day,</strong><br>
-            <span>I want saved standard responses I can trigger instantly, so I stop typing rates, services, and location from scratch each time.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#automation</span><span class="tag">#templates</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
-        </div>
-        <div class="story">
-          <div class="story-id">US-10</div>
-          <div class="story-text">
-            <strong>As someone who values control,</strong><br>
-            <span>I want to set my own automation level — fully manual to semi-assisted — so that no system ever speaks on my behalf without my knowledge.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#control</span><span class="tag">#trust</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="epic-title">Epic 4 · Booking &amp; Scheduling</div>
-      <div class="stories-row">
-        <div class="story">
-          <div class="story-id">US-11</div>
-          <div class="story-text">
-            <strong>When I want to share my availability,</strong><br>
-            <span>I want to say "I'm free Thursday afternoon" and have it propagate — without manually updating a calendar interface on each platform.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#scheduling</span><span class="tag">#natural-language</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
-        </div>
-        <div class="story">
-          <div class="story-id">US-12</div>
-          <div class="story-text">
-            <strong>After a no-show,</strong><br>
-            <span>I want to log it against a number with one tap so the pattern is recorded — and I'm warned if they contact me again.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#no-show</span><span class="tag">#pattern</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge silver">🥈 SILVER</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="epic-title">Epic 5 · Trust &amp; Verification</div>
-      <div class="stories-row">
-        <div class="story">
-          <div class="story-id">US-13</div>
-          <div class="story-text">
-            <strong>Before confirming an appointment with a new client,</strong><br>
-            <span>I want a lightweight signal that this person is who they say they are — so I can decide whether to share my address or access code.</span>
-          </div>
-          <div class="story-tags">
-            <span class="tag">#trust</span><span class="tag">#kyc</span>
-          </div>
-          <div class="story-confidence"><span class="conf-badge bronze">🥉 BRONZE</span></div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- COMPETITIVE -->
 <section id="competitive">
-  <div class="section-eyebrow">06 · Competitive Landscape</div>
-  <h2 class="section-title">Existing Solutions<br>&amp; Their Gaps</h2>
+  <div class="section-eyebrow">07 -- Competitive Landscape</div>
+  <h2 class="section-title">9 Solutions Mapped,<br>All Have Gaps</h2>
   <div class="divider"></div>
+  <p style="color:var(--muted2);font-size:14px;max-width:660px;margin-bottom:40px;line-height:1.7;">Comprehensive landscape from safety-lookup-landscape.md research. Interview participants actively use BMG, CheckClient, Telegram groups, and Projet Jasmine. ProCoRe (27 Swiss counseling centers) planning a national list for 2027 -- potential partner, not just competitor.</p>
 
   <div class="comp-grid reveal">
+    <div class="comp-card">
+      <div class="comp-name">National Ugly Mugs</div>
+      <div class="comp-cost">FREE -- UK/IRELAND</div>
+      <div class="comp-pros">
+        <div class="comp-item pro"><span class="icon">+</span>~1M alerts/year (benchmark)</div>
+        <div class="comp-item pro"><span class="icon">+</span>Police partnership model</div>
+        <div class="comp-item pro"><span class="icon">+</span>Established trust</div>
+      </div>
+      <div style="margin:8px 0;height:1px;background:var(--line);"></div>
+      <div class="comp-cons">
+        <div class="comp-item con"><span class="icon">-</span>UK only</div>
+        <div class="comp-item con"><span class="icon">-</span>Not a management tool</div>
+        <div class="comp-item con"><span class="icon">-</span>Police involvement (hard constraint for TDS)</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-name">Projet Jasmine</div>
+      <div class="comp-cost">FREE -- FRANCE</div>
+      <div class="comp-pros">
+        <div class="comp-item pro"><span class="icon">+</span>8-tier classification</div>
+        <div class="comp-item pro"><span class="icon">+</span>Mobile app</div>
+        <div class="comp-item pro"><span class="icon">+</span>Active (cited by MARYLINE)</div>
+      </div>
+      <div style="margin:8px 0;height:1px;background:var(--line);"></div>
+      <div class="comp-cons">
+        <div class="comp-item con"><span class="icon">-</span>France only</div>
+        <div class="comp-item con"><span class="icon">-</span>No CRM / memory</div>
+        <div class="comp-item con"><span class="icon">-</span>No automation</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-name">CheckClient.ch</div>
+      <div class="comp-cost">FREEMIUM -- SWITZERLAND</div>
+      <div class="comp-pros">
+        <div class="comp-item pro"><span class="icon">+</span>7-tier classification</div>
+        <div class="comp-item pro"><span class="icon">+</span>Swiss-specific</div>
+        <div class="comp-item pro"><span class="icon">+</span>Linked to Bemygirl</div>
+      </div>
+      <div style="margin:8px 0;height:1px;background:var(--line);"></div>
+      <div class="comp-cons">
+        <div class="comp-item con"><span class="icon">-</span>Siloed within BMG ecosystem</div>
+        <div class="comp-item con"><span class="icon">-</span>No CRM / memory</div>
+        <div class="comp-item con"><span class="icon">-</span>Not conversational</div>
+      </div>
+    </div>
+
     <div class="comp-card">
       <div class="comp-name">BMG</div>
       <div class="comp-cost">~450 CHF / MONTH</div>
       <div class="comp-pros">
-        <div class="comp-item pro"><span class="icon">✓</span>Blacklist feature</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Listings + photos</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Client memberships</div>
+        <div class="comp-item pro"><span class="icon">+</span>Blacklist feature</div>
+        <div class="comp-item pro"><span class="icon">+</span>Listings + photos</div>
       </div>
       <div style="margin:8px 0;height:1px;background:var(--line);"></div>
       <div class="comp-cons">
-        <div class="comp-item con"><span class="icon">✗</span>Escort-only scope</div>
-        <div class="comp-item con"><span class="icon">✗</span>Prohibitively expensive</div>
-        <div class="comp-item con"><span class="icon">✗</span>Blacklist is paywalled</div>
-        <div class="comp-item con"><span class="icon">✗</span>Completely siloed</div>
+        <div class="comp-item con"><span class="icon">-</span>CAROLL pays but doesn't use safety</div>
+        <div class="comp-item con"><span class="icon">-</span>Prohibitively expensive</div>
+        <div class="comp-item con"><span class="icon">-</span>"Works better for Geneva and Zurich"</div>
+        <div class="comp-item con"><span class="icon">-</span>Completely siloed</div>
       </div>
     </div>
 
     <div class="comp-card">
-      <div class="comp-name">F-Girl</div>
-      <div class="comp-cost">LOWER COST</div>
+      <div class="comp-name">FlagHim</div>
+      <div class="comp-cost">FREE -- GLOBAL</div>
       <div class="comp-pros">
-        <div class="comp-item pro"><span class="icon">✓</span>Identity verification</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Listing platform</div>
+        <div class="comp-item pro"><span class="icon">+</span>AES-256 encryption</div>
+        <div class="comp-item pro"><span class="icon">+</span>Closed membership</div>
       </div>
       <div style="margin:8px 0;height:1px;background:var(--line);"></div>
       <div class="comp-cons">
-        <div class="comp-item con"><span class="icon">✗</span>DE-CH dominant only</div>
-        <div class="comp-item con"><span class="icon">✗</span>Partial blacklist</div>
-        <div class="comp-item con"><span class="icon">✗</span>Not a management tool</div>
+        <div class="comp-item con"><span class="icon">-</span>Not Switzerland-specific</div>
+        <div class="comp-item con"><span class="icon">-</span>No management tools</div>
       </div>
     </div>
 
     <div class="comp-card">
-      <div class="comp-name">Telegram Groups</div>
-      <div class="comp-cost">FREE</div>
+      <div class="comp-name">P411</div>
+      <div class="comp-cost">~$100-150/YR -- US/CANADA</div>
       <div class="comp-pros">
-        <div class="comp-item pro"><span class="icon">✓</span>Community blacklist data</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Real-time peer exchange</div>
+        <div class="comp-item pro"><span class="icon">+</span>Mutual verification model</div>
+        <div class="comp-item pro"><span class="icon">+</span>Both sides screened</div>
       </div>
       <div style="margin:8px 0;height:1px;background:var(--line);"></div>
       <div class="comp-cons">
-        <div class="comp-item con"><span class="icon">✗</span>Completely unstructured</div>
-        <div class="comp-item con"><span class="icon">✗</span>Not searchable</div>
-        <div class="comp-item con"><span class="icon">✗</span>Not discoverable</div>
-        <div class="comp-item con"><span class="icon">✗</span>No persistent memory</div>
+        <div class="comp-item con"><span class="icon">-</span>US/Canada only</div>
+        <div class="comp-item con"><span class="icon">-</span>Requires client adoption</div>
       </div>
     </div>
 
     <div class="comp-card">
-      <div class="comp-name">The Dancer Resource</div>
-      <div class="comp-cost">~$6 / MONTH · US ONLY</div>
+      <div class="comp-name">ProCoRe "Bad Client List"</div>
+      <div class="comp-cost">PLANNED 2027 -- SWITZERLAND</div>
       <div class="comp-pros">
-        <div class="comp-item pro"><span class="icon">✓</span>Income tracker</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Venue reviews</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Peer community</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Right pricing model</div>
+        <div class="comp-item pro"><span class="icon">+</span>27 counseling centers (national reach)</div>
+        <div class="comp-item pro"><span class="icon">+</span>Institutional backing</div>
       </div>
       <div style="margin:8px 0;height:1px;background:var(--line);"></div>
       <div class="comp-cons">
-        <div class="comp-item con"><span class="icon">✗</span>US / strippers only</div>
-        <div class="comp-item con"><span class="icon">✗</span>No safety features</div>
+        <div class="comp-item con"><span class="icon">-</span>Not launched yet (2027)</div>
+        <div class="comp-item con"><span class="icon">-</span>May become data source / partner</div>
       </div>
     </div>
 
     <div class="comp-card">
-      <div class="comp-name">DIY (Excel / Monday)</div>
-      <div class="comp-cost">TIME COST</div>
+      <div class="comp-name">Community Groups</div>
+      <div class="comp-cost">FREE -- TELEGRAM / WHATSAPP</div>
       <div class="comp-pros">
-        <div class="comp-item pro"><span class="icon">✓</span>Flexible</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Free or low cost</div>
+        <div class="comp-item pro"><span class="icon">+</span>Real-time peer exchange</div>
+        <div class="comp-item pro"><span class="icon">+</span>Organic trust</div>
       </div>
       <div style="margin:8px 0;height:1px;background:var(--line);"></div>
       <div class="comp-cons">
-        <div class="comp-item con"><span class="icon">✗</span>Double-entry hell</div>
-        <div class="comp-item con"><span class="icon">✗</span>Not mobile-first</div>
-        <div class="comp-item con"><span class="icon">✗</span>No safety features</div>
-        <div class="comp-item con"><span class="icon">✗</span>Infime minority uses it</div>
+        <div class="comp-item con"><span class="icon">-</span>Unstructured, unsearchable</div>
+        <div class="comp-item con"><span class="icon">-</span>CAROLL: reading the group is "extra work"</div>
+        <div class="comp-item con"><span class="icon">-</span>No persistent memory</div>
       </div>
     </div>
 
     <div class="comp-card scarlot">
       <div class="comp-name">Scarlot</div>
-      <div class="comp-cost">TO BE DEFINED</div>
+      <div class="comp-cost">CHF 15-55 / MONTH (TESTED)</div>
       <div class="comp-pros">
-        <div class="comp-item pro"><span class="icon">✓</span>Safety-first design</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Conversational-native</div>
-        <div class="comp-item pro"><span class="icon">✓</span>No new interface</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Personal + collective</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Swiss-contextual</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Insider trust (the co-founder)</div>
-        <div class="comp-item pro"><span class="icon">✓</span>Affordable</div>
+        <div class="comp-item pro"><span class="icon">+</span>Safety-first, conversational-native</div>
+        <div class="comp-item pro"><span class="icon">+</span>No new app -- lives in WhatsApp</div>
+        <div class="comp-item pro"><span class="icon">+</span>Personal + collective blacklist</div>
+        <div class="comp-item pro"><span class="icon">+</span>Swiss-contextual, nFADP compliant</div>
+        <div class="comp-item pro"><span class="icon">+</span>Insider community trust</div>
+        <div class="comp-item pro"><span class="icon">+</span>Flat subscription (Art. 195 firewall)</div>
+        <div class="comp-item pro"><span class="icon">+</span>Proprietary market data (7,221 identities)</div>
       </div>
     </div>
   </div>
@@ -1862,8 +2032,8 @@ footer {
 
 <!-- ASSUMPTIONS -->
 <section id="assumptions">
-  <div class="section-eyebrow">07 · Assumption Log</div>
-  <h2 class="section-title">10 Assumptions.<br>Most Unvalidated.</h2>
+  <div class="section-eyebrow">08 -- Assumption Log</div>
+  <h2 class="section-title">10 Assumptions.<br>Most Now Validated.</h2>
   <div class="divider"></div>
 
   <div class="reveal">
@@ -1872,7 +2042,7 @@ footer {
         <tr>
           <th>ID</th>
           <th>Assumption</th>
-          <th>What breaks if wrong</th>
+          <th>Evidence Update (v2)</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -1880,156 +2050,390 @@ footer {
         <tr>
           <td>A1</td>
           <td>TDS will contribute client data to a collective blacklist</td>
-          <td class="a-break">Core network value prop collapses. Product becomes a solo notepad.</td>
-          <td><span class="a-status none">Unvalidated</span></td>
+          <td class="a-break">STRONGEST behavioral validation: all 8 interviewees contribute informally (WhatsApp groups, Telegram, Projet Jasmine). BUT: reporting friction must be near-zero. GABRIELLE: mood-dependent reporting = data loss. Contribution AND consumption friction are both barriers.</td>
+          <td><span class="a-status ok">Supported</span></td>
         </tr>
         <tr>
           <td>A2</td>
           <td>Phone number is a stable, sufficient unique client identifier</td>
-          <td class="a-break">CRM and blacklist become unreliable. Number spoofing is a real attack vector.</td>
+          <td class="a-break">Confirmed as primary key across all interviews. BUT: clients use disappearing messages to erase traces. Masked numbers = hard ceiling (MARYLINE: requires police complaint).</td>
           <td><span class="a-status partial">Partial</span></td>
         </tr>
         <tr>
           <td>A3</td>
-          <td>the co-founder's insider trust transfers to the Scarlot platform</td>
-          <td class="a-break">Adoption fails in a community that fears exploitation above all else.</td>
-          <td><span class="a-status partial">Partial</span></td>
+          <td>Co-founder's insider trust transfers to the Scarlot platform</td>
+          <td class="a-break">8 interviews conducted through co-founder's network. Access itself is evidence of trust transfer. GABRIELLE: political precondition is "self-organized, zero police contact."</td>
+          <td><span class="a-status ok">Supported</span></td>
         </tr>
         <tr>
           <td>A4</td>
           <td>Conversational / no-UI is preferred over a dedicated app</td>
-          <td class="a-break">Build complexity without UX advantage. the advisor's hypothesis — not user-sourced.</td>
-          <td><span class="a-status none">Unvalidated</span></td>
+          <td class="a-break">MIXED. Most users confirm WhatsApp-native. BUT GABRIELLE (most technical) prefers structured DB tools, not conversational. Boundary: passive checks in messaging YES, structured data management may need UI.</td>
+          <td><span class="a-status partial">Mixed</span></td>
         </tr>
         <tr>
           <td>A5</td>
-          <td>10 beta users represent the broader independent TDS population in CH</td>
-          <td class="a-break">Learning is biased. Product misses the actual market.</td>
-          <td><span class="a-status none">Unvalidated</span></td>
+          <td>Interview cohort represents the broader independent TDS population in CH</td>
+          <td class="a-break">7 participants across experience levels (3mo to 13yr), work models (street, online, dual-mode, GFE), and locations (Geneva, Paris, cross-border). 2 trans women. More representative than v1 but still small sample.</td>
+          <td><span class="a-status partial">Partial</span></td>
         </tr>
         <tr>
           <td>A6</td>
           <td>TDS are willing to KYC themselves on a new platform</td>
-          <td class="a-break">Verification features fail at onboarding. Zero trust from day one.</td>
+          <td class="a-break">GABRIELLE: left Notion over account suspension risk. Self-hosts infrastructure. Data sovereignty is non-negotiable. KYC acceptable only with visible data control.</td>
           <td><span class="a-status partial">Partial</span></td>
         </tr>
         <tr>
           <td>A7</td>
           <td>AI-assisted triage is acceptable if TDS retain control</td>
-          <td class="a-break">Community actively rejects it. Confirmed: semi-auto required, never full-auto.</td>
+          <td class="a-break">Boundary clarified by GABRIELLE: passive safety checks (automatic background lookups) = YES. AI engaging in conversation = NO. "C'est important d'etre la." Semi-auto confirmed, active AI rejected.</td>
           <td><span class="a-status partial">Partial</span></td>
         </tr>
         <tr>
           <td>A8</td>
-          <td>WTP exists at meaningful levels (~10% of revenue cited)</td>
-          <td class="a-break">Business model is non-viable. Forward-looking statement, no commitment signal.</td>
-          <td><span class="a-status none">Unvalidated</span></td>
+          <td>Willingness to pay exists at meaningful levels</td>
+          <td class="a-break">FIRST BEHAVIORAL WTP: GABRIELLE paid Airtable ~50 CHF/mo, Notion, bought server, Tryst ~20 CHF/mo. CAROLL pays ~450 CHF/mo for BMG. Rejected: Blink ("super expensive"). Moved from Unvalidated to Probable.</td>
+          <td><span class="a-status ok">Probable</span></td>
         </tr>
         <tr>
           <td>A9</td>
           <td>Collective blacklist data can be shared without legal / defamation exposure</td>
-          <td class="a-break">Legal liability kills the feature before it launches.</td>
-          <td><span class="a-status risk">⚠ Legal Risk</span></td>
+          <td class="a-break">Credit bureau model + NUM precedent + truth defense + dispute mechanism. ProCoRe planning national list (institutional precedent). Swiss legal counsel still required pre-launch.</td>
+          <td><span class="a-status risk">Legal Risk</span></td>
         </tr>
         <tr>
           <td>A10</td>
           <td>Swiss regulatory context supports this product without special licensing</td>
-          <td class="a-break">Regulatory surprise post-launch. nFADP compliance required.</td>
-          <td><span class="a-status risk">⚠ Legal Risk</span></td>
+          <td class="a-break">Art. 195 StGB firewall via flat subscription (never commission). nFADP compliance required (sensitive data). DPIA required pre-launch. FOSTA-SESTA: Swiss entity, no US nexus, dual criminality defense.</td>
+          <td><span class="a-status risk">Legal Risk</span></td>
         </tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- FOLLOW-UP -->
+<!-- USER STORIES -->
+<section id="stories">
+  <div class="section-eyebrow">09 -- User Stories</div>
+  <h2 class="section-title">Now Validated,<br>Not Just Inferred</h2>
+  <div class="divider"></div>
+  <p style="color:var(--muted2);font-size:14px;max-width:680px;margin-bottom:48px;line-height:1.7;">In v1, all stories were mediated through the co-founder. In v2, every Gold-rated story has direct user behavioral evidence. Users built their own solutions -- confirming these aren't hypothetical needs.</p>
+
+  <div class="epics reveal">
+
+    <div>
+      <div class="epic-title">Epic 1 -- Safety &amp; Filtering</div>
+      <div class="stories-row">
+        <div class="story">
+          <div class="story-id">US-01</div>
+          <div class="story-text">
+            <strong>When a first message arrives from an unknown number,</strong><br>
+            <span>I want to instantly see whether they've been flagged, so I can decide before investing any time. GABRIELLE: "It would be amazing if it was automatic."</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#safety</span><span class="tag">#blacklist</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">GOLD</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-02</div>
+          <div class="story-text">
+            <strong>After a negative experience,</strong><br>
+            <span>I want to flag a client's number with near-zero friction, so the data doesn't get lost when I'm in a good mood. GABRIELLE: mood-dependent reporting = data loss.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#safety</span><span class="tag">#collective</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">GOLD</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-03</div>
+          <div class="story-text">
+            <strong>As someone with specific personal limits,</strong><br>
+            <span>I want a private blacklist only I can see, so I can remember past negative interactions. Graduated reporting: personal label first, community report for repeat offenses.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#safety</span><span class="tag">#privacy</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">GOLD</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="epic-title">Epic 2 -- Client Intelligence</div>
+      <div class="stories-row">
+        <div class="story">
+          <div class="story-id">US-05</div>
+          <div class="story-text">
+            <strong>When a returning client contacts me,</strong><br>
+            <span>I want a brief summary of our previous interactions. MARYLINE uses emoji codes. GABRIELLE uses Notion. CAROLL after 12 years has "just a record in the contacts."</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#crm</span><span class="tag">#memory</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">GOLD</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-06</div>
+          <div class="story-text">
+            <strong>When someone first messages me,</strong><br>
+            <span>I want their record created automatically -- no manual contact renaming, no emoji systems, no Notion databases. Just automatic capture on first contact.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#crm</span><span class="tag">#auto-capture</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">GOLD</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="epic-title">Epic 3 -- Messaging &amp; Automation</div>
+      <div class="stories-row">
+        <div class="story">
+          <div class="story-id">US-08</div>
+          <div class="story-text">
+            <strong>Since I already live in WhatsApp,</strong><br>
+            <span>I want safety checks and client management from within that app. Not a new tool. GABRIELLE uses WhatsApp Business for 90% of communication.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#no-interface</span><span class="tag">#agent</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">GOLD</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-09</div>
+          <div class="story-text">
+            <strong>Since I answer the same questions every day,</strong><br>
+            <span>I want saved responses I can trigger instantly. GABRIELLE's pre-recorded message triage system is the most structured screening seen in any interview.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#automation</span><span class="tag">#templates</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">GOLD</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-10</div>
+          <div class="story-text">
+            <strong>As someone who values control,</strong><br>
+            <span>I want to set my automation level. Passive background checks: yes. AI talking to my clients: never. "C'est important d'etre la pour des gens qui ne sont pas des trous du cul."</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#control</span><span class="tag">#trust</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge gold">GOLD</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="epic-title">Epic 4 -- Safety Protocol</div>
+      <div class="stories-row">
+        <div class="story">
+          <div class="story-id">US-14</div>
+          <div class="story-text">
+            <strong>Before meeting a new client,</strong><br>
+            <span>I want a check-in protocol -- someone who knows where I am and will act if I don't check back. AVRIL's 5-minute check-in timer is a buildable feature.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#safety</span><span class="tag">#check-in</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge silver">SILVER</span></div>
+        </div>
+        <div class="story">
+          <div class="story-id">US-15</div>
+          <div class="story-text">
+            <strong>When I feel unsafe,</strong><br>
+            <span>I want a virtual panic button. PITI: "J'ai eu peur quelquefois notamment pour des violences physiques." First request for an in-session safety feature.</span>
+          </div>
+          <div class="story-tags">
+            <span class="tag">#safety</span><span class="tag">#panic</span>
+          </div>
+          <div class="story-confidence"><span class="conf-badge silver">SILVER</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BUSINESS READINESS -->
+<section id="business">
+  <div class="section-eyebrow">10 -- Business Readiness</div>
+  <h2 class="section-title">Round 1 Ready.</h2>
+  <div class="divider"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:48px;" class="reveal">
+    <div>
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:20px;letter-spacing:-0.02em;">Credibility Stack</h3>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--line);font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:12px;">
+          <span style="color:var(--green);font-size:16px;">+</span> Proprietary market census: 7,221 deduplicated identities
+        </div>
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--line);font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:12px;">
+          <span style="color:var(--green);font-size:16px;">+</span> 8 validated user interviews (18 problems, 10 assumptions)
+        </div>
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--line);font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:12px;">
+          <span style="color:var(--green);font-size:16px;">+</span> Insider community access (co-founder, Aspasie, ProCoRe network)
+        </div>
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--line);font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:12px;">
+          <span style="color:var(--green);font-size:16px;">+</span> Working POC (NanoClaw on Claude Agent SDK)
+        </div>
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--line);font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:12px;">
+          <span style="color:var(--green);font-size:16px;">+</span> Clear legal home: Swiss SA, flat subscription, Art. 195 firewall
+        </div>
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--line);font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:12px;">
+          <span style="color:var(--green);font-size:16px;">+</span> Behavioral WTP evidence (GABRIELLE + CAROLL spending)
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:20px;letter-spacing:-0.02em;">Round 1 Projections</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="padding:16px;background:var(--bg2);border:1px solid var(--line);text-align:center;">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-bottom:8px;">CONSERVATIVE Y1</div>
+          <div style="font-family:var(--serif);font-size:24px;font-weight:700;color:var(--amber);">50</div>
+          <div style="font-size:12px;color:var(--muted2);">users / CHF 12K ARR</div>
+        </div>
+        <div style="padding:16px;background:var(--bg2);border:1px solid var(--line);text-align:center;">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-bottom:8px;">OPTIMISTIC Y1</div>
+          <div style="font-family:var(--serif);font-size:24px;font-weight:700;color:var(--amber);">200</div>
+          <div style="font-size:12px;color:var(--muted2);">users / CHF 84K ARR</div>
+        </div>
+        <div style="padding:16px;background:var(--bg2);border:1px solid var(--line);text-align:center;">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-bottom:8px;">GROSS MARGIN</div>
+          <div style="font-family:var(--serif);font-size:24px;font-weight:700;color:var(--green);">85%+</div>
+          <div style="font-size:12px;color:var(--muted2);">SaaS model</div>
+        </div>
+        <div style="padding:16px;background:var(--bg2);border:1px solid var(--line);text-align:center;">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-bottom:8px;">CAC</div>
+          <div style="font-family:var(--serif);font-size:24px;font-weight:700;color:var(--green);">~0</div>
+          <div style="font-size:12px;color:var(--muted2);">community-driven</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:20px;letter-spacing:-0.02em;">Pricing Model (Tested in INT8)</h3>
+  <div class="pricing-grid reveal">
+    <div class="pricing-card">
+      <div class="pricing-tier">Free</div>
+      <div class="pricing-price" style="color:var(--muted2);">CHF 0</div>
+      <div class="pricing-period">/month</div>
+      <div class="pricing-features">Memory (basic)<br>Personal blacklist</div>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Solo</div>
+      <div class="pricing-price">CHF 15</div>
+      <div class="pricing-period">/month</div>
+      <div class="pricing-features">Full memory<br>Inbound filtering<br>Template responses</div>
+    </div>
+    <div class="pricing-card highlight">
+      <div class="pricing-tier">Pro</div>
+      <div class="pricing-price">CHF 35</div>
+      <div class="pricing-period">/month</div>
+      <div class="pricing-features">Collective blacklist<br>Booking mgmt<br>Income tracking</div>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Pro+</div>
+      <div class="pricing-price">CHF 55</div>
+      <div class="pricing-period">/month</div>
+      <div class="pricing-features">Analytics<br>Multi-channel<br>Priority support</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOLLOW-UP / NEXT STEPS -->
 <section id="followup">
-  <div class="section-eyebrow">08 · Next Steps</div>
-  <h2 class="section-title">What Must Happen<br>Before a Single Line of Code</h2>
+  <div class="section-eyebrow">11 -- Next Steps</div>
+  <h2 class="section-title">What's Next</h2>
   <div class="divider"></div>
 
   <div class="followup-grid reveal">
     <div class="followup-col">
-      <h3>User Research</h3>
+      <h3>Pre-Launch Requirements</h3>
       <div class="followup-item">
         <div class="fi-num">01</div>
         <div class="fi-content">
-          <div class="fi-title">3 Direct Mom-Test Interviews</div>
-          <div class="fi-desc">Without the co-founder present. Past-behaviour questions only. "Tell me about the last time you received a message that made you uncomfortable. What did you do, step by step?"</div>
+          <div class="fi-title">Swiss Legal Counsel</div>
+          <div class="fi-desc">Art. 195 StGB, nFADP compliance, blacklist defamation risk. Must be resolved before any collective features go live. DPIA required.</div>
         </div>
       </div>
       <div class="followup-item">
         <div class="fi-num">02</div>
         <div class="fi-content">
-          <div class="fi-title">Tool Stack Inventory (all 10 beta users)</div>
-          <div class="fi-desc">Which messaging apps, phone OS, scheduling method, client notes system, platform subscriptions (BMG, F-Girl). Maps the real current state before designing the future state.</div>
+          <div class="fi-title">Channel Abstraction Layer</div>
+          <div class="fi-desc">WhatsApp is current, but architecture must support alternatives. No single platform is existential. GABRIELLE: data sovereignty is non-negotiable.</div>
         </div>
       </div>
       <div class="followup-item">
         <div class="fi-num">03</div>
         <div class="fi-content">
-          <div class="fi-title">Blacklist Smoke Test</div>
-          <div class="fi-desc">A shared private Google Sheet. 5 beta users. 2 weeks. Measure: how many numbers added? Do they check it proactively? This validates A1 before building anything.</div>
+          <div class="fi-title">AI Provider Evaluation</div>
+          <div class="fi-desc">US-based AI providers create potential FOSTA-SESTA jurisdictional nexus. Evaluate Swiss/EU alternatives or establish clean legal separation.</div>
         </div>
       </div>
     </div>
 
     <div class="followup-col">
-      <h3>Clarifications Needed</h3>
+      <h3>Validated Design Constraints</h3>
       <div class="followup-item">
-        <div class="fi-num">Q1</div>
+        <div class="fi-num">C1</div>
         <div class="fi-content">
-          <div class="fi-title">What exactly is BMG?</div>
-          <div class="fi-desc">Platform name, scope, ownership. the co-founder knows a BMG contact — potential partner or competitor to profile carefully.</div>
+          <div class="fi-title">Near-zero reporting friction</div>
+          <div class="fi-desc">GABRIELLE: mood-dependent reporting = data loss. If flagging a bad client takes more than one tap, the data never gets recorded.</div>
         </div>
       </div>
       <div class="followup-item">
-        <div class="fi-num">Q2</div>
+        <div class="fi-num">C2</div>
         <div class="fi-content">
-          <div class="fi-title">What is Aspasie's formal relationship with Scarlot?</div>
-          <div class="fi-desc">NGO trust transfer + potential distribution channel. Already mentioned as an active demand signal.</div>
+          <div class="fi-title">Passive checks only, no AI conversation</div>
+          <div class="fi-desc">A7 boundary: automatic background lookups = YES. AI talking to clients = NO. "C'est important d'etre la." Semi-auto, never full-auto.</div>
         </div>
       </div>
       <div class="followup-item">
-        <div class="fi-num">Q3</div>
+        <div class="fi-num">C3</div>
         <div class="fi-content">
-          <div class="fi-title">Can the advisor interview the beta user directly?</div>
-          <div class="fi-desc">The bizdev-oriented beta user is the richest anecdotal source in all 6 sessions. Primary interview candidate. She used Monday.com and called it impossible. That's gold-tier data.</div>
+          <div class="fi-title">Self-organized, zero police contact</div>
+          <div class="fi-desc">GABRIELLE: political precondition. Any perceived police involvement kills adoption instantly. Community-governed, not institution-governed.</div>
         </div>
       </div>
       <div class="followup-item">
-        <div class="fi-num">Q4</div>
+        <div class="fi-num">C4</div>
         <div class="fi-content">
-          <div class="fi-title">What happened to the Israeli Telegram bot?</div>
-          <div class="fi-desc">Closest existing model to the conversational-native vision. Shutdown reason matters for risk assessment.</div>
+          <div class="fi-title">Data sovereignty guarantee</div>
+          <div class="fi-desc">GABRIELLE left Notion over account suspension risk. TDS require visible control over their data. On-device where possible, Swiss hosting for shared features.</div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="poc-box reveal">
-    <div class="poc-title">The POC Proposal</div>
-    <div class="poc-sub">the advisor's suggested next move: build a limited proof-of-concept independently, using AI-assisted coding tools, to test functional direction and user interaction without committing to full architecture.</div>
+    <div class="poc-title">POC Status: In Progress</div>
+    <div class="poc-sub">NanoClaw engine (Claude Agent SDK) is the working prototype. WhatsApp bot that receives phone numbers and returns safety intelligence. Next: beta testing with interview participants.</div>
     <div class="poc-items">
       <div class="poc-item">
         <div class="poc-item-num">01</div>
-        <div class="poc-item-desc">WhatsApp or Telegram bot: receive a phone number, return blacklist status from a manually maintained list</div>
+        <div class="poc-item-desc">WhatsApp bot: receive a phone number, return blacklist status from aggregated sources. Passive, automatic.</div>
       </div>
       <div class="poc-item">
         <div class="poc-item-num">02</div>
-        <div class="poc-item-desc">Voice note or text → client record creation flow. No UI. No form. Natural language only.</div>
+        <div class="poc-item-desc">Auto-populated client record on first contact. Phone number = unique key. No forms, no manual entry.</div>
       </div>
       <div class="poc-item">
         <div class="poc-item-num">03</div>
-        <div class="poc-item-desc">Personal blacklist only in V0. No shared data. Avoids legal and trust complexity at this stage.</div>
+        <div class="poc-item-desc">Personal blacklist first. Collective features only after legal counsel and trust-building with beta users.</div>
       </div>
     </div>
     <div style="margin-top:28px;padding:20px;background:var(--bg);border:1px solid var(--line);">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:12px;letter-spacing:0.08em;">SUCCESS CRITERIA</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-        <div style="font-size:13px;color:var(--muted2);line-height:1.6;">At least <strong style="color:var(--text)">3 beta users</strong> try it organically — not just because the co-founder asked</div>
-        <div style="font-size:13px;color:var(--muted2);line-height:1.6;">At least <strong style="color:var(--text)">1 user contributes</strong> a blacklist entry unprompted</div>
-        <div style="font-size:13px;color:var(--muted2);line-height:1.6;">At least <strong style="color:var(--text)">1 user checks</strong> the blacklist before responding to a new contact</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:12px;letter-spacing:0.08em;">KEY RISKS TO RESOLVE</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div style="font-size:13px;color:var(--muted2);line-height:1.6;"><strong style="color:var(--coral);">HIGH</strong><br>Messaging platform dependency</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.6;"><strong style="color:var(--coral);">HIGH</strong><br>nFADP compliance (sensitive data)</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.6;"><strong style="color:var(--amber2);">MEDIUM</strong><br>FOSTA-SESTA reach</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.6;"><strong style="color:var(--amber2);">MEDIUM</strong><br>Blacklist defamation</div>
       </div>
     </div>
   </div>
@@ -2038,9 +2442,10 @@ footer {
 <footer>
   <div class="footer-brand">Scarlot</div>
   <div class="footer-meta">
-    Discovery Report · February 2025 · Geneva<br>
-    6 sessions · Co-founder × Advisor<br>
-    All evidence mediated through the co-founder. Direct user interviews are the critical next step.
+    Discovery Report v2 -- April 2026 -- Geneva<br>
+    8 interviews -- 7 participants -- Direct user evidence<br>
+    7,221 unique workers identified -- 2,047 in launch market<br>
+    Platform: Maia -- First coverage: Safety + Memory
   </div>
 </footer>
 

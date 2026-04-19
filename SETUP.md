@@ -110,7 +110,7 @@ npm run dev
 
 NanoClaw needs either:
 
-- `CLAUDE_CODE_OAUTH_TOKEN` — from a Claude Code subscription, or
-- `ANTHROPIC_API_KEY` — direct API access
+- `CLAUDE_CODE_OAUTH_TOKEN` - from a Claude Code subscription, or
+- `ANTHROPIC_API_KEY` - direct API access
 
 Set these in your shell profile or a `.env` file in the `engine/` directory.

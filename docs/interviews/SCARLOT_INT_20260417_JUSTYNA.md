@@ -34,7 +34,7 @@ Notable context:    Side-earner framing — views TDS work as temporary bridge t
 - **Type:** WORKAROUND / BEHAVIOUR
 - **Statement:** [VERBATIM] "Because this platform... be my girl. [...] we share from experience and the girls sometimes text back some men comment and they discuss [...] please be careful this number because this guy coming and pick me or still something."
 - **Behaviour:** Actively uses the BMG-gated WhatsApp community group ("CheckClient"-equivalent). Has queried phone numbers in the group AND posted number-based warnings. Paid BMG access is her gateway to the group.
-- **Frequency:** Habitual. "When somebody comes, I check in application."
+- **Frequency:** Habitual. “Based on intuition, I check in application."
 - **Intensity:** Matter-of-fact — describes it as baseline professional practice: "without this check it's impossible to work."
 - **Connects to:** P5 (no centralised blacklist), P7 (blacklist paywalled / BMG), A1 (collective blacklist contribution), A2 (phone as unique ID)
 - **Implication:** Confirms the BMG-gated community chat is an active collective blacklist in practice, not just theory. JUSTYNA both contributes and consults. Reinforces the cohort's strongest pattern: paid BMG subscription is in large part a safety-network access tax.
@@ -43,17 +43,17 @@ Notable context:    Side-earner framing — views TDS work as temporary bridge t
 - **Tier:** 🥇 Gold
 - **Type:** BEHAVIOUR / PAIN
 - **Statement:** [VERBATIM] "I have like maybe uh seven hundred of... block people." / "Block, contact, block, quickly. Quickly."
-- **Behaviour:** Approximately 700 numbers blocked on iPhone. Decision rule is first-impression gut ("I can fill a radio who is a person from the first one. block"). No annotation, no reason logged on the contact card. Lost context on every block.
+- **Behaviour:** Approximately 700 numbers blocked on iPhone. Decision rule is first-impression gut. No annotation, no reason logged on the contact card. Lost context on every block.
 - **Frequency:** Systematic; every day. Peak volume on entry to a new city: "fifty, one hundred every day" of unwanted inbound.
-- **Intensity:** Frustrated-resigned. "they are team master... just fuck your mind."
+- **Intensity:** Frustrated-resigned. "they... just fuck your mind."
 - **Connects to:** P3 (no inbound filtering), P4 (mental load / cognitive overload), P13 (inappropriate message management)
 - **Implication:** 700 blocked numbers with zero annotation is a giant data-loss event that Scarlot could trivially capture — "block" in iOS = evidence destruction. The behavior is so routine that even capturing a one-tap reason (vulgar / time-waster / lowballer) would materially expand the collective dataset.
 
 ### SIGNAL 3
 - **Tier:** 🥇 Gold
 - **Type:** WORKAROUND / BEHAVIOUR (new screening method)
-- **Statement:** [VERBATIM] "the rules is... somebody uh who wants this [outcall] need to pay uh something in Revolute. Or order Uber."
-- **Behaviour:** For outcalls, JUSTYNA requires either a small Revolut deposit or that the client book (and JUSTYNA see) an Uber for her before committing. The Uber order is used as a commitment signal, not primarily as transport funding: "it's not about ten twenty franc... it's about the conversation with people."
+- **Statement:** [VERBATIM] "the rules is... somebody uh who wants this [outcall] need to pay uh something in Revolut. Or order Uber."
+- **Behaviour:** For outcalls, JUSTYNA requires either a small Revolut deposit or that the client book an Uber for her before committing. The Uber order is used as a commitment signal, not primarily as transport funding: "it's not about ten twenty franc... it's about the conversation with people."
 - **Frequency:** Habitual protocol for outcalls.
 - **Intensity:** Calm / confident — framed as "the rules." Contrasted with a cautionary tale: "one girl's go to Morocco... this manager never was there."
 - **Connects to:** P3 (no inbound filtering), P6 (no-shows & time-wasters), P9 (no client KYC / verification); candidate new signal
@@ -62,7 +62,7 @@ Notable context:    Side-earner framing — views TDS work as temporary bridge t
 ### SIGNAL 4
 - **Tier:** 🥇 Gold
 - **Type:** PAIN
-- **Statement:** [VERBATIM] "for me it's like mental adults [mental old/aged]... everybody tags just for fuck your mind and you go. It's like horror." / "from beginning this me, my mental need me very, very, very dumb."
+- **Statement:** [VERBATIM] "for me it's like mental adults [mental old/aged]... everybody just for fuck your mind and you go. It's like horror." / "from beginning this me, my mental need me very, very, very dumb."
 - **Behaviour:** Describes the cumulative effect of unfiltered inbound as mental aging / damage. Emotional labor persists despite low client volume.
 - **Frequency:** Continuous while active.
 - **Intensity:** High — one of the rawer affective statements in the cohort.
@@ -82,8 +82,8 @@ Notable context:    Side-earner framing — views TDS work as temporary bridge t
 ### SIGNAL 6
 - **Tier:** 🥈 Silver
 - **Type:** BEHAVIOUR / CONTRADICTION (on P2/P11)
-- **Statement:** [PARAPHRASE] No calendar, no notes on her side. "I remember everything." Client count is 5/week in Lausanne, so mental memory suffices. She knows a friend with higher volume who uses phone notes ("notatnik") and does spend/earn analytics.
-- **Behaviour:** Bookings confirmed by ad-hoc message exchange ("what time you call me"). No CRM, no calendar. No post-appointment record. Remembers individual clients episodically ("I remember everything, even we eat sushi").
+- **Statement:** [PARAPHRASE] No calendar, no notes on her side. "I remember everything." Client count is 5/week in Lausanne, so mental memory suffices. She knows a friend with higher volume who uses phone notes ("notatnik") and does spend/earn analytics but simply in a note taking application.
+- **Behaviour:** Bookings confirmed by ad-hoc message exchange ("what time you call me"). No CRM, no calendar. No post-appointment record. Remembers individual clients episodically ("I remember everything").
 - **Frequency:** N/A — absence of behavior.
 - **Intensity:** Matter-of-fact. No expressed pain around forgetting.
 - **Connects to:** P2 (no client memory), P11 (manual calendar / booking); weakens these for this persona

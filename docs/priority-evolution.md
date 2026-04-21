@@ -6,42 +6,44 @@
 
 ## Current State
 
-*Updated after: SCARLOT_INT_20260319_GABRIELLE (INT8). Total interviews: 8 (7 participants - GABRIELLE interviewed twice).*
+*Updated after: SCARLOT_INT_20260417_JUSTYNA (INT10). Total interviews: 10 (8 participants - GABRIELLE and CAROLL interviewed twice).*
 
 ### Priority Stack
 
 | Rank | Problem | Severity | Evidence Tier | Signal Count (cumulative) | Trajectory |
 |------|---------|----------|---------------|---------------------------|------------|
-| 1 | P5 - No centralised blacklist | CRITICAL | 🥇 Gold | 4 Gold + 4 Silver across 8 INT | ↑↑↑ STRONGEST - Gabrielle INT8 built a blacklist scraper/aggregator. Strongest single-user behavioral validation in cohort. Piti boulevard gap, Meron Telegram, Maryline Projet Jasmine |
-| 2 | P3 - No inbound filtering | CRITICAL | 🥇 Gold | 4 Gold + 4 Silver across 8 INT | ↑↑ STRONG - Gabrielle INT8: even the most technical user doesn't check systematically. "It would be amazing if it was automatic." Passive/automatic is the only viable approach |
-| 3 | P4 - Cognitive overload | CRITICAL | 🥇 Gold | 3 Gold + 2 Silver across 8 INT | ↑ Strengthening - no new direct signal from INT8, but mood-dependent blacklisting is a cognitive overload symptom |
-| 4 | P6 - Time-wasters / no-shows | CRITICAL | 🥇 Gold | 3 Gold + 5 Silver across 8 INT | ↑ Reinforced - Gabrielle INT8 mood-dependent blacklisting of no-shows. Design insight: reporting friction causes data loss on moderate offenses |
-| 5 | P2 - No client memory | HIGH | 🥇 Gold | 3 Gold + 3 Silver across 8 INT | ↑ Reinforced - Gabrielle INT8 reveals full Notion DB: client records with grades, revenue, outcomes. Most advanced self-built CRM in cohort. 6/8 interviews show client memory workarounds |
-| 6 | P9 - No client KYC | HIGH | 🥈 Silver | 0 Gold + 5 Silver across 8 INT | → Stable - no new signal from INT8 |
-| 7 | P8 - Manual repetition | HIGH | 🥇 Gold | 1 Gold + 1 Silver across 8 INT | ↑ Detail added - INT8 reveals WAB slash commands (/cava), multilingual templates. Deepens INT6 mechanism |
-| 8 | P15 - Data siloing across platforms | MEDIUM | 🥈 Silver ↑ | 0 Gold + 2 Silver across 8 INT | ↑↑ FIRST REAL SIGNAL - Gabrielle's scraper explicitly about aggregating fragmented sources. Multi-list reporting friction. UPGRADED from Watchlist |
-| 9 | P16 - No income tracking | MEDIUM | 🥈 Silver ↑ | 0 Gold + 1 Silver across 8 INT | ↑↑ FIRST REAL SIGNAL - Built bank notification parser, tracks seasonality/revenue. Wants Mint-like aggregator. UPGRADED from Watchlist |
-| 10 | P1 - Messaging fragmentation | LOW | 🥈 Silver | 0 across 8 INT | ⚠️ FURTHER WEAKENED - 8 interviews, zero pain signal. Recommend downgrade or removal |
-| 11 | P13 - Inappropriate message mgmt | MEDIUM | 🥉 Bronze | 0 Gold + 2 Silver across 8 INT | → Stable |
-| 12 | P11 - Manual calendar / booking | MEDIUM | 🥉 Bronze | 1 Silver (INT1) | → Stable - no new signal |
-| 13–14 | P7 (blacklist paywalled / BMG), P10 (fake listings) | Various | Various | Watchlist | → Gabrielle lost BMG access but unclear if cost-related |
-| NEW | P17 (candidate) - Platform identity mismatch / forced categorization | MEDIUM | 🥇 Gold | 1 Gold (INT8) | NEW - "je veux ma propre épicerie." Needs second source |
-| NEW | P18 (candidate) - Client reputation threats / revenge | MEDIUM | 🥈 Silver | 1 Silver (INT8) | NEW - Needs second source |
+| 1 | P5 - No centralised blacklist | CRITICAL | 🥇 Gold | 5 Gold + 4 Silver across 10 INT | ↑↑↑ STRONGEST - JUSTYNA INT10: "without this check it's impossible to work." Active contributor+consumer of BMG-gated group. 5th Gold source |
+| 2 | P3 - No inbound filtering | CRITICAL | 🥇 Gold | 5 Gold + 4 Silver across 10 INT | ↑↑ STRONG - JUSTYNA INT10: ~700 numbers blocked, 50–100/day on city entry. Mental load volume-independent |
+| 3 | P4 - Cognitive overload | CRITICAL | 🥇 Gold | 4 Gold + 2 Silver across 10 INT | ↑ JUSTYNA INT10: "for me it's like mental adults... it's like horror" + "my mental need me very, very, very dumb." P4 felt acutely at 5 clients/week — volume-independent pain |
+| 4 | P6 - Time-wasters / no-shows | CRITICAL | 🥇 Gold | 3 Gold + 6 Silver across 10 INT | ↑ Reinforced - JUSTYNA INT10 Uber-order-as-commitment is new screening-method convergence with INT3/INT6/INT8 prepayment patterns |
+| 5 | P2 - No client memory | HIGH | 🥇 Gold | 3 Gold + 3 Silver across 10 INT | → Pattern refined - JUSTYNA INT10 WEAKENS for low-volume persona ("I remember everything"); confirms CAROLL INT1 pattern. CRM value scales with volume |
+| 6 | P9 - No client KYC | HIGH | 🥈 Silver | 0 Gold + 6 Silver across 10 INT | ↑ Reinforced - JUSTYNA INT10 Revolut/Uber gate adds a 6th silver signal for identity verification |
+| 7 | P8 - Manual repetition | HIGH | 🥇 Gold | 1 Gold + 1 Silver across 10 INT | → Stable - no new signal from INT10 |
+| 8 | P15 - Data siloing across platforms | MEDIUM | 🥈 Silver | 0 Gold + 3 Silver across 10 INT | → Reinforced (weak) - JUSTYNA INT10 bronze signal on cross-border group gaps echoes INT9 geographic limits |
+| 9 | P16 - No income tracking | MEDIUM | 🥈 Silver | 0 Gold + 1 Silver across 10 INT | → Stable - no new signal from INT10 |
+| 10 | P1 - Messaging fragmentation | LOW | 🥈 Silver | 0 across 10 INT | ⚠️ FURTHER WEAKENED - 10 interviews, zero pain signal. Formal demotion overdue |
+| 11 | P7 - Blacklist paywalled (BMG) | MEDIUM | 🥈 Silver ↑ | 0 Gold + 3 Silver across 10 INT | ↑ UPGRADED from Watchlist - JUSTYNA INT10 confirms BMG subscription functions primarily as safety-group access tax. Converges with INT9 geographic-gap. Sharper competitive wedge |
+| 12 | P13 - Inappropriate message mgmt | MEDIUM | 🥈 Silver ↑ | 0 Gold + 3 Silver across 10 INT | ↑ JUSTYNA INT10 mental-toll/vulgar-messages signal. Converges with P3/P4 as tri-overlap |
+| 13 | P11 - Manual calendar / booking | MEDIUM | 🥉 Bronze | 1 Silver (INT1) | → Stable - no new signal |
+| 14 | P10 - Fake listings / AI photos | MEDIUM | 🥉 Bronze | Watchlist | → Stable |
+| NEW | P17 (candidate) - Platform identity mismatch / forced categorization | MEDIUM | 🥇 Gold | 1 Gold (INT8) | Still needs second source |
+| NEW | P18 (candidate) - Client reputation threats / revenge | MEDIUM | 🥈 Silver | 1 Silver (INT8) | Still needs second source |
+| NEW | P19 (candidate) - Commitment-signal-as-screening (cash deposit / Uber order / ride-hail identity) | HIGH | 🥇 Gold | 3 Gold (INT3 Maryline, INT6/INT8 Gabrielle, INT10 JUSTYNA) | NEW - Multi-source convergence on "skin in the game" verification. Candidate primitive for C-05 / C-02 |
 
 ### Assumption Status
 
 | ID | Assumption | Status | Confidence | Last changed |
 |----|-----------|--------|------------|--------------|
-| A1 | Collective blacklist contribution | SUPPORTED (strongest) | PROBABLE | INT8: Gabrielle BUILT a blacklist aggregation system. Strongest behavioral evidence yet. But mood-dependent reporting for no-shows = design constraint: near-zero friction required |
-| A2 | Phone number as stable ID | PARTIAL (confirmed as primary key) | POSSIBLE | INT8: Her aggregation was "mostly by phone number." New: clients use disappearing messages - number stable but message content not |
-| A3 | Co-founder trust transfer | PARTIAL | POSSIBLE | INT8: No signal (advisor-only interview, no Scarlot discussion) |
-| A4 | No-UI / conversational preferred | MIXED (new contradiction) | POSSIBLE ⚠️ | INT8: Gabrielle builds structured DB tools, prefers data interfaces over conversational ones. But may not represent typical user. Previous 6 questionnaires leaned supported |
-| A5 | Beta users representative | CHALLENGED (enriched) | POSSIBLE ⚠️ | INT8: Swiss-registered, cross-regional (ZH + FR-CH + Brussels). Adds needed Swiss trans perspective. But power user may skew sample |
-| A6 | Willingness to self-KYC | PARTIAL | POSSIBLE | INT8: xdate requires proof ("fight to prove you're real") - familiarity but no direct willingness signal |
-| A7 | AI triage acceptable | PARTIAL (boundary clarified) | PROBABLE ↑ | INT8: CLEAREST articulation yet. Wants automatic background checks (passive = yes). Rejects AI conversation (active = no). "c'est important d'être là" |
-| A8 | Willingness to pay | PARTIAL ↑ | PROBABLE ↑ | INT8: FIRST BEHAVIORAL WTP. Paid Airtable ~50 CHF/mo, Notion, bought server, Tryst ~20 CHF/mo. Rejected Blink as "super expensive." Strongest WTP signal in cohort |
+| A1 | Collective blacklist contribution | SUPPORTED (strongest) | PROBABLE | INT10: JUSTYNA actively posts + consults BMG group. "Without this check it's impossible to work." 4th Gold confirmation. Pattern universal for BMG subscribers |
+| A2 | Phone number as stable ID | PARTIAL (confirmed as primary key) | PROBABLE ↑ | INT10: "They put the number of course because we don't know who. But the number, it's about the number, yes." 4th confirmation of phone-as-query-key across cohort |
+| A3 | Co-founder trust transfer | PARTIAL | POSSIBLE | INT10: Co-founder explained to interviewee mid-interview; no trust-transfer signal captured. Trust anchor was interviewer, not the co-founder/Aspasie |
+| A4 | No-UI / conversational preferred | MIXED | POSSIBLE ⚠️ | INT10: No direct signal. All tools used are chat-native (iPhone block + WhatsApp group) but never directly tested. Pattern holds but is untested for this user |
+| A5 | Beta users representative | CHALLENGED (enriched) | POSSIBLE ⚠️ | INT10: New persona dimension - low-volume side-earner, non-native speaker, Lausanne-based, club-to-independent career arc. Sample diversifies further |
+| A6 | Willingness to self-KYC | PARTIAL | POSSIBLE | INT10: No direct signal (BMG presence implies prior KYC but not discussed) |
+| A7 | AI triage acceptable | PARTIAL (boundary clarified) | PROBABLE | INT10: No direct signal. JUSTYNA operates fully manual; automation not discussed |
+| A8 | Willingness to pay | CONFIRMED | PROBABLE | INT10: Third behavioral WTP confirmation. Pays BMG ("very expensive") primarily for safety-group access, not listing ROI. Combined with INT8 (Gabrielle tooling spend) + INT9 (CAROLL pays BMG for group) |
 | A9 | Legal defensibility | OPEN | UNKNOWN | No new signal |
-| A10 | nFADP compliance | OPEN (related signal) | UNKNOWN | INT8: Data sovereignty concern - left Notion over account suspension risk. Self-hosts. Scarlot's data practices will be scrutinized |
+| A10 | nFADP compliance | OPEN (related signal) | UNKNOWN | No new signal |
 
 ---
 
@@ -356,4 +358,53 @@
 
 ---
 
-*Next entry due after: Cross-interview synthesis (9 interviews complete - synthesis overdue)*
+### Entry 10 - SCARLOT_INT_20260417_JUSTYNA (INT10)
+
+**Date:** 2026-04-17
+**Interview:** Low-volume independent worker, Lausanne-based, Eastern European L1 (non-native EN). ~1+ yr independent, prior Swiss champagne/karaoke club experience. Side-earner framing with "wellness business" exit plan. BMG-only (not F-Girl). ~5 clients/week. Strong prior rapport with interviewer.
+**Interview quality:** 3/5 (strong behavioral Gold signals despite significant language barrier and mid-interview project disclosure violating pure Mom Test)
+
+#### Tier movements
+
+| Problem | Previous tier | New tier | Direction | Evidence |
+|---------|--------------|----------|-----------|----------|
+| P5 (no centralised blacklist) | 🥇 Gold (STRONGEST) | 🥇 Gold (reinforced, 5th Gold source) | ↑ | "Without this check it's impossible to work." Active contributor + consumer of BMG-gated WhatsApp group. Both posts warnings ("please be careful this number") and queries numbers before engaging |
+| P3 (no inbound filtering) | 🥇 Gold | 🥇 Gold (reinforced, new concrete anchor) | ↑ | ~700 numbers blocked on iPhone. 50–100 unwanted messages/day on entry to new city. "Block, contact, block, quickly." Gut-rule applied to every inbound in seconds |
+| P4 (cognitive overload) | 🥇 Gold | 🥇 Gold (reinforced, new variant) | ↑ | "For me it's like mental adults... it's like horror." / "my mental need me very very very dumb." **P4 felt acutely at 5 clients/week - pain is volume-INDEPENDENT.** Contradicts implicit assumption that cognitive overload scales with appointment count |
+| P7 (blacklist paywalled / BMG) | Watchlist | 🥈 Silver ↑ (UPGRADED) | ↑↑ | BMG subscription functions primarily as safety-group access tax. Converges with INT9 CAROLL geographic-gap signal. Clear competitive wedge: someone can eat BMG's ad revenue by replicating the safety layer at lower cost |
+| P13 (inappropriate message mgmt) | 🥉 Bronze | 🥈 Silver ↑ | ↑ | Vulgar/fantasy-message-driven mental toll is recurring theme. 3rd silver signal in cohort. Belongs with P3/P4 as tri-overlap |
+| P2 (no client memory) | 🥇 Gold | 🥇 Gold (nuanced, 2nd persona-weakening) | → | "I remember everything, even we eat sushi." No CRM, no calendar, no notes - and no expressed pain. Second confirmation (after CAROLL INT1) that CRM is NOT a wedge for low-volume workers. Safety is universal; CRM scales with volume |
+| P6 (time-wasters / no-shows) | 🥇 Gold | 🥇 Gold (screening-method convergence) | ↑ | Uber-order-as-commitment-signal joins Maryline deposit (INT3) + Gabrielle prepayment (INT6/INT8) in a converging pattern: "skin in the game" screening as a recognized cohort practice |
+| P9 (no client KYC) | 🥈 Silver | 🥈 Silver (6th silver) | ↑ | Revolut/Uber gate is a form of de-facto client verification. Silver signal count growing |
+| P1 (messaging fragmentation) | 🥈 Silver (weakening) | 🥈 Silver (further weakened, 10/10 zero signal) | ⚠️ | **10 interviews, zero pain signal.** Formal demotion overdue. Recommend removal from live priority stack |
+
+#### Assumption movements
+
+| Assumption | Previous status | New status | Evidence |
+|-----------|----------------|------------|----------|
+| A1 | SUPPORTED (strongest behavioral) | SUPPORTED (universal for paid-community subset) | 4th Gold confirmation. JUSTYNA treats BMG-group participation as baseline professional practice, not a niche or stigmatised activity |
+| A2 | PARTIAL (confirmed as primary key) | PROBABLE ↑ | Explicit verbatim confirmation: "The number, it's about the number." 4th convergent confirmation across cohort. Upgrade confidence from POSSIBLE → PROBABLE |
+| A8 | PARTIAL (first behavioral) | CONFIRMED | Third behavioral WTP confirmation. JUSTYNA pays "very expensive" BMG for safety-group access (low-volume = ads are not her ROI). After INT8 (Gabrielle tooling) + INT9 (CAROLL BMG) + INT10 (JUSTYNA BMG), WTP is well established for safety-network value |
+
+#### New signals registered
+
+| Signal | Type | Tier | Added to inventory? |
+|--------|------|------|---------------------|
+| Uber-order-as-commitment-gate (platform-identity-linked transaction as screening) | NEW SCREENING METHOD / new candidate problem P19 | 🥇 | Yes - generalises deposit-as-filter across any client-identity-linked rail (Uber / Bolt / Revolut / TWINT). Design primitive for C-02 / C-05 |
+| Destroyed context via native iOS block (~700 numbers, zero annotation) | NEW OPPORTUNITY / data-capture surface | 🥇 | Yes - most promising user-facing on-ramp in cohort. One-tap "block + reason" primitive converts private iOS state into collective intelligence |
+| P4 (cognitive overload) is volume-INDEPENDENT | NEW STRUCTURAL INSIGHT | 🥇 | Yes - pain lives in inbound noise, not session count. Reframes filtering as universal wedge rather than a high-volume concern |
+| Low-volume side-earner persona with exit plan | NEW PERSONA (reinforces CAROLL pattern) | 🥈 | Yes - argues for safety-first MVP, not bundled CRM |
+| Non-native-language-speaker independent worker | NEW PERSONA / CONSTRAINT (UX/localisation) | 🥈 | Yes - cohort now has EN/FR/DE + L1-PL signals. Multilingual templates (INT8 /cava) generalise to interface accessibility |
+| Club-to-independent career arc | NEW CONTEXT | 🥉 | Watchlist - acquisition funnel hypothesis |
+| "Wellness" as second exit-plan archetype (after INT1 yoga) | NEW CONTEXT | 🥉 | Watchlist - positioning: Scarlot as career-efficiency enabler, not lifetime infrastructure |
+| Mental-toll quote "like mental adults... it's like horror" | NEW VERBATIM ANCHOR for P4 | 🥇 | Yes - gold P4 articulation from low-volume worker strengthens volume-independence thesis |
+
+#### Methodology note
+
+The interviewer disclosed the project and co-founder backstory mid-interview before behavioral excavation was complete. Post-disclosure answers were identifiable as evaluative rather than descriptive. Signal quality was preserved because the Gold signals (blocking volume, BMG group usage, Uber-order protocol, mental toll) all surfaced BEFORE the disclosure. Future sessions should hold the project reveal to the final 5 minutes.
+
+Language barrier materially reduced signal density. Next time: offer the interviewee their strongest language (translator / async text follow-up).
+
+---
+
+*Next entry due after: Cross-interview synthesis (10 interviews complete - synthesis overdue)*

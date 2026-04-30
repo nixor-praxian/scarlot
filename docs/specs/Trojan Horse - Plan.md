@@ -13,14 +13,9 @@ Each step ends in a state where the project is working, tests pass, and a single
 
 ## Phase 0 - Recon completion
 
-The big DOM recon already happened. Two tail-end recon items remain before adapter coding so we don't bake assumptions in.
-
-- [ ] **0.1 - Capture the backing XHR.** Open `/my/escort/client-blacklist/escorts-list` with DevTools Network tab open *at navigation*, log all requests on initial load, page-2 click, and search. Save a sanitised HAR to `recon/and6-network.har` (in the new repo). Decide: DOM-walk vs. JSON-API. Document the decision in `recon/and6-decision.md`.
-  - Test: HAR file exists, decision doc names the chosen path with one-paragraph rationale.
-- [ ] **0.2 - Snapshot fixture HTML.** Save 3 representative `sc-escort-blacklist-item` outerHTML snippets (one with unmasked phone in body, one with name only, one with city missing) to `tests/fixtures/and6/`. These drive unit tests with no network.
-  - Test: 3 `.html` files exist; each parses with `BeautifulSoup` without error.
-- [ ] **0.3 - DPIA stub.** Write `docs/dpia-stub.md` listing the open legal/privacy questions: account custody, And6 ToS posture, retention, takedowns, transfer to API consumers, nFADP DPIA timing. Stub only - flags issues, does not resolve them.
-  - Test: file exists, lists at least 6 distinct questions, each with a "decide by" milestone.
+- [x] **0.1 - Capture the backing API.** DONE. Investigation of the Angular bundle (chunk `487.b6ddd1991dc40268.js`) revealed the SPA talks GraphQL to `https://api.and6.com/graphql`. Direct `POST` with the operator's storage_state cookies + `Authorization: Bearer <usertoken>` returns the full structured blacklist. Decision: **GraphQL-API-direct**. See `scarlot-safety-data/recon/and6-decision.md` for the full writeup including operations, fragments, auth model, and risks.
+- [x] **0.2 - Snapshot fixtures.** DONE. Three representative records saved at `scarlot-safety-data/tests/fixtures/and6/blacklisted_clients_page1.json` (sanitised). Raw 20-record sample at `scarlot-safety-data/recon/and6-blacklist-sample.raw.json` (gitignored).
+- [x] **0.3 - DPIA stub.** DONE. `scarlot-safety-data/docs/dpia-stub.md` lists 10 open privacy/legal questions, each with a decide-by milestone.
 
 ---
 
@@ -49,10 +44,10 @@ Goal: phone normalization, models, migrations, category inference - all with uni
 
 - [ ] **2.1 - `phone.py` normalization.** Wrap `phonenumbers.parse` with default region CH and a fallback list (DE, FR, IT, AT). Functions: `to_e164(raw, default_region="CH")`, `is_phone(s)`, `extract_phones(text) -> list[str]`. Returns `None` cleanly when unparseable.
   - Test: `pytest tests/test_phone.py` - cases for `+41 79 752 35 03`, `0791234567`, `+33 6 ...`, garbage strings, mixed-format inputs.
-- [ ] **2.2 - Masked-phone reconciliation.** Function `reconcile_masked(masked: str, candidates: list[str]) -> str | None`. Match `+417975*3503` against `+41 79 752 35 03` by normalising both to digits, comparing length, prefix, suffix, and skipping the masked positions.
-  - Test: `pytest tests/test_phone.py::test_masked_reconcile` - positive match, negative match, ambiguous (multiple candidates), no candidates.
-- [ ] **2.3 - SQLAlchemy models.** `models/sources.py`, `models/scrape_runs.py`, `models/reports.py`, `models/phone_aliases.py`, `models/tenants.py`, `models/api_keys.py`, `models/api_request_log.py`. Async session in `db.py`. Indexes on `reports.phone_e164`, `reports.phone_masked`, `reports.source_id`, `reports.scraped_at`, `api_keys.key_hash`, `api_request_log.tenant_id`.
-  - Test: model imports cleanly; `Base.metadata.tables` lists 7 tables.
+- [ ] **2.2 - Masked-phone helpers.** And6's GraphQL response provides both forms as structured fields, so the reconciliation regex spec'd in v1 is **no longer needed**. Keep `mask_e164(e164: str) -> str` (renders `+41797523503` as `+417975*3503`) and `is_masked(s: str) -> bool` for symmetry and future sources that only emit one form.
+  - Test: `pytest tests/test_phone.py::test_masking` - round-trip, edge cases.
+- [ ] **2.3 - SQLAlchemy models.** `models/sources.py`, `models/scrape_runs.py`, `models/reports.py`, `models/phone_aliases.py`, `models/tenants.py`, `models/api_keys.py`, `models/api_request_log.py`. `reports` carries `source_record_id` plus the per-phone columns from the spec (one row per source-record × phone). Async session in `db.py`. Indexes on `reports.phone_e164`, `reports.phone_masked`, `reports.source_id`, `reports.source_record_id`, `reports.scraped_at`, `api_keys.key_hash`, `api_request_log.tenant_id`. Unique constraint `(source_id, source_record_id, COALESCE(phone_e164, phone_masked))`.
+  - Test: model imports cleanly; `Base.metadata.tables` lists 7 tables; the unique constraint exists.
 - [ ] **2.4 - Alembic baseline migration.** Auto-generate from models, hand-edit for index correctness, apply.
   - Test: fresh `alembic upgrade head` against an empty db creates all 7 tables with expected indexes (`pytest tests/test_migrations.py` using a throwaway test db).
 - [ ] **2.5 - Raw category inference.** `scrapers/inference.py` with multilingual keyword regexes per spec. Function `infer_raw_category(comment: str) -> tuple[RawCategory, severity | None]`. Falls through to `(unknown, None)`.
@@ -63,29 +58,31 @@ Goal: phone normalization, models, migrations, category inference - all with uni
   - Test: `pytest tests/test_scoring.py` - boundary cases (1 report → low; 20 reports across 3 sources, recent, consistent → ≥ 0.85).
 - [ ] **2.8 - Summary generator.** `summary.py` with `make_summary(reports) -> str` returning the templated one-liner per spec. Single short sentence, no PII beyond what was in source comments.
   - Test: `pytest tests/test_summary.py` - 0 reports (empty string, never returned to public API), 1 report, many reports same category, mixed.
-- [ ] **2.9 - Dedup hashing.** `scrapers/dedup.py` with `comment_hash(text) -> str` (sha256 of normalized whitespace). Dedup key tuple: `(source_id, phone_masked, reported_at, comment_hash)`.
-  - Test: `pytest tests/test_dedup.py` - same row → same key; whitespace variants → same hash; phone differs → different key.
+- [ ] **2.9 - Upsert helper.** `scrapers/upsert.py` exposing `upsert_report(session, fields)` that runs `INSERT ... ON CONFLICT (source_id, source_record_id, COALESCE(phone_e164, phone_masked)) DO UPDATE` to set scraped_at and append to seen_at. Idempotent.
+  - Test: `pytest tests/test_upsert.py` - first call inserts, second call updates `seen_at`; payload changes are reflected.
 
 ---
 
 ## Phase 3 - And6 adapter
 
-Goal: a working adapter that ingests the And6 client blacklist.
+Goal: a working adapter that ingests the And6 client blacklist via GraphQL.
 
-- [ ] **3.1 - `BaseScraper` + `runner`.** Lift the abstract pattern from `scarlot-market-data/scrapers/base.py`. `BaseScraper` defines `name`, `requires_auth: bool`, `auth_state_path | None`, and `async iter_records(page) -> AsyncIterator[ReportRecord]`. `runner.py` opens the browser, loads `storage_state` if present, dispatches to the adapter, persists records inside per-page transactions, writes `scrape_runs` row.
+The adapter is materially smaller than the v1 plan anticipated because Phase 0 confirmed a JSON-API path. The GraphQL operation library lives in `scarlot_safety.scrapers.and6_graphql` (already committed in Phase 0); this phase wires it to the `BaseScraper` contract and persists results.
+
+- [ ] **3.1 - `BaseScraper` + `runner`.** Lift the abstract pattern from `scarlot-market-data/scrapers/base.py` and adapt for non-Playwright sources. `BaseScraper` defines `name`, `requires_auth: bool`, `auth_state_path: Path | None`, and `async iter_records() -> AsyncIterator[ReportRecord]`. `runner.py` resolves the adapter, dispatches `iter_records()`, persists each record via the upsert helper from 2.9 (per-record transactions or batched), writes a `scrape_runs` row with start/finish/status/stats. No Playwright in the runner; adapters that need it (e.g. `safety auth and6`) own their own browser lifecycle.
   - Test: `pytest tests/test_runner.py` with a stub adapter that yields 3 records - all 3 land in the db, run row records `status=ok`, `stats.records=3`.
-- [ ] **3.2 - `safety auth and6` command.** Typer subcommand that launches Playwright in headed mode, navigates to the And6 login page, waits for the operator to log in (detects redirect to `/my/escort/...`), persists `storage_state` to the path in `config.AND6_AUTH_PATH`, exits.
-  - Test: manual smoke - operator runs `safety auth and6`, logs in, file is written. (No automated test; documented in README.)
-- [ ] **3.3 - `And6BlacklistScraper` row extraction.** Adapter that, given a Playwright page already on the blacklist URL, locates `sc-escort-blacklist-item`, extracts the masked phone, the date, the city, the body header (name OR unmasked phone), the comment body, the photo URLs (if "Afficher les photos" is clicked - skip in v1), and yields `ReportRecord` instances. Uses the selectors from the recon report verbatim.
-  - Test: `pytest tests/test_and6_extract.py` - parses each of the 3 fixture HTML files into expected `ReportRecord` shapes.
-- [ ] **3.4 - And6 pagination.** Loop logic: detect last page via `i.sc-arrow-next` parent class containing `disabled`. Click `span.page-item.actions:has(i.sc-arrow-next)`, wait for DOM settle (`page.wait_for_load_state("networkidle")` then re-locate rows), increment page counter. Synthesize `source_url = f"{URL}#page={n}&offset={i}"` per row. If 0.1 found a JSON API, **skip DOM pagination** and call the API directly.
-  - Test: `pytest tests/test_and6_pagination.py` with a mocked Playwright page exposing 3 paginated views - all 3 pages traversed, terminates on `disabled`, no infinite loop.
-- [ ] **3.5 - Auth-expiry handling.** Detect mid-run redirect to a login page. Mark `scrape_runs.status = auth_expired`, log at ERROR with run-id, exit cleanly.
-  - Test: `pytest tests/test_and6_auth.py` with a mocked navigation that redirects to `/login` after page 2.
-- [ ] **3.6 - Smoke run.** `safety scrape and6 --max-pages 1` against live And6 with valid auth state. Should write 1 `scrape_runs` row and ~20 `reports` rows. Manually inspect output for sanity.
-  - Test: manual; capture stdout to `recon/and6-first-run.log` (gitignored if it leaks PII; sanitised excerpt committed).
-- [ ] **3.7 - Full run.** Drop the `--max-pages` cap; let it walk all 518 pages with jittered delays (2-5s between page clicks). Expect ~10,000 rows ingested. Verify metrics: zero parse errors, expected dedup ratio.
-  - Test: query `select count(*) from reports where source = 'and6'` ≥ 9000 (allow some unparseable rows).
+- [ ] **3.2 - `safety auth and6` command.** Typer subcommand that launches Playwright in headed mode, navigates to `https://www.and6.com/my/escort/client-blacklist/escorts-list` (auto-redirects to login if not authenticated), waits for the operator to log in (detects URL containing `/my/`), persists `storage_state` to `config.and6_auth_state_path`, exits. Promote the recon script `recon/and6_browser_session.py` into the CLI verb (drop the HAR/DOM-dump side-effects which were only needed during Phase 0).
+  - Test: manual smoke - operator runs `safety auth and6`, logs in, file is written. README documents the runbook.
+- [ ] **3.3 - `And6BlacklistScraper`.** Adapter built on top of `scarlot_safety.scrapers.and6_graphql.iter_blacklisted_clients`. Loads `And6Auth.from_storage_state(config.and6_auth_state_path)`, iterates the GraphQL pages, transforms each record into one or more `ReportRecord`s (one per phone number in the source `phone_numbers[]` array, sharing `source_record_id`). Captures `geo_node.id` and `geo_node.name`, the first `emails[]` entry if present, and stores the full source record verbatim in `raw_payload`.
+  - Test: `pytest tests/test_and6_extract.py` against `tests/fixtures/and6/blacklisted_clients_page1.json` (3 records, including: one with single phone + no email + with city; one with `name` field that is itself a phone string; one with email + image_ids + null geo_node + masked-only phone). Adapter produces the expected number of `ReportRecord`s with the expected field values.
+- [ ] **3.4 - GraphQL pagination + jitter.** The adapter pages via `limit=100, offset=0..total_count` (configurable). Sleep `random.uniform(0.5, 1.5)` between requests. Stop when `offset >= total_count` from the first page. No DOM, no Playwright in the hot path.
+  - Test: `pytest tests/test_and6_pagination.py` with `respx`-mocked GraphQL responses returning 3 pages totalling 250 records - exact count emitted, terminates correctly.
+- [ ] **3.5 - Auth-expiry detection.** Inspect GraphQL errors for `Permission "blacklisted.client.approved.read" is required` or HTTP 401/403. Mark `scrape_runs.status = auth_expired`, log at ERROR with run-id, exit cleanly. Surface a clear message in the CLI.
+  - Test: `pytest tests/test_and6_auth.py` with `respx`-mocked permission error - run row written with `status=auth_expired`, no records persisted, exit code non-zero.
+- [ ] **3.6 - Smoke run.** `safety scrape and6 --max-records 20` against live And6 with valid auth state. Should write 1 `scrape_runs` row and 20-25 `reports` rows (≥ 20 because some records have multiple phones). Manually inspect for sanity.
+  - Test: manual; capture stdout to `recon/and6-first-run.log` (gitignored - may contain real PII; sanitised excerpt committed if useful).
+- [ ] **3.7 - Full run.** Drop the `--max-records` cap. Expect ~104 GraphQL requests, ~3 minutes total wall time, ~10,000-11,000 `reports` rows ingested.
+  - Test: `select count(*) from reports where source = 'and6'` ≥ 10000; `select count(distinct source_record_id) from reports where source = 'and6'` within 5% of `total_count` returned by the API.
 
 ---
 

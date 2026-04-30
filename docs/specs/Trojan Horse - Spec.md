@@ -16,18 +16,23 @@ This is not a worker-profile pipeline. `scarlot-market-data` already handles tha
 1. **Source adapters** - pluggable scraper interface so new sources can be added without changing core code. Phase 1 ships exactly one adapter: `and6`.
 2. **Scrape scheduling** - APScheduler running each adapter on a configurable cron (default: 1x daily, with jitter). Each run produces an append-only snapshot.
 3. **Phone-keyed normalization** - every scraped record is reduced to:
-   - `phone_e164` (normalized via `phonenumbers`, default region CH; **may be null** when only a masked form is available - see masked-phone handling below)
+   - `source_record_id` (stable identifier from the source, e.g. And6's `_id`; required for upsert/dedup)
+   - `phone_e164` (E.164-normalized via `phonenumbers`; populated when the source provides an unmasked international number, OR when normalization of a masked-only form is unambiguous; otherwise null)
    - `phone_masked` (verbatim masked form when the source emits one, e.g. And6's `+417975*3503`)
    - `source` (adapter name)
-   - `source_url` (best-effort permalink; synthesized with offset/page anchor when the source SPA does not expose one)
+   - `source_url` (best-effort permalink; null when the source has no per-record permalink)
    - `category` (normalized enum, see Schema below; populated by post-scrape inference for free-text sources)
    - `severity` (0-5; null when category is `unknown`)
    - `comment` (raw text)
-   - `city` (best-effort, nullable)
-   - `name_or_handle` (free-text name/handle that appears in the row, nullable; **not** a reporter handle)
-   - `reported_at` (date/time on the source, nullable; locale-aware parsing)
+   - `city` (best-effort, nullable; for And6, derived from `geo_node.name`)
+   - `geo_node_id` (stable region/city ID from the source when available, nullable)
+   - `name_or_handle` (free-text name/handle that appears in the record, nullable; **not** a reporter handle)
+   - `email` (when the source carries email contact info, nullable)
+   - `reported_at` (date/time on the source, nullable; ISO-aware parsing)
    - `scraped_at` (timestamp, server-side)
-   - `raw_payload` (JSONB, full source-specific record for debugging)
+   - `raw_payload` (JSONB, full source-specific record for debugging and re-inference)
+
+   When a source emits multiple phones for one record (And6's `phone_numbers[]`), one `reports` row is written per phone, all sharing the same `source_record_id`. Dedup uses `(source_id, source_record_id, phone_e164 OR phone_masked)`.
 4. **Identity resolution** - records sharing `phone_e164` cluster on lookup. No silent merging in storage; every raw report is preserved. The public API returns only the consolidated verdict (status, categories, counts, summary, confidence). Raw records are reachable via the internal admin endpoint.
 5. **Reverse lookup HTTP API** - FastAPI. Public contract is one endpoint:
 
@@ -60,7 +65,7 @@ This is not a worker-profile pipeline. `scarlot-market-data` already handles tha
 6. **Deduplication** - within a single source, identical `(phone_e164, source_url, comment_hash)` collapses to one record across snapshots; we still preserve a `seen_at[]` array of run timestamps for change tracking.
 7. **CLI** - Typer commands: `safety scrape <source>`, `safety lookup <phone>`, `safety run-api`, `safety run-scheduler`, plus `safety db migrate`.
 8. **Logging** - structlog JSON logs in production, colored console in dev. Every scrape run gets a run-id propagated through child logs.
-9. **Phase 1 source: and6** - scraper targets `https://www.and6.com/my/escort/client-blacklist/escorts-list`, the authenticated escort-dashboard "Client Blacklist". Recon confirms ~10,355 reports across 518 JS-paginated pages of 20 rows each. Each row exposes: masked phone, optional unmasked phone in body header, French-locale date, optional city, optional client name/handle, free-text behavioural comment in mixed languages (de/en/fr/it). Reporter identity is not displayed. The "Alerte de l'admin" sibling tab and `/comments/*` public surfaces are out of scope for Phase 1. See `docs/specs/and6-recon-results.md` for full DOM map.
+9. **Phase 1 source: and6** - scraper targets the And6 backend at `POST https://api.and6.com/graphql`, calling the `blacklistedClients(query, limit, offset)` GraphQL operation lifted from the Angular bundle. Recon confirms 10,355 reports total at recon time. Each record exposes: stable `_id`, structured `phone_numbers[]` with both `international_number` and `masked_international_number` per phone, ISO-formatted `date`, `geo_node{id,name}`, `name` (sometimes a real name, sometimes a phone string), `emails[]`, free-text behavioural `comment` in mixed languages (de/en/fr/it), and `image_ids[]` references. Reporter identity is not exposed. Auth: cookies + `Authorization: Bearer <usertoken>` header (where `usertoken` is the JWT cookie persisted from the operator's login). The "Alerte de l'admin" sibling surface uses the `blacklistedEntries` query and the `/comments/*` public surfaces are out of scope for Phase 1. See `docs/specs/and6-recon-results.md` and `scarlot-safety-data/recon/and6-decision.md` for the full reverse-engineering writeup and operation library.
 
 ### Non-functional
 
@@ -85,15 +90,14 @@ This is not a worker-profile pipeline. `scarlot-market-data` already handles tha
 
 ## Edge Cases
 
-- **Phone is only available masked** (And6 row key is `+417975*3503` with two digits replaced by `*`). When the unmasked variant exists in the body header or comment, reconcile by matching the unmasked candidate against the masked pattern (same length, same prefix/suffix). When no unmasked variant exists, store `phone_masked` only, leave `phone_e164` null, and exclude from primary lookup index. A secondary "masked search" endpoint can return masked-only matches as low-confidence hits.
+- **Phone is only available masked.** And6's GraphQL response gives both `international_number` and `masked_international_number` per phone, but `international_number` is sometimes null (record predates a schema migration, reporter only entered the masked form, etc.). When `international_number` is present, store as `phone_e164`. When only the masked form is present, store `phone_masked` and leave `phone_e164` null. A secondary "masked search" endpoint can return masked-only matches as low-confidence hits.
 - **Phone number cannot be parsed** - record retained with `phone_e164=null`, logged at WARN level. Counter exposed in metrics.
 - **Phone number from another country** (DE, FR, IT, AT) - accepted; `phone_e164` retains country code. Lookup must handle local-format input by trying CH first, then a configurable fallback list.
-- **Source returns a comment with multiple phone numbers** - one record per phone; comment text duplicated; `comment_hash` includes the phone to avoid dedup collapse.
-- **No stable per-row ID** (And6 emits none) - dedup key is `(source_id, phone_masked, reported_at, comment_hash)`.
-- **No real permalink per row** (And6 SPA pagination does not push history) - synthesize `source_url` as `<URL>#page=<N>&offset=<i>` for traceability. Document it as synthetic in the API response.
-- **Source HTML changes mid-run** - scraper raises; run marked failed; no partial commit (per-page transactions, not per-run).
-- **Auth state expires mid-run** - scraper detects the login redirect, marks run as `auth_expired`, exits cleanly; metric exposed; ops refreshes the storage-state file and re-runs.
-- **Backing JSON API discovered after launch** - adapter is structured so the row-iteration step is swappable. If recon Step 0 finds an XHR endpoint, the DOM walk is replaced without touching downstream normalization.
+- **Source carries multiple phone numbers per record** (And6's `phone_numbers[]` is an array) - one `reports` row per phone, all sharing the same `source_record_id`. Comment text duplicated across rows.
+- **Stable per-record ID exists** (And6 emits `_id`) - dedup key is `(source_id, source_record_id, phone_e164 OR phone_masked)`. No content-hash needed.
+- **No real permalink per record** (And6 GraphQL response has no public URL per record) - `source_url` is null. The And6 web UI also does not produce per-record permalinks. Document this in the admin endpoint output.
+- **Source schema changes** - GraphQL queries are pinned in `scarlot_safety.scrapers.and6_graphql`. A schema drift produces a `RuntimeError: graphql errors` from the adapter, which marks the run failed; no partial commit (per-page transactions). Ops fixes the query and re-runs.
+- **Auth state expires mid-run** - the GraphQL endpoint returns a permission error (`Permission "blacklisted.client.approved.read" is required`) on a stale or lower-privilege token. The adapter inspects errors, marks the run `auth_expired`, exits cleanly; metric exposed; ops refreshes via `safety auth and6` and re-runs.
 - **Bearer token leak** - tokens are versioned via env; rotating means redeploying the API. Acceptable for Phase 1.
 - **Lookup hits zero records** - return 200 with empty `reports: []`, not 404. Distinguishes "we have no data" from "wrong endpoint."
 - **Same phone, contradictory reports across sources** - the API does not adjudicate. Consolidated view returns max severity and the full list; the caller decides.
@@ -115,7 +119,7 @@ This is not a worker-profile pipeline. `scarlot-market-data` already handles tha
 - [ ] `docker compose up` starts: Postgres, the API, the scheduler.
 - [ ] `safety db migrate` applies an Alembic baseline migration creating `sources`, `reports`, `phone_aliases`, `scrape_runs` tables.
 - [ ] `safety auth and6` opens a Playwright browser, lets the operator log in manually, persists `storage_state` to the configured path, and exits.
-- [ ] `safety scrape and6` runs against live And6 using the persisted auth state, writes one `scrape_runs` row, paginates through the blacklist, and writes report rows for every parseable row encountered. A first end-to-end run captures at least the first page (~20 rows) before tested in full.
+- [ ] `safety scrape and6` runs against live And6 using the persisted auth state, calls the `blacklistedClients` GraphQL operation paginated by `limit`/`offset`, writes one `scrape_runs` row, and upserts report rows on `(source_id, source_record_id, phone)`. A first end-to-end run captures at least the first 20 records before tested in full (~10,355 records, ~104 GraphQL requests).
 - [ ] `safety lookup +41 79 752 35 03` (CLI) prints the consolidated lookup result and the underlying raw reports.
 - [ ] `POST /v1/phones/lookup` with a valid tenant API key returns the contract shape: `phone_e164`, `status` ∈ {`blacklist`, `greylist`, `clean`, `unknown`}, `categories[]` from the 5-value public enum, `report_count`, `first_reported_at`, `last_reported_at`, `summary` (one sentence), `confidence` (0..1). Bad/missing/revoked token returns 401. Malformed `phone_e164` returns 422.
 - [ ] Status derivation, public-category mapping, and confidence formula are unit-tested against fixture report sets covering every status branch.
@@ -137,12 +141,14 @@ scrape_runs(id, source_id, started_at, finished_at, status, stats_jsonb, error)
 
 reports(
   id, source_id, run_id,
+  source_record_id,            -- stable id from the source (e.g. And6 _id)
   phone_e164, phone_masked, phone_raw,
   category_raw,                -- internal 10-value enum
   severity,                    -- 0-5 nullable
-  comment, city, name_or_handle,
-  reported_at, source_url, comment_hash, raw_payload_jsonb,
-  scraped_at, seen_at_array
+  comment, city, geo_node_id, name_or_handle, email,
+  reported_at, source_url, raw_payload_jsonb,
+  scraped_at, seen_at_array,
+  UNIQUE (source_id, source_record_id, COALESCE(phone_e164, phone_masked))
 )
 
 phone_aliases(phone_e164, alt_format, source_id)  -- for cross-format lookup acceleration

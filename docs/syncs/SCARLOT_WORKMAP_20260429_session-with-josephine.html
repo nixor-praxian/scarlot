@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worksession 29 Apr 2026 - Philippe x Joséphine</title>
+<style>
+  :root {
+    --paper: #f7f4ee;
+    --paper-2: #efece4;
+    --ink: #2b2b2b;
+    --ink-2: #555;
+    --rule: #d6d2c6;
+    --y: #ffe28a;
+    --y2: #ffd24d;
+    --p: #ffb6c1;
+    --g: #bfe5b4;
+    --b: #b6d7ff;
+    --pu: #d9b8ff;
+    --o: #ffc99c;
+    --gr: #d4d0c4;
+    --rd: #ff7a7a;
+    --bg-dot: rgba(0,0,0,0.04);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  body {
+    background-image:
+      radial-gradient(var(--bg-dot) 1px, transparent 1px),
+      radial-gradient(var(--bg-dot) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: 0 0, 11px 11px;
+    padding: 28px 32px 80px;
+  }
+
+  header {
+    margin-bottom: 22px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  h1 {
+    font-family: "Caveat", "Marker Felt", "Comic Sans MS", cursive;
+    font-size: 44px;
+    line-height: 1;
+    margin: 0 0 6px;
+    letter-spacing: 0.5px;
+  }
+  .subtitle { color: var(--ink-2); font-size: 15px; }
+  .meta {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--ink-2);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+  }
+  .meta b { color: var(--ink); }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 12px 0 26px;
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+  .legend .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend .swatch {
+    width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  /* RHYTHM STRIP */
+  .rhythm {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 14px 18px 10px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  .rhythm h3 {
+    margin: 0 0 6px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--ink-2);
+  }
+  .rhythm-row {
+    position: relative;
+    height: 56px;
+    margin-top: 6px;
+  }
+  .rhythm-axis {
+    position: absolute; left: 0; right: 0; bottom: 12px;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .rhythm-tick {
+    position: absolute;
+    bottom: 0;
+    font-size: 10px;
+    color: var(--ink-2);
+    transform: translateX(-50%);
+  }
+  .rhythm-segment {
+    position: absolute;
+    bottom: 12px;
+    height: 0;
+    border-top: 4px solid;
+    border-radius: 2px;
+  }
+  .rhythm-segment::before {
+    content: "";
+    position: absolute;
+    left: 50%; transform: translate(-50%, -50%);
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: currentColor;
+    top: 0;
+  }
+  .rhythm-cut {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: repeating-linear-gradient(to bottom, var(--rd), var(--rd) 4px, transparent 4px, transparent 8px);
+  }
+  .rhythm-cut::after {
+    content: "✂";
+    position: absolute;
+    top: -4px; left: -7px;
+    font-size: 14px;
+    color: var(--rd);
+    background: white;
+    padding: 0 2px;
+  }
+
+  /* PHASE CARDS */
+  .phase {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+    background: var(--paper-2);
+    border: 1px dashed var(--rule);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .phase[data-rec="2"] { border-left: 4px solid var(--rd); }
+  .phase[data-rec="3"] { border-left: 4px solid var(--rd); }
+  .phase[data-rec="4"] { border-left: 4px solid var(--rd); }
+  .phase-meta {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .phase-meta .num {
+    font-family: "Caveat", "Marker Felt", cursive;
+    font-size: 36px;
+    color: var(--ink);
+    line-height: 1;
+    display: block;
+  }
+  .phase-meta .when {
+    margin-top: 4px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .phase-meta .driver {
+    margin-top: 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .phase-meta .driver span {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-top: 2px;
+    color: var(--ink);
+  }
+  .driver-jo { background: var(--p); }
+  .driver-ph { background: var(--b); }
+  .driver-both { background: linear-gradient(90deg, var(--p) 50%, var(--b) 50%); }
+
+  .phase-title {
+    font-family: "Caveat", "Marker Felt", cursive;
+    font-size: 28px;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+  .phase-title .mood {
+    font-family: -apple-system, sans-serif;
+    font-size: 11px;
+    color: var(--ink-2);
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+  }
+  .stickies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .sticky {
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.45;
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.06), 2px 4px 8px rgba(0,0,0,0.05);
+    transform: rotate(-0.4deg);
+    position: relative;
+  }
+  .sticky:nth-child(2n) { transform: rotate(0.5deg); }
+  .sticky:nth-child(3n) { transform: rotate(-0.3deg); }
+  .sticky strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: rgba(0,0,0,0.55); margin-bottom: 4px; font-weight: 700; }
+  .sticky em { color: var(--ink-2); font-style: italic; }
+  .sticky.q { background: var(--y); }
+  .sticky.d { background: var(--g); }
+  .sticky.i { background: var(--pu); }
+  .sticky.t { background: var(--o); }
+  .sticky.f { background: var(--p); }
+  .sticky.c { background: var(--b); }
+  .sticky.n { background: var(--gr); color: var(--ink-2); font-style: italic; }
+  .quote {
+    font-family: "Caveat", "Marker Felt", cursive;
+    font-size: 18px;
+    line-height: 1.2;
+    color: rgba(0,0,0,0.7);
+  }
+
+  /* CROSS-CUTTING */
+  .cross {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .cross .col {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 14px 16px 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  .cross h2 {
+    margin: 0 0 12px;
+    font-family: "Caveat", "Marker Felt", cursive;
+    font-size: 26px;
+  }
+  .cross ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.5; }
+  .cross li { margin-bottom: 8px; }
+  .pill {
+    display: inline-block;
+    padding: 1px 6px;
+    background: var(--paper-2);
+    border-radius: 3px;
+    font-size: 11px;
+    color: var(--ink-2);
+    margin-left: 6px;
+  }
+
+  /* CONNECTIONS */
+  .connections {
+    margin-top: 28px;
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 14px 18px 18px;
+  }
+  .connections h2 {
+    margin: 0 0 8px;
+    font-family: "Caveat", "Marker Felt", cursive;
+    font-size: 26px;
+  }
+  .arrow-row {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    font-size: 13px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .arrow-row:last-child { border-bottom: 0; }
+  .arrow-row .from, .arrow-row .to {
+    background: var(--paper-2);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .arrow-row .arr { color: var(--ink-2); }
+
+  @media (max-width: 720px) {
+    .cross { grid-template-columns: 1fr; }
+    .phase { grid-template-columns: 1fr; }
+  }
+
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    color: var(--ink-2);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Worksession Philippe × Joséphine</h1>
+    <div class="subtitle">29 April 2026 · ~3h 53min · 3 stitched recordings · 10 phases detected</div>
+  </div>
+  <div class="meta">
+    <div><b>Source:</b> 2026-04-29_09_35_46_merged 2 - worksession with Jo.txt</div>
+  </div>
+</header>
+
+<div class="legend">
+  <span class="chip"><span class="swatch" style="background: var(--g)"></span>decision / alignment</span>
+  <span class="chip"><span class="swatch" style="background: var(--y)"></span>open question / parking lot</span>
+  <span class="chip"><span class="swatch" style="background: var(--pu)"></span>breakthrough / new idea</span>
+  <span class="chip"><span class="swatch" style="background: var(--o)"></span>tension / friction</span>
+  <span class="chip"><span class="swatch" style="background: var(--p)"></span>Joséphine drives</span>
+  <span class="chip"><span class="swatch" style="background: var(--b)"></span>Philippe drives</span>
+  <span class="chip"><span class="swatch" style="background: var(--gr)"></span>aside / break</span>
+</div>
+
+<!-- RHYTHM STRIP -->
+<section class="rhythm">
+  <h3>Energy & speaker drive across the session</h3>
+  <div class="rhythm-row">
+    <div class="rhythm-axis"></div>
+
+    <!-- Each segment: position by % across 0-3:53 (~233 minutes), color = mood -->
+    <!-- Phase 1: 0-21 min (9%) -->
+    <div class="rhythm-segment" style="left: 0%; width: 9%; color: #ff8a4d;" title="Tension → alignment"></div>
+    <!-- Phase 2: 21-32 (4.7%) -->
+    <div class="rhythm-segment" style="left: 9%; width: 4.7%; color: #aaa;" title="Light, exploratory"></div>
+    <!-- Phase 3: 32-36.5 (1.9%) -->
+    <div class="rhythm-segment" style="left: 13.7%; width: 1.9%; color: #d9b8ff;" title="Joséphine ownership"></div>
+    <!-- Phase 4: 36.5-61.7 (10.8%) -->
+    <div class="rhythm-segment" style="left: 15.6%; width: 10.8%; color: #b6d7ff;" title="Document review"></div>
+    <!-- Phase 5: 61.7-84.2 (9.7%) -->
+    <div class="rhythm-segment" style="left: 26.4%; width: 9.7%; color: #b6d7ff;" title="Numbers / financial"></div>
+    <!-- Phase 6: 84.2-95 (4.6%) -->
+    <div class="rhythm-segment" style="left: 36.1%; width: 4.6%; color: #b6d7ff;" title="Andrew recap"></div>
+    <!-- Phase 7: 95-188 (39.9%) -->
+    <div class="rhythm-segment" style="left: 40.7%; width: 39.9%; color: #d9b8ff;" title="UX design / FigJam"></div>
+    <!-- Phase 8: 188-205 (7.3%) -->
+    <div class="rhythm-segment" style="left: 80.6%; width: 7.3%; color: #d9b8ff;" title="Switchboard + B2B"></div>
+    <!-- Phase 9: 205-222 (7.3%) -->
+    <div class="rhythm-segment" style="left: 87.9%; width: 7.3%; color: #b6d7ff;" title="Interview skill"></div>
+    <!-- Phase 10: 222-233 (4.8%) -->
+    <div class="rhythm-segment" style="left: 95.2%; width: 4.8%; color: #ffb6c1;" title="Real-world examples"></div>
+
+    <!-- Stitched recording cuts -->
+    <div class="rhythm-cut" style="left: 9%;"></div>
+    <div class="rhythm-cut" style="left: 36.1%;"></div>
+    <div class="rhythm-cut" style="left: 87.9%;"></div>
+
+    <!-- Time ticks -->
+    <div class="rhythm-tick" style="left: 0%;">0:00</div>
+    <div class="rhythm-tick" style="left: 25%;">~58</div>
+    <div class="rhythm-tick" style="left: 50%;">~1:56</div>
+    <div class="rhythm-tick" style="left: 75%;">~2:55</div>
+    <div class="rhythm-tick" style="left: 100%;">3:53</div>
+  </div>
+  <div style="margin-top: 8px; font-size: 11px; color: var(--ink-2);">
+    <span style="color: #ff8a4d;">●</span> tension ·
+    <span style="color: #b6d7ff;">●</span> dense / structured ·
+    <span style="color: #d9b8ff;">●</span> creative / generative ·
+    <span style="color: #aaa;">●</span> light / aside ·
+    <span style="color: #ffb6c1;">●</span> expansive / examples ·
+    <span style="color: var(--rd);">✂</span> stitched recording boundary
+  </div>
+</section>
+
+<!-- PHASE CARDS -->
+
+<!-- PHASE 1 -->
+<section class="phase" data-rec="1">
+  <div class="phase-meta">
+    <span class="num">01</span>
+    <div class="when">00:00 → 21:00</div>
+    <div>21 min</div>
+    <div class="driver"><div>Driven by</div><span class="driver-jo">Joséphine</span></div>
+  </div>
+  <div>
+    <div class="phase-title">"Are we going or not going ?" <span class="mood">tension → alignment</span></div>
+    <div class="stickies">
+      <div class="sticky t"><strong>tension opener</strong>Joséphine: working "for free" to talk about a project that "doesn't yet exist" is becoming hard. Needs to know if the team commits.</div>
+      <div class="sticky c"><strong>Philippe's frame</strong>Can't incorporate before validating critical assumptions. POC is the gate. No spending until tested.</div>
+      <div class="sticky d"><strong>alignment</strong>Test next week, with 5 people, not 50. Andrew comes for a hackathon to set up infrastructure.</div>
+      <div class="sticky i"><strong>funnel mechanics</strong>Pitch / week × conversion × erosion × word-of-mouth = the make-or-break numbers. Echoes Andrew sync.</div>
+      <div class="sticky q"><strong>open</strong>What's the benchmark conversion rate for this industry? Unknown. Must be measured in beta.</div>
+      <div class="sticky n"><strong>aside</strong>Vape / Willow + scraper status (8200 identities, ~6000 on XD).</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 2 -->
+<section class="phase" data-rec="2">
+  <div class="phase-meta">
+    <span class="num">02</span>
+    <div class="when">21:00 → 32:00</div>
+    <div>11 min</div>
+    <div class="driver"><div>Driven by</div><span class="driver-both">Both</span></div>
+  </div>
+  <div>
+    <div class="phase-title">Names & sextech ecosystem <span class="mood">light, exploratory</span></div>
+    <div class="stickies">
+      <div class="sticky f"><strong>"Maia" rejected</strong>Joséphine: too tech-bro, "puta de designer / architecture" vibe. Both agree to find another name.</div>
+      <div class="sticky d"><strong>structure clarified</strong>Maia (or replacement) = platform name. Scarlot = the TDS coverage on top.</div>
+      <div class="sticky i"><strong>connection</strong>Joséphine: Claire Carmody (Sextech School director) wants to connect them with the Tryst director.</div>
+      <div class="sticky n"><strong>aside</strong>Tour of Sextech School (~800 USD course, Slack community, courses on funding/AI/branding/product).</div>
+      <div class="sticky q"><strong>open</strong>Deep research on global market still not satisfying. Need TAM / SAM / SOM. Must be more directive with the agent.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 3 -->
+<section class="phase" data-rec="2">
+  <div class="phase-meta">
+    <span class="num">03</span>
+    <div class="when">32:00 → 36:30</div>
+    <div>4.5 min</div>
+    <div class="driver"><div>Driven by</div><span class="driver-jo">Joséphine</span></div>
+  </div>
+  <div>
+    <div class="phase-title">"AI shouldn't be the first word" <span class="mood">deep, ownership</span></div>
+    <div class="stickies">
+      <div class="sticky d"><strong>language rule</strong>Don't lead with "AI". Try "tool" or "agent" or implicit. AI explicitly named only when it adds trust, not when it spooks.</div>
+      <div class="sticky i"><strong>two distinct fears</strong>1) low-tech unfamiliarity. 2) data sovereignty / leak / private-public separation. Different people, different fears.</div>
+      <div class="sticky d"><strong>delegated</strong>Joséphine takes ownership of inclusive language and TDS-friendly value-prop wording. Philippe: "I hand it over to you with pleasure."</div>
+      <div class="sticky n"><strong>data point</strong>Recent Aspasie cybersecurity workshop: 7 attendees, range from "hyper aware" to "not measuring it at all".</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 4 -->
+<section class="phase" data-rec="2">
+  <div class="phase-meta">
+    <span class="num">04</span>
+    <div class="when">36:30 → 1:01:40</div>
+    <div>25 min</div>
+    <div class="driver"><div>Driven by</div><span class="driver-ph">Philippe</span></div>
+  </div>
+  <div>
+    <div class="phase-title">Strategic vision + counter-arguments review <span class="mood">document walkthrough</span></div>
+    <div class="stickies">
+      <div class="sticky i"><strong>cheval de Troie</strong>To get value fast, maintain a profile on each platform (BMG, F-Girl, etc.) so we can collect blacklist data. JUSTYNA confirms: she uses BMG community group, not the CheckClient feature.</div>
+      <div class="sticky d"><strong>"prostitution" → "sex work"</strong>Stigma language calibrated. We're a tool, not a marketplace. Don't expose to FOSTA-SESTA flank.</div>
+      <div class="sticky d"><strong>no payment processing (yet)</strong>Phase-1 framing: we secure the engagement, we do not process the prestation. Stablecoins / escrow / TIPS are V2+.</div>
+      <div class="sticky d"><strong>community backbone</strong>Eventually: blog, resources, what Aspasie/Filénis do offline must be available digitally. The Dancer Resource and Tryst as templates.</div>
+      <div class="sticky d"><strong>action: ProCoRe outreach</strong>Joséphine to email Karine Maradon (ProCoRe scientific lead). Exploratory call. Don't pitch the project; learn what they're building.</div>
+      <div class="sticky q"><strong>open</strong>Number lookups: Numbuster, CallApp, TrueColor. Romain (BMG founder) won't share. Need our own data layer.</div>
+      <div class="sticky n"><strong>note</strong>Counter-arguments doc has a "BackPage / FOSTA-SESTA" section. Confirm we are not an ad/distribution site.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 5 -->
+<section class="phase" data-rec="2">
+  <div class="phase-meta">
+    <span class="num">05</span>
+    <div class="when">1:01:40 → 1:24:13</div>
+    <div>22.5 min</div>
+    <div class="driver"><div>Driven by</div><span class="driver-ph">Philippe</span></div>
+  </div>
+  <div>
+    <div class="phase-title">Financial model walkthrough <span class="mood">numbers, dense</span></div>
+    <div class="stickies">
+      <div class="sticky n"><strong>variables</strong>outreach capture rate · pricing tiers · seasonality factor · churn · failed-payment rate · message-per-user-per-month · input/output token cost.</div>
+      <div class="sticky i"><strong>tokens explained</strong>Opus = reasoning, Sonnet = completion, Haiku = fast/cheap. Pricing per million tokens. Per-message routing should pick model by query complexity.</div>
+      <div class="sticky i"><strong>messaging stack</strong>Twilio for SMS / WhatsApp Business API. Per-message cost varies by country and feature (e.g. branded sender = extra).</div>
+      <div class="sticky q"><strong>open: pricing model</strong>Subscription is the default in the model, but Philippe flags pay-per-use as the trend with AI products. Re-examine after beta.</div>
+      <div class="sticky n"><strong>baseline</strong>20k registered TDS in CH (10+ years old data); ~14k registered today. Joséphine: "many work without registering". Estimate of active is wider than that.</div>
+      <div class="sticky n"><strong>scraper status</strong>Need to add "active duration" inference per platform (each has a different last-seen logic). To do.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 6 -->
+<section class="phase" data-rec="3">
+  <div class="phase-meta">
+    <span class="num">06</span>
+    <div class="when">1:24:13 → 1:35:00</div>
+    <div>10.5 min</div>
+    <div class="driver"><div>Driven by</div><span class="driver-ph">Philippe</span></div>
+  </div>
+  <div>
+    <div class="phase-title">Andrew sync recap <span class="mood">contextual replay</span></div>
+    <div class="stickies">
+      <div class="sticky i"><strong>independent convergence</strong>Andrew arrived at the WhatsApp-native thesis on his own after reading docs.</div>
+      <div class="sticky t"><strong>infra concern</strong>VPS-per-user ≈ 6 CHF/user/month. Likely > revenue per user. Correct topology: shared bare-metal with strong isolation. POC infra ≠ production infra.</div>
+      <div class="sticky i"><strong>greylist + blacklist</strong>Two-tier model from JUSTYNA's behaviour: blacklist for dangerous / dishonest, greylist for time-wasters who drain attention but aren't dangerous.</div>
+      <div class="sticky d"><strong>JUSTYNA reference</strong>700 numbers blocked, 50-100 messages/day, 5-10 RDV/week. Inbound filter IS the product at low volume.</div>
+      <div class="sticky d"><strong>ProCoRe = pain signal, not competitor</strong>Public-private partnership in this sector has short half-life. Reinforces that pain is real.</div>
+      <div class="sticky n"><strong>tracking</strong>Word-of-mouth via referral codes the agent can generate on demand.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 7 -->
+<section class="phase" data-rec="3">
+  <div class="phase-meta">
+    <span class="num">07</span>
+    <div class="when">1:35:00 → 3:08:00</div>
+    <div>93 min · longest</div>
+    <div class="driver"><div>Driven by</div><span class="driver-both">Both</span></div>
+  </div>
+  <div>
+    <div class="phase-title">UX design (the actual FigJam) <span class="mood">creative flow</span></div>
+    <div class="stickies">
+      <div class="sticky d"><strong>onboarding via QR</strong>Each beta user gets a QR code → opens self-chat → agent introduces capabilities (store ads, blacklist lookup, multilingual replies, day tracking).</div>
+      <div class="sticky d"><strong>capabilities list (MVP)</strong>description / availability / filtering / preferred communication language. Address kept abstract (in-call vs out-call), not literal.</div>
+      <div class="sticky d"><strong>Lookup function</strong>By number. No record / new positive / not-new-but-positive / flagged. Manual at first (forward / paste). No auto-conversation access in MVP.</div>
+      <div class="sticky d"><strong>Description exchange</strong>User stores their multiple ad templates (GFE, Domina, etc.) on the server, can recall them in chat per situation. Different tone per client (e.g. premium pricing for an annoying one).</div>
+      <div class="sticky d"><strong>Availability exchange</strong>"I'm available these afternoons between 14h-16h" → agent surfaces matching slots. Multi-day, ranges, fuzzy queries.</div>
+      <div class="sticky d"><strong>Booking confirmation</strong>Pre-confirmation re-summary: I have these slots, I'm confirming this one. Practical info exchange (location, dress code) in iteration.</div>
+      <div class="sticky i"><strong>filtering = personal first</strong>One TDS's "ok" is another's red flag. Set-in-stone rules don't work. Per-user filtering keywords / examples. Defer "auto-detect bad messages" until V2.</div>
+      <div class="sticky i"><strong>contact synchronisation</strong>Optional: Scarlot creates its own contact list separate from iCloud. Helps cross-reference returning numbers without polluting personal contacts.</div>
+      <div class="sticky t"><strong>tension</strong>Joséphine: at first the bot must NOT have access to client conversations. Filtering must be manual / personal until trust is earned.</div>
+      <div class="sticky t"><strong>tension: age verification</strong>Even though we're a tool not an ad site, FOSTA-SESTA proximity means we should ensure majority. Open: how to verify in beta.</div>
+      <div class="sticky i"><strong>private vs shared records</strong>Personal blacklist is local-first. Collective blacklist is opt-in for serious incidents. Most contacts will be "neutral" - new class. People share bad experiences, keep good ones private.</div>
+      <div class="sticky d"><strong>seed data dependency</strong>Joséphine: "we need to pre-pirate a small dataset before launch, otherwise the lookup makes no sense". Adèle/Ariane can pull from BMG, Joséphine from M6, etc.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 8 -->
+<section class="phase" data-rec="3">
+  <div class="phase-meta">
+    <span class="num">08</span>
+    <div class="when">3:08:00 → 3:25:00</div>
+    <div>17 min</div>
+    <div class="driver"><div>Driven by</div><span class="driver-both">Both</span></div>
+  </div>
+  <div>
+    <div class="phase-title">Switchboard idea + B2B agencies emerge <span class="mood">strategic expansion</span></div>
+    <div class="stickies">
+      <div class="sticky i"><strong>BREAKTHROUGH: switchboard</strong>Alternative to side-chat: Scarlot provides a phone number. The TDS displays this number on her ads. Scarlot screens, filters, surfaces only the actionable. Frees the user from constant inbound noise.</div>
+      <div class="sticky d"><strong>Joséphine offers herself</strong>"On peut faire ça avec moi" - she'd test the switchboard concept end-to-end before exposing to other beta users. Iterate without external pressure.</div>
+      <div class="sticky i"><strong>BREAKTHROUGH: voice / multimodal</strong>Joséphine: voice notes are alpha-and-omega for hispanophone / Latin-American / lower-literacy users. Plus people who hate typing (many TDS). Test from beta.</div>
+      <div class="sticky i"><strong>BREAKTHROUGH: B2B agencies as plausible early market</strong>Agencies (Leila's model: 1 standardiste handling many TDS via WhatsApp) have the same problems at scale. They might be customers, not noise. The TDS-friendly product might serve them too.</div>
+      <div class="sticky q"><strong>open: user typing</strong>Beyond beta, how do we infer/qualify whether a user is a solo TDS, an agency, a standardiste, a salon? Different needs. Probably from signals not declarations.</div>
+      <div class="sticky n"><strong>analogy</strong>The agent as "executive assistant" who knows your calendar, your contacts, who to interrupt for, who to deflect. Pulls the model out of "bot" and into "delegated human".</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 9 -->
+<section class="phase" data-rec="4">
+  <div class="phase-meta">
+    <span class="num">09</span>
+    <div class="when">3:25:00 → 3:42:00</div>
+    <div>17 min</div>
+    <div class="driver"><div>Driven by</div><span class="driver-ph">Philippe</span></div>
+  </div>
+  <div>
+    <div class="phase-title">Interview skill walkthrough <span class="mood">methodological</span></div>
+    <div class="stickies">
+      <div class="sticky n"><strong>tour</strong>Philippe shows the scarlot-interview skill: load context, generate per-interview record, build priority-evolution ledger.</div>
+      <div class="sticky d"><strong>pseudonyms</strong>Joséphine: "the pseudonyms given are the pseudonyms accepted by the people". The skill should preserve them, not invent new ones. (Already fixed in skill update.)</div>
+      <div class="sticky d"><strong>structure validated</strong>Joséphine's draft (8 sections A-H) accepted as the coverage map. Already distilled into coverage-checklist.md in the skill.</div>
+      <div class="sticky q"><strong>open: synchronisation</strong>How to share interview content + skills with Joséphine's Claude reliably? La Suite Numérique (open-source Notion alternative) considered. Discuss with Andrew tomorrow.</div>
+      <div class="sticky n"><strong>side</strong>Demo of dashboard (DGX Spark thermal monitor) and Mnémosyne (personal Wikipedia from email history).</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 10 -->
+<section class="phase" data-rec="4">
+  <div class="phase-meta">
+    <span class="num">10</span>
+    <div class="when">3:42:00 → end</div>
+    <div>~11 min</div>
+    <div class="driver"><div>Driven by</div><span class="driver-jo">Joséphine</span></div>
+  </div>
+  <div>
+    <div class="phase-title">Real-world examples: check-in/out + studios <span class="mood">expansive, examples</span></div>
+    <div class="stickies">
+      <div class="sticky i"><strong>Leila agency model</strong>Joséphine relays her past experience: every booking is shadowed via WhatsApp ("all good, on est avec X" → "check-in" → "payment confirmed" → "booking terminé"). Manual, by one human. The product could automate exactly this.</div>
+      <div class="sticky i"><strong>safety incident anchor</strong>Joséphine cites a recent incident in a Geneva agency (assault, agency not protective). Argues for a mandatory check-in/check-out + emergency button at MVP+1.</div>
+      <div class="sticky n"><strong>BDSM studios as proof</strong>Berlin BDSM studio (formerly Excel-on-website), Studio Zürich (Eclatex), independent practitioners hosted at lavish venues. Same pattern: "no agenda, contact directly". Underserved.</div>
+      <div class="sticky n"><strong>festivals as dissemination</strong>Festiput (Toulouse, June), SNAP (Brussels, Sex Worker Narrative Art & Politics). Sponsorship, atelier, distribution opportunity once tangible.</div>
+      <div class="sticky q"><strong>open: outcall protocol</strong>Personal protocols vary (Revolut deposit, Uber order, location-share). Cohort signals already say this; product must accommodate without enforcing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CROSS-CUTTING -->
+<section class="cross">
+  <div class="col">
+    <h2>Decisions made</h2>
+    <ul>
+      <li>POC test next week is the gate. No incorporation, no spend before validation.<span class="pill">phase 1</span></li>
+      <li>Joséphine owns inclusive language and TDS-friendly value-prop wording.<span class="pill">phase 3</span></li>
+      <li>"Maia" name to be replaced. Both will think.<span class="pill">phase 2</span></li>
+      <li>"Prostitution" stigmatised, replaced by "sex work" in copy.<span class="pill">phase 4</span></li>
+      <li>No payment processing in V1. Phrase: "secure the engagement, not process the prestation."<span class="pill">phase 4</span></li>
+      <li>Joséphine emails ProCoRe (Karine Maradon) for an exploratory call.<span class="pill">phase 4</span></li>
+      <li>Beta = 8 motivated users, France + CH + UK + NL via Anna's network. Voice notes encouraged for feedback.<span class="pill">phase 4</span></li>
+      <li>No automatic bot replies in MVP. Manual triggering only.<span class="pill">phase 7</span></li>
+      <li>Filtering rules are personal first. Set-in-stone collective rules don't fit.<span class="pill">phase 7</span></li>
+      <li>Joséphine to seed initial blacklist data (BMG / M6 + asks Adèle).<span class="pill">phase 7</span></li>
+      <li>Joséphine = first switchboard tester, before any external beta.<span class="pill">phase 8</span></li>
+      <li>Pseudonym handling: skill never invents, must use what's supplied.<span class="pill">phase 9</span></li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2>Open questions / parking lot</h2>
+    <ul>
+      <li>What's the new name for Maia? <span class="pill">phase 2</span></li>
+      <li>What is ProCoRe actually building? Will they share the data layer? <span class="pill">phase 4</span></li>
+      <li>Subscription vs pay-per-use as pricing model? <span class="pill">phase 5</span></li>
+      <li>Industry-specific funnel benchmarks for conversion / churn / WoM? <span class="pill">phase 1, 5</span></li>
+      <li>Age verification under FOSTA-SESTA: how in beta, how at scale? <span class="pill">phase 7</span></li>
+      <li>Switchboard concept: do users want a Scarlot-issued number on their ads? <span class="pill">phase 8</span></li>
+      <li>How to qualify user type post-beta (solo / agency / standardiste / salon)? <span class="pill">phase 8</span></li>
+      <li>Skill / interview synchronisation between Philippe's and Joséphine's Claude environments? <span class="pill">phase 9</span></li>
+      <li>Seed data legality: scraping / pulling from BMG, M6, etc. before launch? <span class="pill">phase 7</span></li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2>Breakthroughs (new since Apr 21 sync)</h2>
+    <ul>
+      <li><b>Switchboard as alternative to side-chat.</b> Scarlot-issued phone number on the ad. Filters inbound. Joséphine offered to be the first tester.<span class="pill">phase 8</span></li>
+      <li><b>Voice / multimodal interface.</b> Voice notes are central for hispanophone / lower-literacy users. Test from beta.<span class="pill">phase 8</span></li>
+      <li><b>B2B agencies as plausible early market.</b> Same problems at scale. The TDS-friendly product may also be the agency-friendly product. <span class="pill">phase 8 + 10</span></li>
+      <li><b>Pre-pirating seed blacklist data.</b> Joséphine + Adèle pull from BMG, M6, Filénis. Necessary so Lookup is non-empty for first beta users.<span class="pill">phase 7</span></li>
+      <li><b>"Neutral" as a third record class.</b> Not new / not positive / not flagged. Most contacts are this; people share bad ones, keep good ones private.<span class="pill">phase 7</span></li>
+      <li><b>Festival circuit as distribution surface.</b> Festiput, SNAP. Once tangible: sponsor / atelier / on-site beta recruitment.<span class="pill">phase 10</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONNECTIONS -->
+<section class="connections">
+  <h2>Cross-phase connections</h2>
+  <div class="arrow-row">
+    <span class="from">phase 6 (Andrew recap)</span><span class="arr">→</span><span class="to">phase 7 (UX design)</span>
+    <span style="color: var(--ink-2);">— greylist + blacklist concept moves from theory to UX flow</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">phase 1 (funnel mechanics)</span><span class="arr">→</span><span class="to">phase 5 (financial model)</span>
+    <span style="color: var(--ink-2);">— same variables; phase 5 is the unit-economics expansion of phase 1's framing</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">phase 7 (filtering)</span><span class="arr">→</span><span class="to">phase 8 (switchboard)</span>
+    <span style="color: var(--ink-2);">— "filtering only works if we control the channel" leads to the number-routing idea</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">phase 10 (Leila's agency)</span><span class="arr">→</span><span class="to">phase 8 (B2B agencies)</span>
+    <span style="color: var(--ink-2);">— the example reverse-validated the idea: agencies do this manually today, we could productise it</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">phase 4 (cheval de Troie)</span><span class="arr">→</span><span class="to">phase 7 (seed data)</span>
+    <span style="color: var(--ink-2);">— platform infiltration becomes the practical step needed for first beta lookups</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">phase 3 (TDS-friendly framing)</span><span class="arr">→</span><span class="to">phase 7 (no auto-reply MVP)</span>
+    <span style="color: var(--ink-2);">— "AI as last word" → product never speaks for the user without consent</span>
+  </div>
+</section>
+
+<footer>
+  Generated from full transcript. Phases inferred from timestamp gaps, topic shifts, and speaker drive.<br>
+  3 stitched recording boundaries marked with ✂ on the rhythm strip.
+</footer>
+
+</body>
+</html>

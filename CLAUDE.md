@@ -21,12 +21,8 @@ The platform concept: modular **coverages** (Safety, Memory, Booking, Payments, 
 
 ```
 CLAUDE.md                                # This file - project guidance
-SETUP.md                                 # How to run the bot (local or VPS)
 scarlot-interview.skill                  # Interview analysis skill (ZIP archive)
 scarlot-sync.skill                       # Internal sync record skill (ZIP archive)
-claw/
-└── CLAUDE.md                            # NanoClaw group prompt - project co-pilot bot
-engine/                                  # NanoClaw submodule - the WhatsApp bot engine
 docs/
 ├── scarlot-product-spec.md             # Unified product specification (canonical)
 ├── claw-platform-vision.md             # Platform vision - coverages, verticals, flywheel
@@ -60,6 +56,7 @@ docs/
 | Repo | Purpose |
 |------|---------|
 | `scarlot-market-data` | Proprietary market intelligence pipeline. Scrapes 7 Swiss platforms continuously. 5,229 deduplicated worker identities. Runs on DGX Spark. |
+| `scarlot-safety-data` (submodule) | Phone-keyed safety-report aggregation and reverse-lookup API. Phase 1 source: And6 (10,228 reports / 7,876 phones ingested). Spec/plan in `docs/specs/Trojan Horse - *`. Phase progress in the submodule's `docs/progress.md`. |
 | `hermes` | CLI text-to-speech tool (provider-agnostic). Used for audio content generation. |
 
 ## Key Findings (Current State)
@@ -126,8 +123,6 @@ See `docs/scarlot-product-spec.md` for the full unified specification.
 See `docs/counter-arguments.md` for full rebuttal briefing on 10 objections.
 
 ## Technical Direction
-
-**Current engine**: NanoClaw (git submodule in `engine/`) - lightweight messaging bot on Claude Agent SDK. This is the POC implementation, not the permanent architecture.
 
 **Principle**: Technology, channels, and interfaces are implementation details driven by market needs. The platform adapts to whatever channel the market uses.
 

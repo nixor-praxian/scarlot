@@ -57,6 +57,7 @@ docs/
 |------|---------|
 | `scarlot-market-data` | Proprietary market intelligence pipeline. Scrapes 7 Swiss platforms continuously. 5,229 deduplicated worker identities. Runs on DGX Spark. |
 | `scarlot-safety-data` (sibling repo) | Phone-keyed safety-report aggregation and reverse-lookup API. Phase 1 source: And6 (10,228 reports / 7,876 phones ingested). Spec/plan in `docs/specs/Trojan Horse - *`. Lives at `~/GitHub/scarlot-safety-data`, no longer a submodule. |
+| `scarlot-website` | Discovery test landing page. Hero, two onboarding modes (Mode contact and Mode intégré), single-field international phone verification via libphonenumber, four locales with browser auto-detection. Lives at `~/GitHub/scarlot-website` and `github.com/nixor-praxian/scarlot-website`. Spec in `docs/specs/Landing Page - Spec.md`. |
 | `hermes` | CLI text-to-speech tool (provider-agnostic). Used for audio content generation. |
 
 ## Key Findings (Current State)

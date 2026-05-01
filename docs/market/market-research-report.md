@@ -202,7 +202,7 @@ The technology ecosystem for sex workers is fragmented, underfunded, and constan
 | **ClientEye** | UK/EU | Freemium app | Possibly defunct (March 2025) | Anonymous phone/email checking. Mixed reviews. Vindictive reporting concerns. Appears to have dissolved [17] |
 | **ProCoRe "Bad Client List"** | Switzerland | Free (NGO, planned) | Survey phase, launch 2027 | National bad client list by umbrella of 27 Swiss counseling centers. Criminal offenses only. Search by phone/email/plate. |
 
-*Note: "Ugly Mugs" / "Bad Date List" programs also exist in Australia (state-level via Scarlet Alliance member orgs), New Zealand (NZPC), and Canada (city-level: PACE Vancouver, Stella Montreal, Maggie's Toronto, and others). All are NGO-run, free, and paper/email-based -- none offer digital on-demand lookup. See `docs/safety-lookup-landscape.md` for full catalog.*
+*Note: "Ugly Mugs" / "Bad Date List" programs also exist in Australia (state-level via Scarlet Alliance member orgs), New Zealand (NZPC), and Canada (city-level: PACE Vancouver, Stella Montreal, Maggie's Toronto, and others). All are NGO-run, free, and paper/email-based -- none offer digital on-demand lookup. See `docs/market/safety-lookup-landscape.md` for full catalog.*
 
 #### Adjacent Platforms
 
@@ -237,7 +237,7 @@ The landscape is fragmented across three models: (1) NGO alert systems (NUM, Ugl
 
 National Ugly Mugs is the closest in mission (safety) but is a reporting system, not a CRM. P411 is the closest commercial model (subscription screening) but is US-only, vouch-based, and FOSTA-disrupted. Projet Jasmine is the closest in lookup functionality (phone/email/plate search with tiered classification) but is France-only and not conversational. BMG is the closest in market (Swiss escorts) but is expensive and siloed. ProCoRe's planned 2027 launch is the most significant Swiss competitive signal -- but is collective-only, restricted to criminal offenses, and web-based (not conversational).
 
-See `docs/safety-lookup-landscape.md` for the full competitive catalog.
+See `docs/market/safety-lookup-landscape.md` for the full competitive catalog.
 
 ---
 

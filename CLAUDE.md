@@ -20,35 +20,47 @@ The platform concept: modular **coverages** (Safety, Memory, Booking, Payments, 
 ## Repository Structure
 
 ```
-CLAUDE.md                                # This file - project guidance
-scarlot-interview.skill                  # Interview analysis skill (ZIP archive)
-scarlot-sync.skill                       # Internal sync record skill (ZIP archive)
+CLAUDE.md                                       # This file - project guidance
+scarlot-interview.skill                         # Interview analysis skill (ZIP archive)
+scarlot-sync.skill                              # Internal sync record skill (ZIP archive)
 docs/
-├── scarlot-product-spec.md             # Unified product specification (canonical)
-├── claw-platform-vision.md             # Platform vision - coverages, verticals, flywheel
-├── scarlot-market-research-report.md   # Market research with risk analysis (22+ sources)
-├── scarlot-market-research.html        # Interactive market research visualization
-├── safety-lookup-landscape.md          # Competition & substitutes for safety lookup (comprehensive)
-├── counter-arguments.md                # Naysayer rebuttals - 10 objections countered
-├── business-plan-structure.md          # Two-round fundraising structure with real data
-├── financial-model-prep.md             # Financial model preparation and assumptions
-├── founder-memo.md                     # Narrative memo for co-founder recruitment
-├── founder-onepager.html               # Visual one-pager for coffee meetings
-├── scarlot_discovery_report_v1.md      # Original discovery report (historical - see note)
-├── scarlot_visual_report_v1.html       # Interactive visual report
-├── scarlot-graph.html                  # Ecosystem map visualization
-├── poc-architecture.md                 # POC architecture (see status note in doc)
-├── priority-evolution.md               # Priority evolution ledger (append-only, 8 entries)
-├── screenshots/
-│   ├── checkclient/                    # CheckClient.ch (Bemygirl) lookup tool screenshots
-│   └── procore/                        # ProCoRe "Bad Client List" survey screenshots
-├── skills/
-│   └── how-to-use-skills.md            # Skill installation and usage guide
-├── syncs/
-│   └── SCARLOT_SYNC_*.md              # Internal sync/strategy session records
-└── interviews/
-    ├── SCARLOT_INT_*.md                # Structured interview records (8 total)
-    └── transcripts/                    # Raw source material (docx, txt)
+├── product/
+│   ├── product-spec.md                         # Unified product specification (canonical)
+│   ├── claw-platform-vision.md                 # Platform vision - coverages, verticals, flywheel
+│   ├── counter-arguments.md                    # Naysayer rebuttals - 10 objections countered
+│   └── founder-memo.md                         # Narrative memo for co-founder recruitment
+├── discovery/
+│   ├── discovery-report-v1.md                  # Original discovery report
+│   ├── discovery-report-v1.html                # Interactive visual report
+│   ├── priority-evolution.md                   # Priority evolution ledger (append-only)
+│   ├── interviews/
+│   │   ├── SCARLOT_INT_*.md                    # Structured interview records
+│   │   └── transcripts/                        # Raw source material (docx, txt)
+│   └── syncs/
+│       └── SCARLOT_SYNC_*.md                   # Internal sync/strategy session records
+├── market/
+│   ├── market-research-report.md               # Market research with risk analysis
+│   ├── market-research.html                    # Interactive market research visualization
+│   ├── safety-lookup-landscape.md              # Competition & substitutes for safety lookup
+│   ├── cultural-events-landscape.md            # Cultural/events research
+│   └── 2026-04-14-french-sex-work-policy-landscape.md
+├── business/
+│   ├── business-plan-structure.md              # Two-round fundraising structure
+│   ├── 2026.04-financial-model-v0.xlsx         # Financial model
+│   └── financial-model/                        # Working notes (gitignored)
+├── poc/
+│   ├── whatsapp-business-capabilities.html
+│   └── specs/
+│       ├── safety-scraper/                     # Trojan Horse spec/plan/shape
+│       ├── and6/                               # and6 recon prompt and results
+│       ├── website/                            # Landing page spec
+│       └── screenshots/
+│           ├── and6/                           # And6 lookup tool screenshots
+│           ├── checkclient/                    # CheckClient.ch (Bemygirl) screenshots
+│           └── procore/                        # ProCoRe "Bad Client List" screenshots
+└── meta/
+    ├── how-to-use-skills.md                    # Skill installation and usage guide
+    └── why-evolve-discovery-skills.md
 ```
 
 ### Related Repositories
@@ -56,8 +68,8 @@ docs/
 | Repo | Purpose |
 |------|---------|
 | `scarlot-market-data` | Proprietary market intelligence pipeline. Scrapes 7 Swiss platforms continuously. 5,229 deduplicated worker identities. Runs on DGX Spark. |
-| `scarlot-safety-data` (sibling repo) | Phone-keyed safety-report aggregation and reverse-lookup API. Phase 1 source: And6 (10,228 reports / 7,876 phones ingested). Spec/plan in `docs/specs/Trojan Horse - *`. Lives at `~/GitHub/scarlot-safety-data`, no longer a submodule. |
-| `scarlot-website` | Discovery test landing page. Hero, two onboarding modes (Mode contact and Mode intégré), single-field international phone verification via libphonenumber, four locales with browser auto-detection. Lives at `~/GitHub/scarlot-website` and `github.com/nixor-praxian/scarlot-website`. Spec in `docs/specs/Landing Page - Spec.md`. |
+| `scarlot-safety-data` (sibling repo) | Phone-keyed safety-report aggregation and reverse-lookup API. Phase 1 source: And6 (10,228 reports / 7,876 phones ingested). Spec/plan in `docs/poc/specs/safety-scraper/`. Lives at `~/GitHub/scarlot-safety-data`, no longer a submodule. |
+| `scarlot-website` | Discovery test landing page. Hero, two onboarding modes (Mode contact and Mode intégré), single-field international phone verification via libphonenumber, four locales with browser auto-detection. Lives at `~/GitHub/scarlot-website` and `github.com/nixor-praxian/scarlot-website`. Spec in `docs/poc/specs/website/Landing Page - Spec.md`. |
 | `hermes` | CLI text-to-speech tool (provider-agnostic). Used for audio content generation. |
 
 ## Key Findings (Current State)
@@ -103,7 +115,7 @@ The co-founder's 7 feature blocs map to platform coverages:
 | Collective blacklist | Reputation | Supported but legally unresolved | Phase 2-3 |
 | Resources | Identity (partial) | Co-founder insight | Phase 1 |
 
-See `docs/scarlot-product-spec.md` for the full unified specification.
+See `docs/product/product-spec.md` for the full unified specification.
 
 ### Design Principles
 
@@ -121,7 +133,7 @@ See `docs/scarlot-product-spec.md` for the full unified specification.
 | FOSTA-SESTA reach | MEDIUM | Swiss entity, no US nexus, dual criminality defense. |
 | Blacklist defamation | MEDIUM | Credit bureau model + NUM precedent + dispute mechanism. |
 
-See `docs/counter-arguments.md` for full rebuttal briefing on 10 objections.
+See `docs/product/counter-arguments.md` for full rebuttal briefing on 10 objections.
 
 ## Technical Direction
 
@@ -150,7 +162,7 @@ See `docs/counter-arguments.md` for full rebuttal briefing on 10 objections.
 The `scarlot-interview` skill (installed at `~/.claude/skills/scarlot-interview/`) governs all user research analysis. Reference files live in the skill, not in this repo. See `references/context.md` within the skill for the source of truth on the 16 known problems and 10 open assumptions.
 
 ### Sync Skill
-The `scarlot-sync` skill (installed at `~/.claude/skills/scarlot-sync/`) processes internal conversations into structured records. Two modes: Full Record (8-section) and Summary (6-section). Records go in `docs/syncs/`.
+The `scarlot-sync` skill (installed at `~/.claude/skills/scarlot-sync/`) processes internal conversations into structured records. Two modes: Full Record (8-section) and Summary (6-section). Records go in `docs/discovery/syncs/`.
 
 ### Discovery Toolkit
 The `discovery-toolkit` skill (installed at `~/.claude/skills/discovery-toolkit/`) is the generic, self-feeding version of the interview + sync skills. Used for other projects. Not Scarlot-specific.

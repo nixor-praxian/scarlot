@@ -159,7 +159,7 @@ What Maia does: On request, surfaces everything known:
 
 **Legal prerequisite:** Swiss counsel review on defamation risk, nFADP compliance, and data architecture (federated vs. centralized) before any collective feature is built.
 
-**Competitive context:** ProCoRe (umbrella of 27 Swiss counseling centers) is building a national "Bad Client List" for 2027 -- web-based, criminal offenses only, free. Projet Jasmine (France) already operates a searchable 8-tier alert database. NUM (UK) processes ~1M alerts/year. P411 (US) charges ~$100-150/yr for mutual verification. No existing tool is conversational, AI-augmented, or combines collective data with personal CRM. See `docs/safety-lookup-landscape.md` for full analysis.
+**Competitive context:** ProCoRe (umbrella of 27 Swiss counseling centers) is building a national "Bad Client List" for 2027 -- web-based, criminal offenses only, free. Projet Jasmine (France) already operates a searchable 8-tier alert database. NUM (UK) processes ~1M alerts/year. P411 (US) charges ~$100-150/yr for mutual verification. No existing tool is conversational, AI-augmented, or combines collective data with personal CRM. See `docs/market/safety-lookup-landscape.md` for full analysis.
 
 ### Bloc 7 - Resources
 

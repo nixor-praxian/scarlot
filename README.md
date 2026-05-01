@@ -16,13 +16,13 @@ This repository is not the product codebase. It holds the research, user intervi
 | 4 | No-shows and time-wasters | Gold - mood-dependent blacklisting loses data |
 | 5 | No client memory | Gold - 6/8 interviewees built workarounds |
 
-Full priority ledger with 16 problems and evidence tiers in [`docs/priority-evolution.md`](docs/priority-evolution.md).
+Full priority ledger with 16 problems and evidence tiers in [`docs/discovery/priority-evolution.md`](docs/discovery/priority-evolution.md).
 
 ## The approach
 
 **Maia** is the platform: modular coverages (Safety, Memory, Booking, Payments, Reputation, Compliance, Identity) that any independent service provider can combine. The platform is channel-agnostic and provider-agnostic. Vertical specialization lives in the coverage configuration, not the legal entity.
 
-**Scarlot** is the first coverage pack, tuned for TDS. Sex workers are the first vertical because the pain is most acute and the co-founder has insider community access. Other coverage packs (Soigneur for therapists, Mentor for tutors, Gardien for nannies, Artisan for freelancers) are mapped in [`docs/claw-platform-vision.md`](docs/claw-platform-vision.md) and come after Scarlot validation.
+**Scarlot** is the first coverage pack, tuned for TDS. Sex workers are the first vertical because the pain is most acute and the co-founder has insider community access. Other coverage packs (Soigneur for therapists, Mentor for tutors, Gardien for nannies, Artisan for freelancers) are mapped in [`docs/product/claw-platform-vision.md`](docs/product/claw-platform-vision.md) and come after Scarlot validation.
 
 ### Design principles
 
@@ -31,7 +31,7 @@ Full priority ledger with 16 problems and evidence tiers in [`docs/priority-evol
 3. **Individual first, collective second** - personal tools must work before any shared features.
 4. **Flat subscription only** - never commission (Art. 195 StGB firewall).
 
-Full product specification in [`docs/scarlot-product-spec.md`](docs/scarlot-product-spec.md).
+Full product specification in [`docs/product/product-spec.md`](docs/product/product-spec.md).
 
 ## Stage
 
@@ -47,26 +47,13 @@ Discovery complete. Product spec written. Market intelligence pipeline running. 
 
 ```
 docs/
-├── scarlot-product-spec.md              # Canonical product specification
-├── claw-platform-vision.md              # Maia platform vision
-├── business-plan-structure.md           # Two-round fundraising structure
-├── counter-arguments.md                 # Rebuttals to 10 objections
-├── founder-memo.md                      # Narrative memo
-├── scarlot-market-research-report.md    # Market research (22+ sources)
-├── scarlot-market-research.html         # Interactive visualization
-├── safety-lookup-landscape.md           # Competitive catalog
-├── poc-architecture.md                  # POC architecture notes
-├── priority-evolution.md                # Priority evolution ledger
-├── scarlot_discovery_report_v1.md       # Original discovery report
-├── scarlot_visual_report_v1.html        # Interactive visual report
-├── interviews/                          # 8 structured interview records
-├── syncs/                               # Internal sync records
-├── financial/                           # Financial model (xlsx)
-├── market-intelligence/                 # Policy and market landscape notes
-├── screenshots/                         # Competitive evidence
-└── skills/                              # Skill installation guide
+├── product/                             # Product spec, platform vision, counter-arguments, founder memo
+├── discovery/                           # Discovery report, priority ledger, interviews, sync records
+├── market/                              # Market research, safety-lookup landscape, policy snapshots
+├── business/                            # Business plan structure, financial model
+├── poc/                                 # POC architecture and specs (Trojan Horse, Landing Page)
+└── meta/                                # Skill installation and usage guides
 
-claw/CLAUDE.md                           # Group chat co-pilot prompt
 engine/                                  # NanoClaw - bot engine (submodule, POC only)
 CLAUDE.md                                # Project guidance for Claude Code
 SETUP.md                                 # How to run the POC bot

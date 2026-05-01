@@ -26,7 +26,7 @@ yarn-error.log*
 *.docx
 
 # Financial model notes (xlsx is tracked, but keep markdown working notes local)
-docs/financial/*.md
+docs/business/financial-model/
 
 # Claude Code
 .claude/

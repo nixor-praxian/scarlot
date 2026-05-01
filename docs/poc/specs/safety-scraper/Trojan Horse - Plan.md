@@ -1,7 +1,7 @@
 # Trojan Horse - Implementation Plan
 
-Spec: `docs/specs/Trojan Horse - Spec.md`
-Recon: `docs/specs/and6-recon-results.md`
+Spec: `docs/poc/specs/safety-scraper/Trojan Horse - Spec.md`
+Recon: `docs/poc/specs/and6/and6-recon-results.md`
 Generated: 2026-04-30
 
 Repo target: `scarlot-safety-data` (new GitHub repo, registered as a git submodule of `scarlot-poc`).

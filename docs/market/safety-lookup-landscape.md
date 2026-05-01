@@ -191,7 +191,7 @@ Advertising/listing platforms that include some form of safety tooling within th
 
 ### Swiss Platforms
 
-- **Bemygirl (bemygirl.ch) / CheckClient.ch** -- Bemygirl operates CheckClient.ch as a linked safety lookup tool (see dedicated entry above). Also has a platform-linked WhatsApp community group that functions as an informal collective blacklist (per INT9). Screenshots: `docs/screenshots/checkclient/`
+- **Bemygirl (bemygirl.ch) / CheckClient.ch** -- Bemygirl operates CheckClient.ch as a linked safety lookup tool (see dedicated entry above). Also has a platform-linked WhatsApp community group that functions as an informal collective blacklist (per INT9). Screenshots: `docs/poc/specs/screenshots/checkclient/`
 - **F-Girl (fgirl.ch)** -- Dominant in DE-CH. [To confirm: whether any built-in blacklist or lookup feature exists beyond basic platform tools.]
 - **And6** -- Referenced by interviewees as a data source for blacklist scraping (GABRIELLE).
 

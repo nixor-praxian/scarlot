@@ -57,7 +57,7 @@ Language: [FR / EN / DE]
 [PASTE TRANSCRIPT HERE]
 ```
 
-Output goes to `docs/interviews/SCARLOT_INT_[YYYYMMDD]_[PSEUDONYM].md`
+Output goes to `docs/discovery/interviews/SCARLOT_INT_[YYYYMMDD]_[PSEUDONYM].md`
 
 ### scarlot-sync
 
@@ -70,12 +70,12 @@ Two modes:
 
 Defaults to Summary unless the conversation contains strategic decisions or priority changes.
 
-Output goes to `docs/syncs/SCARLOT_SYNC_[YYYYMMDD]_[TOPIC].md`
+Output goes to `docs/discovery/syncs/SCARLOT_SYNC_[YYYYMMDD]_[TOPIC].md`
 
 ---
 
 ## Tips
 
-- After every interview record, the skill proposes updates to `docs/priority-evolution.md`
+- After every interview record, the skill proposes updates to `docs/discovery/priority-evolution.md`
 - Both skills follow the privacy rules: no real names, pseudonyms only
 - The interview skill references `references/context.md` inside the skill folder for the priority stack and assumptions. Update that file if the product direction changes significantly.

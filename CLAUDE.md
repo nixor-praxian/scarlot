@@ -56,7 +56,7 @@ docs/
 | Repo | Purpose |
 |------|---------|
 | `scarlot-market-data` | Proprietary market intelligence pipeline. Scrapes 7 Swiss platforms continuously. 5,229 deduplicated worker identities. Runs on DGX Spark. |
-| `scarlot-safety-data` (submodule) | Phone-keyed safety-report aggregation and reverse-lookup API. Phase 1 source: And6 (10,228 reports / 7,876 phones ingested). Spec/plan in `docs/specs/Trojan Horse - *`. Phase progress in the submodule's `docs/progress.md`. |
+| `scarlot-safety-data` (sibling repo) | Phone-keyed safety-report aggregation and reverse-lookup API. Phase 1 source: And6 (10,228 reports / 7,876 phones ingested). Spec/plan in `docs/specs/Trojan Horse - *`. Lives at `~/GitHub/scarlot-safety-data`, no longer a submodule. |
 | `hermes` | CLI text-to-speech tool (provider-agnostic). Used for audio content generation. |
 
 ## Key Findings (Current State)

@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Business -- What It Actually Does -- Scarlot Briefing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=JetBrains+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c10;
+  --bg2: #111318;
+  --bg3: #181b22;
+  --bg4: #1f2330;
+  --line: rgba(255,255,255,0.07);
+  --line2: rgba(255,255,255,0.12);
+  --amber: #f0a500;
+  --amber2: #ffc84a;
+  --coral: #e85555;
+  --coral-dim: rgba(232,85,85,0.13);
+  --green: #4ecb8d;
+  --green-dim: rgba(78,203,141,0.13);
+  --amber-dim: rgba(240,165,0,0.13);
+  --blue: #5b9cf6;
+  --blue-dim: rgba(91,156,246,0.13);
+  --purple: #a78bfa;
+  --text: #e8e4dc;
+  --muted: #6b7280;
+  --muted2: #9ca3af;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Instrument Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { min-width: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+}
+
+a { color: var(--amber); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* -- NAV -- */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10,12,16,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 0 32px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+}
+.nav-brand small {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-left: 12px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.nav-links {
+  display: flex;
+  gap: 18px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--amber); }
+@media (max-width: 900px) { .nav-links { display: none; } }
+
+/* -- HERO -- */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px 64px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(240,165,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,165,0,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.hero-glow {
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(240,165,0,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 24px;
+  position: relative;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  max-width: 900px;
+  position: relative;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+.hero-sub {
+  font-size: 17px;
+  color: var(--muted2);
+  max-width: 640px;
+  margin-top: 28px;
+  line-height: 1.7;
+  position: relative;
+}
+.hero-meta {
+  display: flex;
+  gap: 40px;
+  margin-top: 52px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.meta-item { display: flex; flex-direction: column; gap: 4px; }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.meta-value {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+/* -- SECTION WRAPPER -- */
+section {
+  padding: 96px 64px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+@media (max-width: 768px) {
+  section { padding: 64px 24px; }
+  .hero { padding: 110px 24px 60px; }
+}
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 28px;
+}
+.section-lead {
+  color: var(--muted2);
+  font-size: 15px;
+  max-width: 760px;
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+
+/* -- SURFACE CARDS (Section 2) -- */
+.surface-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 1100px) { .surface-grid { grid-template-columns: 1fr; } }
+.surface-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--amber);
+  padding: 28px 26px 30px;
+  display: flex;
+  flex-direction: column;
+}
+.surface-card.consumer { border-top-color: var(--green); }
+.surface-card.business-app { border-top-color: var(--amber); }
+.surface-card.cloud-api { border-top-color: var(--blue); }
+
+.surface-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.surface-name {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.surface-name em { font-style: italic; }
+.surface-card.consumer .surface-name { color: var(--green); }
+.surface-card.business-app .surface-name { color: var(--amber); }
+.surface-card.cloud-api .surface-name { color: var(--blue); }
+
+.surface-blurb {
+  font-size: 13px;
+  color: var(--muted2);
+  line-height: 1.6;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed var(--line);
+}
+.surface-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+}
+.surface-list li {
+  position: relative;
+  padding-left: 18px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.surface-list li::before {
+  content: '+';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--mono);
+  color: var(--green);
+  font-weight: 700;
+}
+.surface-list li.no::before { content: 'x'; color: var(--coral); }
+.surface-list li.amber::before { content: '~'; color: var(--amber); }
+.surface-list li small { color: var(--muted); display: block; font-size: 11px; margin-top: 2px; }
+
+/* -- 24H TIMELINE (Section 3) -- */
+.timeline-wrap {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 40px 36px 36px;
+  margin-bottom: 36px;
+}
+.timeline-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+}
+.timeline-bar {
+  position: relative;
+  height: 64px;
+  margin: 36px 0 56px;
+}
+.timeline-track {
+  position: absolute;
+  left: 0; right: 0;
+  top: 28px;
+  height: 8px;
+  background: var(--bg4);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.timeline-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 60%;
+  background: linear-gradient(90deg, var(--green) 0%, var(--green) 60%, var(--amber) 60%, var(--amber) 100%);
+  border-radius: 4px;
+}
+.timeline-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  background: var(--coral);
+}
+.timeline-bar.window-72 .timeline-fill { background: var(--green); width: 100%; }
+.timeline-bar.window-72 .timeline-fill::after { display: none; }
+
+.timeline-marker {
+  position: absolute;
+  top: 14px;
+  width: 2px;
+  height: 36px;
+  background: var(--text);
+}
+.timeline-label {
+  position: absolute;
+  top: 56px;
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted2);
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+.timeline-label strong { color: var(--text); display: block; font-size: 12px; margin-bottom: 2px; font-family: var(--serif); font-weight: 700; }
+.timeline-zone {
+  position: absolute;
+  top: -28px;
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--green);
+}
+.timeline-zone.paid { color: var(--coral); }
+
+.window-rules {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+@media (max-width: 760px) { .window-rules { grid-template-columns: 1fr; } }
+.rule-card {
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--green);
+  padding: 16px 18px;
+}
+.rule-card.paid { border-left-color: var(--coral); }
+.rule-card-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.rule-card.paid .rule-card-title { color: var(--coral); }
+.rule-card-body { font-size: 13px; color: var(--text); line-height: 1.55; }
+
+/* -- CAPABILITY MATRIX (Section 4) -- */
+.matrix-wrap {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 700px;
+}
+.matrix-table thead th {
+  background: var(--bg3);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted2);
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line2);
+  white-space: nowrap;
+}
+.matrix-table thead th:first-child { width: 38%; }
+.matrix-table tbody td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  color: var(--text);
+}
+.matrix-table tbody tr:last-child td { border-bottom: none; }
+.matrix-table tbody tr:hover { background: var(--bg3); }
+.matrix-table .cap-name { font-weight: 600; }
+.matrix-table .cap-name small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  margin-top: 2px;
+  font-family: var(--sans);
+}
+
+.cell-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: normal;
+  line-height: 1.4;
+}
+.cell-status::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--muted);
+}
+.cell-status.yes::before { background: var(--green); }
+.cell-status.no::before { background: var(--coral); }
+.cell-status.partial::before { background: var(--amber); }
+.cell-status.yes { color: var(--green); }
+.cell-status.no { color: var(--coral); }
+.cell-status.partial { color: var(--amber); }
+.cell-status.muted { color: var(--muted); }
+.cell-status small { font-family: var(--sans); color: var(--muted); font-size: 11px; display: block; margin-top: 2px; }
+
+/* -- CANNOT BLOCK (Section 5) -- */
+.cannot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media (max-width: 900px) { .cannot-grid { grid-template-columns: 1fr; } }
+.cannot-item {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--coral);
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.cannot-mark {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--coral);
+  line-height: 1;
+}
+.cannot-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.cannot-text strong { color: var(--coral); font-weight: 600; }
+
+/* -- PRICING (Section 6) -- */
+.pricing-diff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--line);
+  margin-bottom: 36px;
+  background: var(--bg2);
+}
+@media (max-width: 768px) { .pricing-diff { grid-template-columns: 1fr; } }
+.pricing-side { padding: 28px 30px 32px; min-width: 0; }
+.pricing-side.before { border-right: 1px solid var(--line); }
+@media (max-width: 768px) {
+  .pricing-side.before { border-right: none; border-bottom: 1px solid var(--line); }
+}
+.pricing-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+.pricing-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+.pricing-side.before .pricing-title { color: var(--coral); }
+.pricing-side.after .pricing-title { color: var(--green); }
+.pricing-body { font-size: 13px; color: var(--muted2); line-height: 1.65; margin-bottom: 16px; }
+.pricing-body strong { color: var(--text); }
+.pricing-side ul { list-style: none; padding: 0; margin-top: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+.pricing-side ul li { padding-left: 18px; position: relative; }
+.pricing-side ul li::before { content: '›'; position: absolute; left: 0; color: var(--muted); }
+
+.country-table-wrap {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  margin-bottom: 28px;
+}
+.country-table-header {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.country-table-header h3 {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.country-table-header p {
+  font-size: 12px;
+  color: var(--muted2);
+  margin-top: 4px;
+  font-family: var(--mono);
+}
+.country-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.country-table th, .country-table td {
+  padding: 12px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.country-table tr:last-child td { border-bottom: none; }
+.country-table th {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 700;
+  background: var(--bg3);
+}
+.country-table .num {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--amber);
+}
+.country-table tr.scarlot-row { background: rgba(240,165,0,0.05); }
+.country-table tr.scarlot-row td { color: var(--text); }
+.country-table tr.scarlot-row .num { color: var(--amber2); font-weight: 700; }
+
+.free-rules {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+@media (max-width: 900px) { .free-rules { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .free-rules { grid-template-columns: 1fr; } }
+.free-rule {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--green);
+  padding: 16px 18px;
+}
+.free-rule.paid-rule { border-top-color: var(--coral); }
+.free-rule-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.free-rule.paid-rule .free-rule-tag { color: var(--coral); }
+.free-rule-cost {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.free-rule.paid-rule .free-rule-cost { color: var(--coral); }
+.free-rule:not(.paid-rule) .free-rule-cost { color: var(--green); }
+.free-rule-body { font-size: 12px; color: var(--muted2); line-height: 1.5; }
+
+/* -- POLICY (Section 7) -- */
+.policy-quote-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+@media (max-width: 760px) { .policy-quote-grid { grid-template-columns: 1fr; } }
+.policy-quote {
+  background: var(--bg2);
+  border: 1px solid var(--coral-dim);
+  border-left: 3px solid var(--coral);
+  padding: 20px 22px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.policy-quote::before {
+  content: '"';
+  color: var(--coral);
+  font-size: 28px;
+  font-weight: 700;
+  display: inline;
+  margin-right: 4px;
+  vertical-align: -4px;
+}
+.policy-quote::after { content: '"'; color: var(--coral); }
+.policy-quote small {
+  display: block;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.enforcement-block {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 26px 28px;
+  margin-bottom: 36px;
+}
+.enforcement-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--coral);
+  margin-bottom: 16px;
+}
+.enforcement-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted2);
+}
+.enforcement-list li { padding-left: 18px; position: relative; line-height: 1.6; }
+.enforcement-list li::before {
+  content: '!';
+  position: absolute;
+  left: 0;
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--coral);
+}
+.enforcement-list li strong { color: var(--text); }
+
+.ban-cascade {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.ban-cascade span {
+  padding: 6px 10px;
+  border: 1px solid var(--coral-dim);
+  background: var(--coral-dim);
+  color: var(--coral);
+  border-radius: 4px;
+}
+.ban-cascade .arrow { border: none; background: none; color: var(--muted); padding: 0 2px; }
+.ban-cascade .terminal { background: var(--coral); color: var(--bg); border-color: var(--coral); font-weight: 700; }
+
+.policy-insight {
+  background: linear-gradient(135deg, rgba(240,165,0,0.1) 0%, rgba(240,165,0,0.04) 100%);
+  border: 1px solid var(--amber);
+  padding: 30px 32px;
+}
+.policy-insight-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 14px;
+}
+.policy-insight-body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.policy-insight-body em { color: var(--amber); font-style: italic; }
+
+/* -- ARCHITECTURE OPTIONS (Section 8) -- */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+.option-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+@media (max-width: 1000px) {
+  .option-card { grid-template-columns: 1fr; }
+}
+.option-id {
+  padding: 24px 26px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (max-width: 1000px) { .option-id { border-right: none; border-bottom: 1px solid var(--line); } }
+.option-letter {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.option-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+.option-scores {
+  padding: 24px 26px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (max-width: 1000px) { .option-scores { border-right: none; border-bottom: 1px solid var(--line); } }
+.score-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 90px;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+}
+.score-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.score-bar {
+  height: 8px;
+  background: var(--bg4);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--green);
+}
+.score-bar-fill.amber { background: var(--amber); }
+.score-bar-fill.red { background: var(--coral); }
+.score-value {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted2);
+  text-align: right;
+}
+.score-value.green { color: var(--green); }
+.score-value.amber { color: var(--amber); }
+.score-value.red { color: var(--coral); }
+
+.option-verdict {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg3);
+}
+.verdict-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.verdict-text {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.verdict-text.go { color: var(--green); }
+.verdict-text.no-go { color: var(--coral); }
+.verdict-text.maybe { color: var(--amber); }
+
+/* -- DECISION FLOW (Section 9) -- */
+.decision-flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-bottom: 36px;
+}
+@media (max-width: 1100px) { .decision-flow { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .decision-flow { grid-template-columns: 1fr; } }
+.flow-step {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--amber);
+  padding: 22px 22px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.flow-step.priority-go { border-top-color: var(--green); }
+.flow-step.priority-maybe { border-top-color: var(--amber); }
+.flow-step.priority-no { border-top-color: var(--coral); }
+.flow-step.priority-prep { border-top-color: var(--blue); }
+
+.flow-step-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.flow-step-title {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.flow-step.priority-go .flow-step-title { color: var(--green); }
+.flow-step.priority-maybe .flow-step-title { color: var(--amber); }
+.flow-step.priority-no .flow-step-title { color: var(--coral); }
+.flow-step.priority-prep .flow-step-title { color: var(--blue); }
+.flow-step-body { font-size: 12px; color: var(--muted2); line-height: 1.55; flex: 1; }
+.flow-step-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  margin-top: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.prelaunch-block {
+  background: var(--bg2);
+  border: 1px solid var(--blue);
+  padding: 26px 30px;
+}
+.prelaunch-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+.prelaunch-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.prelaunch-list li {
+  padding-left: 22px;
+  position: relative;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.prelaunch-list li::before {
+  content: '□';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-weight: 700;
+}
+.prelaunch-list strong { color: var(--text); }
+.prelaunch-list small { color: var(--muted); display: block; font-size: 11px; margin-top: 2px; font-family: var(--mono); letter-spacing: 0.04em; }
+
+/* -- TIMELINE (Section 10) -- */
+.timeline-vertical {
+  position: relative;
+  padding-left: 32px;
+  max-width: 760px;
+}
+.timeline-vertical::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--muted) 0%, var(--amber) 100%);
+}
+.tv-event {
+  position: relative;
+  padding-bottom: 28px;
+}
+.tv-event:last-child { padding-bottom: 0; }
+.tv-event::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--muted);
+}
+.tv-event.major::before { border-color: var(--amber); background: var(--amber); }
+.tv-event.alert::before { border-color: var(--coral); background: var(--coral); }
+.tv-event.recent::before { border-color: var(--green); background: var(--green); }
+
+.tv-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.tv-event.major .tv-date { color: var(--amber); }
+.tv-event.alert .tv-date { color: var(--coral); }
+.tv-event.recent .tv-date { color: var(--green); }
+.tv-title {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.tv-body { font-size: 13px; color: var(--muted2); line-height: 1.55; }
+
+/* -- FOOTER -- */
+footer {
+  padding: 60px 64px 80px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 2;
+}
+.footer-meta span { color: var(--amber); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Scarlot <small>WhatsApp Briefing</small></div>
+  <ul class="nav-links">
+    <li><a href="#surfaces">Surfaces</a></li>
+    <li><a href="#window">24h Rule</a></li>
+    <li><a href="#matrix">Matrix</a></li>
+    <li><a href="#cannot">Limits</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#policy">Policy</a></li>
+    <li><a href="#options">Options</a></li>
+    <li><a href="#path">Path</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-tag">WhatsApp Capability Briefing -- April 2026</div>
+  <h1>WhatsApp Business <em>--</em><br>What it actually does.</h1>
+  <p class="hero-sub">A capability map for Scarlot. The three product surfaces, what's possible on each, what's blocked by policy, and which architecture survives. Compiled from Meta's developer documentation, Business Solution Provider technical references, and field reports on enforcement behavior.</p>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Surfaces covered</span>
+      <span class="meta-value">3</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Hard blockers found</span>
+      <span class="meta-value">7</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Architectural options</span>
+      <span class="meta-value">5</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Recommended path</span>
+      <span class="meta-value">A / E</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. THREE SURFACES -->
+<section id="surfaces">
+  <div class="section-eyebrow">02 -- The three product surfaces</div>
+  <h2 class="section-title">Three products,<br>three rule books.</h2>
+  <p class="section-lead">Conflating these is the single most common error in product specs. The consumer app, the Business app, and the Business Platform are governed by different terms of service, surface different features, and have different programmatic access. The TDS already lives on surface 1. The question is what surface Scarlot lives on.</p>
+
+  <div class="surface-grid">
+
+    <div class="surface-card consumer">
+      <div class="surface-tag">Surface 01</div>
+      <div class="surface-name">WhatsApp <em>Messenger</em></div>
+      <div class="surface-blurb">The consumer app. Where every TDS in the cohort already operates. Free, encrypted, no programmatic seam.</div>
+      <ul class="surface-list">
+        <li>Free peer-to-peer messenger</li>
+        <li>End-to-end encrypted by default (Signal protocol)</li>
+        <li>1 primary phone + up to 4 linked devices</li>
+        <li class="amber">Multi-account on Android since 2024</li>
+        <li class="no">No public API, ever<small>Meta has sued reverse-engineering vendors. Consistent posture for ten-plus years.</small></li>
+        <li class="no">No programmatic access of any kind</li>
+        <li class="no">No webhooks, no SDK, no bot platform</li>
+      </ul>
+    </div>
+
+    <div class="surface-card business-app">
+      <div class="surface-tag">Surface 02</div>
+      <div class="surface-name">WhatsApp <em>Business app</em></div>
+      <div class="surface-blurb">Free standalone Android/iOS app for small businesses and solo operators. Looks professional. No code required.</div>
+      <ul class="surface-list">
+        <li>Free Android and iOS app for solo operators</li>
+        <li>Business profile (description, hours, address, category)</li>
+        <li>Catalog up to ~500 products</li>
+        <li>Quick replies (keyword snippets), labels, broadcast lists (256 max)</li>
+        <li>Automated greetings + away messages<small>Time-based only. No logic branching, no context awareness.</small></li>
+        <li>Click-to-chat links and downloadable QR codes</li>
+        <li>1 phone + 4 linked devices (companion mode)</li>
+        <li class="no">No API. No webhooks. No SDK.</li>
+        <li class="no">Catalog cannot list adult products or services<small>Meta Commerce Policy applies.</small></li>
+      </ul>
+    </div>
+
+    <div class="surface-card cloud-api">
+      <div class="surface-tag">Surface 03</div>
+      <div class="surface-name">WhatsApp <em>Business Platform</em></div>
+      <div class="surface-blurb">Meta's hosted API. Programmatic send and receive, paid per message, business verification required. The On-Premises variant sunset October 23, 2025.</div>
+      <ul class="surface-list">
+        <li>Cloud API, Meta-hosted (On-Premises sunset Oct 23, 2025)</li>
+        <li>Programmatic send and receive via webhooks</li>
+        <li>Template messages, interactive buttons and lists, Flows</li>
+        <li>Voice calls via Calling API (launched July 2025)</li>
+        <li>80 messages per second default, scales to 1,000 per second</li>
+        <li class="amber">Per-message pricing since July 1, 2025</li>
+        <li class="amber">Requires business verification + display name approval</li>
+        <li class="no">Adult content prohibited by policy<small>Cascading bans, content scanning at the processing layer.</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3. THE 24H RULE -->
+<section id="window">
+  <div class="section-eyebrow">03 -- The customer service window</div>
+  <h2 class="section-title">The 24-hour rule<br>governs everything.</h2>
+  <p class="section-lead">On the Business Platform, there are two kinds of message: free-form (cheap, only allowed inside an open service window) and template (pre-approved, paid per delivery, allowed any time). The window opens when the user sends you a message and resets on each new inbound. Outside the window, you can only send pre-approved templates.</p>
+
+  <div class="timeline-wrap">
+    <div class="timeline-title">Standard service window</div>
+    <div class="timeline-bar">
+      <div class="timeline-zone" style="left: 0;">Free-form allowed -- free</div>
+      <div class="timeline-zone paid" style="right: 0;">Templates only -- paid</div>
+      <div class="timeline-track">
+        <div class="timeline-fill"></div>
+      </div>
+      <div class="timeline-marker" style="left: 0%;"></div>
+      <div class="timeline-marker" style="left: 60%;"></div>
+      <div class="timeline-marker" style="left: 100%;"></div>
+      <div class="timeline-label" style="left: 0%;"><strong>T = 0</strong>User sends inbound</div>
+      <div class="timeline-label" style="left: 60%;"><strong>T = 24h</strong>Window closes</div>
+      <div class="timeline-label" style="left: 100%;"><strong>Outside</strong>Templates only</div>
+    </div>
+
+    <div class="timeline-title" style="margin-top: 8px;">Free Entry Point window (Click-to-WhatsApp Ads)</div>
+    <div class="timeline-bar window-72">
+      <div class="timeline-zone" style="left: 0;">All message types -- free</div>
+      <div class="timeline-track">
+        <div class="timeline-fill"></div>
+      </div>
+      <div class="timeline-marker" style="left: 0%;"></div>
+      <div class="timeline-marker" style="left: 100%;"></div>
+      <div class="timeline-label" style="left: 0%;"><strong>T = 0</strong>User clicks Meta ad</div>
+      <div class="timeline-label" style="left: 100%;"><strong>T = 72h</strong>Window closes</div>
+    </div>
+
+    <div class="window-rules">
+      <div class="rule-card">
+        <div class="rule-card-title">Inside 24h window -- free</div>
+        <div class="rule-card-body">Any free-form message back to the user. Service templates also free. Utility templates also free.</div>
+      </div>
+      <div class="rule-card paid">
+        <div class="rule-card-title">Outside 24h window -- paid</div>
+        <div class="rule-card-body">Pre-approved templates only. Marketing and authentication categories billed per delivered message regardless of window state.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CAPABILITY MATRIX -->
+<section id="matrix">
+  <div class="section-eyebrow">04 -- Capability matrix</div>
+  <h2 class="section-title">Can it do X?<br>Honest answers.</h2>
+  <p class="section-lead">Where each surface stands on the capabilities that matter for a personal AI agent. Green = yes, amber = conditional or gated, red = no.</p>
+
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th>Personal app</th>
+          <th>Business app</th>
+          <th>Cloud API</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cap-name">Send text messages</td>
+          <td><span class="cell-status yes">Yes</span></td>
+          <td><span class="cell-status yes">Yes</span></td>
+          <td><span class="cell-status yes">Yes</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Receive messages programmatically<small>Webhook delivery, event-driven processing</small></td>
+          <td><span class="cell-status no">No</span></td>
+          <td><span class="cell-status no">No</span></td>
+          <td><span class="cell-status yes">Yes -- webhooks</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Programmatic access<small>SDK, server-side automation, bot framework</small></td>
+          <td><span class="cell-status no">No -- ever</span></td>
+          <td><span class="cell-status no">No</span></td>
+          <td><span class="cell-status yes">Yes</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Multi-device companion mode<small>1 primary + linked devices</small></td>
+          <td><span class="cell-status yes">Yes -- up to 4</span></td>
+          <td><span class="cell-status yes">Yes -- up to 4</span></td>
+          <td><span class="cell-status muted">N/A -- server-side</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Catalog and product listings</td>
+          <td><span class="cell-status no">No</span></td>
+          <td><span class="cell-status partial">Yes -- no adult</span></td>
+          <td><span class="cell-status partial">Yes -- no adult</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Broadcast lists / mass send</td>
+          <td><span class="cell-status yes">Yes -- 256 max</span></td>
+          <td><span class="cell-status yes">Yes -- 256 max</span></td>
+          <td><span class="cell-status partial">Templates only -- opt-in required</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Group chat API</td>
+          <td><span class="cell-status no">No</span></td>
+          <td><span class="cell-status no">No</span></td>
+          <td><span class="cell-status partial">Gated to 100k+ MAU businesses</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Voice / video calls</td>
+          <td><span class="cell-status yes">Yes -- peer to peer</span></td>
+          <td><span class="cell-status yes">Yes -- peer to peer</span></td>
+          <td><span class="cell-status partial">Voice only -- Calling API</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">WhatsApp Pay<small>In-thread payment</small></td>
+          <td><span class="cell-status partial">India + Singapore only</span></td>
+          <td><span class="cell-status partial">India + Singapore only</span></td>
+          <td><span class="cell-status partial">India + Singapore only</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Read receipts via webhook</td>
+          <td><span class="cell-status muted">N/A</span></td>
+          <td><span class="cell-status muted">N/A</span></td>
+          <td><span class="cell-status yes">Yes -- if user opts in</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">End-to-end encrypted message body<small>Meta has no plaintext access</small></td>
+          <td><span class="cell-status yes">Yes -- always</span></td>
+          <td><span class="cell-status yes">Yes -- always</span></td>
+          <td><span class="cell-status no">No -- Meta decrypts at processing layer</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Adult content allowed</td>
+          <td><span class="cell-status yes">Yes -- informal use</span></td>
+          <td><span class="cell-status no">No -- commerce blocked</span></td>
+          <td><span class="cell-status no">No -- hard policy block</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Swiss data residency<small>Local Storage in CH region</small></td>
+          <td><span class="cell-status muted">N/A</span></td>
+          <td><span class="cell-status muted">N/A</span></td>
+          <td><span class="cell-status yes">Yes -- CH local storage</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Inject messages into existing personal chats</td>
+          <td><span class="cell-status no">No</span></td>
+          <td><span class="cell-status no">No</span></td>
+          <td><span class="cell-status no">No -- different identity</span></td>
+        </tr>
+        <tr>
+          <td class="cap-name">Run on user's own hardware<small>Self-hosted, no Meta-side processing</small></td>
+          <td><span class="cell-status yes">Yes -- companion only</span></td>
+          <td><span class="cell-status yes">Yes -- companion only</span></td>
+          <td><span class="cell-status no">No -- Meta-hosted</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 5. WHAT WHATSAPP CANNOT DO -->
+<section id="cannot">
+  <div class="section-eyebrow">05 -- The hard limits</div>
+  <h2 class="section-title">What WhatsApp<br>absolutely cannot do.</h2>
+  <p class="section-lead">Common assumptions, debunked. If a vendor or framework claims any of these, they are reverse-engineering WhatsApp Web and the underlying account is one quality-rating drop from a permanent ban.</p>
+
+  <div class="cannot-grid">
+    <div class="cannot-item">
+      <div class="cannot-mark">x</div>
+      <div class="cannot-text"><strong>There is no API for personal WhatsApp accounts.</strong> Any vendor claiming this is reverse-engineering WhatsApp Web. Direct terms-of-service violation. Ban risk per number, escalating in 2025.</div>
+    </div>
+    <div class="cannot-item">
+      <div class="cannot-mark">x</div>
+      <div class="cannot-text"><strong>You cannot inject messages into existing personal chats via Cloud API.</strong> Cloud API messages come from the Cloud API number, not from the user's own number. There is no "send as another user" function.</div>
+    </div>
+    <div class="cannot-item">
+      <div class="cannot-mark">x</div>
+      <div class="cannot-text"><strong>Cloud API messages are not end-to-end encrypted.</strong> Meta decrypts at the processing layer to scan content for policy, fraud, and spam. Consumer-to-consumer chats are end-to-end. Cloud API chats are not.</div>
+    </div>
+    <div class="cannot-item">
+      <div class="cannot-mark">x</div>
+      <div class="cannot-text"><strong>One number equals one app.</strong> Personal Messenger, Business app, or Cloud API -- pick one. Coexistence (Business + Cloud API on the same number) was excluded for Switzerland at launch. Recheck before assuming.</div>
+    </div>
+    <div class="cannot-item">
+      <div class="cannot-mark">x</div>
+      <div class="cannot-text"><strong>The group chat API is not generally available.</strong> Native Cloud API group support exists since October 2025 but is gated to businesses with 100,000+ business-initiated conversations per month. Out of reach for any startup.</div>
+    </div>
+    <div class="cannot-item">
+      <div class="cannot-mark">x</div>
+      <div class="cannot-text"><strong>There is no background passive listening on a personal account.</strong> Even a paired companion device requires the user to have explicitly QR-paired and granted access through the official app.</div>
+    </div>
+    <div class="cannot-item" style="grid-column: 1 / -1;">
+      <div class="cannot-mark">x</div>
+      <div class="cannot-text"><strong>Adult content and sex worker services are explicitly prohibited under WhatsApp Business policy.</strong> Detection runs on display name, profile description, catalog content, message content (Cloud API has plaintext access), recipient block-rate, and reply rate. The TDS's working identity cannot be the registered Cloud API business.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. PRICING -->
+<section id="pricing">
+  <div class="section-eyebrow">06 -- The July 1, 2025 pricing shift</div>
+  <h2 class="section-title">From conversations<br>to per-message billing.</h2>
+  <p class="section-lead">Meta switched its pricing model on July 1, 2025. Conversations are no longer the unit of billing for marketing, utility, and authentication templates. Each delivered template message now incurs a charge. Service messages inside an open 24-hour window remain free.</p>
+
+  <div class="pricing-diff">
+    <div class="pricing-side before">
+      <div class="pricing-tag">Before -- through June 30, 2025</div>
+      <div class="pricing-title">Conversation-based pricing</div>
+      <div class="pricing-body">A flat fee per <strong>24-hour conversation window</strong> regardless of message count. Categories: Marketing, Utility, Authentication, Service. Service had a generous free tier of 1,000 conversations per month per business.</div>
+      <ul>
+        <li>Charge fires once per opened window</li>
+        <li>Multi-message campaigns inside a window cost the same as single messages</li>
+        <li>Free service tier: 1,000 conversations / month</li>
+      </ul>
+    </div>
+    <div class="pricing-side after">
+      <div class="pricing-tag">After -- from July 1, 2025</div>
+      <div class="pricing-title">Per-message pricing</div>
+      <div class="pricing-body">A charge fires on <strong>each delivered template message</strong>, not per conversation. Service messages and utility templates inside an open 24-hour window remain free. Free Entry Point (Click-to-WhatsApp Ads) window stays free for 72 hours.</div>
+      <ul>
+        <li>Long campaigns now meaningfully more expensive</li>
+        <li>One-off outreach roughly the same cost</li>
+        <li>Service messages still free in 24h window</li>
+        <li>Free Entry Point window: 72h all free</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="country-table-wrap">
+    <div class="country-table-header">
+      <h3>Marketing template rates by country</h3>
+      <p>USD per delivered message, approximate 2026. Switzerland sits in the higher-cost European tier.</p>
+    </div>
+    <table class="country-table">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Tier</th>
+          <th class="num">Marketing rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>India</td><td>Low</td><td class="num">$0.0014</td></tr>
+        <tr><td>United States</td><td>Mid</td><td class="num">$0.025</td></tr>
+        <tr><td>Mexico</td><td>Mid</td><td class="num">$0.0436</td></tr>
+        <tr><td>Brazil</td><td>Mid-high</td><td class="num">$0.0625</td></tr>
+        <tr class="scarlot-row"><td>Switzerland (CH) -- launch market</td><td>High</td><td class="num">$0.07 -- $0.13</td></tr>
+        <tr><td>Western Europe (DE, FR, UK)</td><td>High</td><td class="num">$0.07 -- $0.13</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="free-rules">
+    <div class="free-rule">
+      <div class="free-rule-tag">Service inside 24h window</div>
+      <div class="free-rule-cost">FREE</div>
+      <div class="free-rule-body">Free-form replies to a user-initiated message. The bread and butter of agent-style usage.</div>
+    </div>
+    <div class="free-rule">
+      <div class="free-rule-tag">Utility inside 24h window</div>
+      <div class="free-rule-cost">FREE</div>
+      <div class="free-rule-body">Approved utility templates delivered while a service window is open.</div>
+    </div>
+    <div class="free-rule">
+      <div class="free-rule-tag">Free Entry Point (CTWA)</div>
+      <div class="free-rule-cost">72h FREE</div>
+      <div class="free-rule-body">All message types free for 72 hours after a user clicks a Meta Click-to-WhatsApp Ad.</div>
+    </div>
+    <div class="free-rule paid-rule">
+      <div class="free-rule-tag">Marketing + Authentication</div>
+      <div class="free-rule-cost">ALWAYS PAID</div>
+      <div class="free-rule-body">Per delivered message. Window state irrelevant. Per-country rates apply.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. POLICY MINEFIELD -->
+<section id="policy">
+  <div class="section-eyebrow">07 -- The policy minefield</div>
+  <h2 class="section-title">Why Cloud API does not<br>welcome the TDS identity.</h2>
+  <p class="section-lead">The WhatsApp Business Messaging Policy applies to every Business Platform user. It references Meta's Commerce Policy and is enforced via machine-learning content scanning at the processing layer. These four clauses do the work of blocking the entire vertical:</p>
+
+  <div class="policy-quote-grid">
+    <div class="policy-quote">Sexually explicit materials or nudity.<small>WhatsApp Business Messaging Policy</small></div>
+    <div class="policy-quote">Adult products and services.<small>Meta Commerce Policy, referenced</small></div>
+    <div class="policy-quote">Sexual performance enhancement products and sexually suggestive services.<small>Meta Commerce Policy</small></div>
+    <div class="policy-quote">Channels facilitating commercial sexual services.<small>WhatsApp Channel Guidelines</small></div>
+  </div>
+
+  <div class="enforcement-block">
+    <div class="enforcement-title">Enforcement model</div>
+    <ul class="enforcement-list">
+      <li>Machine-learning scans run on <strong>display name, profile description, catalog content, message content</strong> (Cloud API has plaintext access), <strong>recipient block-rate, and reply rate</strong>.</li>
+      <li>High recipient block-rate (typical for cold outreach in adult work) drives the negative-quality signal that triggers throttling.</li>
+      <li>Low reply rate (under ~10%) is itself a red flag, regardless of content.</li>
+      <li>Bans are account-level and cascade. Each violation tier escalates the next.</li>
+    </ul>
+    <div class="ban-cascade">
+      <span>1 day</span>
+      <span class="arrow">›</span>
+      <span>3 day</span>
+      <span class="arrow">›</span>
+      <span>5 day</span>
+      <span class="arrow">›</span>
+      <span>7 day</span>
+      <span class="arrow">›</span>
+      <span class="terminal">Indefinite</span>
+    </div>
+  </div>
+
+  <div class="policy-insight">
+    <div class="policy-insight-tag">Key insight</div>
+    <div class="policy-insight-body">The only Cloud API path that survives policy review is one where the registered business is <em>not</em> the TDS. It is Scarlot itself, operating an internal-coverage agent the TDS chats with privately. <em>The TDS's clients never touch the Cloud API number.</em></div>
+  </div>
+</section>
+
+<!-- 8. ARCHITECTURAL OPTIONS -->
+<section id="options">
+  <div class="section-eyebrow">08 -- Architectural options for Scarlot</div>
+  <h2 class="section-title">Five paths.<br>One survives.</h2>
+  <p class="section-lead">Each option scored on four axes -- technical feasibility, policy compliance, privacy posture, and user-experience cost. Bars show relative quality. The verdict column is the call.</p>
+
+  <div class="options-grid">
+
+    <!-- Option A -->
+    <div class="option-card">
+      <div class="option-id">
+        <div class="option-letter">Option A</div>
+        <div class="option-name">Business app + Scarlot agent in a separate thread</div>
+        <p style="font-size: 12px; color: var(--muted2); margin-top: 10px; line-height: 1.55;">TDS uses her own number. Agent lives on a separate Scarlot number. She forwards or copies in what she wants screened or memorized.</p>
+      </div>
+      <div class="option-scores">
+        <div class="score-row">
+          <div class="score-label">Tech feasibility</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 95%;"></div></div>
+          <div class="score-value green">Trivial</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Policy compliance</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 92%;"></div></div>
+          <div class="score-value green">Clean</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Privacy posture</div>
+          <div class="score-bar"><div class="score-bar-fill amber" style="width: 70%;"></div></div>
+          <div class="score-value amber">Good</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">UX cost</div>
+          <div class="score-bar"><div class="score-bar-fill amber" style="width: 60%;"></div></div>
+          <div class="score-value amber">High friction</div>
+        </div>
+      </div>
+      <div class="option-verdict">
+        <div class="verdict-tag">Verdict</div>
+        <div class="verdict-text go">Defensible MVP path</div>
+      </div>
+    </div>
+
+    <!-- Option B -->
+    <div class="option-card">
+      <div class="option-id">
+        <div class="option-letter">Option B</div>
+        <div class="option-name">TDS registered as a Cloud API business</div>
+        <p style="font-size: 12px; color: var(--muted2); margin-top: 10px; line-height: 1.55;">TDS migrates her working number to Cloud API. Scarlot receives every client message via webhook and replies via API.</p>
+      </div>
+      <div class="option-scores">
+        <div class="score-row">
+          <div class="score-label">Tech feasibility</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 80%;"></div></div>
+          <div class="score-value green">Workable</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Policy compliance</div>
+          <div class="score-bar"><div class="score-bar-fill red" style="width: 6%;"></div></div>
+          <div class="score-value red">Hard block</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Privacy posture</div>
+          <div class="score-bar"><div class="score-bar-fill red" style="width: 14%;"></div></div>
+          <div class="score-value red">Worst</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">UX cost</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 95%;"></div></div>
+          <div class="score-value green">Lowest</div>
+        </div>
+      </div>
+      <div class="option-verdict">
+        <div class="verdict-tag">Verdict</div>
+        <div class="verdict-text no-go">Not viable</div>
+      </div>
+    </div>
+
+    <!-- Option C -->
+    <div class="option-card">
+      <div class="option-id">
+        <div class="option-letter">Option C</div>
+        <div class="option-name">Linked-device automation on TDS hardware</div>
+        <p style="font-size: 12px; color: var(--muted2); margin-top: 10px; line-height: 1.55;">A local process pairs as a companion device to the TDS's existing WhatsApp number. Reads inbound, drafts replies, surfaces them for approval. The current POC engine.</p>
+      </div>
+      <div class="option-scores">
+        <div class="score-row">
+          <div class="score-label">Tech feasibility</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 88%;"></div></div>
+          <div class="score-value green">Working today</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Policy compliance</div>
+          <div class="score-bar"><div class="score-bar-fill red" style="width: 18%;"></div></div>
+          <div class="score-value red">ToS violation</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Privacy posture</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 95%;"></div></div>
+          <div class="score-value green">Best</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">UX cost</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 80%;"></div></div>
+          <div class="score-value green">Low (ban-risk)</div>
+        </div>
+      </div>
+      <div class="option-verdict">
+        <div class="verdict-tag">Verdict</div>
+        <div class="verdict-text maybe">POC + dogfooding only</div>
+      </div>
+    </div>
+
+    <!-- Option D -->
+    <div class="option-card">
+      <div class="option-id">
+        <div class="option-letter">Option D</div>
+        <div class="option-name">Out-of-band agent (Telegram, Signal, custom app)</div>
+        <p style="font-size: 12px; color: var(--muted2); margin-top: 10px; line-height: 1.55;">Agent lives on a different channel. TDS uses it alongside WhatsApp manually. Telegram bot is the easiest; Signal CLI is end-to-end encrypted; a custom app gives full control.</p>
+      </div>
+      <div class="option-scores">
+        <div class="score-row">
+          <div class="score-label">Tech feasibility</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 95%;"></div></div>
+          <div class="score-value green">Trivial</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Policy compliance</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 95%;"></div></div>
+          <div class="score-value green">Clean (outside Meta)</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Privacy posture</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 92%;"></div></div>
+          <div class="score-value green">Best</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">UX cost</div>
+          <div class="score-bar"><div class="score-bar-fill amber" style="width: 50%;"></div></div>
+          <div class="score-value amber">High (extra app)</div>
+        </div>
+      </div>
+      <div class="option-verdict">
+        <div class="verdict-tag">Verdict</div>
+        <div class="verdict-text maybe">Realistic alternative or fallback</div>
+      </div>
+    </div>
+
+    <!-- Option E -->
+    <div class="option-card">
+      <div class="option-id">
+        <div class="option-letter">Option E</div>
+        <div class="option-name">Scarlot as separate WA number; TDS forwards to it</div>
+        <p style="font-size: 12px; color: var(--muted2); margin-top: 10px; line-height: 1.55;">Refinement of A. Scarlot owns the agent's WhatsApp number. The TDS adds the Scarlot agent to her contacts and forwards or quotes client messages into the agent thread, inside WhatsApp itself.</p>
+      </div>
+      <div class="option-scores">
+        <div class="score-row">
+          <div class="score-label">Tech feasibility</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 90%;"></div></div>
+          <div class="score-value green">Easy</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Policy compliance</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: 92%;"></div></div>
+          <div class="score-value green">Clean</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">Privacy posture</div>
+          <div class="score-bar"><div class="score-bar-fill amber" style="width: 70%;"></div></div>
+          <div class="score-value amber">Good</div>
+        </div>
+        <div class="score-row">
+          <div class="score-label">UX cost</div>
+          <div class="score-bar"><div class="score-bar-fill amber" style="width: 72%;"></div></div>
+          <div class="score-value amber">Medium</div>
+        </div>
+      </div>
+      <div class="option-verdict">
+        <div class="verdict-tag">Verdict</div>
+        <div class="verdict-text go">Likely actual MVP shape</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 9. RECOMMENDED PATH -->
+<section id="path">
+  <div class="section-eyebrow">09 -- Recommended path</div>
+  <h2 class="section-title">The decision.</h2>
+  <p class="section-lead">A clear sequence of choices, with the right channel for each user segment, and the open questions that have to be closed before public launch.</p>
+
+  <div class="decision-flow">
+    <div class="flow-step priority-go">
+      <div class="flow-step-num">Step 01</div>
+      <div class="flow-step-title">MVP now</div>
+      <div class="flow-step-body">Option A / E hybrid. Scarlot Cloud API number. Registered business presents as "personal AI assistant," not adult-coded. Swiss local storage enabled. TDS forwards client messages, contact cards, screenshots, and voice notes into the Scarlot thread.</div>
+      <div class="flow-step-tag">Build first</div>
+    </div>
+    <div class="flow-step priority-maybe">
+      <div class="flow-step-num">Step 02</div>
+      <div class="flow-step-title">Power users</div>
+      <div class="flow-step-body">Option C as opt-in. Linked-device automation runtime for early adopters who explicitly accept ban risk. Document the trade-off in onboarding. Consent must be informed.</div>
+      <div class="flow-step-tag">Limited cohort</div>
+    </div>
+    <div class="flow-step priority-prep">
+      <div class="flow-step-num">Step 03</div>
+      <div class="flow-step-title">Channel-agnostic</div>
+      <div class="flow-step-body">Option D on day one. Telegram fallback ready before public launch. Signal on the roadmap. Scarlot's value cannot be tied to a single platform's policy weather.</div>
+      <div class="flow-step-tag">Architectural hedge</div>
+    </div>
+    <div class="flow-step priority-no">
+      <div class="flow-step-num">Step 04</div>
+      <div class="flow-step-title">Never</div>
+      <div class="flow-step-body">Option B. Do not register TDS-identity numbers on Cloud API as adult-content businesses. Policy fail, privacy fail, jurisdictional fail. No path forward.</div>
+      <div class="flow-step-tag">Hard no</div>
+    </div>
+    <div class="flow-step priority-prep">
+      <div class="flow-step-num">Step 05</div>
+      <div class="flow-step-title">Pre-launch checklist</div>
+      <div class="flow-step-body">Three open questions before any public exposure: confirm CH local storage on the Scarlot number, confirm Coexistence availability for Switzerland, secure Swiss legal opinion on the relevant statutes.</div>
+      <div class="flow-step-tag">Must close</div>
+    </div>
+  </div>
+
+  <div class="prelaunch-block">
+    <div class="prelaunch-tag">Pre-launch open questions</div>
+    <ul class="prelaunch-list">
+      <li><strong>Confirm Switzerland local storage on Cloud API.</strong> Meta's Local Storage feature lets per-number message payloads stay in CH region data centers at rest. Required for revised Federal Act on Data Protection (nFADP) defensibility.<small>Owner -- engineering -- decide before signup</small></li>
+      <li><strong>Confirm Coexistence availability for Switzerland.</strong> Coexistence (Business app + Cloud API on the same number) was excluded for CH at launch. Recheck status before architecting any flow that depends on it.<small>Owner -- engineering -- recheck before MVP build</small></li>
+      <li><strong>Swiss legal opinion: Article 195 of the Swiss Penal Code, the revised Federal Act on Data Protection (nFADP), and blacklist defamation exposure.</strong> Three legal pillars must hold before public launch. Counsel engaged via co-founder's network preferred.<small>Owner -- co-founder + advisor -- before any production traffic</small></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10. KEY DATES -->
+<section id="dates">
+  <div class="section-eyebrow">10 -- Key dates pin</div>
+  <h2 class="section-title">The shape of the<br>last two years.</h2>
+  <p class="section-lead">Material changes to the WhatsApp Business stack that affect the architectural call. Most are pricing or platform-level; a few are policy-level. Anchor each architectural decision to whichever of these is still in flight.</p>
+
+  <div class="timeline-vertical">
+    <div class="tv-event">
+      <div class="tv-date">January 2024</div>
+      <div class="tv-title">On-Premises API v2.53 -- last feature release</div>
+      <div class="tv-body">Meta stopped shipping new features to the self-hosted API. Sunset clock starts.</div>
+    </div>
+    <div class="tv-event">
+      <div class="tv-date">Late 2023 / 2024</div>
+      <div class="tv-title">Multi-account on Android consumer WhatsApp</div>
+      <div class="tv-body">Two separate WhatsApp identities per phone, each on its own number. iOS still single-account.</div>
+    </div>
+    <div class="tv-event">
+      <div class="tv-date">2024</div>
+      <div class="tv-title">Coexistence launches (Business app + Cloud API)</div>
+      <div class="tv-body">First time the same number runs in two surfaces. Switzerland excluded at launch -- recheck before depending on it.</div>
+    </div>
+    <div class="tv-event">
+      <div class="tv-date">November 2024</div>
+      <div class="tv-title">Updated opt-in policy</div>
+      <div class="tv-body">Explicit consent before any business-initiated message. Demonstrable on demand. Bulk outbound without opt-in fast-tracks throttling.</div>
+    </div>
+    <div class="tv-event">
+      <div class="tv-date">2024 - 2025</div>
+      <div class="tv-title">Verified-business badge color: green to blue</div>
+      <div class="tv-body">Aligns with Facebook and Instagram. Same eligibility criteria (3-5 organic press articles or paid Meta Verified subscription).</div>
+    </div>
+    <div class="tv-event major">
+      <div class="tv-date">July 1, 2025</div>
+      <div class="tv-title">Per-message pricing replaces conversation-based pricing</div>
+      <div class="tv-body">The most material billing change in the platform's history. Long campaigns become significantly more expensive. Service messages still free in the 24-hour window.</div>
+    </div>
+    <div class="tv-event major">
+      <div class="tv-date">July 2025</div>
+      <div class="tv-title">Business Calling API launches (voice)</div>
+      <div class="tv-body">WebRTC-based, voice-only as of April 2026. DTMF / IVR navigation. Integrated into business thread context. Video promised, not shipped.</div>
+    </div>
+    <div class="tv-event alert">
+      <div class="tv-date">October 23, 2025</div>
+      <div class="tv-title">On-Premises API sunset complete</div>
+      <div class="tv-body">Self-hosted variant can no longer send messages. Cloud API is the only platform option from this date forward.</div>
+    </div>
+    <div class="tv-event">
+      <div class="tv-date">October 2025</div>
+      <div class="tv-title">Native Cloud API Group Chat (gated)</div>
+      <div class="tv-body">First-ever group support in the official platform. Limited to businesses with 100,000+ business-initiated conversations per month. Effectively unavailable to startups.</div>
+    </div>
+    <div class="tv-event recent">
+      <div class="tv-date">January 15, 2026</div>
+      <div class="tv-title">Brazil business payments program scaled back</div>
+      <div class="tv-body">WhatsApp Pay continues in India and Singapore for consumers; the Brazil business expansion is winding down. No path for CH or EU on the public roadmap.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Scarlot</div>
+  <div class="footer-meta">
+    WhatsApp Business Capability Briefing -- April 2026<br>
+    <span>3 surfaces</span> -- <span>15 capabilities scored</span> -- <span>5 architectural options</span> -- <span>1 surviving path</span><br>
+    Compiled for the founders. Internal briefing -- not for public distribution.
+  </div>
+</footer>
+
+</body>
+</html>

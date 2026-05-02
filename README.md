@@ -4,7 +4,7 @@ Discovery and strategy workspace for **Scarlot** -- the first coverage pack on *
 
 Scarlot serves independent sex workers (TDS) in Switzerland. The agent lives where the TDS already works (messaging apps), managing client relationships, safety screening, and business operations through conversation.
 
-This repository is not the product codebase. It holds the research, user interviews, product specification, market intelligence, financial model, and fundraising materials that inform the product being built. A test implementation of the bot engine is included as a submodule but is not the canonical architecture.
+This repository is not the product codebase. It holds the research, user interviews, product specification, market intelligence, financial model, and fundraising materials that inform the product being built. The product code lives in the sibling repositories listed below.
 
 ## The problem (validated across 8 interviews)
 
@@ -54,29 +54,19 @@ docs/
 ├── poc/                                 # POC architecture and specs (Trojan Horse, Landing Page)
 └── meta/                                # Skill installation and usage guides
 
-engine/                                  # NanoClaw - bot engine (submodule, POC only)
 CLAUDE.md                                # Project guidance for Claude Code
-SETUP.md                                 # How to run the POC bot
 ```
 
 ## Related repositories
 
 | Repo | Purpose |
 |------|---------|
+| `hernest` | Product codebase. WhatsApp-resident assistant for TDS. Per-tenant isolation, admin-chat-only orchestration, 17 tools across clients, appointments, payments, blacklist. |
+| `scarlot-website` | Public landing page and signup flow. Phone in, QR out. |
+| `scarlot-safety-data` | Reverse-lookup backbone. Aggregates community blacklists into a phone-keyed API. Phase 1 source ingested (And6, 10,228 reports). |
 | `scarlot-market-data` | Proprietary market intelligence pipeline. Scrapes 8 Swiss platforms continuously. 7,221+ deduplicated worker identities. Private. |
-| `nanoclaw` | Messaging bot engine used as the POC. Included here as submodule. |
 
-## Running the POC
-
-The `engine/` submodule contains NanoClaw, a WhatsApp bot used to test conversation flows during discovery. It is not the production architecture.
-
-```bash
-git clone --recursive https://github.com/nixor-praxian/scarlot.git
-cd scarlot/engine
-claude
-```
-
-Then run `/setup` inside Claude Code. Full setup guide in [`SETUP.md`](SETUP.md).
+A snapshot of how the three product repos fit together is in [`docs/state-2026-05-01.md`](docs/state-2026-05-01.md).
 
 ## Privacy
 

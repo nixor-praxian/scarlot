@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hackathon Day 1 - 30 April 2026 - Scarlot</title>
+<style>
+  :root {
+    --paper: #f7f4ee;
+    --paper-2: #efece4;
+    --ink: #2b2b2b;
+    --ink-2: #555;
+    --rule: #d6d2c6;
+    --y: #ffe28a;
+    --y2: #ffd24d;
+    --p: #ffb6c1;
+    --g: #bfe5b4;
+    --b: #b6d7ff;
+    --pu: #d9b8ff;
+    --o: #ffc99c;
+    --gr: #d4d0c4;
+    --rd: #ff7a7a;
+    --bg-dot: rgba(0,0,0,0.04);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  body {
+    background-image:
+      radial-gradient(var(--bg-dot) 1px, transparent 1px),
+      radial-gradient(var(--bg-dot) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: 0 0, 11px 11px;
+    padding: 28px 32px 80px;
+  }
+
+  header { margin-bottom: 22px; display: flex; align-items: end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  h1 { font-family: "Caveat", "Marker Felt", "Comic Sans MS", cursive; font-size: 44px; line-height: 1; margin: 0 0 6px; letter-spacing: 0.5px; }
+  .subtitle { color: var(--ink-2); font-size: 15px; }
+  .meta { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; font-size: 13px; color: var(--ink-2); box-shadow: 0 1px 0 rgba(0,0,0,0.04); }
+  .meta b { color: var(--ink); }
+
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0 26px; font-size: 12px; color: var(--ink-2); }
+  .legend .chip { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.15); }
+
+  /* RHYTHM STRIP */
+  .rhythm { background: white; border: 1px solid var(--rule); border-radius: 10px; padding: 14px 18px 10px; margin-bottom: 28px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+  .rhythm h3 { margin: 0 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink-2); }
+  .rhythm-row { position: relative; height: 64px; margin-top: 6px; }
+  .rhythm-axis { position: absolute; left: 0; right: 0; bottom: 16px; border-bottom: 1px dashed var(--rule); }
+  .rhythm-tick { position: absolute; bottom: 0; font-size: 10px; color: var(--ink-2); transform: translateX(-50%); }
+  .rhythm-segment { position: absolute; bottom: 16px; height: 0; border-top: 5px solid; border-radius: 2px; }
+  .rhythm-segment::before { content: ""; position: absolute; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background: currentColor; top: 0; }
+  .rhythm-label { position: absolute; bottom: 28px; font-size: 10px; color: var(--ink-2); transform: translateX(-50%); white-space: nowrap; }
+  .rhythm-cut { position: absolute; top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, var(--rule), var(--rule) 4px, transparent 4px, transparent 8px); }
+
+  /* PHASE CARDS */
+  .phase { display: grid; grid-template-columns: 130px 1fr; gap: 14px; background: var(--paper-2); border: 1px dashed var(--rule); border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; position: relative; }
+  .phase[data-session="morning"] { border-left: 4px solid var(--b); }
+  .phase[data-session="noon-david"] { border-left: 4px solid var(--g); }
+  .phase[data-session="noon-harness"] { border-left: 4px solid var(--pu); }
+  .phase[data-session="afternoon-devops"] { border-left: 4px solid var(--o); }
+  .phase-meta { font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+  .phase-meta .num { font-family: "Caveat", "Marker Felt", cursive; font-size: 36px; color: var(--ink); line-height: 1; display: block; }
+  .phase-meta .when { margin-top: 4px; font-weight: 600; color: var(--ink); }
+  .phase-meta .driver { margin-top: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .phase-meta .driver span { display: inline-block; padding: 2px 6px; border-radius: 3px; margin-top: 2px; color: var(--ink); }
+  .driver-a { background: var(--b); }
+  .driver-p { background: var(--y); }
+  .driver-d { background: var(--g); }
+  .driver-da { background: var(--o); }
+  .driver-multi { background: linear-gradient(90deg, var(--b) 33%, var(--y) 33%, var(--y) 66%, var(--g) 66%); }
+
+  .phase-title { font-family: "Caveat", "Marker Felt", cursive; font-size: 28px; line-height: 1.05; margin-bottom: 10px; }
+  .phase-title .mood { font-family: -apple-system, sans-serif; font-size: 11px; color: var(--ink-2); margin-left: 8px; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: middle; }
+  .stickies { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .sticky { padding: 10px 12px; border-radius: 4px; font-size: 13px; line-height: 1.45; box-shadow: 1px 1px 0 rgba(0,0,0,0.06), 2px 4px 8px rgba(0,0,0,0.05); transform: rotate(-0.4deg); position: relative; }
+  .sticky:nth-child(2n) { transform: rotate(0.5deg); }
+  .sticky:nth-child(3n) { transform: rotate(-0.3deg); }
+  .sticky strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: rgba(0,0,0,0.55); margin-bottom: 4px; font-weight: 700; }
+  .sticky em { color: var(--ink-2); font-style: italic; }
+  .sticky.q { background: var(--y); }
+  .sticky.d { background: var(--g); }
+  .sticky.i { background: var(--pu); }
+  .sticky.t { background: var(--o); }
+  .sticky.f { background: var(--p); }
+  .sticky.c { background: var(--b); }
+  .sticky.n { background: var(--gr); color: var(--ink-2); font-style: italic; }
+  .quote { font-family: "Caveat", "Marker Felt", cursive; font-size: 18px; line-height: 1.2; color: rgba(0,0,0,0.7); }
+
+  /* ARCHITECTURE BOX */
+  .architecture { background: white; border: 1px solid var(--rule); border-radius: 10px; padding: 18px 22px; margin: 28px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+  .architecture h2 { margin: 0 0 14px; font-family: "Caveat", "Marker Felt", cursive; font-size: 28px; }
+  .arch-diagram { font-family: ui-monospace, "SF Mono", "Menlo", monospace; font-size: 12px; line-height: 1.5; background: var(--paper-2); border-radius: 6px; padding: 16px; white-space: pre; overflow-x: auto; color: var(--ink); }
+
+  /* CROSS-CUTTING */
+  .cross { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+  .cross .col { background: white; border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+  .cross h2 { margin: 0 0 12px; font-family: "Caveat", "Marker Felt", cursive; font-size: 26px; }
+  .cross ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.5; }
+  .cross li { margin-bottom: 8px; }
+  .pill { display: inline-block; padding: 1px 6px; background: var(--paper-2); border-radius: 3px; font-size: 11px; color: var(--ink-2); margin-left: 6px; }
+
+  /* CONNECTIONS */
+  .connections { margin-top: 28px; background: white; border: 1px solid var(--rule); border-radius: 10px; padding: 14px 18px 18px; }
+  .connections h2 { margin: 0 0 8px; font-family: "Caveat", "Marker Felt", cursive; font-size: 26px; }
+  .arrow-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; padding: 8px 0; border-bottom: 1px dashed var(--rule); }
+  .arrow-row:last-child { border-bottom: 0; }
+  .arrow-row .from, .arrow-row .to { background: var(--paper-2); padding: 3px 8px; border-radius: 4px; font-weight: 600; }
+  .arrow-row .arr { color: var(--ink-2); }
+
+  @media (max-width: 720px) {
+    .cross { grid-template-columns: 1fr; }
+    .phase { grid-template-columns: 1fr; }
+  }
+
+  footer { margin-top: 40px; text-align: center; color: var(--ink-2); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Hackathon Day 1 — Scarlot POC</h1>
+    <div class="subtitle">30 April 2026 · ~5h 30min across 4 sessions · Andrew × Philippe + 2 advisors</div>
+  </div>
+  <div class="meta">
+    <div><b>Sessions:</b> Morning (build) → Noon David (strategy) → Noon Harness (architecture) → Afternoon Daniel (DevOps)</div>
+  </div>
+</header>
+
+<div class="legend">
+  <span class="chip"><span class="swatch" style="background: var(--g)"></span>decision</span>
+  <span class="chip"><span class="swatch" style="background: var(--y)"></span>open question</span>
+  <span class="chip"><span class="swatch" style="background: var(--pu)"></span>breakthrough</span>
+  <span class="chip"><span class="swatch" style="background: var(--o)"></span>tension / friction</span>
+  <span class="chip"><span class="swatch" style="background: var(--p)"></span>technical limit hit</span>
+  <span class="chip"><span class="swatch" style="background: var(--b)"></span>architectural choice</span>
+  <span class="chip"><span class="swatch" style="background: var(--gr)"></span>aside / context</span>
+</div>
+
+<!-- RHYTHM STRIP -->
+<section class="rhythm">
+  <h3>Day 1 timeline · 09:23 → 18:35 · 4 sessions</h3>
+  <div class="rhythm-row">
+    <div class="rhythm-axis"></div>
+
+    <!-- Morning session: 09:23 → 12:46 (~37% of strip 0%-37%) -->
+    <div class="rhythm-segment" style="left: 0%; width: 37%; color: #b6d7ff;" title="Morning - Andrew + Philippe build session"></div>
+    <div class="rhythm-label" style="left: 18.5%;">Build (Andrew + Philippe)</div>
+
+    <!-- gap lunch 12:46 → 13:16 -->
+    <!-- Noon David: 13:16 → 14:40 (start ~41%, width ~16%) -->
+    <div class="rhythm-segment" style="left: 41%; width: 16%; color: #bfe5b4;" title="Noon - David strategy reset"></div>
+    <div class="rhythm-label" style="left: 49%;">Strategy (David)</div>
+
+    <!-- Noon Harness: 14:43 → 15:09 (start ~57%, width ~5%) -->
+    <div class="rhythm-segment" style="left: 57.5%; width: 5%; color: #d9b8ff;" title="Noon - Harness deep-dive"></div>
+    <div class="rhythm-label" style="left: 60%;">Harness</div>
+
+    <!-- gap afternoon 15:09 → 18:18 (the hackathon work happens here, off-camera) -->
+    <!-- Afternoon Daniel: 18:18 → 18:35 (start ~96%, width ~3.5%) -->
+    <div class="rhythm-segment" style="left: 96%; width: 3.5%; color: #ffc99c;" title="Afternoon - Daniel DevOps"></div>
+    <div class="rhythm-label" style="left: 97.5%;">DevOps</div>
+
+    <!-- Time ticks -->
+    <div class="rhythm-tick" style="left: 0%;">09:23</div>
+    <div class="rhythm-tick" style="left: 25%;">11:00</div>
+    <div class="rhythm-tick" style="left: 41%;">13:16</div>
+    <div class="rhythm-tick" style="left: 57%;">14:43</div>
+    <div class="rhythm-tick" style="left: 75%;">16:30</div>
+    <div class="rhythm-tick" style="left: 96%;">18:18</div>
+    <div class="rhythm-tick" style="left: 100%;">18:35</div>
+
+    <!-- Cuts between sessions -->
+    <div class="rhythm-cut" style="left: 41%;"></div>
+    <div class="rhythm-cut" style="left: 57.5%;"></div>
+    <div class="rhythm-cut" style="left: 96%;"></div>
+  </div>
+  <div style="margin-top: 12px; font-size: 11px; color: var(--ink-2);">
+    <span style="color: #b6d7ff;">●</span> build session ·
+    <span style="color: #bfe5b4;">●</span> strategy reset ·
+    <span style="color: #d9b8ff;">●</span> architecture deep-dive ·
+    <span style="color: #ffc99c;">●</span> DevOps consultation ·
+    The gap between 15:09 and 18:18 is independent build work (no recording).
+  </div>
+</section>
+
+<!-- SESSION 1: MORNING -->
+<section class="phase" data-session="morning">
+  <div class="phase-meta">
+    <span class="num">01</span>
+    <div class="when">09:23 → 12:46</div>
+    <div>~3h 23min</div>
+    <div class="driver"><div>Drivers</div><span class="driver-a">Andrew</span> <span class="driver-p">Philippe</span></div>
+  </div>
+  <div>
+    <div class="phase-title">Morning build session <span class="mood">technical, generative, decision-dense</span></div>
+    <div class="stickies">
+      <div class="sticky c"><strong>full surface map</strong>Filtering · lookup · practical info · languages · availability · capabilities · calendar/contact · onboarding. The map forced explicit choices about user-trigger versus inference everywhere.</div>
+      <div class="sticky f"><strong>JID not phone</strong>Bailey's exposes a WhatsApp ID per contact, never the phone number. Forwarded messages strip source. This is the constraint the rest of the day worked around.</div>
+      <div class="sticky i"><strong>BREAKTHROUGH: Trojan Horse</strong>Joséphine has logins to all the platforms that already aggregate flagged numbers. Build a scraper to merge them into one phone-keyed lookup API. Solves P5, the #1 priority problem.</div>
+      <div class="sticky d"><strong>two-service architecture</strong>scarlot-poc (agent + UX) ⟷ scarlot-safety-data (scrapers + lookup). Clean HTTP contract: phone in, status + tags + counts out. Read-only V1; write API V2.</div>
+      <div class="sticky d"><strong>API contract locked</strong>Input: phone. Output: clean / greylist / blacklist + tag categories + report count + first/last reported. Tag-only, no free text.</div>
+      <div class="sticky d"><strong>Open Router for models</strong>Vendor independence. Direct Anthropic was 1.50 USD per demo; Open Router is materially cheaper. Sonnet for reasoning, Gemini Flash for cheap loops.</div>
+      <div class="sticky t"><strong>creepy barometer</strong>Stream-mode reads everything (richer, intrusive). Forward-mode reads only what's shared (cleaner, friction). Both prototyped; cohort decides.</div>
+      <div class="sticky d"><strong>WhatsApp Business closed off</strong>Deep research run during session: no consumer API, Business app no API, Cloud API requires Meta hosting + paid + 24h template rule. Bailey's it is.</div>
+      <div class="sticky d"><strong>eSIM path provisioned</strong>Republik Swiss eSIM, 13 CHF/month, 5-min onboarding, KYC by carrier. Both founders bought numbers. Fallback for V2 switchboard architecture.</div>
+      <div class="sticky d"><strong>voice as stretch goal</strong>Gemini Flash via Open Router for speech-to-text. WhatsApp voice notes ingested from V1 if time permits.</div>
+      <div class="sticky c"><strong>Stalwart aside</strong>Rust AGPL CardDAV/CalDAV server. Considered for contact/calendar sync. Decided not to bundle; keep CardDAV/CalDAV as integration protocols.</div>
+      <div class="sticky q"><strong>open: hosting</strong>Swiss VPS shortlist. Exoscale, Infomaniak, Postpoint, Init7. Decision before end of hackathon.</div>
+      <div class="sticky q"><strong>open: right to be forgotten</strong>How does it work between two private individuals (TDS and one-night client) under LPD? Counsel needed.</div>
+      <div class="sticky n"><strong>asides</strong>Onavo / Meta acquisition history. Mercor leak with Mythos access. Mistral signing in CH. CH cantons locked into Microsoft. Anti-Meta sentiment running high.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SESSION 2: NOON DAVID -->
+<section class="phase" data-session="noon-david">
+  <div class="phase-meta">
+    <span class="num">02</span>
+    <div class="when">13:16 → 14:40</div>
+    <div>~1h 24min</div>
+    <div class="driver"><div>Drivers</div><span class="driver-d">David</span> +A +P</div>
+  </div>
+  <div>
+    <div class="phase-title">Noon strategy reset with David <span class="mood">Socratic, structural</span></div>
+    <div class="stickies">
+      <div class="sticky t"><strong>framing reset</strong>David: "describe your company in three sentences as if I just walked in cold." The team's "the problem is safety" opener got rejected. Forced explicit articulation of customer / lifecycle / scope.</div>
+      <div class="sticky i"><strong>BREAKTHROUGH: layer not channel</strong>Scarlot is not WhatsApp, it is a layer on top of channels. Discovery upstream out of scope. Meeting downstream out of scope. Messaging in between is the product.</div>
+      <div class="sticky i"><strong>BREAKTHROUGH: Mode C wins</strong>Three modes evaluated: A (Bailey's device-link), B (Scarlot-issued number per TDS), C (Scarlot as just another contact, TDS forwards). David pushed hard for C. Smallest data exposure, simplest LPD posture, lowest cognitive ramp.</div>
+      <div class="sticky d"><strong>tag-only, zero text</strong>Reports are emoji + tag. No free text, no source attribution, no reveal mechanism. Defamation-safe and aligned with anonymity-first community norms.</div>
+      <div class="sticky d"><strong>V1 / V1.1 / V2 / V3 phasing</strong>V1 = reputation lookup chatbot. V1.1 = geographic gating + granularity. V2 = CRM (calendar / notes / contacts). V3 = communication assistance.</div>
+      <div class="sticky d"><strong>two POCs not one</strong>Reputation product and CRM product have different dynamics. Reputation = dirty data, clear willingness-to-pay, door opener. CRM = clean per-user, heavy engineering, upsell. Deploy separately.</div>
+      <div class="sticky d"><strong>user_id scope from day one</strong>Every entity scoped to user_id. Reputation DB is the only global store. Transport-agnostic abstraction so a future web app or other channel works without rewrite.</div>
+      <div class="sticky i"><strong>JID flips: limitation → feature</strong>The unmappable WhatsApp ID is privacy-preserving by construction. Contact-card-share UX puts the user in control of what enters the safety database.</div>
+      <div class="sticky d"><strong>geographic gating</strong>A Geneva TDS sees Geneva reports first. Both UX simplification and legal hedge. V1.1 mechanism (city / canton / radius) to be specified.</div>
+      <div class="sticky d"><strong>minimalist UX, separate training mode</strong>Steady state: forward contact, get emoji, done. No "how can I help you today". New users get a training-mode that teaches the patterns once.</div>
+      <div class="sticky t"><strong>Andrew pushback on Mode C</strong>Stream access enables auto-detect, template learning, classifier training. David's response: don't assume those are valuable enough to justify the data exposure; let cohort tell us.</div>
+      <div class="sticky t"><strong>Philippe pushback on reveal</strong>David's credit-bureau "request from reporter" pattern was rejected. Community anonymity is non-negotiable. Reconsider only if V1 traction requires it.</div>
+      <div class="sticky c"><strong>OpenClaude / NanoClaude distinction</strong>Those platforms are general, auto-modifiable, single-user. Scarlot is stable, scoped, locked-down. Same primitives possible internally, but no skill self-installation by users.</div>
+      <div class="sticky n"><strong>vertical expansion</strong>Solo professional administrative reduction is the larger pattern. TDS is the entry point. Construction, viticulture, healthcare adjacencies.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SESSION 3: NOON HARNESS -->
+<section class="phase" data-session="noon-harness">
+  <div class="phase-meta">
+    <span class="num">03</span>
+    <div class="when">14:43 → 15:09</div>
+    <div>~25 min</div>
+    <div class="driver"><div>Drivers</div><span class="driver-d">David</span> +A +P</div>
+  </div>
+  <div>
+    <div class="phase-title">David's harness architecture deep-dive <span class="mood">technical reference</span></div>
+    <div class="stickies">
+      <div class="sticky i"><strong>orchestrator + sandbox-per-query</strong>Rust orchestrator listens on channels. Per inbound, it composes a fresh sandbox: skills + system prompt + workspace + runtime. Agent killed after response. Strong isolation by construction.</div>
+      <div class="sticky i"><strong>BREAKTHROUGH: External Action pattern</strong>Agent never holds API keys. Calls external_action(name, args). Orchestrator runs the credentialed script in a separate sandbox. Even an agent told to print every env var won't find the key.</div>
+      <div class="sticky c"><strong>Brain + subagents, cost-asymmetric</strong>Brain = Claude (heavy reasoning). Retriever / Transcriber / Scraper subagents = Gemini Flash. Subagents isolate context (Brain never sees the 25 wiki pages the Retriever read).</div>
+      <div class="sticky c"><strong>bubblewrap, ~30ms startup</strong>Linux namespace isolation. Faster than Docker (chosen for that reason). Inside Docker container of orchestrator. Production alternative: Firecracker for AWS-style serverless.</div>
+      <div class="sticky c"><strong>Nginx sidecar injects keys</strong>Agent sees localhost + placeholder key as env. Nginx intercepts and rewrites with real key. Credential rotation = sidecar config reload. Zero agent-side awareness.</div>
+      <div class="sticky c"><strong>Simplex as primary channel</strong>Outbound and inbound through different relays. Observer can't reconstruct conversation. Tor onion addresses available. Open source. Adapter is its own Docker container with WebSocket interface.</div>
+      <div class="sticky c"><strong>memory = wiki + skills</strong>Git repo as wiki, read by Retriever subagent. Instructions skill for persistent rules. No separate memory subsystem; auditable, version-controlled, human-readable.</div>
+      <div class="sticky d"><strong>adopt the pattern, defer implementation</strong>Confirmed as Scarlot's reference architecture. V1 hackathon may start simpler (single agent, simple credential handling) but skills-as-directories and external_action are kept from day one because cheap-to-keep, expensive-to-retrofit.</div>
+      <div class="sticky n"><strong>"the innovation is not the tech"</strong>David: choosing Claude / Codex / Rig is a detail. The leverage is in skill definitions and interaction quality. Reinforces noon-david: build the UX, don't fall in love with the stack.</div>
+      <div class="sticky n"><strong>EU anti-scraping is weak</strong>David: "j'avais fait tout un dossier juridique là-dessus". Compilations of public reports get protection only with curation effort. Trojan Horse is on solid ground if we curate (cluster, tag, normalise).</div>
+      <div class="sticky d"><strong>reusable playbook produced</strong>See docs/meta/harness-orchestrator-playbook.md. Project-agnostic spec for the same pattern, with checklist, threat model, sandbox primitive comparison, and skills/external_action templates.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SESSION 4: AFTERNOON DEVOPS -->
+<section class="phase" data-session="afternoon-devops">
+  <div class="phase-meta">
+    <span class="num">04</span>
+    <div class="when">18:18 → 18:35</div>
+    <div>~17 min</div>
+    <div class="driver"><div>Drivers</div><span class="driver-da">Daniel</span> +A +P</div>
+  </div>
+  <div>
+    <div class="phase-title">Afternoon DevOps consultation with Daniel <span class="mood">tactical, sharp</span></div>
+    <div class="stickies">
+      <div class="sticky d"><strong>Tailscale for control plane ⟷ tenant</strong>No public exposure of tenant API. Mesh networking via Tailscale. Tenant accepts only tailnet traffic. Self-signed TLS dropped (footgun risk).</div>
+      <div class="sticky d"><strong>rate limit everything from day one</strong>Per-IP rate limiting on every public endpoint. 429 on abuse. Most-skipped POC defence; cheapest to add; meaningful protection.</div>
+      <div class="sticky d"><strong>SQLite for V1, Postgres before V2</strong>Per-tenant SQLite is fine for hackathon and early beta. Multi-tenant cross-query workloads need Postgres. Migration scheduled, not "when there's time".</div>
+      <div class="sticky d"><strong>tenant network shape</strong>Transient QR endpoint exposed only during Bailey's pairing. Steady state: zero inbound surface. Locked-down by default.</div>
+      <div class="sticky t"><strong>TLS dropped (POC)</strong>Self-signed TLS requires verify-bypass in code. Footgun: bypass gets copied somewhere it shouldn't. Drop for V1. If TLS required later, terminate in sidecar (Traefik / Caddy / init container), never in app.</div>
+      <div class="sticky n"><strong>Daniel pivoted to Enote</strong>Voice-first iOS/Android app for oenologists. 200+ users, 30 paying, low churn. Offline-first architecture (consulted Serge and David for that). Voice-first cross-vertical pattern reinforced.</div>
+      <div class="sticky n"><strong>GPU pooling joke (half-serious)</strong>Philippe DGX Spark + Andrew home GPUs + Daniel's hosted compute. SETI-style mutualisation. Parked.</div>
+      <div class="sticky q"><strong>open: VPS host</strong>Hetzner cheap (German), Infomaniak / Exoscale Swiss but pricier. Decision required end of hackathon.</div>
+      <div class="sticky q"><strong>open: Tailscale legal posture</strong>Is its data-handling clean enough for nFADP, or do we self-host Headscale?</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE SUMMARY -->
+<section class="architecture">
+  <h2>Architecture as it crystallised by end of Day 1</h2>
+  <div class="arch-diagram">
+            ┌────────────────────────────────────────────────────────┐
+            │                   CONTROL PLANE                         │
+            │   provisions tenants · reads safety service · admin     │
+            └────────────────────────────┬───────────────────────────┘
+                                         │ Tailscale mesh, IP allowlist, rate limited
+                ┌────────────────────────┼─────────────────────────┐
+                │                        │                         │
+   ┌────────────▼──────────┐  ┌──────────▼──────────┐  ┌──────────▼──────────┐
+   │   TENANT (TDS A)       │  │   TENANT (TDS B)     │  │   TENANT (TDS N)    │
+   │                        │  │                      │  │                     │
+   │   ┌────────────────┐   │  │   [...]              │  │   [...]             │
+   │   │ orchestrator   │   │  │                      │  │                     │
+   │   │ (Rust or TS)   │   │  │                      │  │                     │
+   │   └───────┬────────┘   │  │                      │  │                     │
+   │           │ per-query   │  │                      │  │                     │
+   │   ┌───────▼────────┐   │  │                      │  │                     │
+   │   │ sandbox        │   │  │                      │  │                     │
+   │   │ (bubblewrap)   │   │  │                      │  │                     │
+   │   │ skills + LLM   │   │  │                      │  │                     │
+   │   └───────┬────────┘   │  │                      │  │                     │
+   │           │             │  │                      │  │                     │
+   │   ┌───────▼────────┐   │  │                      │  │                     │
+   │   │ Nginx sidecar  │   │  │                      │  │                     │
+   │   │ injects keys   │   │  │                      │  │                     │
+   │   └───────┬────────┘   │  │                      │  │                     │
+   │           │             │  │                      │  │                     │
+   │   ┌───────▼────────┐   │  │                      │  │                     │
+   │   │ Bailey's       │   │  │                      │  │                     │
+   │   │ WhatsApp       │   │  │                      │  │                     │
+   │   └───────┬────────┘   │  │                      │  │                     │
+   │           │ Scarlot is just another WhatsApp contact (Mode C)              │
+   │           │ TDS forwards a contact card → emoji-tag reputation reply       │
+   │           ▼                                                                 │
+   │       ┌─────────┐  reputation lookup  ┌─────────────────────────┐          │
+   │       │ Open    │ ─────────────────▶  │ scarlot-safety-data     │          │
+   │       │ Router  │                     │  (scrapers + lookup API) │          │
+   │       │ (LLMs)  │ ◀───────────────── │  read-only V1            │          │
+   │       └─────────┘     tag + count    └─────────────────────────┘          │
+   └────────────────────────┘                                                    │
+</div>
+</section>
+
+<!-- CROSS-CUTTING -->
+<section class="cross">
+  <div class="col">
+    <h2>Decisions consolidated</h2>
+    <ul>
+      <li>Trojan Horse reverse-lookup scraper as V1 anchor feature.<span class="pill">morning</span></li>
+      <li>Two-service architecture: scarlot-poc + scarlot-safety-data.<span class="pill">morning</span></li>
+      <li>API contract: phone → status + tags + counts. Read-only V1.<span class="pill">morning</span></li>
+      <li>Open Router for model access.<span class="pill">morning</span></li>
+      <li>Bailey's for WhatsApp V1, accept JID limitation.<span class="pill">morning</span></li>
+      <li>Mode C (Scarlot as external contact, forward-driven UX) is V1 default.<span class="pill">noon-david</span></li>
+      <li>V1 / V1.1 / V2 / V3 phasing. Reputation first, CRM second.<span class="pill">noon-david</span></li>
+      <li>Tag-only reports, no free text, no reveal.<span class="pill">noon-david</span></li>
+      <li>Geographic gating on lookups.<span class="pill">noon-david</span></li>
+      <li>user_id scope from day one, transport-agnostic.<span class="pill">noon-david</span></li>
+      <li>Two separable POCs: reputation, CRM.<span class="pill">noon-david</span></li>
+      <li>Orchestrator + sandbox-per-query as reference architecture.<span class="pill">noon-harness</span></li>
+      <li>External Action pattern for any credentialed tool.<span class="pill">noon-harness</span></li>
+      <li>Tailscale + IP allowlist + rate limit. No self-signed TLS.<span class="pill">afternoon</span></li>
+      <li>SQLite POC, Postgres before V2 scale.<span class="pill">afternoon</span></li>
+      <li>Republik eSIM provisioned for Mode B fallback.<span class="pill">morning</span></li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2>Breakthroughs (new today)</h2>
+    <ul>
+      <li><b>Trojan Horse reverse-lookup</b> as direct answer to P5. Joséphine has the platform logins.<span class="pill">morning</span></li>
+      <li><b>Layer not channel.</b> Scarlot lives between Discovery and Meeting. WhatsApp is one transport, not the product.<span class="pill">noon-david</span></li>
+      <li><b>Mode C: Scarlot as external contact.</b> Smallest data exposure, simplest LPD posture, low cognitive ramp.<span class="pill">noon-david</span></li>
+      <li><b>JID flips from limitation to feature.</b> Privacy-preserving anonymous identifier; user controls what enters the safety DB.<span class="pill">noon-david</span></li>
+      <li><b>Tag-only reports.</b> Zero text. Defamation-safe. Aligned with community anonymity.<span class="pill">noon-david</span></li>
+      <li><b>Two-POC split (reputation + CRM).</b> Different dynamics, different willingness-to-pay tests.<span class="pill">noon-david</span></li>
+      <li><b>Orchestrator + sandbox-per-query pattern.</b> Reusable across projects (see playbook).<span class="pill">noon-harness</span></li>
+      <li><b>External Action pattern.</b> Credentials never reach the agent.<span class="pill">noon-harness</span></li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2>Open questions / parking lot</h2>
+    <ul>
+      <li>Stream-mode vs Forward-mode user acceptance: cohort decides.<span class="pill">morning</span></li>
+      <li>Right-to-be-forgotten between two private individuals under LPD?<span class="pill">morning</span></li>
+      <li>iOS/macOS contact ⟷ WhatsApp JID mapping from device side: possible?<span class="pill">morning</span></li>
+      <li>Tag taxonomy: derived how, validated by whom?<span class="pill">noon-david</span></li>
+      <li>Geographic gating mechanism: city / canton / radius?<span class="pill">noon-david</span></li>
+      <li>Reveal mechanism: park or build later?<span class="pill">noon-david</span></li>
+      <li>Runtime choice for V1: Claude Agent SDK / Rig / custom?<span class="pill">noon-harness</span></li>
+      <li>Sandboxing primitive for production (bubblewrap / Firecracker)?<span class="pill">noon-harness</span></li>
+      <li>Swiss VPS host: Hetzner / Infomaniak / Exoscale / Init7?<span class="pill">afternoon</span></li>
+      <li>Tailscale nFADP posture, or self-host Headscale?<span class="pill">afternoon</span></li>
+      <li>Voice latency: WhatsApp voice notes round-trip acceptable?<span class="pill">morning</span></li>
+      <li>SQLite → Postgres migration window: when?<span class="pill">afternoon</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONNECTIONS -->
+<section class="connections">
+  <h2>Cross-session arrows</h2>
+  <div class="arrow-row">
+    <span class="from">morning (JID limitation)</span><span class="arr">→</span><span class="to">noon-david (Mode C)</span>
+    <span style="color: var(--ink-2);">— what looked like a workaround in the morning became the V1 default architecture by lunch</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">morning (Trojan Horse)</span><span class="arr">→</span><span class="to">noon-david (V1 = reputation lookup)</span>
+    <span style="color: var(--ink-2);">— the scraper decision was the prerequisite that let David's V1 framing be possible</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">noon-david (user_id scope)</span><span class="arr">→</span><span class="to">noon-harness (sandbox-per-query)</span>
+    <span style="color: var(--ink-2);">— application-level scoping reinforced by infrastructure-level isolation</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">noon-harness (External Action)</span><span class="arr">→</span><span class="to">morning (Trojan Horse credentials)</span>
+    <span style="color: var(--ink-2);">— scrape credentials never reach the agent; correct home for them is the External Action sandbox</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">noon-david (two-POC split)</span><span class="arr">→</span><span class="to">afternoon (control plane vs tenants)</span>
+    <span style="color: var(--ink-2);">— reputation is global; CRM is per-tenant. The deployment topology mirrors the product split.</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">morning (no MCP, custom tools)</span><span class="arr">→</span><span class="to">noon-harness (skills as directories)</span>
+    <span style="color: var(--ink-2);">— Andrew's prototype already had the right shape; David's pattern formalises it</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">prior worksession with Joséphine (29 Apr)</span><span class="arr">→</span><span class="to">all of Day 1</span>
+    <span style="color: var(--ink-2);">— priority stack, switchboard concept, voice-first framing, and seed-data plan all flow from yesterday's session</span>
+  </div>
+  <div class="arrow-row">
+    <span class="from">all of Day 1</span><span class="arr">→</span><span class="to">Day 2 hackathon</span>
+    <span style="color: var(--ink-2);">— V1 reputation chatbot end-to-end (Andrew); And6 scraper plus tag clustering (Philippe); voice stretch goal if time</span>
+  </div>
+</section>
+
+<footer>
+  Generated from full transcripts of all four Day 1 sessions.<br>
+  See SCARLOT_SYNC_20260430_hackathon-day1-{morning,noon-david,noon-harness,afternoon-devops}.md for the full records.<br>
+  See docs/meta/harness-orchestrator-playbook.md for the reusable architecture spec.
+</footer>
+
+</body>
+</html>

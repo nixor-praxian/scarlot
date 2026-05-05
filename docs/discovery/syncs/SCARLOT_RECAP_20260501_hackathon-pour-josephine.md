@@ -3,7 +3,7 @@ date: 2026-05-01
 pour: Joséphine
 sujet: récap du hackathon Scarlot avec Andrew (Day 1, 30 avril 2026)
 sources:
-  - SCARLOT_SYNC_20260430_hackathon-day1-{morning,noon-david,noon-harness,afternoon-devops}.md
+  - SCARLOT_SYNC_20260430_{0900_hackathon-day1-morning,1316_hackathon-day1-noon-david,1443_hackathon-day1-noon-harness,1818_hackathon-day1-afternoon-devops}.md
   - Project Recap - 2026-05-01.md (hernest)
   - Website Overview - 2026-05-01.md (scarlot-website)
   - Safety Data Recap - 2026-05-01.md (scarlot-safety-data)

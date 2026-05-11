@@ -13,10 +13,6 @@ The platform concept: modular **coverages** (Safety, Memory, Booking, Payments, 
 **Co-founder**: Insider credibility within the TDS community, Geneva-based. Authored the product brief (Feb 2026) defining the 7 feature blocs and client file schema.
 **Advisor**: Product strategy, 15+ years B2B software.
 
-## Privacy
-
-**All files in this repository must be free of personally identifiable information.** Use roles (co-founder, advisor, interviewer) instead of names. Use pseudonyms for interview participants. Generalize locations narrower than region level.
-
 ## Repository Structure
 
 ```
@@ -150,7 +146,7 @@ See `docs/product/counter-arguments.md` for full rebuttal briefing on 10 objecti
 
 ## Constraints
 
-- **Privacy-first**: Swiss nFADP compliance required. No PII in committed files.
+- **Privacy-first product posture**: Swiss nFADP compliance required at product level. Repo files may contain PII; treat such files responsibly (legal correspondence, counterparty details, internal participants).
 - **Legal structure**: Swiss Sàrl. Flat subscription pricing only. Never commission.
 - **Semi-automatic**: TDS controls every decision. AI assists, never decides.
 - **Conversational-native**: Primary UX through existing messaging apps.
